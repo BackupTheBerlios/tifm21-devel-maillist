@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] tifmxx: first results - undefined symbols
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2005-December/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20tifmxx%3A%20first%20results%20-%20undefined%20symbols&In-Reply-To=%3C43ACAA43.3040103%40overstep.com.br%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000078.html">
+   <LINK REL="Next"  HREF="000081.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] tifmxx: first results - undefined symbols</H1>
+    <B>Gustavo Henrique Cervi</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20tifmxx%3A%20first%20results%20-%20undefined%20symbols&In-Reply-To=%3C43ACAA43.3040103%40overstep.com.br%3E"
+       TITLE="[Tifm21-devel] tifmxx: first results - undefined symbols">gustavo-listas at overstep.com.br
+       </A><BR>
+    <I>Sat Dec 24 02:54:11 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000078.html">[Tifm21-devel] tifmxx: first results
+</A></li>
+        <LI>Next message: <A HREF="000081.html">[Tifm21-devel] tifmxx: first results - undefined symbols
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#80">[ date ]</a>
+              <a href="thread.html#80">[ thread ]</a>
+              <a href="subject.html#80">[ subject ]</a>
+              <a href="author.html#80">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>something is wrong here...
+
+-----
+
+[<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">root at andromeda</A> trunk]# make
+make -C /lib/modules/2.6.13-prep/build M=/data/temp/tifm/dd/trunk
+make[1]: Entering directory `/usr/src/linux-2.6.13'
+LD /data/temp/tifm/dd/trunk/built-in.o
+CC [M] /data/temp/tifm/dd/trunk/tifmxx_hw.o
+/data/temp/tifm/dd/trunk/tifmxx_hw.c: In function &#8216;tifmxx_probe&#8217;:
+/data/temp/tifm/dd/trunk/tifmxx_hw.c:277: warning: implicit declaration 
+of function &#8216;pci_intx&#8217;
+/data/temp/tifm/dd/trunk/tifmxx_hw.c:330: warning: label 
+&#8216;err_out_iounmap&#8217; defined but not used
+CC [M] /data/temp/tifm/dd/trunk/tifmxx_scsi.o
+LD [M] /data/temp/tifm/dd/trunk/tifmxx.o
+Building modules, stage 2.
+MODPOST
+*** Warning: &quot;pci_intx&quot; [/data/temp/tifm/dd/trunk/tifmxx.ko] undefined!
+CC /data/temp/tifm/dd/trunk/tifmxx.mod.o
+LD [M] /data/temp/tifm/dd/trunk/tifmxx.ko
+make[1]: Leaving directory `/usr/src/linux-2.6.13'
+[<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">root at andromeda</A> trunk]# insmod ./tifmxx.ko
+insmod: error inserting './tifmxx.ko': -1 Unknown symbol in module
+[<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">root at andromeda</A> trunk]#
+
+DMESG says:
+
+tifmxx: Unknown symbol scsi_remove_host
+tifmxx: Unknown symbol pci_intx
+tifmxx: Unknown symbol scsi_host_put
+tifmxx: Unknown symbol scsi_add_host
+tifmxx: Unknown symbol scsi_host_alloc
+
+
+thanks...
+-Gustavo
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000078.html">[Tifm21-devel] tifmxx: first results
+</A></li>
+	<LI>Next message: <A HREF="000081.html">[Tifm21-devel] tifmxx: first results - undefined symbols
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#80">[ date ]</a>
+              <a href="thread.html#80">[ thread ]</a>
+              <a href="subject.html#80">[ subject ]</a>
+              <a href="author.html#80">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

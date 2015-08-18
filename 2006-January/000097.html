@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] Error in module tifmxx.ko
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2006-January/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20Error%20in%20module%20tifmxx.ko&In-Reply-To=%3C20060105105209.GA9132%40leah-linux.hopto.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000099.html">
+   <LINK REL="Next"  HREF="000098.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] Error in module tifmxx.ko</H1>
+    <B>Still</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20Error%20in%20module%20tifmxx.ko&In-Reply-To=%3C20060105105209.GA9132%40leah-linux.hopto.org%3E"
+       TITLE="[Tifm21-devel] Error in module tifmxx.ko">debian.users.portuguese at gmail.com
+       </A><BR>
+    <I>Thu Jan  5 11:52:09 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000099.html">[Tifm21-devel] About PCIxx20
+</A></li>
+        <LI>Next message: <A HREF="000098.html">[Tifm21-devel] Error in module tifmxx.ko
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#97">[ date ]</a>
+              <a href="thread.html#97">[ thread ]</a>
+              <a href="subject.html#97">[ subject ]</a>
+              <a href="author.html#97">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello Folks;
+
+	I have a little problem here with the module.
+	When I was compiling the module, I got some warnings:
+
+bella-linux:~# make all
+make -C /lib/modules/2.6.12/build M=/root
+make[1]: Entrando no diret&#243;rio `/usr/src/linux-source-2.6.12'
+  LD      /root/built-in.o
+  CC [M]  /root/tifmxx_hw.o
+/root/tifmxx_hw.c: In function 'tifmxx_probe':
+/root/tifmxx_hw.c:235: warning: implicit declaration of function
+'pci_intx'
+  CC [M]  /root/tifmxx_scsi.o
+  CC [M]  /root/tifmxx_mmcsd.o
+/root/tifmxx_mmcsd.c: In function 'tifmxx_mmcsd_init_card':
+/root/tifmxx_mmcsd.c:133: warning: implicit declaration of function
+'tifmxx_mmcsd_detect_card_type'
+/root/tifmxx_mmcsd.c:146: warning: implicit declaration of function
+'tifmxx_mmcsd_standby'
+/root/tifmxx_mmcsd.c:147: warning: implicit declaration of function
+'tifmxx_mmcsd_read_csd_info'
+/root/tifmxx_mmcsd.c:155: warning: implicit declaration of function
+'tifmxx_mmcsd_read_serial_number'
+/root/tifmxx_mmcsd.c:156: warning: implicit declaration of function
+'tifmxx_mmcsd_exec_card_cmd'
+/root/tifmxx_mmcsd.c:172: warning: implicit declaration of function
+'tifmxx_mmcsd_execute'
+/root/tifmxx_mmcsd.c:193: warning: implicit declaration of function
+'GetState'
+  LD [M]  /root/tifmxx.o
+  Building modules, stage 2.
+  MODPOST
+*** Warning: &quot;tifmxx_mmcsd_standby&quot; [/root/tifmxx.ko] undefined!
+*** Warning: &quot;tifmxx_mmcsd_read_serial_number&quot; [/root/tifmxx.ko]
+undefined!
+*** Warning: &quot;tifmxx_mmcsd_detect_card_type&quot; [/root/tifmxx.ko]
+undefined!
+*** Warning: &quot;GetState&quot; [/root/tifmxx.ko] undefined!
+*** Warning: &quot;pci_intx&quot; [/root/tifmxx.ko] undefined!
+*** Warning: &quot;tifmxx_mmcsd_execute&quot; [/root/tifmxx.ko] undefined!
+*** Warning: &quot;tifmxx_mmcsd_read_csd_info&quot; [/root/tifmxx.ko] undefined!
+*** Warning: &quot;tifmxx_mmcsd_exec_card_cmd&quot; [/root/tifmxx.ko] undefined!
+  CC      /root/tifmxx.mod.o
+  LD [M]  /root/tifmxx.ko
+make[1]: Saindo do diret&#243;rio `/usr/src/linux-source-2.6.12'
+
+bella-linux:~# insmod tifmxx.ko
+insmod: error inserting 'tifmxx.ko': -1 Unknown symbol in module
+bella-linux:~# dmesg
+...
+tifmxx: Unknown symbol tifmxx_mmcsd_exec_card_cmd
+tifmxx: Unknown symbol tifmxx_mmcsd_read_csd_info
+tifmxx: Unknown symbol tifmxx_mmcsd_execute
+tifmxx: Unknown symbol pci_intx
+tifmxx: Unknown symbol GetState
+tifmxx: Unknown symbol tifmxx_mmcsd_detect_card_type
+tifmxx: Unknown symbol tifmxx_mmcsd_read_serial_number
+tifmxx: Unknown symbol tifmxx_mmcsd_standby
+
+	My system:
+
+Compaq Presario V2000
+Memory Card Reader 6-in-1
+Debian Gnu/Linux, kernel 2.6.12, gcc 4.0
+scsi_mod loaded
+
+	Which packages I need in order to compile the module without
+warnings ?
+
+Kind regards,
+
+Still
+--
+Nelson Luiz Campos                  .''`.     | I hear; I forget.
+Engenheiro Eletricista             : :'  :    | I see; I remember.
+Linux User #89621 UIN 11464303     `. `'`     | I do; I understand.
+gpgID: 55577339 Skype Still_by_Still `-       | Chinese Proverb
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: Digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/tifm21-devel/attachments/20060105/f1a9c1f1/attachment.pgp">https://lists.berlios.de/pipermail/tifm21-devel/attachments/20060105/f1a9c1f1/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000099.html">[Tifm21-devel] About PCIxx20
+</A></li>
+	<LI>Next message: <A HREF="000098.html">[Tifm21-devel] Error in module tifmxx.ko
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#97">[ date ]</a>
+              <a href="thread.html#97">[ thread ]</a>
+              <a href="subject.html#97">[ subject ]</a>
+              <a href="author.html#97">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] finally got a log
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2007-February/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20finally%20got%20a%20log&In-Reply-To=%3C20070216030242.43800.qmail%40web36714.mail.mud.yahoo.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000269.html">
+   <LINK REL="Next"  HREF="000271.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] finally got a log</H1>
+    <B>Alex Dubov</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20finally%20got%20a%20log&In-Reply-To=%3C20070216030242.43800.qmail%40web36714.mail.mud.yahoo.com%3E"
+       TITLE="[Tifm21-devel] finally got a log">oakad at yahoo.com
+       </A><BR>
+    <I>Fri Feb 16 04:02:42 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000269.html">[Tifm21-devel] finally got a log
+</A></li>
+        <LI>Next message: <A HREF="000271.html">[Tifm21-devel] finally got a log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#270">[ date ]</a>
+              <a href="thread.html#270">[ thread ]</a>
+              <a href="subject.html#270">[ subject ]</a>
+              <a href="author.html#270">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> 
+</I>&gt;<i> This is rev83 which although it did not recognise the MMC card, worked with a 1GB SD.. and this
+</I>&gt;<i> is 
+</I>&gt;<i> where it explodes on a large write/sync
+</I>
+The only thing that can possibly affect mmc detection:
+Notice that there's a commented out line in the end of tifm_sd_event:
+//      writel(host_status, sock-&gt;addr + SOCK_MMCSD_STATUS);
+
+Try to uncomment it and see what happens.
+
+As to SD card problem: the thing chokes on really large requests. The simplest solution will be to
+limit the request size. I want to investigate this a little, though.
+
+
+ 
+____________________________________________________________________________________
+Don't pick lemons.
+See all the new 2007 cars at Yahoo! Autos.
+<A HREF="http://autos.yahoo.com/new_cars.html">http://autos.yahoo.com/new_cars.html</A> 
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000269.html">[Tifm21-devel] finally got a log
+</A></li>
+	<LI>Next message: <A HREF="000271.html">[Tifm21-devel] finally got a log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#270">[ date ]</a>
+              <a href="thread.html#270">[ thread ]</a>
+              <a href="subject.html#270">[ subject ]</a>
+              <a href="author.html#270">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] Trunk 31, errors
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2006-March/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20Trunk%2031%2C%20errors&In-Reply-To=%3C441A5300.6030504%40siemens-mobiles.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000141.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] Trunk 31, errors</H1>
+    <B>Wael Nasreddine</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20Trunk%2031%2C%20errors&In-Reply-To=%3C441A5300.6030504%40siemens-mobiles.org%3E"
+       TITLE="[Tifm21-devel] Trunk 31, errors">wael at siemens-mobiles.org
+       </A><BR>
+    <I>Fri Mar 17 07:11:12 CET 2006</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000141.html">[Tifm21-devel] Trunk 31, errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#140">[ date ]</a>
+              <a href="thread.html#140">[ thread ]</a>
+              <a href="subject.html#140">[ subject ]</a>
+              <a href="author.html#140">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Hello,
+
+I saw today that oakad SVN has Rev. 31 with &quot;card detection is back&quot; as
+comments so i wanted to try it, but I got the same error that i was
+getting since Rev. 28, the error:
+
+[<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">wael at nasreddine</A> /tmp/driver]$ make
+make -C /lib/modules/2.6.15-archck/build M=/tmp/driver
+make[1]: Entering directory `/usr/src/linux-2.6.15-archck'
+  LD      /tmp/driver/built-in.o
+  CC [M]  /tmp/driver/tifm_core.o
+/tmp/driver/tifm_core.c:61: error: unknown field 'hotplug' specified in
+initializer
+make[2]: *** [/tmp/driver/tifm_core.o] Error 1
+make[1]: *** [_module_/tmp/driver] Error 2
+make[1]: Leaving directory `/usr/src/linux-2.6.15-archck'
+make: *** [all] Error 2
+
+
+My kernel: 2.6.15-archck ( That's a custom kernel that includes Con
+Kolivas Patches, suspend2 and bootsplash ( home page -&gt;
+<A HREF="http://iphitus.loudas.com/archck.php">http://iphitus.loudas.com/archck.php</A> )
+
+My system use Udev, hotplug is no longer in the system so i'm not sure
+if that is the reason
+
+- --
+Regards,
+Wael Nasreddine
+<A HREF="http://wael.nasreddine.com">http://wael.nasreddine.com</A>
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.2.2 (GNU/Linux)
+Comment: Using GnuPG with Mozilla - <A HREF="http://enigmail.mozdev.org">http://enigmail.mozdev.org</A>
+
+iD8DBQFEGlMAnIfTbZJByMwRArL5AJ9R5rJ0+hh5Sbnz0DjABlm5hpr83QCbBdbb
+8MoXbl1IVlryq/iueVOm6lA=
+=XfVt
+-----END PGP SIGNATURE-----
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000141.html">[Tifm21-devel] Trunk 31, errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#140">[ date ]</a>
+              <a href="thread.html#140">[ thread ]</a>
+              <a href="subject.html#140">[ subject ]</a>
+              <a href="author.html#140">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

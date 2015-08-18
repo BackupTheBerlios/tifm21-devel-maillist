@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] MemoryStick Pro
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2007-September/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20MemoryStick%20Pro&In-Reply-To=%3C20070901003012.GA3034%40srcf.ucam.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000294.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] MemoryStick Pro</H1>
+    <B>Matthew Garrett</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20MemoryStick%20Pro&In-Reply-To=%3C20070901003012.GA3034%40srcf.ucam.org%3E"
+       TITLE="[Tifm21-devel] MemoryStick Pro">mjg59 at srcf.ucam.org
+       </A><BR>
+    <I>Sat Sep  1 02:30:12 CEST 2007</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000294.html">[Tifm21-devel] MemoryStick Pro
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#293">[ date ]</a>
+              <a href="thread.html#293">[ thread ]</a>
+              <a href="subject.html#293">[ subject ]</a>
+              <a href="author.html#293">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, Aug 27, 2007 at 08:16:38AM -0700, Alex Dubov wrote:
+&gt;<i> As of svn revision 107, memorystick pro support appears to be satisfactory enough for general
+</I>&gt;<i> testing.
+</I>
+Works for me, as long as I don't disable the debug information - if I 
+do, it all breaks horribly. The following diff seems to fix it, so I 
+suspect that the time taken to print the debug statement was enough to 
+slow it to the point it worked.
+
+diff --git a/ubuntu/misc/tifm/tifm_ms.c b/ubuntu/misc/tifm/tifm_ms.c
+index ed33433..5ca6c2b 100644
+--- a/ubuntu/misc/tifm/tifm_ms.c
++++ b/ubuntu/misc/tifm/tifm_ms.c
+@@ -303,6 +303,7 @@ int tifm_ms_issue_cmd(struct tifm_ms *host)
+        cmd |= data_len;
+        writel(cmd, sock-&gt;addr + SOCK_MS_COMMAND);
+ 
++       udelay(10);
+        dev_dbg(&amp;sock-&gt;dev, &quot;executing TPC %x, %x\n&quot;, cmd, cmd_mask);
+        return 0;
+ }
+
+-- 
+Matthew Garrett | <A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">mjg59 at srcf.ucam.org</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000294.html">[Tifm21-devel] MemoryStick Pro
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#293">[ date ]</a>
+              <a href="thread.html#293">[ thread ]</a>
+              <a href="subject.html#293">[ subject ]</a>
+              <a href="author.html#293">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

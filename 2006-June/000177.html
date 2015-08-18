@@ -1,0 +1,297 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] error feedback
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2006-June/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20error%20feedback&In-Reply-To=%3C448E391E.6070307%40overstep.com.br%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000176.html">
+   <LINK REL="Next"  HREF="000179.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] error feedback</H1>
+    <B>Gustavo Henrique Cervi</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20error%20feedback&In-Reply-To=%3C448E391E.6070307%40overstep.com.br%3E"
+       TITLE="[Tifm21-devel] error feedback">gustavo-listas at overstep.com.br
+       </A><BR>
+    <I>Tue Jun 13 06:03:42 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000176.html">[Tifm21-devel] error feedback
+</A></li>
+        <LI>Next message: <A HREF="000179.html">[Tifm21-devel] ti binary driver
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#177">[ date ]</a>
+              <a href="thread.html#177">[ thread ]</a>
+              <a href="subject.html#177">[ subject ]</a>
+              <a href="author.html#177">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>yes, I also tried with an 512mb SD card.
+
+
+Alex Dubov wrote:
+&gt;<i> I'll have to fix debugging, that for sure.
+</I>&gt;<i> Unfortunately, your trace doesn't show the interesting
+</I>&gt;<i> things (but you'd better wait for next svn rev). What
+</I>&gt;<i> it does shows is that everything works ok and then
+</I>&gt;<i> reports error on some block, which may simply be a bad
+</I>&gt;<i> one (this should not prevent card from working). In
+</I>&gt;<i> general, it may be related to mmc_block - are you
+</I>&gt;<i> loading it in advance?
+</I>&gt;<i>
+</I>&gt;<i> --- Gustavo Henrique Cervi
+</I>&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">gustavo-listas at overstep.com.br</A>&gt; wrote:
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i> andromeda ~ # uname -a
+</I>&gt;&gt;<i> Linux andromeda 2.6.16-gentoo-r7 #10 PREEMPT Sat Jun
+</I>&gt;&gt;<i> 10 18:20:14 BRT 
+</I>&gt;&gt;<i> 2006 i686 Intel(R) Pentium(R) M processor 1.70GHz
+</I>&gt;&gt;<i> GNU/Linux
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> with an 32mb MMC (from nokia 6230 mobile)
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Jun 12 18:06:54 andromeda tifm_sd [tifm_sd_ios()]:
+</I>&gt;&gt;<i> Setting bus width 0
+</I>&gt;&gt;<i> Jun 12 18:06:54 andromeda tifm_sd [tifm_sd_ios()]:
+</I>&gt;&gt;<i> Setting bus width 0
+</I>&gt;&gt;<i> Jun 12 18:06:54 andromeda tifm_sd [tifm_sd_ios()]:
+</I>&gt;&gt;<i> Setting bus width 0
+</I>&gt;&gt;<i> Jun 12 18:06:54 andromeda tifm_sd [tifm_sd_ios()]:
+</I>&gt;&gt;<i> Setting bus width 0
+</I>&gt;&gt;<i> Jun 12 18:06:54 andromeda MMC: starting cmd 00 arg
+</I>&gt;&gt;<i> 00000000 flags 00000040
+</I>&gt;&gt;<i> Jun 12 18:06:54 andromeda MMC: req done (00): 0:
+</I>&gt;&gt;<i> 00000000 00000000 
+</I>&gt;&gt;<i> 00000000 00000000
+</I>&gt;&gt;<i> Jun 12 18:06:54 andromeda tifm_sd [tifm_sd_ios()]:
+</I>&gt;&gt;<i> Setting bus width 0
+</I>&gt;&gt;<i> Jun 12 18:06:54 andromeda MMC: starting cmd 37 arg
+</I>&gt;&gt;<i> 00000000 flags 00000015
+</I>&gt;&gt;<i> Jun 12 18:06:54 andromeda tifm_sd
+</I>&gt;&gt;<i> [tifm_sd_execute()]: cmd error 1
+</I>&gt;&gt;<i> Jun 12 18:06:54 andromeda MMC: req done (37): 1:
+</I>&gt;&gt;<i> 00000000 00000000 
+</I>&gt;&gt;<i> 00000000 00000000
+</I>&gt;&gt;<i> Jun 12 18:06:54 andromeda MMC: starting cmd 37 arg
+</I>&gt;&gt;<i> 00000000 flags 00000015
+</I>&gt;&gt;<i> Jun 12 18:06:54 andromeda tifm_sd
+</I>&gt;&gt;<i> [tifm_sd_execute()]: cmd error 1
+</I>&gt;&gt;<i> Jun 12 18:06:54 andromeda MMC: req done (37): 1:
+</I>&gt;&gt;<i> 00000000 00000000 
+</I>&gt;&gt;<i> 00000000 00000000
+</I>&gt;&gt;<i> Jun 12 18:06:54 andromeda MMC: starting cmd 37 arg
+</I>&gt;&gt;<i> 00000000 flags 00000015
+</I>&gt;&gt;<i> Jun 12 18:06:54 andromeda tifm_sd
+</I>&gt;&gt;<i> [tifm_sd_execute()]: cmd error 1
+</I>&gt;&gt;<i> Jun 12 18:06:54 andromeda MMC: req done (37): 1:
+</I>&gt;&gt;<i> 00000000 00000000 
+</I>&gt;&gt;<i> 00000000 00000000
+</I>&gt;&gt;<i> Jun 12 18:06:54 andromeda MMC: starting cmd 37 arg
+</I>&gt;&gt;<i> 00000000 flags 00000015
+</I>&gt;&gt;<i> Jun 12 18:06:54 andromeda tifm_sd
+</I>&gt;&gt;<i> [tifm_sd_execute()]: cmd error 1
+</I>&gt;&gt;<i> Jun 12 18:06:54 andromeda MMC: req done (37): 1:
+</I>&gt;&gt;<i> 00000000 00000000 
+</I>&gt;&gt;<i> 00000000 00000000
+</I>&gt;&gt;<i> Jun 12 18:06:54 andromeda MMC: starting cmd 01 arg
+</I>&gt;&gt;<i> 00000000 flags 00000061
+</I>&gt;&gt;<i> Jun 12 18:06:54 andromeda MMC: req done (01): 0:
+</I>&gt;&gt;<i> 00ff8000 00000000 
+</I>&gt;&gt;<i> 00000000 00000000
+</I>&gt;&gt;<i> Jun 12 18:06:54 andromeda tifm_sd [tifm_sd_ios()]:
+</I>&gt;&gt;<i> Setting bus width 0
+</I>&gt;&gt;<i> Jun 12 18:06:54 andromeda tifm_sd [tifm_sd_ios()]:
+</I>&gt;&gt;<i> Setting bus width 0
+</I>&gt;&gt;<i> Jun 12 18:06:54 andromeda MMC: starting cmd 00 arg
+</I>&gt;&gt;<i> 00000000 flags 00000040
+</I>&gt;&gt;<i> Jun 12 18:06:54 andromeda MMC: req done (00): 0:
+</I>&gt;&gt;<i> 00ff8000 00000000 
+</I>&gt;&gt;<i> 00000000 00000000
+</I>&gt;&gt;<i> Jun 12 18:06:54 andromeda tifm_sd [tifm_sd_ios()]:
+</I>&gt;&gt;<i> Setting bus width 0
+</I>&gt;&gt;<i> Jun 12 18:06:54 andromeda MMC: starting cmd 01 arg
+</I>&gt;&gt;<i> 00300000 flags 00000061
+</I>&gt;&gt;<i> Jun 12 18:06:54 andromeda MMC: req done (01): 0:
+</I>&gt;&gt;<i> 00ff8000 00000000 
+</I>&gt;&gt;<i> 00000000 00000000
+</I>&gt;&gt;<i> Jun 12 18:06:54 andromeda MMC: starting cmd 01 arg
+</I>&gt;&gt;<i> 00300000 flags 00000061
+</I>&gt;&gt;<i> Jun 12 18:06:54 andromeda MMC: req done (01): 0:
+</I>&gt;&gt;<i> 80ff8000 00000000 
+</I>&gt;&gt;<i> 00000000 00000000
+</I>&gt;&gt;<i> Jun 12 18:06:54 andromeda MMC: starting cmd 02 arg
+</I>&gt;&gt;<i> 00000000 flags 00000067
+</I>&gt;&gt;<i> Jun 12 18:06:54 andromeda MMC: req done (02): 0:
+</I>&gt;&gt;<i> 15000030 30303030 
+</I>&gt;&gt;<i> 3007b202 16fd8701
+</I>&gt;&gt;<i> Jun 12 18:06:54 andromeda MMC: starting cmd 03 arg
+</I>&gt;&gt;<i> 00010000 flags 00000015
+</I>&gt;&gt;<i> Jun 12 18:06:54 andromeda MMC: req done (03): 0:
+</I>&gt;&gt;<i> 00000500 00000000 
+</I>&gt;&gt;<i> 00000000 00000000
+</I>&gt;&gt;<i> Jun 12 18:06:54 andromeda MMC: starting cmd 02 arg
+</I>&gt;&gt;<i> 00000000 flags 00000067
+</I>&gt;&gt;<i> Jun 12 18:06:55 andromeda tifm_sd
+</I>&gt;&gt;<i> [tifm_sd_execute()]: cmd error 1
+</I>&gt;&gt;<i> Jun 12 18:06:55 andromeda MMC: req done (02): 1:
+</I>&gt;&gt;<i> 00000000 00000000 
+</I>&gt;&gt;<i> 00000000 00000000
+</I>&gt;&gt;<i> Jun 12 18:06:55 andromeda tifm_sd
+</I>&gt;&gt;<i> [tifm_sd_execute()]: cmd error 1
+</I>&gt;&gt;<i> Jun 12 18:06:55 andromeda MMC: req done (02): 1:
+</I>&gt;&gt;<i> 00000000 00000000 
+</I>&gt;&gt;<i> 00000000 00000000
+</I>&gt;&gt;<i> Jun 12 18:06:55 andromeda tifm_sd
+</I>&gt;&gt;<i> [tifm_sd_execute()]: cmd error 1
+</I>&gt;&gt;<i> Jun 12 18:06:55 andromeda MMC: req done (02): 1:
+</I>&gt;&gt;<i> 00000000 00000000 
+</I>&gt;&gt;<i> 00000000 00000000
+</I>&gt;&gt;<i> Jun 12 18:06:55 andromeda tifm_sd
+</I>&gt;&gt;<i> [tifm_sd_execute()]: cmd error 1
+</I>&gt;&gt;<i> Jun 12 18:06:55 andromeda MMC: req done (02): 1:
+</I>&gt;&gt;<i> 00000000 00000000 
+</I>&gt;&gt;<i> 00000000 00000000
+</I>&gt;&gt;<i> Jun 12 18:06:55 andromeda tifm_sd [tifm_sd_ios()]:
+</I>&gt;&gt;<i> Setting bus width 0
+</I>&gt;&gt;<i> Jun 12 18:06:55 andromeda MMC: starting cmd 09 arg
+</I>&gt;&gt;<i> 00010000 flags 00000007
+</I>&gt;&gt;<i> Jun 12 18:06:55 andromeda tifm_sd
+</I>&gt;&gt;<i> [tifm_sd_execute()]: cmd error 1
+</I>&gt;&gt;<i> Jun 12 18:06:55 andromeda MMC: req done (09): 1:
+</I>&gt;&gt;<i> 00000000 00000000 
+</I>&gt;&gt;<i> 00000000 00000000
+</I>&gt;&gt;<i> Jun 12 18:06:55 andromeda MMC: req done (09): 0:
+</I>&gt;&gt;<i> 8c26012a 0f5901e9 
+</I>&gt;&gt;<i> f6d983e3 924040d3
+</I>&gt;&gt;<i> Jun 12 18:06:55 andromeda MMC: selected 20.000MHz
+</I>&gt;&gt;<i> transfer rate
+</I>&gt;&gt;<i> Jun 12 18:06:55 andromeda tifm_sd [tifm_sd_ios()]:
+</I>&gt;&gt;<i> Setting bus width 0
+</I>&gt;&gt;<i> Jun 12 18:06:55 andromeda MMC: starting cmd 07 arg
+</I>&gt;&gt;<i> 00010000 flags 00000015
+</I>&gt;&gt;<i> Jun 12 18:06:55 andromeda MMC: req done (07): 0:
+</I>&gt;&gt;<i> 00000700 00000000 
+</I>&gt;&gt;<i> 00000000 00000000
+</I>&gt;&gt;<i> Jun 12 18:06:55 andromeda tifm_sd [tifm_sd_ios()]:
+</I>&gt;&gt;<i> Setting bus width 0
+</I>&gt;&gt;<i> Jun 12 18:06:55 andromeda MMC: starting cmd 10 arg
+</I>&gt;&gt;<i> 00000200 flags 00000015
+</I>&gt;&gt;<i> Jun 12 18:06:55 andromeda MMC: req done (10): 0:
+</I>&gt;&gt;<i> 00000900 00000000 
+</I>&gt;&gt;<i> 00000000 00000000
+</I>&gt;&gt;<i> Jun 12 18:06:55 andromeda mmcblk0: mmc0:0001 000000
+</I>&gt;&gt;<i> 31360KiB
+</I>&gt;&gt;<i> Jun 12 18:08:13 andromeda generic_make_request:
+</I>&gt;&gt;<i> Trying to access 
+</I>&gt;&gt;<i> nonexistent block-device mmcblk0 (62592)
+</I>&gt;&gt;<i> Jun 12 18:08:13 andromeda Buffer I/O error on device
+</I>&gt;&gt;<i> mmcblk0, logical 
+</I>&gt;&gt;<i> block 7824
+</I>&gt;&gt;<i> Jun 12 18:08:13 andromeda generic_make_request:
+</I>&gt;&gt;<i> Trying to access 
+</I>&gt;&gt;<i> nonexistent block-device mmcblk0 (62592)
+</I>&gt;&gt;<i> Jun 12 18:08:13 andromeda Buffer I/O error on device
+</I>&gt;&gt;<i> mmcblk0, logical 
+</I>&gt;&gt;<i> block 7824
+</I>&gt;&gt;<i> Jun 12 18:08:13 andromeda generic_make_request:
+</I>&gt;&gt;<i> Trying to access 
+</I>&gt;&gt;<i> nonexistent block-device mmcblk0 (62712)
+</I>&gt;&gt;<i> Jun 12 18:08:13 andromeda Buffer I/O error on device
+</I>&gt;&gt;<i> mmcblk0, logical 
+</I>&gt;&gt;<i> block 7839
+</I>&gt;&gt;<i> Jun 12 18:08:13 andromeda generic_make_request:
+</I>&gt;&gt;<i> Trying to access 
+</I>&gt;&gt;<i> nonexistent block-device mmcblk0 (62712)
+</I>&gt;&gt;<i> Jun 12 18:08:13 andromeda Buffer I/O error on device
+</I>&gt;&gt;<i> mmcblk0, logical 
+</I>&gt;&gt;<i> block 7839
+</I>&gt;&gt;<i> Jun 12 18:08:13 andromeda generic_make_request:
+</I>&gt;&gt;<i> Trying to access 
+</I>&gt;&gt;<i> nonexistent block-device mmcblk0 (62712)
+</I>&gt;&gt;<i> Jun 12 18:08:13 andromeda Buffer I/O error on device
+</I>&gt;&gt;<i> mmcblk0, logical 
+</I>&gt;&gt;<i> block 7839
+</I>&gt;&gt;<i> Jun 12 18:08:13 andromeda generic_make_request:
+</I>&gt;&gt;<i> Trying to access 
+</I>&gt;&gt;<i> nonexistent block-device mmcblk0 (62712)
+</I>&gt;&gt;<i> Jun 12 18:08:13 andromeda Buffer I/O error on device
+</I>&gt;&gt;<i> mmcblk0, logical 
+</I>&gt;&gt;<i> block 7839
+</I>&gt;&gt;<i> Jun 12 18:08:13 andromeda generic_make_request:
+</I>&gt;&gt;<i> Trying to access 
+</I>&gt;&gt;<i> nonexistent block-device mmcblk0 (62712)
+</I>&gt;&gt;<i> Jun 12 18:08:13 andromeda Buffer I/O error on device
+</I>&gt;&gt;<i> mmcblk0, logical 
+</I>&gt;&gt;<i> block 7839
+</I>&gt;&gt;<i> Jun 12 18:08:13 andromeda generic_make_request:
+</I>&gt;&gt;<i> Trying to access 
+</I>&gt;&gt;<i> nonexistent block-device mmcblk0 (62712)
+</I>&gt;&gt;<i> Jun 12 18:08:13 andromeda Buffer I/O error on device
+</I>&gt;&gt;<i> mmcblk0, logical 
+</I>&gt;&gt;<i> block 7839
+</I>&gt;&gt;<i> Jun 12 18:08:13 andromeda generic_make_request:
+</I>&gt;&gt;<i> Trying to access 
+</I>&gt;&gt;<i> nonexistent block-device mmcblk0 (62656)
+</I>&gt;&gt;<i> Jun 12 18:08:13 andromeda Buffer I/O error on device
+</I>&gt;&gt;<i> mmcblk0, logical 
+</I>&gt;&gt;<i> block 7832
+</I>&gt;&gt;<i> Jun 12 18:08:13 andromeda generic_make_request:
+</I>&gt;&gt;<i> Trying to access 
+</I>&gt;&gt;<i> nonexistent block-device mmcblk0 (62656)
+</I>&gt;&gt;<i> Jun 12 18:08:13 andromeda Buffer I/O error on device
+</I>&gt;&gt;<i> mmcblk0, logical 
+</I>&gt;&gt;<i> block 7832
+</I>&gt;&gt;<i> Jun 12 18:08:13 andromeda generic_make_request:
+</I>&gt;&gt;<i> Trying to access 
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>     
+</I>&gt;<i> === message truncated ===
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> __________________________________________________
+</I>&gt;<i> Do You Yahoo!?
+</I>&gt;<i> Tired of spam?  Yahoo! Mail has the best spam protection around 
+</I>&gt;<i> <A HREF="http://mail.yahoo.com">http://mail.yahoo.com</A> 
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Tifm21-devel mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">Tifm21-devel at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="http://lists.berlios.de/mailman/listinfo/tifm21-devel">http://lists.berlios.de/mailman/listinfo/tifm21-devel</A>
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/tifm21-devel/attachments/20060613/20786af2/attachment.html">https://lists.berlios.de/pipermail/tifm21-devel/attachments/20060613/20786af2/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000176.html">[Tifm21-devel] error feedback
+</A></li>
+	<LI>Next message: <A HREF="000179.html">[Tifm21-devel] ti binary driver
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#177">[ date ]</a>
+              <a href="thread.html#177">[ thread ]</a>
+              <a href="subject.html#177">[ subject ]</a>
+              <a href="author.html#177">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

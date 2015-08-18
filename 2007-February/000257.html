@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] finally got a log
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2007-February/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20finally%20got%20a%20log&In-Reply-To=%3C593699.22545.qm%40web36703.mail.mud.yahoo.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000255.html">
+   <LINK REL="Next"  HREF="000258.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] finally got a log</H1>
+    <B>Alex Dubov</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20finally%20got%20a%20log&In-Reply-To=%3C593699.22545.qm%40web36703.mail.mud.yahoo.com%3E"
+       TITLE="[Tifm21-devel] finally got a log">oakad at yahoo.com
+       </A><BR>
+    <I>Tue Feb 13 15:06:50 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000255.html">[Tifm21-devel] finally got a log
+</A></li>
+        <LI>Next message: <A HREF="000258.html">[Tifm21-devel] finally got a log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#257">[ date ]</a>
+              <a href="thread.html#257">[ thread ]</a>
+              <a href="subject.html#257">[ subject ]</a>
+              <a href="author.html#257">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I don't like IRC, for whatever reasons (call it childhood trauma if you want).
+
+Anyway, I think I've found the problem.
+1. The bizarre behavior with device creation is caused by mmc_block instance. Certain errors cause
+its thread to get stuck in memory, yet after some prolonged time it manages to die. We shall give
+it a good fix sometime soon. To check if this is happening, you can unload tifm modules and then
+try &quot;rmmod mmc_block&quot; - even though used by no one, it won't go.
+2. Write corruption - new version of tifm_sd attached (rev 81 in SVN).
+
+
+
+ 
+____________________________________________________________________________________
+Looking for earth-friendly autos? 
+Browse Top Cars by &quot;Green Rating&quot; at Yahoo! Autos' Green Center.
+<A HREF="http://autos.yahoo.com/green_center/">http://autos.yahoo.com/green_center/</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: tifm_sd.c
+Type: text/x-csrc
+Size: 26984 bytes
+Desc: 2197238332-tifm_sd.c
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/tifm21-devel/attachments/20070213/e0f47bcd/attachment.c">https://lists.berlios.de/pipermail/tifm21-devel/attachments/20070213/e0f47bcd/attachment.c</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000255.html">[Tifm21-devel] finally got a log
+</A></li>
+	<LI>Next message: <A HREF="000258.html">[Tifm21-devel] finally got a log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#257">[ date ]</a>
+              <a href="thread.html#257">[ thread ]</a>
+              <a href="subject.html#257">[ subject ]</a>
+              <a href="author.html#257">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] led
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2006-June/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20led&In-Reply-To=%3C20060618131636.10995.qmail%40web36704.mail.mud.yahoo.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000184.html">
+   <LINK REL="Next"  HREF="000188.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] led</H1>
+    <B>Alex Dubov</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20led&In-Reply-To=%3C20060618131636.10995.qmail%40web36704.mail.mud.yahoo.com%3E"
+       TITLE="[Tifm21-devel] led">oakad at yahoo.com
+       </A><BR>
+    <I>Sun Jun 18 15:16:36 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000184.html">[Tifm21-devel] led
+</A></li>
+        <LI>Next message: <A HREF="000188.html">[Tifm21-devel] led
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#186">[ date ]</a>
+              <a href="thread.html#186">[ thread ]</a>
+              <a href="subject.html#186">[ subject ]</a>
+              <a href="author.html#186">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I don't need access to your machine (I can't see the
+led from here and I bet, my dumps are exacly like
+yours).
+I have one idea about LED - try rev56 when available
+(today or tomorrow).
+
+--- Wael Nasreddine &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">wael at siemens-mobiles.org</A>&gt; wrote:
+
+&gt;<i> Alex Dubov wrote:
+</I>&gt;<i> &gt; I changed a lot of things between rev 53 and rev
+</I>&gt;<i> 55.
+</I>&gt;<i> &gt; Then I tried to change some more things and got
+</I>&gt;<i> &gt; totally unstable version that would run amok and
+</I>&gt;<i> do
+</I>&gt;<i> &gt; all kinds of crazy stuff. And the worst part, I
+</I>&gt;<i> &gt; couldn't even place my finger on why it's doing it
+</I>&gt;<i> (my
+</I>&gt;<i> &gt; objective was to use dma with single block r/w).
+</I>&gt;<i> &gt; Because of this, I'm very reluctant to play with
+</I>&gt;<i> any
+</I>&gt;<i> &gt; device registers before some kind of additional
+</I>&gt;<i> info
+</I>&gt;<i> &gt; will be available - that TI release we heard
+</I>&gt;<i> about,
+</I>&gt;<i> &gt; for example.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; By the way, I don't have a clue on why is led
+</I>&gt;<i> behavior
+</I>&gt;<i> &gt; different between rev 53 and rev 55. It's some
+</I>&gt;<i> sort of
+</I>&gt;<i> &gt; accident.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; --- Wael Nasreddine &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">wael at siemens-mobiles.org</A>&gt;
+</I>&gt;<i> wrote:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Hi,
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; The driver works great here ATM (Rev 55) regarding
+</I>&gt;<i> &gt; speed,
+</I>&gt;<i> &gt; mounting/unmounting except for the LED, I
+</I>&gt;<i> understand
+</I>&gt;<i> &gt; that you don't have
+</I>&gt;<i> &gt; a LED on your PC which makes it a bit hard.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; The led now lights on when a CARD is present,
+</I>&gt;<i> lights
+</I>&gt;<i> &gt; off when card is
+</I>&gt;<i> &gt; removed, while the led is actually used upon
+</I>&gt;<i> &gt; read/write activity, is it
+</I>&gt;<i> &gt; possible to make it work this way?
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; If you need any help, dumps, tests or even ssh
+</I>&gt;<i> root
+</I>&gt;<i> &gt; access, please
+</I>&gt;<i> &gt; contact me..
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; --
+</I>&gt;<i> &gt; Wael Nasreddine
+</I>&gt;<i> &gt; <A HREF="http://wael.nasreddine.com">http://wael.nasreddine.com</A>
+</I>&gt;<i> &gt; PGP: 1024D/C8DD18A2 06F6 1622 4BC8 4CEB D724  DE12
+</I>&gt;<i> &gt; 5565 3945 C8DD 18A2
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; .: An infinite number of monkeys typing into GNU
+</I>&gt;<i> &gt; emacs,
+</I>&gt;<i> &gt;    would never make a good program. (L. Torvalds
+</I>&gt;<i> &gt; 1995) :.
+</I>&gt;<i> 
+</I>&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> No actually it didn't change the behaviour, it was
+</I>&gt;<i> like this since the
+</I>&gt;<i> first partial working revision (Rev 12 if i remember
+</I>&gt;<i> well), anyway i
+</I>&gt;<i> agree about not playing with it now it's quite
+</I>&gt;<i> stable and at least we
+</I>&gt;<i> have a working SD-CARD ATM the LED is not a big
+</I>&gt;<i> issue but it could be
+</I>&gt;<i> cool if it's working properly, anyway Send me your
+</I>&gt;<i> PGP ID i send you my
+</I>&gt;<i> ip and root pass in an encrypted mail so you can
+</I>&gt;<i> play around with my
+</I>&gt;<i> laptop, test and/or get dumps...
+</I>&gt;<i> 
+</I>&gt;<i> -- 
+</I>&gt;<i> Wael Nasreddine
+</I>&gt;<i> <A HREF="http://wael.nasreddine.com">http://wael.nasreddine.com</A>
+</I>&gt;<i> PGP: 1024D/C8DD18A2 06F6 1622 4BC8 4CEB D724  DE12
+</I>&gt;<i> 5565 3945 C8DD 18A2
+</I>&gt;<i> 
+</I>&gt;<i> .: An infinite number of monkeys typing into GNU
+</I>&gt;<i> emacs,
+</I>&gt;<i>    would never make a good program. (L. Torvalds
+</I>&gt;<i> 1995) :.
+</I>&gt;<i> 
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Tifm21-devel mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">Tifm21-devel at lists.berlios.de</A>
+</I>&gt;<i>
+</I><A HREF="http://lists.berlios.de/mailman/listinfo/tifm21-devel">http://lists.berlios.de/mailman/listinfo/tifm21-devel</A>
+&gt;<i> 
+</I>
+
+__________________________________________________
+Do You Yahoo!?
+Tired of spam?  Yahoo! Mail has the best spam protection around 
+<A HREF="http://mail.yahoo.com">http://mail.yahoo.com</A> 
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000184.html">[Tifm21-devel] led
+</A></li>
+	<LI>Next message: <A HREF="000188.html">[Tifm21-devel] led
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#186">[ date ]</a>
+              <a href="thread.html#186">[ thread ]</a>
+              <a href="subject.html#186">[ subject ]</a>
+              <a href="author.html#186">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

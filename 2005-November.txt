@@ -1,0 +1,2785 @@
+From giskard at autistici.org  Thu Nov 17 13:01:13 2005
+From: giskard at autistici.org (giskard)
+Date: Thu, 17 Nov 2005 13:01:13 +0100
+Subject: [Tifm21-devel] test
+Message-ID: <1132228873.4528.2.camel@localhost.localdomain>
+
+
+-- 
+ciao giskard
+
+non ho peli sulla lingua. e se ce li ho... non sono miei.
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: Questa parte del messaggio ? firmata
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20051117/d08cdca9/attachment.pgp>
+
+From jordant at blue-ferret.com.au  Sun Nov 20 05:53:42 2005
+From: jordant at blue-ferret.com.au (Jordan T.)
+Date: Sun, 20 Nov 2005 12:53:42 +0800
+Subject: [Tifm21-devel] subscribe
+Message-ID: <20051120045329.M39974@blue-ferret.com.au>
+
+subscribe
+
+
+From syatmaz at gmail.com  Sun Nov 20 15:42:24 2005
+From: syatmaz at gmail.com (=?utf-8?q?Sava=C5=9F_Yatmaz?=)
+Date: Sun, 20 Nov 2005 16:42:24 +0200
+Subject: [Tifm21-devel] lspci output for developers
+Message-ID: <200511201642.24219.syatmaz@gmail.com>
+
+Here is output of lspci -d 104c: -vvvxxx
+
+06:09.0 CardBus bridge: Texas Instruments PCIxx21/x515 Cardbus Controller
+        Subsystem: QUANTA Computer Inc: Unknown device 0729
+        Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr- 
+Stepping- 
+SERR- FastB2B-
+        Status: Cap+ 66Mhz- UDF- FastB2B- ParErr- DEVSEL=medium >TAbort- 
+<TAbort- 
+<MAbort- >SERR- <PERR-
+        Latency: 168, cache line size 20
+        Interrupt: pin A routed to IRQ 16
+        Region 0: Memory at b0108000 (32-bit, non-prefetchable) [size=4K]
+        Bus: primary=06, secondary=07, subordinate=08, sec-latency=176
+        Memory window 0: 30000000-31fff000 (prefetchable)
+        Memory window 1: 34000000-35fff000
+        I/O window 0: 00002400-000024ff
+        I/O window 1: 00002800-000028ff
+        BridgeCtl: Parity- SERR- ISA- VGA- MAbort- >Reset+ 16bInt+ PostWrite+
+        16-bit legacy interface ports at 0001
+00: 4c 10 31 80 07 00 10 02 00 00 07 06 20 a8 82 00
+10: 00 80 10 b0 a0 00 00 02 06 07 08 b0 00 00 00 30
+20: 00 f0 ff 31 00 00 00 34 00 f0 ff 35 00 24 00 00
+30: fc 24 00 00 00 28 00 00 fc 28 00 00 0a 01 c0 05
+40: 2d 15 29 07 01 00 00 00 00 00 00 00 00 00 00 00
+50: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+60: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+70: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+80: 79 50 44 08 19 00 d0 02 00 00 0f 00 22 1b c2 00
+90: c0 02 64 60 00 00 00 00 00 00 00 00 00 00 00 00
+a0: 01 00 12 fe 00 00 c0 00 00 00 00 00 00 00 00 00
+b0: 00 00 00 08 00 00 00 00 00 00 00 00 00 00 00 00
+c0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+d0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+e0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+f0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+06:09.2 FireWire (IEEE 1394): Texas Instruments OHCI Compliant IEEE 1394 Host 
+Controller (prog-if 10 [OHCI])
+        Subsystem: QUANTA Computer Inc: Unknown device 0729
+        Control: I/O- Mem+ BusMaster+ SpecCycle- MemWINV+ VGASnoop- ParErr- 
+Stepping- 
+SERR- FastB2B-
+        Status: Cap+ 66Mhz- UDF- FastB2B- ParErr- DEVSEL=medium >TAbort- 
+<TAbort- 
+<MAbort- >SERR- <PERR-
+        Latency: 32 (750ns min, 1000ns max), cache line size 08
+        Interrupt: pin C routed to IRQ 18
+        Region 0: Memory at b0106800 (32-bit, non-prefetchable) [size=2K]
+        Region 1: Memory at b0100000 (32-bit, non-prefetchable) [size=16K]
+        Capabilities: [44] Power Management version 2
+                Flags: PMEClk- DSI- D1+ D2+ AuxCurrent=0mA 
+PME(D0+,D1+,D2+,D3hot+,D3cold-)
+                Status: D0 PME-Enable- DSel=0 DScale=0 PME+
+00: 4c 10 32 80 16 00 10 02 00 10 00 0c 08 20 80 00
+10: 00 68 10 b0 00 00 10 b0 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 2d 15 29 07
+30: 00 00 00 00 44 00 00 00 00 00 00 00 0a 03 03 04
+40: 00 00 00 00 01 00 02 7e 00 80 00 00 00 00 00 00
+50: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+60: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+70: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+90: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+a0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+b0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+c0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+d0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+e0: 00 00 00 00 00 00 00 00 00 00 00 00 08 00 00 00
+f0: 00 00 00 00 82 10 00 00 2d 15 29 07 00 00 00 00
+
+06:09.3 Mass storage controller: Texas Instruments PCIxx21 Integrated 
+FlashMedia Controller
+        Subsystem: QUANTA Computer Inc: Unknown device 0729
+        Control: I/O- Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr- 
+Stepping- 
+SERR- FastB2B-
+        Status: Cap+ 66Mhz- UDF- FastB2B- ParErr- DEVSEL=medium >TAbort- 
+<TAbort- 
+<MAbort- >SERR- <PERR-
+        Latency: 57 (1750ns min, 1000ns max), cache line size 08
+        Interrupt: pin A routed to IRQ 16
+        Region 0: Memory at b0104000 (32-bit, non-prefetchable) [size=8K]
+        Capabilities: [44] Power Management version 2
+                Flags: PMEClk- DSI- D1+ D2+ AuxCurrent=0mA 
+PME(D0+,D1+,D2+,D3hot+,D3cold-)
+                Status: D0 PME-Enable- DSel=0 DScale=0 PME-
+00: 4c 10 33 80 06 00 10 02 00 00 80 01 08 39 80 00
+10: 00 40 10 b0 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 2d 15 29 07
+30: 00 00 00 00 44 00 00 00 00 00 00 00 0a 01 07 04
+40: 00 00 00 00 01 00 02 7e 00 00 00 00 00 00 00 00
+50: 2d 15 29 07 05 01 00 00 00 00 00 00 00 00 00 00
+60: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+70: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+90: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+a0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+b0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+c0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+d0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+e0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+f0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+
+From pjwebster at gmail.com  Sun Nov 20 14:32:12 2005
+From: pjwebster at gmail.com (Paul Webster)
+Date: Sun, 20 Nov 2005 23:32:12 +1000
+Subject: [Tifm21-devel] Re: TI FlashMedia driver
+In-Reply-To: <1132445069.18928.5.camel@localhost.localdomain>
+References: <17256.34872.192848.508408@a1i15.kph.uni-mainz.de>
+	 <Pine.LNX.4.64.0511021127350.20822@light.int.webcon.net>
+	 <17272.21878.76273.697560@a1i15.kph.uni-mainz.de>
+	 <Pine.LNX.4.62.0511191411100.23974@CPE0080c6ea9d72-CM014320028770.cpe.net.cable.roger>
+	 <1132445069.18928.5.camel@localhost.localdomain>
+Message-ID: <dc98d8d90511200532p5079f13fma204fe771bc98878@mail.gmail.com>
+
+I finally got some time to myself this weekend and put up some work
+and related notes on the decompilation of the windows driver for those
+interested:
+
+http://www.calvinium.com/tifm21/
+
+appologies for the double post for those already subscribed to tifm21-devel
+
+
+From jvprat at gmail.com  Sun Nov 20 17:39:36 2005
+From: jvprat at gmail.com (Jordi Vilalta)
+Date: Sun, 20 Nov 2005 17:39:36 +0100
+Subject: [Tifm21-devel] Re: TI FlashMedia driver
+In-Reply-To: <dc98d8d90511200532p5079f13fma204fe771bc98878@mail.gmail.com>
+References: <17256.34872.192848.508408@a1i15.kph.uni-mainz.de>
+	 <Pine.LNX.4.64.0511021127350.20822@light.int.webcon.net>
+	 <17272.21878.76273.697560@a1i15.kph.uni-mainz.de>
+	 <Pine.LNX.4.62.0511191411100.23974@CPE0080c6ea9d72-CM014320028770.cpe.net.cable.roger>
+	 <1132445069.18928.5.camel@localhost.localdomain>
+	 <dc98d8d90511200532p5079f13fma204fe771bc98878@mail.gmail.com>
+Message-ID: <f41149b20511200839q385f1170s@mail.gmail.com>
+
+Hi,
+
+2005/11/20, Paul Webster:
+> I finally got some time to myself this weekend and put up some work
+> and related notes on the decompilation of the windows driver for those
+> interested:
+>
+> http://www.calvinium.com/tifm21/
+
+nice work!
+
+Now that we have an official site for this project (at Berlios), I
+think we should find a way to put all the information together. I
+think that Berlios offers a wiki page for each project. It would be
+interesting to put everything there, so that everyone can expand it
+with his own knowledge or tests.
+
+It would be nice to begin posting lspci and memory dumps in a common
+place. Some suggestion?
+
+Regards,
+
+Jordi Vilalta
+
+
+From giskard at autistici.org  Sun Nov 20 18:03:17 2005
+From: giskard at autistici.org (giskard)
+Date: Sun, 20 Nov 2005 18:03:17 +0100
+Subject: [Tifm21-devel] Re: TI FlashMedia driver
+In-Reply-To: <f41149b20511200839q385f1170s@mail.gmail.com>
+References: <17256.34872.192848.508408@a1i15.kph.uni-mainz.de>
+	 <Pine.LNX.4.64.0511021127350.20822@light.int.webcon.net>
+	 <17272.21878.76273.697560@a1i15.kph.uni-mainz.de>
+	 <Pine.LNX.4.62.0511191411100.23974@CPE0080c6ea9d72-CM014320028770.cpe.net.cable.roger>
+	 <1132445069.18928.5.camel@localhost.localdomain>
+	 <dc98d8d90511200532p5079f13fma204fe771bc98878@mail.gmail.com>
+	 <f41149b20511200839q385f1170s@mail.gmail.com>
+Message-ID: <1132506197.4621.11.camel@localhost.localdomain>
+
+> Now that we have an official site for this project (at Berlios), I
+> think we should find a way to put all the information together. I
+> think that Berlios offers a wiki page for each project. It would be
+> interesting to put everything there, so that everyone can expand it
+> with his own knowledge or tests.
+> 
+> It would be nice to begin posting lspci and memory dumps in a common
+> place. Some suggestion?
+> 
+
+i don't know how i can do it (berlios.de offers a wiki system per
+project or i need to install one?)..
+
+if you know more about this issue feel free to mail me in private so i
+can give you all the passwords you need
+
+same thing for people interested in the:
+- web page 
+- svn write access 
+
+btw, thank you :) 
+-- 
+ciao giskard
+
+non ho peli sulla lingua. e se ce li ho... non sono miei.
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: Questa parte del messaggio ? firmata
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20051120/b18e4b97/attachment.pgp>
+
+From pjwebster at gmail.com  Mon Nov 21 00:19:40 2005
+From: pjwebster at gmail.com (Paul Webster)
+Date: Mon, 21 Nov 2005 09:19:40 +1000
+Subject: [Tifm21-devel] Re: TI FlashMedia driver
+In-Reply-To: <1132506197.4621.11.camel@localhost.localdomain>
+References: <17256.34872.192848.508408@a1i15.kph.uni-mainz.de>
+	 <Pine.LNX.4.64.0511021127350.20822@light.int.webcon.net>
+	 <17272.21878.76273.697560@a1i15.kph.uni-mainz.de>
+	 <Pine.LNX.4.62.0511191411100.23974@CPE0080c6ea9d72-CM014320028770.cpe.net.cable.roger>
+	 <1132445069.18928.5.camel@localhost.localdomain>
+	 <dc98d8d90511200532p5079f13fma204fe771bc98878@mail.gmail.com>
+	 <f41149b20511200839q385f1170s@mail.gmail.com>
+	 <1132506197.4621.11.camel@localhost.localdomain>
+Message-ID: <dc98d8d90511201519q2e849f20mda959553eccc2fc1@mail.gmail.com>
+
+Hiya,
+
+I generally only get to spend about an hour or so on this project a
+night (and sometimes maybe a couple of minutes during my work day ;P).
+If you like, I can upload my work to berlios and keep the files
+updated there, as I work on them.
+
+> i don't know how i can do it (berlios.de offers a wiki system per
+> project or i need to install one?)..
+
+Not sure. I havent used berlios before.
+
+> if you know more about this issue feel free to mail me in private so i
+> can give you all the passwords you need
+>
+> same thing for people interested in the:
+> - web page
+> - svn write access
+
+I have a slightly different version of the tifm21 module that I wrote
+myself, around the same time as Ian. I added parameters to disable the
+different card interfaces (see my last post to sdhci list). These
+probably want to be incorporated into Ian's work on berlios. If you
+can grant me svn access, that'd be great.
+
+Thanks
+
+Paul W
+
+
+From giskard at autistici.org  Tue Nov 22 20:48:20 2005
+From: giskard at autistici.org (giskard)
+Date: Tue, 22 Nov 2005 20:48:20 +0100
+Subject: [Tifm21-devel] irc channel :)
+Message-ID: <1132688900.4498.18.camel@localhost.localdomain>
+
+hello *,
+
+people who irc can join #tifm21 on freenode (irc.freenode.net)
+
+-- 
+ciao giskard
+
+banlieues e periferia il problema e' la polizia
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: Questa parte del messaggio ? firmata
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20051122/73256245/attachment.pgp>
+
+From justinsoong at gmail.com  Wed Nov 23 05:45:18 2005
+From: justinsoong at gmail.com (Justin Soong)
+Date: Wed, 23 Nov 2005 17:45:18 +1300
+Subject: [Tifm21-devel] join list
+Message-ID: <000601c5efe8$b6e29180$64a8a8c0@your4105e587b6>
+
+An HTML attachment was scrubbed...
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20051123/7b1a4d60/attachment.html>
+
+From justinsoong at gmail.com  Wed Nov 23 06:21:03 2005
+From: justinsoong at gmail.com (Justin Soong)
+Date: Wed, 23 Nov 2005 18:21:03 +1300
+Subject: [Tifm21-devel] Tifm21 development
+Message-ID: <001101c5efed$b6323b00$64a8a8c0@your4105e587b6>
+
+Hi,
+
+What is the status of the development of the driver, is there something i could do except do a dump?
+
+Thanks
+
+Justin
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20051123/fb1dbea6/attachment.html>
+
+From giskard at autistici.org  Wed Nov 23 21:49:31 2005
+From: giskard at autistici.org (giskard)
+Date: Wed, 23 Nov 2005 21:49:31 +0100
+Subject: [Tifm21-devel] test
+Message-ID: <1132778971.4538.16.camel@localhost.localdomain>
+
+
+-- 
+ciao giskard
+
+banlieues e periferia il problema e' la polizia
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: Questa parte del messaggio ? firmata
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20051123/81e6cd59/attachment.pgp>
+
+From giskard at autistici.org  Wed Nov 23 22:02:20 2005
+From: giskard at autistici.org (giskard)
+Date: Wed, 23 Nov 2005 22:02:20 +0100
+Subject: [Tifm21-devel] Tifm21 development
+In-Reply-To: <001101c5efed$b6323b00$64a8a8c0@your4105e587b6>
+References: <001101c5efed$b6323b00$64a8a8c0@your4105e587b6>
+Message-ID: <1132779740.4538.20.camel@localhost.localdomain>
+
+Il giorno mer, 23/11/2005 alle 18.21 +1300, Justin Soong ha scritto:
+> Hi,
+>  
+> What is the status of the development of the driver, is there
+> something i could do except do a dump?
+
+at the moment we are "cleaning" the source code i think today or at last
+tomorrow we will put a *working* copy of the driver on the svn.
+
+btw, on what you are interested in?(ex write code,
+maintain the site, reverse engineering,  $something_else) 
+
+feel free to do what you thik useful for the project :)
+> Thanks
+>  
+> Justin
+-- 
+ciao giskard
+
+banlieues e periferia il problema e' la polizia
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: Questa parte del messaggio ? firmata
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20051123/069533bc/attachment.pgp>
+
+From giskard at autistici.org  Wed Nov 23 22:05:48 2005
+From: giskard at autistici.org (giskard)
+Date: Wed, 23 Nov 2005 22:05:48 +0100
+Subject: [Tifm21-devel] Tifm21 development
+In-Reply-To: <1132779740.4538.20.camel@localhost.localdomain>
+References: <001101c5efed$b6323b00$64a8a8c0@your4105e587b6>
+	 <1132779740.4538.20.camel@localhost.localdomain>
+Message-ID: <1132779949.4538.22.camel@localhost.localdomain>
+
+Il giorno mer, 23/11/2005 alle 22.02 +0100, giskard ha scritto:
+> Il giorno mer, 23/11/2005 alle 18.21 +1300, Justin Soong ha scritto:
+> > Hi,
+> >  
+> > What is the status of the development of the driver, is there
+> > something i could do except do a dump?
+> 
+> at the moment we are "cleaning" the source code i think today or at last
+> tomorrow we will put a *working* copy of the driver on the svn.
+> 
+> btw, on what you are interested in?(ex write code,
+> maintain the site, reverse engineering,  $something_else) 
+> 
+> feel free to do what you thik useful for the project :)
+> > Thanks
+> >  
+> > Justin
+-- 
+ciao giskard
+
+banlieues e periferia il problema e' la polizia
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: Questa parte del messaggio ? firmata
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20051123/e020ad25/attachment.pgp>
+
+From syatmaz at gmail.com  Thu Nov 24 08:38:51 2005
+From: syatmaz at gmail.com (=?utf-8?q?Sava=C5=9F_Yatmaz?=)
+Date: Thu, 24 Nov 2005 09:38:51 +0200
+Subject: [Tifm21-devel] Tifm21 development
+In-Reply-To: <1132779740.4538.20.camel@localhost.localdomain>
+References: <001101c5efed$b6323b00$64a8a8c0@your4105e587b6> <1132779740.4538.20.camel@localhost.localdomain>
+Message-ID: <200511240938.51387.syatmaz@gmail.com>
+
+Hi,
+
+> at the moment we are "cleaning" the source code i think today or at last
+> tomorrow we will put a *working* copy of the driver on the svn.
+
+What do you mean about *working*?Will it be there today?
+
+Regards
+
+
+From pjwebster at gmail.com  Thu Nov 24 09:01:24 2005
+From: pjwebster at gmail.com (Paul Webster)
+Date: Thu, 24 Nov 2005 18:01:24 +1000
+Subject: [Tifm21-devel] Tifm21 development
+In-Reply-To: <200511240938.51387.syatmaz@gmail.com>
+References: <001101c5efed$b6323b00$64a8a8c0@your4105e587b6>
+	 <1132779740.4538.20.camel@localhost.localdomain>
+	 <200511240938.51387.syatmaz@gmail.com>
+Message-ID: <dc98d8d90511240001y641c9b50x371511f56df54aa3@mail.gmail.com>
+
+> Hi,
+>
+> > at the moment we are "cleaning" the source code i think today or at last
+> > tomorrow we will put a *working* copy of the driver on the svn.
+>
+> What do you mean about *working*?Will it be there today?
+
+Tonight (UTC+10). It won't do much other than allow you to take memory
+dumps of the configuration space, and set/clear the bits to disable
+the Flash Media interface's control of the different card slots. This
+is useful on some implementations of the tifm21 chips if you're
+wanting to test out the sdhci driver from Pierre. I'm still working on
+reverse engineering the windows driver, since there is scant
+information on the TI chips themselves.
+
+Regards
+
+Paul W
+
+
+From pjwebster at gmail.com  Thu Nov 24 10:38:48 2005
+From: pjwebster at gmail.com (Paul Webster)
+Date: Thu, 24 Nov 2005 19:38:48 +1000
+Subject: [Tifm21-devel] "Good news everybody..."
+Message-ID: <dc98d8d90511240138i3b5f0a11p3a9dfaf4793114c3@mail.gmail.com>
+
+...the initial basic driver has been checked in to SVN!
+
+This driver isn't very flash and doesn't currently do much, but will
+at least allow the disabling of the SD/MMC socket in the flash media
+controller for those having problems testing out the sdhci driver for
+the same chip.
+
+I guess I should put together a README now...
+
+Regards
+
+Paul W
+
+
+From syatmaz at gmail.com  Thu Nov 24 11:52:56 2005
+From: syatmaz at gmail.com (=?utf-8?q?Sava=C5=9F_Yatmaz?=)
+Date: Thu, 24 Nov 2005 12:52:56 +0200
+Subject: [Tifm21-devel] "Good news everybody..."
+In-Reply-To: <dc98d8d90511240138i3b5f0a11p3a9dfaf4793114c3@mail.gmail.com>
+References: <dc98d8d90511240138i3b5f0a11p3a9dfaf4793114c3@mail.gmail.com>
+Message-ID: <200511241252.56143.syatmaz@gmail.com>
+
+Before this attempts i get two hard lockups.But at that time the old version 
+of the driver was loaded.I removed it and inserted the new one.No problem 
+occured.But when i try to remove the module machine locked.(X freezed,and 
+Caps Lock key blinking,had to shut down the notebook with pressing the power 
+button)
+
+I use Slackware 10.2 ,Linux 2.6.14-ck5
+
+
+
+From syatmaz at gmail.com  Thu Nov 24 12:11:12 2005
+From: syatmaz at gmail.com (=?utf-8?q?Sava=C5=9F_Yatmaz?=)
+Date: Thu, 24 Nov 2005 13:11:12 +0200
+Subject: [Tifm21-devel] "Good news everybody..."
+In-Reply-To: <dc98d8d90511240138i3b5f0a11p3a9dfaf4793114c3@mail.gmail.com>
+References: <dc98d8d90511240138i3b5f0a11p3a9dfaf4793114c3@mail.gmail.com>
+Message-ID: <200511241311.12513.syatmaz@gmail.com>
+
+Hi,
+
+I inserted an SD card of 256 MB capacitiy,and i get a hardlock after 5 
+minutes.
+
+/var/log/syslog :
+
+Nov 24 12:43:16 mella kernel: ip_tables: (C) 2000-2002 Netfilter core team
+Nov 24 12:43:16 mella kernel: ip_conntrack version 2.3 (4023 buckets, 32184 
+max) - 216 bytes per conntrack
+Nov 24 12:43:18 mella kernel: mtrr: base(0xc0020000) is not aligned on a 
+size(0x640000) boundary
+Nov 24 12:43:25 mella kdm_greet[5009]: Can't open default user face
+Nov 24 12:45:44 mella kernel: Trying to free free IRQ16
+Nov 24 12:45:44 mella kernel: Trying to free nonexistent resource 
+<b0104000-b0105fff>
+Nov 24 12:47:03 mella kernel: Trying to free free IRQ16
+Nov 24 12:47:03 mella kernel: Trying to free nonexistent resource 
+<b0104000-b0105fff>
+Nov 24 12:48:45 mella kernel: ipw2200: Failed to send SCAN_ABORT: Command 
+timed out.
+Nov 24 12:48:46 mella kernel: ipw2200: Firmware error detected.  Restarting.
+Nov 24 12:48:46 mella kernel: ipw2200: Sysfs 'error' log captured.
+Nov 24 12:48:50 mella nmbd[4824]: [2005/11/24 12:48:50, 0] 
+nmbd/nmbd_become_lmb.c:become_local_master_stage2(396)
+Nov 24 12:48:50 mella nmbd[4824]:   *****
+Nov 24 12:48:50 mella nmbd[4824]:
+Nov 24 12:48:50 mella nmbd[4824]:   Samba name server MELLA is now a local 
+master browser for workgroup WORKGROUP on subnet 10.0.0.10
+Nov 24 12:48:50 mella nmbd[4824]:
+Nov 24 12:48:50 mella nmbd[4824]:   *****
+Nov 24 12:57:28 mella kernel: Trying to free free IRQ16
+Nov 24 12:57:28 mella kernel: Trying to free nonexistent resource 
+<b0104000-b0105fff>
+Nov 24 12:57:47 mella kernel: ipw2200: Unknown notification: 
+subtype=40,flags=0xa0,size=40
+
+/var/log/messages :
+
+Nov 24 12:44:45 mella kernel: tifm21: Texas Instruments PCI7xx1 Integrated 
+FlashMedia Controller driver, 0.1
+Nov 24 12:44:45 mella kernel: tifm21: Paul Webster <pjwebster at gmail dot 
+com>
+Nov 24 12:44:45 mella kernel: ACPI: PCI Interrupt 0000:06:09.3[A] -> GSI 16 
+(level, low) -> IRQ 16
+Nov 24 12:44:45 mella kernel: tifm21: found 8192 bytes at 0xb0104000
+Nov 24 12:44:45 mella kernel: tifm21: Excuse me, can I interrupt you for a 
+moment?
+Nov 24 12:44:48 mella last message repeated 275 times
+Nov 24 12:45:44 mella kernel: ACPI: PCI interrupt for device 0000:06:09.3 
+disabled
+Nov 24 12:45:44 mella kernel: tifm21: driver unregistered
+Nov 24 12:46:36 mella kernel: tifm21: Texas Instruments PCI7xx1 Integrated 
+FlashMedia Controller driver, 0.1
+Nov 24 12:46:36 mella kernel: tifm21: Paul Webster <pjwebster at gmail dot 
+com>
+Nov 24 12:46:36 mella kernel: ACPI: PCI Interrupt 0000:06:09.3[A] -> GSI 16 
+(level, low) -> IRQ 16
+Nov 24 12:46:36 mella kernel: tifm21: found 8192 bytes at 0xb0104000
+Nov 24 12:47:03 mella kernel: ACPI: PCI interrupt for device 0000:06:09.3 
+disabled
+Nov 24 12:47:03 mella kernel: tifm21: driver unregistered
+Nov 24 12:57:20 mella kernel: tifm21: Texas Instruments PCI7xx1 Integrated 
+FlashMedia Controller driver, 0.1
+Nov 24 12:57:20 mella kernel: tifm21: Paul Webster <pjwebster at gmail dot 
+com>
+Nov 24 12:57:20 mella kernel: ACPI: PCI Interrupt 0000:06:09.3[A] -> GSI 16 
+(level, low) -> IRQ 16
+Nov 24 12:57:20 mella kernel: tifm21: found 8192 bytes at 0xb0104000
+Nov 24 12:57:28 mella kernel: ACPI: PCI interrupt for device 0000:06:09.3 
+disabled
+Nov 24 12:57:28 mella kernel: tifm21: driver unregistered
+
+reboot is on :
+
+Nov 24 13:02:04 mella syslogd 1.4.1: restart.
+
+Because of e2fsck delay.
+
+Regards
+
+
+
+
+From pjwebster at gmail.com  Thu Nov 24 13:03:47 2005
+From: pjwebster at gmail.com (Paul Webster)
+Date: Thu, 24 Nov 2005 22:03:47 +1000
+Subject: [Tifm21-devel] "Good news everybody..."
+In-Reply-To: <200511241311.12513.syatmaz@gmail.com>
+References: <dc98d8d90511240138i3b5f0a11p3a9dfaf4793114c3@mail.gmail.com>
+	 <200511241311.12513.syatmaz@gmail.com>
+Message-ID: <dc98d8d90511240403w7157572gf67a324fc632f58@mail.gmail.com>
+
+> I inserted an SD card of 256 MB capacitiy,and i get a hardlock after 5
+> minutes.
+
+Hmmm
+
+> /var/log/syslog :
+> Nov 24 12:57:28 mella kernel: Trying to free free IRQ16
+> Nov 24 12:57:28 mella kernel: Trying to free nonexistent resource
+> <b0104000-b0105fff>
+...
+> /var/log/messages :
+> Nov 24 12:57:20 mella kernel: tifm21: Texas Instruments PCI7xx1 Integrated
+> FlashMedia Controller driver, 0.1
+> Nov 24 12:57:20 mella kernel: tifm21: Paul Webster <pjwebster at gmail dot
+> com>
+> Nov 24 12:57:20 mella kernel: ACPI: PCI Interrupt 0000:06:09.3[A] -> GSI 16
+> (level, low) -> IRQ 16
+> Nov 24 12:57:20 mella kernel: tifm21: found 8192 bytes at 0xb0104000
+> Nov 24 12:57:28 mella kernel: ACPI: PCI interrupt for device 0000:06:09.3
+> disabled
+> Nov 24 12:57:28 mella kernel: tifm21: driver unregistered
+
+Can you provide me with the output of "lspci -vv -s 06:09"
+
+Regards
+
+Paul W
+
+
+From syatmaz at gmail.com  Thu Nov 24 11:49:28 2005
+From: syatmaz at gmail.com (=?utf-8?q?Sava=C5=9F_Yatmaz?=)
+Date: Thu, 24 Nov 2005 12:49:28 +0200
+Subject: [Tifm21-devel] "Good news everybody..."
+In-Reply-To: <dc98d8d90511240138i3b5f0a11p3a9dfaf4793114c3@mail.gmail.com>
+References: <dc98d8d90511240138i3b5f0a11p3a9dfaf4793114c3@mail.gmail.com>
+Message-ID: <200511241249.28159.syatmaz@gmail.com>
+
+Great :)
+
+But some problems
+
+here is the dmesg outputs in the attachments.
+
+Regards
+
+PS:All of them with an empty slot.
+-------------- next part --------------
+pen' Host Controller (OHCI) Driver (PCI)
+Bluetooth: L2CAP ver 2.7
+Bluetooth: L2CAP socket layer initialized
+Bluetooth: HIDP (Human Interface Emulation) ver 1.1
+Bluetooth: RFCOMM ver 1.5
+Bluetooth: RFCOMM socket layer initialized
+Bluetooth: RFCOMM TTY layer initialized
+eth1: link down
+ip_tables: (C) 2000-2002 Netfilter core team
+ip_conntrack version 2.3 (4023 buckets, 32184 max) - 216 bytes per conntrack
+mtrr: base(0xc0020000) is not aligned on a size(0x640000) boundary
+tifm21: Texas Instruments PCI7xx1 Integrated FlashMedia Controller driver, 0.1
+tifm21: Paul Webster <pjwebster at gmail dot com>
+ACPI: PCI Interrupt 0000:06:09.3[A] -> GSI 16 (level, low) -> IRQ 16
+tifm21: found 8192 bytes at 0xb0104000
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+Trying to free free IRQ16
+Trying to free nonexistent resource <b0104000-b0105fff>
+ACPI: PCI interrupt for device 0000:06:09.3 disabled
+tifm21: driver unregistered
+-------------- next part --------------
+uetooth: RFCOMM TTY layer initialized
+eth1: link down
+ip_tables: (C) 2000-2002 Netfilter core team
+ip_conntrack version 2.3 (4023 buckets, 32184 max) - 216 bytes per conntrack
+mtrr: base(0xc0020000) is not aligned on a size(0x640000) boundary
+tifm21: Texas Instruments PCI7xx1 Integrated FlashMedia Controller driver, 0.1
+tifm21: Paul Webster <pjwebster at gmail dot com>
+ACPI: PCI Interrupt 0000:06:09.3[A] -> GSI 16 (level, low) -> IRQ 16
+tifm21: found 8192 bytes at 0xb0104000
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+Trying to free free IRQ16
+Trying to free nonexistent resource <b0104000-b0105fff>
+ACPI: PCI interrupt for device 0000:06:09.3 disabled
+tifm21: driver unregistered
+tifm21: Texas Instruments PCI7xx1 Integrated FlashMedia Controller driver, 0.1
+tifm21: Paul Webster <pjwebster at gmail dot com>
+ACPI: PCI Interrupt 0000:06:09.3[A] -> GSI 16 (level, low) -> IRQ 16
+tifm21: found 8192 bytes at 0xb0104000
+-------------- next part --------------
+ger initialized
+Bluetooth: HCI socket layer initialized
+Bluetooth: HCI USB driver ver 2.9
+usbcore: registered new driver hci_usb
+ohci_hcd: 2005 April 22 USB 1.1 'Open' Host Controller (OHCI) Driver (PCI)
+Bluetooth: L2CAP ver 2.7
+Bluetooth: L2CAP socket layer initialized
+Bluetooth: HIDP (Human Interface Emulation) ver 1.1
+Bluetooth: RFCOMM ver 1.5
+Bluetooth: RFCOMM socket layer initialized
+Bluetooth: RFCOMM TTY layer initialized
+eth1: link down
+ip_tables: (C) 2000-2002 Netfilter core team
+ip_conntrack version 2.3 (4023 buckets, 32184 max) - 216 bytes per conntrack
+mtrr: base(0xc0020000) is not aligned on a size(0x640000) boundary
+tifm21: Texas Instruments PCI7xx1 Integrated FlashMedia Controller driver, 0.1
+tifm21: Paul Webster <pjwebster at gmail dot com>
+ACPI: PCI Interrupt 0000:06:09.3[A] -> GSI 16 (level, low) -> IRQ 16
+tifm21: found 8192 bytes at 0xb0104000
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+-------------- next part --------------
+conntrack
+mtrr: base(0xc0020000) is not aligned on a size(0x640000) boundary
+tifm21: Texas Instruments PCI7xx1 Integrated FlashMedia Controller driver, 0.1
+tifm21: Paul Webster <pjwebster at gmail dot com>
+ACPI: PCI Interrupt 0000:06:09.3[A] -> GSI 16 (level, low) -> IRQ 16
+tifm21: found 8192 bytes at 0xb0104000
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+tifm21: Excuse me, can I interrupt you for a moment?
+Trying to free free IRQ16
+Trying to free nonexistent resource <b0104000-b0105fff>
+ACPI: PCI interrupt for device 0000:06:09.3 disabled
+tifm21: driver unregistered
+tifm21: Texas Instruments PCI7xx1 Integrated FlashMedia Controller driver, 0.1
+tifm21: Paul Webster <pjwebster at gmail dot com>
+ACPI: PCI Interrupt 0000:06:09.3[A] -> GSI 16 (level, low) -> IRQ 16
+tifm21: found 8192 bytes at 0xb0104000
+Trying to free free IRQ16
+Trying to free nonexistent resource <b0104000-b0105fff>
+ACPI: PCI interrupt for device 0000:06:09.3 disabled
+tifm21: driver unregistered
+
+From giskard at autistici.org  Thu Nov 24 19:27:20 2005
+From: giskard at autistici.org (giskard)
+Date: Thu, 24 Nov 2005 19:27:20 +0100
+Subject: [Tifm21-devel] "Good news everybody..."
+In-Reply-To: <dc98d8d90511240138i3b5f0a11p3a9dfaf4793114c3@mail.gmail.com>
+References: <dc98d8d90511240138i3b5f0a11p3a9dfaf4793114c3@mail.gmail.com>
+Message-ID: <1132856840.4538.38.camel@localhost.localdomain>
+
+Il giorno gio, 24/11/2005 alle 19.38 +1000, Paul Webster ha scritto:
+> ...the initial basic driver has been checked in to SVN!
+> 
+> This driver isn't very flash and doesn't currently do much, but will
+> at least allow the disabling of the SD/MMC socket in the flash media
+> controller for those having problems testing out the sdhci driver for
+> the same chip.
+> 
+> I guess I should put together a README now...
+
+ok, i think we must irc about this issue. here are 7.22pm (UTC +1)
+> Regards
+> 
+> Paul W
+> _______________________________________________
+> Tifm21-devel mailing list
+> Tifm21-devel at lists.berlios.de
+> http://lists.berlios.de/mailman/listinfo/tifm21-devel
+-- 
+ciao giskard
+
+banlieues e periferia il problema e' la polizia
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: Questa parte del messaggio ? firmata
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20051124/041ea750/attachment.pgp>
+
+From syatmaz at gmail.com  Thu Nov 24 21:21:25 2005
+From: syatmaz at gmail.com (=?utf-8?q?Sava=C5=9F_Yatmaz?=)
+Date: Thu, 24 Nov 2005 22:21:25 +0200
+Subject: [Tifm21-devel] "Good news everybody..."
+In-Reply-To: <dc98d8d90511240403w7157572gf67a324fc632f58@mail.gmail.com>
+References: <dc98d8d90511240138i3b5f0a11p3a9dfaf4793114c3@mail.gmail.com> <200511241311.12513.syatmaz@gmail.com> <dc98d8d90511240403w7157572gf67a324fc632f58@mail.gmail.com>
+Message-ID: <200511242221.25777.syatmaz@gmail.com>
+
+> Can you provide me with the output of "lspci -vv -s 06:09"
+>
+
+Here :
+
+06:09.0 CardBus bridge: Texas Instruments PCIxx21/x515 Cardbus Controller
+	Subsystem: QUANTA Computer Inc: Unknown device 0729
+	Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr- Stepping- 
+SERR- FastB2B-
+	Status: Cap+ 66Mhz- UDF- FastB2B- ParErr- DEVSEL=medium >TAbort- <TAbort- 
+<MAbort- >SERR- <PERR-
+	Latency: 168, cache line size 20
+	Interrupt: pin A routed to IRQ 16
+	Region 0: Memory at b0108000 (32-bit, non-prefetchable) [size=4K]
+	Bus: primary=06, secondary=07, subordinate=08, sec-latency=176
+	Memory window 0: 30000000-31fff000 (prefetchable)
+	Memory window 1: 34000000-35fff000
+	I/O window 0: 00002400-000024ff
+	I/O window 1: 00002800-000028ff
+	BridgeCtl: Parity- SERR- ISA- VGA- MAbort- >Reset+ 16bInt+ PostWrite+
+	16-bit legacy interface ports at 0001
+
+06:09.2 FireWire (IEEE 1394): Texas Instruments OHCI Compliant IEEE 1394 Host 
+Controller (prog-if 10 [OHCI])
+	Subsystem: QUANTA Computer Inc: Unknown device 0729
+	Control: I/O- Mem+ BusMaster+ SpecCycle- MemWINV+ VGASnoop- ParErr- Stepping- 
+SERR- FastB2B-
+	Status: Cap+ 66Mhz- UDF- FastB2B- ParErr- DEVSEL=medium >TAbort- <TAbort- 
+<MAbort- >SERR- <PERR-
+	Latency: 32 (750ns min, 1000ns max), cache line size 08
+	Interrupt: pin C routed to IRQ 18
+	Region 0: Memory at b0106800 (32-bit, non-prefetchable) [size=2K]
+	Region 1: Memory at b0100000 (32-bit, non-prefetchable) [size=16K]
+	Capabilities: <available only to root>
+
+06:09.3 Mass storage controller: Texas Instruments PCIxx21 Integrated 
+FlashMedia Controller
+	Subsystem: QUANTA Computer Inc: Unknown device 0729
+	Control: I/O- Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr- Stepping- 
+SERR- FastB2B-
+	Status: Cap+ 66Mhz- UDF- FastB2B- ParErr- DEVSEL=medium >TAbort- <TAbort- 
+<MAbort- >SERR- <PERR-
+	Latency: 57 (1750ns min, 1000ns max), cache line size 08
+	Interrupt: pin A routed to IRQ 16
+	Region 0: Memory at b0104000 (32-bit, non-prefetchable) [size=8K]
+	Capabilities: <available only to root>
+
+
+
+From giskard at autistici.org  Thu Nov 24 21:41:06 2005
+From: giskard at autistici.org (giskard)
+Date: Thu, 24 Nov 2005 21:41:06 +0100
+Subject: [Tifm21-devel] "Good news everybody..."
+In-Reply-To: <200511242221.25777.syatmaz@gmail.com>
+References: <dc98d8d90511240138i3b5f0a11p3a9dfaf4793114c3@mail.gmail.com>
+	 <200511241311.12513.syatmaz@gmail.com>
+	 <dc98d8d90511240403w7157572gf67a324fc632f58@mail.gmail.com>
+	 <200511242221.25777.syatmaz@gmail.com>
+Message-ID: <1132864866.4538.42.camel@localhost.localdomain>
+
+Il giorno gio, 24/11/2005 alle 22.21 +0200, Sava? Yatmaz ha scritto:
+> > Can you provide me with the output of "lspci -vv -s 06:09"
+
+on my laptot are 06:04.x why? 
+-- 
+ciao giskard
+
+banlieues e periferia il problema e' la polizia
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: Questa parte del messaggio ? firmata
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20051124/cfe8f78b/attachment.pgp>
+
+From pjwebster at gmail.com  Thu Nov 24 23:16:30 2005
+From: pjwebster at gmail.com (Paul Webster)
+Date: Fri, 25 Nov 2005 08:16:30 +1000
+Subject: [Tifm21-devel] "Good news everybody..."
+In-Reply-To: <1132864866.4538.42.camel@localhost.localdomain>
+References: <dc98d8d90511240138i3b5f0a11p3a9dfaf4793114c3@mail.gmail.com>
+	 <200511241311.12513.syatmaz@gmail.com>
+	 <dc98d8d90511240403w7157572gf67a324fc632f58@mail.gmail.com>
+	 <200511242221.25777.syatmaz@gmail.com>
+	 <1132864866.4538.42.camel@localhost.localdomain>
+Message-ID: <dc98d8d90511241416h41df589ak667657a427840c5e@mail.gmail.com>
+
+> > > Can you provide me with the output of "lspci -vv -s 06:09"
+>
+> on my laptot are 06:04.x why?
+
+It would depend on how your PCI bus is wired and configured in BIOS I assume.
+
+
+From pjwebster at gmail.com  Thu Nov 24 23:32:32 2005
+From: pjwebster at gmail.com (Paul Webster)
+Date: Fri, 25 Nov 2005 08:32:32 +1000
+Subject: [Tifm21-devel] "Good news everybody..."
+In-Reply-To: <200511241249.28159.syatmaz@gmail.com>
+References: <dc98d8d90511240138i3b5f0a11p3a9dfaf4793114c3@mail.gmail.com>
+	 <200511241249.28159.syatmaz@gmail.com>
+Message-ID: <dc98d8d90511241432m2d249518x7de8c2b2ca78b8fb@mail.gmail.com>
+
+> Great :)
+>
+> But some problems
+>
+> here is the dmesg outputs in the attachments.
+>
+> Regards
+>
+> PS:All of them with an empty slot.
+
+Hi,
+
+Looks like something else is sharing the interrupt assigned to the
+driver (IRQ16 I think from your previous logs)
+
+
+From syatmaz at gmail.com  Fri Nov 25 00:36:42 2005
+From: syatmaz at gmail.com (=?utf-8?q?Sava=C5=9F_Yatmaz?=)
+Date: Fri, 25 Nov 2005 01:36:42 +0200
+Subject: [Tifm21-devel] "Good news everybody..."
+In-Reply-To: <dc98d8d90511241432m2d249518x7de8c2b2ca78b8fb@mail.gmail.com>
+References: <dc98d8d90511240138i3b5f0a11p3a9dfaf4793114c3@mail.gmail.com> <200511241249.28159.syatmaz@gmail.com> <dc98d8d90511241432m2d249518x7de8c2b2ca78b8fb@mail.gmail.com>
+Message-ID: <200511250136.42917.syatmaz@gmail.com>
+
+> Hi,
+>
+> Looks like something else is sharing the interrupt assigned to the
+> driver (IRQ16 I think from your previous logs)
+>
+> From a fresh boot, can you post the output of "cat /proc/interrupts"
+> both before and after you insert the module.
+>
+> As the interrupt code is only for testing purposes, I'll disable it
+> until it's ready.
+>
+> Regards
+>
+> Paul W
+
+Before :
+==================================================================
+
+           CPU0       
+  0:    2978504    IO-APIC-edge  timer
+  1:      12839    IO-APIC-edge  i8042
+  8:         12    IO-APIC-edge  rtc
+  9:       6945   IO-APIC-level  acpi
+ 12:     130068    IO-APIC-edge  i8042
+ 14:     124154    IO-APIC-edge  ide0
+ 16:      57337   IO-APIC-level  yenta, uhci_hcd:usb5, HDA Intel, 
+i915 at pci:0000:00:02.0
+ 17:      48935   IO-APIC-level  ipw2200
+ 18:          3   IO-APIC-level  ohci1394, uhci_hcd:usb4
+ 19:     588221   IO-APIC-level  ehci_hcd:usb1, uhci_hcd:usb2
+ 20:          0   IO-APIC-level  uhci_hcd:usb3, eth1
+NMI:          0 
+LOC:    2978561 
+ERR:          0
+MIS:          0
+
+==================================================================
+
+After : 
+==================================================================
+
+           CPU0       
+  0:    3010012    IO-APIC-edge  timer
+  1:      13031    IO-APIC-edge  i8042
+  8:         12    IO-APIC-edge  rtc
+  9:       7012   IO-APIC-level  acpi
+ 12:     130068    IO-APIC-edge  i8042
+ 14:     125311    IO-APIC-edge  ide0
+ 16:      57337   IO-APIC-level  yenta, uhci_hcd:usb5, HDA Intel, 
+i915 at pci:0000:00:02.0, tifm21
+ 17:      49268   IO-APIC-level  ipw2200
+ 18:          3   IO-APIC-level  ohci1394, uhci_hcd:usb4
+ 19:     594524   IO-APIC-level  ehci_hcd:usb1, uhci_hcd:usb2
+ 20:          0   IO-APIC-level  uhci_hcd:usb3, eth1
+NMI:          0 
+LOC:    3010071 
+ERR:          0
+MIS:          0
+
+==================================================================
+
+
+From cjdaigle2 at yahoo.com  Sun Nov 27 03:15:59 2005
+From: cjdaigle2 at yahoo.com (cj daigle)
+Date: Sat, 26 Nov 2005 18:15:59 -0800 (PST)
+Subject: [Tifm21-devel] mailing list
+Message-ID: <20051127021559.63934.qmail@web54102.mail.yahoo.com>
+
+ please add me to your mailing list.
+ 
+ if i can help the project in any way.
+ please let me know.
+ 
+ thank you
+ 
+
+
+cj
+
+"Never attribute to malice that which can be adequately explained by stupidity."
+HANLON"S Razor
+		
+---------------------------------
+ Yahoo! Music Unlimited - Access over 1 million songs. Try it free.
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20051126/3dd564d9/attachment.html>
+
+From giskard at autistici.org  Sun Nov 27 11:05:06 2005
+From: giskard at autistici.org (giskard)
+Date: Sun, 27 Nov 2005 11:05:06 +0100
+Subject: [Tifm21-devel] mailing list
+In-Reply-To: <20051127021559.63934.qmail@web54102.mail.yahoo.com>
+References: <20051127021559.63934.qmail@web54102.mail.yahoo.com>
+Message-ID: <1133085906.4538.77.camel@localhost.localdomain>
+
+Il giorno sab, 26/11/2005 alle 18.15 -0800, cj daigle ha scritto:
+>  please add me to your mailing list.
+
+do it yourself :) http://lists.berlios.de/mailman/listinfo/tifm21-devel
+
+> if i can help the project in any way.
+> please let me know.
+
+on what are you interested in?
+
+-- 
+ciao giskard
+
+banlieues e periferia il problema e' la polizia
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: Questa parte del messaggio ? firmata
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20051127/87fdb57a/attachment.pgp>
+
+From st3 at riseup.net  Mon Nov 28 00:12:48 2005
+From: st3 at riseup.net (st3 at riseup.net)
+Date: Mon, 28 Nov 2005 00:12:48 +0100 (CET)
+Subject: [Tifm21-devel] legal issues
+Message-ID: <44821.st3.1133133168.squirrel@mail.riseup.net>
+
+I'm very interested about this project, and I'm willing to help. But I
+think there are some urgent legal issues going up with the driver
+development. I already had to deal with this - I'm a developer from the
+bcm43xx Linux Driver project - this way I understood how it's important
+not to overlook legal issues in these cases.
+
+Here goes the matter, this is pasted from a random EULA the windows driver
+is distributed under:
+
+3. Reverse Engineering. You agree that you will not attempt, and if you
+employ employees or engage contractors, you will use your best efforts to
+prevent your employees and contractors from attempting to reverse compile,
+reverse engineer, modify, translate or disassemble the Software in whole
+or in part. Any failure to comply with the above or any other terms and
+conditions contained herein will result in the automatic termination of
+this license and the reversion of the rights granted hereunder to TAIS.
+
+Who distributes this software (e.g. Toshiba) could (and very probably
+will) sue you as you have infringed this clause.
+
+We solved this with cleanroom approach, more information about can be
+found here:
+http://en.wikipedia.org/wiki/Clean_room_design
+
+I propose that the tifm21 project will just deal with the driver
+development, and people who is interested in reverse engineering:
+1) immediately stops contributing to the project (no code, no problem)
+2) unsubscribe from this project and stops accessing to any repository
+3) open a new project elsewhere (on berlios, too) with a different name
+(e.g. tifm21-specs), dealing with _documentation_ about the device, which
+can come from disassembling, testing, anything you want.
+
+The tifm21 project will then write code based on these specifications.
+
+If you accept my proposal, I'll join this project. I know that it can
+sound quite weird, I come here and say you must split the project, but I
+really think this is required for further development. As a matter of
+fact, Broadcom is monitoring closely our project
+(http://bcm43xx.berlios.de/) progress. Evidence of this is they removed
+some features from the driver that were exploited by reverse engineers
+(http://bcm-specs.sipsolutions.net) in order to understand their code. I
+think that with TI thinks can get even worse, so please fix this issue
+while you can, not any later.
+
+
+--
+ciao
+st3
+
+
+
+
+From giskard at autistici.org  Mon Nov 28 00:26:04 2005
+From: giskard at autistici.org (giskard)
+Date: Mon, 28 Nov 2005 00:26:04 +0100
+Subject: [Tifm21-devel] legal issues
+In-Reply-To: <44821.st3.1133133168.squirrel@mail.riseup.net>
+References: <44821.st3.1133133168.squirrel@mail.riseup.net>
+Message-ID: <1133133964.4486.2.camel@localhost.localdomain>
+
+Il giorno lun, 28/11/2005 alle 00.12 +0100, st3 at riseup.net ha scritto:
+
+> 
+> The tifm21 project will then write code based on these specifications.
+
+i agree with this proposal
+i'm going to take the following steps, if everybody involved agrees:
+1) remove from the project any people involved with reverse engineering
+2) remove from project pages any reference, even not direct ones, about
+reverse engineered code
+3) publish, as soon as somebody creates it, a link to the new
+documentation project
+-- 
+ciao giskard
+
+banlieues e periferia il problema e' la polizia
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: Questa parte del messaggio ? firmata
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20051128/d21f8cc7/attachment.pgp>
+
+From giskard at autistici.org  Mon Nov 28 00:27:26 2005
+From: giskard at autistici.org (giskard)
+Date: Mon, 28 Nov 2005 00:27:26 +0100
+Subject: [Tifm21-devel] legal issues
+In-Reply-To: <44821.st3.1133133168.squirrel@mail.riseup.net>
+References: <44821.st3.1133133168.squirrel@mail.riseup.net>
+Message-ID: <1133134046.4486.3.camel@localhost.localdomain>
+
+Il giorno lun, 28/11/2005 alle 00.12 +0100, st3 at riseup.net ha scritto:
+
+> The tifm21 project will then write code based on these specifications.
+
+i agree with this proposal
+i'm going to take the following steps, if everybody involved agrees:
+1) remove from the project any people involved with reverse engineering
+2) remove from project pages any reference, even not direct ones, about
+reverse engineered code
+3) publish, as soon as somebody creates it, a link to the new
+documentation project
+
+i hope people who have helped out with reverse engineering will create a
+new project so that the driver development can go on
+
+-- 
+ciao giskard
+
+banlieues e periferia il problema e' la polizia
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: Questa parte del messaggio ? firmata
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20051128/451310d0/attachment.pgp>
+
+From pjwebster at gmail.com  Mon Nov 28 02:07:24 2005
+From: pjwebster at gmail.com (Paul Webster)
+Date: Mon, 28 Nov 2005 11:07:24 +1000
+Subject: [Tifm21-devel] legal issues
+In-Reply-To: <1133134046.4486.3.camel@localhost.localdomain>
+References: <44821.st3.1133133168.squirrel@mail.riseup.net>
+	 <1133134046.4486.3.camel@localhost.localdomain>
+Message-ID: <dc98d8d90511271707k3f4ba24dpcc47aa8e4f32ec89@mail.gmail.com>
+
+> > The tifm21 project will then write code based on these specifications.
+>
+> i agree with this proposal
+> i'm going to take the following steps, if everybody involved agrees:
+> 1) remove from the project any people involved with reverse engineering
+> 2) remove from project pages any reference, even not direct ones, about
+> reverse engineered code
+> 3) publish, as soon as somebody creates it, a link to the new
+> documentation project
+>
+> i hope people who have helped out with reverse engineering will create a
+> new project so that the driver development can go on
+
+I agree that this is probably an issue and am willing to submit to it.
+The code I have provided on the project thus far is completely
+independant of my reverse engineering attempts and does nothing more
+than enable the device on the PCI bus and write to PCI registers
+documented in the datasheets freely available on Texas Instruments
+website.
+
+As I have been looking at the assembly code in an attempt to identify
+how to actually use the device, I am probably considered tainted by my
+experiences, and shall remove myself from the tifm21 project. I
+believe all files related to the reverse engineering of the driver
+have already been removed from berlios, and I have also removed the
+same files from another personal site that I was using for storage.
+
+Stefano, regarding your assistance, are you looking to help with the
+reverse assembly and documentation or the development side of the
+project? Also, since I will not be able to contribute code for this
+project, I would also like to assist with your Broadcom project, as my
+laptop also contains one of these chips.
+
+Another thought is if we're going to seperate the development of the
+driver this way, it might be possible for someone involved in the
+documentation side of the project to sign an NDA with TI in exchange
+for proper documentation perhaps.
+
+Paul W
+
+
+From syatmaz at gmail.com  Mon Nov 28 03:13:52 2005
+From: syatmaz at gmail.com (=?utf-8?q?Sava=C5=9F_Yatmaz?=)
+Date: Mon, 28 Nov 2005 04:13:52 +0200
+Subject: [Tifm21-devel] legal issues
+In-Reply-To: <dc98d8d90511271707k3f4ba24dpcc47aa8e4f32ec89@mail.gmail.com>
+References: <44821.st3.1133133168.squirrel@mail.riseup.net> <1133134046.4486.3.camel@localhost.localdomain> <dc98d8d90511271707k3f4ba24dpcc47aa8e4f32ec89@mail.gmail.com>
+Message-ID: <200511280413.52512.syatmaz@gmail.com>
+
+Sorry,doesn't understand.Is the project halted?
+
+Regards
+
+
+From andy at sockeschuhregel.myftp.org  Mon Nov 28 11:14:34 2005
+From: andy at sockeschuhregel.myftp.org (Andreas Petter)
+Date: Mon, 28 Nov 2005 11:14:34 +0100
+Subject: [Tifm21-devel] legal issues
+In-Reply-To: <200511280413.52512.syatmaz@gmail.com>
+References: <44821.st3.1133133168.squirrel@mail.riseup.net> <1133134046.4486.3.camel@localhost.localdomain> <dc98d8d90511271707k3f4ba24dpcc47aa8e4f32ec89@mail.gmail.com> <200511280413.52512.syatmaz@gmail.com>
+Message-ID: <438AD88A.2000201@sockeschuhregel.myftp.org>
+
+Sava? Yatmaz wrote:
+> Sorry,doesn't understand.Is the project halted?
+No.
+As far as I understand project development is just delayed, since the
+people who have the most knowledge about the chip have to decide if they
+are providing documentation or provide code.
+It's just a legal problem with reverse engineering. The project has to
+be split up into
+1) Documentation
+2) Driver Development
+
+You may not contribute to both projects and it is not clear whether it
+is legal to use documentation from the documentation project, if you
+know that the documentation is provided by means of
+disassembling/reverse engineering.
+So you have to decide...
+
+but the project seems not to be halted!
+
+Greetings,
+Andreas
+
+> 
+> Regards
+> _______________________________________________
+> Tifm21-devel mailing list
+> Tifm21-devel at lists.berlios.de
+> http://lists.berlios.de/mailman/listinfo/tifm21-devel
+> 
+> 
+
+
+From st3 at riseup.net  Mon Nov 28 23:29:05 2005
+From: st3 at riseup.net (st3 at riseup.net)
+Date: Mon, 28 Nov 2005 23:29:05 +0100 (CET)
+Subject: [Tifm21-devel] legal issues
+In-Reply-To: <dc98d8d90511271707k3f4ba24dpcc47aa8e4f32ec89@mail.gmail.com>
+References: <44821.st3.1133133168.squirrel@mail.riseup.net> 
+    <1133134046.4486.3.camel@localhost.localdomain>
+    <dc98d8d90511271707k3f4ba24dpcc47aa8e4f32ec89@mail.gmail.com>
+Message-ID: <64066.st3.1133216945.squirrel@mail.riseup.net>
+
+On Mon, November 28, 2005 2:07 am, Paul Webster wrote:
+
+> As I have been looking at the assembly code in an attempt to identify
+> how to actually use the device, I am probably considered tainted by my
+> experiences, and shall remove myself from the tifm21 project. I
+> believe all files related to the reverse engineering of the driver
+> have already been removed from berlios, and I have also removed the
+> same files from another personal site that I was using for storage.
+
+Perfect.
+
+> Stefano, regarding your assistance, are you looking to help with the
+> reverse assembly and documentation or the development side of the
+> project? Also, since I will not be able to contribute code for this
+> project, I would also like to assist with your Broadcom project, as my
+> laptop also contains one of these chips.
+
+I'm willing to help on the development side, as I don't have any
+experience of reverse engineering. About the Broadcom project, you can
+join the development mailing list and see the current code in the svn
+repository, both things are linked from http://bcm43xx.berlios.de/. If you
+want to help out with reverse engineering, you should join the irc channel
+#bcm-specs at irc.sipsolutions.net (port 1994 for ssl).
+
+> Another thought is if we're going to seperate the development of the
+> driver this way, it might be possible for someone involved in the
+> documentation side of the project to sign an NDA with TI in exchange
+> for proper documentation perhaps.
+
+I already thought about this and tried contacting TI, but I got no useful
+results so far.
+
+
+--
+ciao
+st3
+
+
+
+
+From world.root at gmail.com  Tue Nov 29 01:06:45 2005
+From: world.root at gmail.com (=?ISO-8859-1?Q?Jo=EBl?= Bourquard)
+Date: Tue, 29 Nov 2005 01:06:45 +0100
+Subject: [Tifm21-devel] driver development
+Message-ID: <1133222806.25406.6.camel@localhost>
+
+Hi,
+
+I have an Acer Ferrari 4005WLMi, willing to use its flash reader in
+Linux, so I've thought I might be of some help for the driver side...
+
+I haven't really written drivers yet, but I could write test suites for
+integrity/reliability testing (depending on how the driver will
+behave ;-)
+
+Concerning the reverse-engineering and documentation side: do you have
+enough people ?
+
+Best Regards,
+
+Jo?l
+
+
+
+From jordant at blue-ferret.com.au  Tue Nov 29 04:11:38 2005
+From: jordant at blue-ferret.com.au (Jordan T.)
+Date: Tue, 29 Nov 2005 11:11:38 +0800
+Subject: [Tifm21-devel] driver development
+In-Reply-To: <1133222806.25406.6.camel@localhost>
+References: <1133222806.25406.6.camel@localhost>
+Message-ID: <20051129031049.M926@blue-ferret.com.au>
+
+I also have one of these units, willing to assist in any way. I dont know C (im a perl 
+person), but can provide dumps etc..
+
+Jordan
+
+On Tue, 29 Nov 2005 01:06:45 +0100, Jo?l Bourquard wrote
+> Hi,
+> 
+> I have an Acer Ferrari 4005WLMi, willing to use its flash reader in
+> Linux, so I've thought I might be of some help for the driver side...
+> 
+> I haven't really written drivers yet, but I could write test suites for
+> integrity/reliability testing (depending on how the driver will
+> behave ;-)
+> 
+> Concerning the reverse-engineering and documentation side: do you have
+> enough people ?
+> 
+> Best Regards,
+> 
+> Jo?l
+> 
+> _______________________________________________
+> Tifm21-devel mailing list
+> Tifm21-devel at lists.berlios.de
+> http://lists.berlios.de/mailman/listinfo/tifm21-devel
+
+
+
+From juan at xdracco.net  Tue Nov 29 04:41:33 2005
+From: juan at xdracco.net (Agent Juan)
+Date: Mon, 28 Nov 2005 19:41:33 -0800 (PST)
+Subject: [Tifm21-devel] driver development
+In-Reply-To: <20051129031049.M926@blue-ferret.com.au>
+References: <1133222806.25406.6.camel@localhost>
+    <20051129031049.M926@blue-ferret.com.au>
+Message-ID: <55471.192.168.4.254.1133235693.squirrel@mail.xdracco.net>
+
+Another "Texas Instruments PCIxx21 Integrated FlashMedia Controller" owner
+here. I'm a php person so I probably can't help out much... I can test and
+provide info, etc..
+
+Juan
+
+
+
+From andy at sockeschuhregel.myftp.org  Tue Nov 29 09:52:54 2005
+From: andy at sockeschuhregel.myftp.org (Andreas Petter)
+Date: Tue, 29 Nov 2005 09:52:54 +0100
+Subject: [Tifm21-devel] driver development
+Message-ID: <438C16E6.1090509@sockeschuhregel.myftp.org>
+
+Hello!
+
+I would like to assist in driver development. I got a Flash-reader with
+the device identification.
+
+i haven't written a Linux driver yet, but i know C and i have assisted
+in developing an iptables module, so i'm not a complete Linux kernel
+newbie. So if i'm of use - i would like to assist by writing code and
+getting that crappy little thingy running.
+
+Greetings,
+Andreas
+
+
+From world.root at gmail.com  Tue Nov 29 15:17:21 2005
+From: world.root at gmail.com (=?ISO-8859-1?Q?Jo=EBl?= Bourquard)
+Date: Tue, 29 Nov 2005 15:17:21 +0100
+Subject: [Tifm21-devel] SD/MMD driver in linux
+Message-ID: <1133273841.21507.1.camel@localhost>
+
+Hi,
+
+I saw the concerns about the documentation from TI covering only the PCI
+interface of the flash reader.
+
+But according to the PDF it seems that for instance, the SD/MMC
+controller is standard, no ? Shouldn't it be compatible with:
+
+http://mmc.drzeus.cx/wiki/Linux
+
+... or do I miss something ?
+
+Jo?l
+
+
+
+From mjg59 at srcf.ucam.org  Tue Nov 29 15:22:22 2005
+From: mjg59 at srcf.ucam.org (Matthew Garrett)
+Date: Tue, 29 Nov 2005 14:22:22 +0000
+Subject: [Tifm21-devel] SD/MMD driver in linux
+In-Reply-To: <1133273841.21507.1.camel@localhost>
+References: <1133273841.21507.1.camel@localhost>
+Message-ID: <20051129142222.GA16898@srcf.ucam.org>
+
+On Tue, Nov 29, 2005 at 03:17:21PM +0100, Jo?l Bourquard wrote:
+
+> But according to the PDF it seems that for instance, the SD/MMC
+> controller is standard, no ? Shouldn't it be compatible with:
+
+The SD/MMC reader appears to be usable in two modes. In one, it's an 
+SDHCI compatible device and should work with Pierre's driver. In the 
+other, it's driven via TI's custom interface. The flashmedia controller 
+can also provide XD, smartmedia and memory stick support and those 
+/aren't/ provided via a standard interface, so it's desirable to have a 
+driver for those in any case.
+
+-- 
+Matthew Garrett | mjg59 at srcf.ucam.org
+
+
+From imorgan at webcon.ca  Wed Nov 30 18:46:07 2005
+From: imorgan at webcon.ca (Ian E. Morgan)
+Date: Wed, 30 Nov 2005 12:46:07 -0500 (EST)
+Subject: [Tifm21-devel] [TIFM21] GPL driver without source from TI?
+Message-ID: <Pine.LNX.4.64.0511301242291.31551@light.int.webcon.net>
+
+GPL driver (without source) from TI.
+
+http://www.webcon.ca/~imorgan/tifm21/
+
+Looks like we now have a case for demanding the source from TI.
+
+Regards,
+Ian Morgan
+
+-- 
+-------------------------------------------------------------------
+ Ian E. Morgan          Vice President & C.O.O.       Webcon, Inc.
+ imorgan at webcon dot ca       PGP: #2DA40D07       www.webcon.ca
+    *  Customized Linux Network Solutions for your Business  *
+-------------------------------------------------------------------
+
+
+From mjg59 at srcf.ucam.org  Wed Nov 30 18:58:01 2005
+From: mjg59 at srcf.ucam.org (Matthew Garrett)
+Date: Wed, 30 Nov 2005 17:58:01 +0000
+Subject: [Tifm21-devel] [TIFM21] GPL driver without source from TI?
+In-Reply-To: <Pine.LNX.4.64.0511301242291.31551@light.int.webcon.net>
+References: <Pine.LNX.4.64.0511301242291.31551@light.int.webcon.net>
+Message-ID: <20051130175800.GA22234@srcf.ucam.org>
+
+On Wed, Nov 30, 2005 at 12:46:07PM -0500, Ian E. Morgan wrote:
+> GPL driver (without source) from TI.
+> 
+> http://www.webcon.ca/~imorgan/tifm21/
+> 
+> Looks like we now have a case for demanding the source from TI.
+
+No, they can simply refuse to provide it and risk copyright violation 
+suits. However, it's likely that they'd have difficult arguing against 
+you providing reverse-engineered code based on that driver.
+
+-- 
+Matthew Garrett | mjg59 at srcf.ucam.org
+
+
+From st3 at riseup.net  Wed Nov 30 19:29:19 2005
+From: st3 at riseup.net (st3 at riseup.net)
+Date: Wed, 30 Nov 2005 19:29:19 +0100 (CET)
+Subject: [Tifm21-devel] [TIFM21] GPL driver without source from TI?
+In-Reply-To: <Pine.LNX.4.64.0511301242291.31551@light.int.webcon.net>
+References: <Pine.LNX.4.64.0511301242291.31551@light.int.webcon.net>
+Message-ID: <28095.st3.1133375359.squirrel@mail.riseup.net>
+
+On Wed, November 30, 2005 6:46 pm, Ian E. Morgan wrote:
+
+> GPL driver (without source) from TI.
+>
+> http://www.webcon.ca/~imorgan/tifm21/
+>
+> Looks like we now have a case for demanding the source from TI.
+
+Good job. Yes, I think it'll be difficult and it's unlikely that this will
+succeed. I'm getting in touch with EFF. But I think it's worth a try to
+politely asking them for the source, before.
+
+About disassembling, did he get those with an EULA? This would be quite
+ridicolous, actually. Anyway, I think we are now absolutely free to do
+what we want with that binary, so it makes no sense at all to split the
+project. A quick objdump -d on it shows they didn't stripped function
+names. (It was compiled with GCC: (GNU) 3.3.5 (Debian 1:3.3.5-8) =)
+
+They did even included:
+include/linux/blkdev.h
+include/linux/bio.h
+
+
+--
+ciao
+st3
+
+
+
+
+From pjwebster at gmail.com  Wed Nov 30 21:39:25 2005
+From: pjwebster at gmail.com (Paul Webster)
+Date: Thu, 1 Dec 2005 06:39:25 +1000
+Subject: [Tifm21-devel] [TIFM21] GPL driver without source from TI?
+In-Reply-To: <28095.st3.1133375359.squirrel@mail.riseup.net>
+References: <Pine.LNX.4.64.0511301242291.31551@light.int.webcon.net>
+	 <28095.st3.1133375359.squirrel@mail.riseup.net>
+Message-ID: <dc98d8d90511301239s6a360b94qc17f6ee2be906c5@mail.gmail.com>
+
+> Good job. Yes, I think it'll be difficult and it's unlikely that this will
+> succeed. I'm getting in touch with EFF. But I think it's worth a try to
+> politely asking them for the source, before.
+>
+> About disassembling, did he get those with an EULA? This would be quite
+> ridicolous, actually. Anyway, I think we are now absolutely free to do
+> what we want with that binary, so it makes no sense at all to split the
+> project. A quick objdump -d on it shows they didn't stripped function
+> names. (It was compiled with GCC: (GNU) 3.3.5 (Debian 1:3.3.5-8) =)
+>
+> They did even included:
+> include/linux/blkdev.h
+> include/linux/bio.h
+
+This is good. Thanks to all involved.
+
+I'm amazed anyone managed to get anything from TI. I've been trying to
+illicit a response from both TI and Everest for months now and have
+had no luck aside from an initial, next-day reply from TI saying "Ask
+Everest". Despite their rapid response, it was less than helpful, not
+to mention rather insulting as it was a blatent copy of a forum post
+regarding the driver that I had actually made myself.
+
+On the supplied binary, I havent had a chance to test it yet, but my
+understanding from both everest's site and other sources is that
+Everests device driver does not create a standard block device and
+consequently requires a daemon to work.
+
+One thing to note: modinfo tifm.ko says that the license on the driver
+is GPL. I'm not an expert, but doesn't that mean that someone has to
+release the source code that was used to make that particular driver
+somewhere?
+
+Regardless, as we now have "viable" linux drivers as a reference, I
+can drop my attempts at the decompilation of the windows version. I
+was fumbling in the dark anyway, since assembly is not my thing
+(hadn't done any since the MC68HC11 in Intro to Microprocessors at
+uni).
+
+
+From masc at operamail.com  Wed Nov 30 22:06:31 2005
+From: masc at operamail.com (martin schneebacher)
+Date: Wed, 30 Nov 2005 22:06:31 +0100
+Subject: [Tifm21-devel] [TIFM21] GPL driver without source from TI?
+Message-ID: <20051130210631.F0A657B521@ws5-10.us4.outblaze.com>
+
+hi!
+
+----- Original Message -----
+From: "Matthew Garrett" <mjg59 at srcf.ucam.org>
+To: tifm21-devel at berlios.de
+Subject: Re: [Tifm21-devel] [TIFM21] GPL driver without source from TI?
+Date: Wed, 30 Nov 2005 17:58:01 +0000
+
+> 
+> On Wed, Nov 30, 2005 at 12:46:07PM -0500, Ian E. Morgan wrote:
+> > GPL driver (without source) from TI.
+> >
+> > http://www.webcon.ca/~imorgan/tifm21/
+> >
+> > Looks like we now have a case for demanding the source from TI.
+> 
+> No, they can simply refuse to provide it and risk copyright violation
+> suits. However, it's likely that they'd have difficult arguing against
+> you providing reverse-engineered code based on that driver.
+
+i don't know if this would be reasonable but maybe anyone (involved) should send a note to http://gpl-violations.org/ ?
+
+bye...masc.
+
+
+
+
+-- 
+_______________________________________________
+Surf the Web in a faster, safer and easier way:
+Download Opera 8 at http://www.opera.com
+
+Powered by Outblaze
+
+
+From cathectic at gmail.com  Wed Nov 30 22:38:27 2005
+From: cathectic at gmail.com (Carlos Corbacho)
+Date: Wed, 30 Nov 2005 21:38:27 +0000
+Subject: [Tifm21-devel] [TIFM21] GPL driver without source from TI?
+In-Reply-To: <dc98d8d90511301239s6a360b94qc17f6ee2be906c5@mail.gmail.com>
+References: <Pine.LNX.4.64.0511301242291.31551@light.int.webcon.net>	 <28095.st3.1133375359.squirrel@mail.riseup.net> <dc98d8d90511301239s6a360b94qc17f6ee2be906c5@mail.gmail.com>
+Message-ID: <438E1BD3.4030909@gmail.com>
+
+> On the supplied binary, I havent had a chance to test it yet, but my
+> understanding from both everest's site and other sources is that
+> Everests device driver does not create a standard block device and
+> consequently requires a daemon to work.
+
+Are you certain on this? My reading of the information from Everest's
+website[0] though suggests that the daemon is only used for card
+insertion notification events to the user (plus it can do some flashy
+automagical mounting/ unmounting on insertions and removals, but still
+superfluous).
+
+The module should, from Everest's description, be a block device driver
+that covers all the access to the cards in the card reader?
+
+-Carlos
+[0] http://www.everestinc.com/fml.htm
+-- 
+Uni: c.corbacho at cs.ucl.ac.uk
+Home: cathectic at gmail.com
+GPG Key ID: 0x23EE722D
+
+
+From mjg59 at srcf.ucam.org  Wed Nov 30 22:41:00 2005
+From: mjg59 at srcf.ucam.org (Matthew Garrett)
+Date: Wed, 30 Nov 2005 21:41:00 +0000
+Subject: [Tifm21-devel] [TIFM21] GPL driver without source from TI?
+In-Reply-To: <438E1BD3.4030909@gmail.com>
+References: <Pine.LNX.4.64.0511301242291.31551@light.int.webcon.net> <28095.st3.1133375359.squirrel@mail.riseup.net> <dc98d8d90511301239s6a360b94qc17f6ee2be906c5@mail.gmail.com> <438E1BD3.4030909@gmail.com>
+Message-ID: <20051130214100.GA23092@srcf.ucam.org>
+
+On Wed, Nov 30, 2005 at 09:38:27PM +0000, Carlos Corbacho wrote:
+
+> Are you certain on this? My reading of the information from Everest's
+> website[0] though suggests that the daemon is only used for card
+> insertion notification events to the user (plus it can do some flashy
+> automagical mounting/ unmounting on insertions and removals, but still
+> superfluous).
+
+This driver certainly provides 4 block devices.
+-- 
+Matthew Garrett | mjg59 at srcf.ucam.org
+
+

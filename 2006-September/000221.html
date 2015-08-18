@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] PCI1620?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2006-September/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20PCI1620%3F&In-Reply-To=%3C20060907022825.1113.qmail%40web36708.mail.mud.yahoo.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000220.html">
+   <LINK REL="Next"  HREF="000222.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] PCI1620?</H1>
+    <B>Alex Dubov</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20PCI1620%3F&In-Reply-To=%3C20060907022825.1113.qmail%40web36708.mail.mud.yahoo.com%3E"
+       TITLE="[Tifm21-devel] PCI1620?">oakad at yahoo.com
+       </A><BR>
+    <I>Thu Sep  7 04:28:25 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000220.html">[Tifm21-devel] PCI1620?
+</A></li>
+        <LI>Next message: <A HREF="000222.html">[Tifm21-devel] problem with inserting the compiled module
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#221">[ date ]</a>
+              <a href="thread.html#221">[ thread ]</a>
+              <a href="subject.html#221">[ subject ]</a>
+              <a href="author.html#221">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>You are referring to what is called &quot;ultramedia&quot; controller. We are dealing only with &quot;flashmedia&quot;
+ones.
+Look here: <A HREF="http://penguin-breeder.org/kernel/#tiumfwl">http://penguin-breeder.org/kernel/#tiumfwl</A>
+
+The problem with &quot;ultramedia&quot; chips is proprietary firmware needed to make them work. Unless TI is
+willing to resolve this, you are out of luck.
+
+As I can not be sure of the above, you may post as an output of &quot;lspci -nv&quot;, which is considerably
+more informative.
+
+--- Dylan Semler &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">dylan.semler at gmail.com</A>&gt; wrote:
+
+&gt;<i> Not really understanding a whole lot here.  I had thought that this driver
+</I>&gt;<i> was building support for my card reader but now I'm not so sure.  Doing an
+</I>&gt;<i> lspci i get, among other things:
+</I>&gt;<i> 
+</I>&gt;<i> 02:09.0 CardBus bridge: Texas Instruments PCI1620 PC Card Controller (rev
+</I>&gt;<i> 01)
+</I>&gt;<i> 02:09.1 CardBus bridge: Texas Instruments PCI1620 PC Card Controller (rev
+</I>&gt;<i> 01)
+</I>&gt;<i> 02:09.2 System peripheral: Texas Instruments PCI1620 Firmware Loading
+</I>&gt;<i> Function (rev 01)
+</I>&gt;<i> 
+</I>&gt;<i> But looking at the main website for this driver it seems that supported
+</I>&gt;<i> models are, PCI6411, 6421, 6611, 6621, 7411, 7421, 7611, 7621 (hence the
+</I>&gt;<i> Pcixx21).  As mine \appears\ to bePCI1620, am I SOL on this working with
+</I>&gt;<i> this driver?  Anyone offhand know where I should be looking for support?
+</I>&gt;<i> Perhaps lspci is reporting info for the PCMCIA slot and not the card reader?
+</I>&gt;<i> 
+</I>&gt;<i> Cheers,
+</I>&gt;<i> Dylan
+</I>&gt;<i> &gt; _______________________________________________
+</I>&gt;<i> Tifm21-devel mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">Tifm21-devel at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">https://lists.berlios.de/mailman/listinfo/tifm21-devel</A>
+</I>&gt;<i> 
+</I>
+
+__________________________________________________
+Do You Yahoo!?
+Tired of spam?  Yahoo! Mail has the best spam protection around 
+<A HREF="http://mail.yahoo.com">http://mail.yahoo.com</A> 
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000220.html">[Tifm21-devel] PCI1620?
+</A></li>
+	<LI>Next message: <A HREF="000222.html">[Tifm21-devel] problem with inserting the compiled module
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#221">[ date ]</a>
+              <a href="thread.html#221">[ thread ]</a>
+              <a href="subject.html#221">[ subject ]</a>
+              <a href="author.html#221">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

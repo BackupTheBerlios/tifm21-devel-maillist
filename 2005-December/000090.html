@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] tifmxx: first results
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2005-December/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20tifmxx%3A%20first%20results&In-Reply-To=%3C20051224142449.769b2ebe%40horst%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000088.html">
+   <LINK REL="Next"  HREF="000091.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] tifmxx: first results</H1>
+    <B>Stefano Brivio</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20tifmxx%3A%20first%20results&In-Reply-To=%3C20051224142449.769b2ebe%40horst%3E"
+       TITLE="[Tifm21-devel] tifmxx: first results">st3 at riseup.net
+       </A><BR>
+    <I>Sat Dec 24 14:24:49 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000088.html">[Tifm21-devel] URL
+</A></li>
+        <LI>Next message: <A HREF="000091.html">[Tifm21-devel] tifmxx: first results
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#90">[ date ]</a>
+              <a href="thread.html#90">[ thread ]</a>
+              <a href="subject.html#90">[ subject ]</a>
+              <a href="author.html#90">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Fri, 23 Dec 2005 08:29:24 -0800 (PST)
+Alex Dubov &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">oakad at yahoo.com</A>&gt; wrote:
+
+&gt;<i> I'm proud to announce that my tifmxx driver (rev 11 in
+</I>&gt;<i> my svn) can be officially considered alpha.
+</I>&gt;<i> 
+</I>&gt;<i> This means - it consistently detects card
+</I>&gt;<i> insertion/removal and recognizes card type (in a
+</I>&gt;<i> coarse, SM/MS/SD way). It is not supposed to crash and
+</I>&gt;<i> compiles cleanly. Nothing else to be said at a moment,
+</I>&gt;<i> sans the fact that I'm continuing my work on it.
+</I>
+Congrats.
+
+Now, I don't think it makes sense to keep two separate projects for the
+same thing. You are the only one working on it, and this confusion doesn't
+help when it comes to possible collaboration. Paul Webster and Ian Morgan
+had started writing code some time ago, e.g. I think what makes more sense
+is merging the two projects. Which doesn't mean merging the code, IMHO, as
+yours looks a very good starting point, and maybe something more than a
+starting point. It means closing the tifm21 project and opening a new
+mailing list related to the tifmxx project. It's up to you, giskard and
+Paul Webster, i guess.
+
+But I don't agree with some of the things you state on the wiki. Yes, in a
+free world, reverse engineering wouldn't even be needed. I don't think we
+live in a free world. See the Sklyarov case. Cleanroom approach is just a
+method to avoid companies suing you. I'm collaborating at the bcm43xx
+driver project following this method, not because I like it (even if it
+works), but because I don't feel like Broadcom sue me. Even Compaq did
+this with the IBM PC bios, BTW.
+
+Plus, I guess you are just using the binary Linux driver for reverse
+engineering purposes. That's GPL'ed, and it's not a problem at all to keep
+it into the trunk. Reverse engineering it is legal, and what's not legal is
+that TI doesn't release the source for it. But I can't understand why
+you committed into trunk the windows binary driver. This is absolutely
+useless and could lead to legal issues. Why?
+
+I hope Jens Axboe will successfully pursue TI for the GPL violation. But,
+as we all know, this is going to be very difficult.
+
+
+--
+ciao
+st3
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000088.html">[Tifm21-devel] URL
+</A></li>
+	<LI>Next message: <A HREF="000091.html">[Tifm21-devel] tifmxx: first results
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#90">[ date ]</a>
+              <a href="thread.html#90">[ thread ]</a>
+              <a href="subject.html#90">[ subject ]</a>
+              <a href="author.html#90">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

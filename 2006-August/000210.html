@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] almost works
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2006-August/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20almost%20works&In-Reply-To=%3C20060815130212.GA13681%40debian%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000209.html">
+   <LINK REL="Next"  HREF="000211.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] almost works</H1>
+    <B>Bartosz Fenski aka fEnIo</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20almost%20works&In-Reply-To=%3C20060815130212.GA13681%40debian%3E"
+       TITLE="[Tifm21-devel] almost works">fenio at debian.org
+       </A><BR>
+    <I>Tue Aug 15 15:02:12 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000209.html">[Tifm21-devel] Not able to use a 2G SD card
+</A></li>
+        <LI>Next message: <A HREF="000211.html">[Tifm21-devel] almost works
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#210">[ date ]</a>
+              <a href="thread.html#210">[ thread ]</a>
+              <a href="subject.html#210">[ subject ]</a>
+              <a href="author.html#210">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello.
+
+I'm just trying to launch my card reader in Compaq Presario V2000. Here
+goes lspci output:
+
+00:00.0 Host bridge: Intel Corporation 82852/82855 GM/GME/PM/GMV Processor to I/O Controller (rev 02)
+00:00.1 System peripheral: Intel Corporation 82852/82855 GM/GME/PM/GMV Processor to I/O Controller (rev 02)
+00:00.3 System peripheral: Intel Corporation 82852/82855 GM/GME/PM/GMV Processor to I/O Controller (rev 02)
+00:02.0 VGA compatible controller: Intel Corporation 82852/855GM Integrated Graphics Device (rev 02)
+00:02.1 Display controller: Intel Corporation 82852/855GM Integrated Graphics Device (rev 02)
+00:1d.0 USB Controller: Intel Corporation 82801DB/DBL/DBM (ICH4/ICH4-L/ICH4-M) USB UHCI Controller #1 (rev 03)
+00:1d.1 USB Controller: Intel Corporation 82801DB/DBL/DBM (ICH4/ICH4-L/ICH4-M) USB UHCI Controller #2 (rev 03)
+00:1d.2 USB Controller: Intel Corporation 82801DB/DBL/DBM (ICH4/ICH4-L/ICH4-M) USB UHCI Controller #3 (rev 03)
+00:1d.7 USB Controller: Intel Corporation 82801DB/DBM (ICH4/ICH4-M) USB2 EHCI Controller (rev 03)
+00:1e.0 PCI bridge: Intel Corporation 82801 Mobile PCI Bridge (rev 83)
+00:1f.0 ISA bridge: Intel Corporation 82801DBM (ICH4-M) LPC Interface Bridge (rev 03)
+00:1f.1 IDE interface: Intel Corporation 82801DBM (ICH4-M) IDE Controller (rev 03)
+00:1f.3 SMBus: Intel Corporation 82801DB/DBL/DBM (ICH4/ICH4-L/ICH4-M) SMBus Controller (rev 03)
+00:1f.5 Multimedia audio controller: Intel Corporation 82801DB/DBL/DBM (ICH4/ICH4-L/ICH4-M) AC'97 Audio Controller (rev 03)
+00:1f.6 Modem: Intel Corporation 82801DB/DBL/DBM (ICH4/ICH4-L/ICH4-M) AC'97 Modem Controller (rev 03)
+02:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL-8139/8139C/8139C+ (rev 10)
+02:06.0 Network controller: Intel Corporation PRO/Wireless 2200BG Network Connection (rev 05)
+02:09.0 CardBus bridge: Texas Instruments PCIxx21/x515 Cardbus Controller
+02:09.2 FireWire (IEEE 1394): Texas Instruments OHCI Compliant IEEE 1394 Host Controller
+02:09.3 Mass storage controller: Texas Instruments PCIxx21 Integrated FlashMedia Controller
+02:09.4 Class 0805: Texas Instruments PCI6411, PCI6421, PCI6611, PCI6621, PCI7411, PCI7421, PCI7611, PCI7621 Secure Digital (SD) Controller
+
+In fact I'm not sure what to say... it worked for me ONCE. Now it only 
+says that it detects new card but doesn't assign /dev/ device for it.
+
+tifm_7xx1: sd card detected in socket 3
+tifm_7xx1: demand removing card from socket 3
+tifm_7xx1: xd card detected in socket 2
+tifm_7xx1: demand removing card from socket 2
+tifm_7xx1: sd card detected in socket 3
+tifm_7xx1: demand removing card from socket 3
+tifm_7xx1: sd card detected in socket 3
+tifm_7xx1: xd card detected in socket 2
+tifm_7xx1: demand removing card from socket 2
+tifm_7xx1: demand removing card from socket 3
+tifm_7xx1: sd card detected in socket 3
+tifm_7xx1: demand removing card from socket 3
+ACPI: PCI interrupt for device 0000:02:09.3 disabled
+No module found in object
+ACPI: PCI Interrupt 0000:02:09.3[A] -&gt; GSI 20 (level, low) -&gt; IRQ 16
+tifm_7xx1: sd card detected in socket 3
+tifm_7xx1: demand removing card from socket 3
+ACPI: PCI interrupt for device 0000:02:09.3 disabled
+tifm_7xx1: Unknown symbol tifm_add_adapter
+tifm_7xx1: Unknown symbol tifm_alloc_adapter
+tifm_7xx1: Unknown symbol tifm_alloc_device
+tifm_7xx1: Unknown symbol tifm_remove_adapter
+tifm_7xx1: Unknown symbol tifm_free_device
+tifm_7xx1: Unknown symbol tifm_free_adapter
+ACPI: PCI Interrupt 0000:02:09.3[A] -&gt; GSI 20 (level, low) -&gt; IRQ 16
+tifm_7xx1: sd card detected in socket 3
+
+As you can see I tried to load/unload modules and similar things but
+all I get is detection of card and nothing else... what could I do
+to force it to create /dev/ device and mount it?
+
+regards
+fEnIo
+
+-- 
+  ,''`.  Bartosz Fenski | mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">fenio at debian.org</A> | pgp:0x13fefc40 | irc:fEnIo
+ : :' :       32-050 Skawina - Glowackiego 3/15 - malopolskie v. - Poland
+ `. `'           phone:+48602383548 | proud Debian maintainer and user
+   `-          <A HREF="http://skawina.eu.org">http://skawina.eu.org</A> | jid:<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">fenio at jabber.org</A> | rlu:172001
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000209.html">[Tifm21-devel] Not able to use a 2G SD card
+</A></li>
+	<LI>Next message: <A HREF="000211.html">[Tifm21-devel] almost works
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#210">[ date ]</a>
+              <a href="thread.html#210">[ thread ]</a>
+              <a href="subject.html#210">[ subject ]</a>
+              <a href="author.html#210">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

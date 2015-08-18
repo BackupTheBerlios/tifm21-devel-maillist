@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] binary flash card reader from texas with blockdev
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2005-December/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20binary%20flash%20card%20reader%20from%20texas%20with%20blockdev&In-Reply-To=%3C20051221204014.04D557B524%40ws5-10.us4.outblaze.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000070.html">
+   <LINK REL="Next"  HREF="000072.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] binary flash card reader from texas with blockdev</H1>
+    <B>martin schneebacher</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20binary%20flash%20card%20reader%20from%20texas%20with%20blockdev&In-Reply-To=%3C20051221204014.04D557B524%40ws5-10.us4.outblaze.com%3E"
+       TITLE="[Tifm21-devel] binary flash card reader from texas with blockdev">masc at operamail.com
+       </A><BR>
+    <I>Wed Dec 21 21:40:13 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000070.html">[Tifm21-devel] Re: About binary driver and its source
+</A></li>
+        <LI>Next message: <A HREF="000072.html">[Tifm21-devel] Re: binary flash card reader from texas with blockdev
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#71">[ date ]</a>
+              <a href="thread.html#71">[ thread ]</a>
+              <a href="subject.html#71">[ subject ]</a>
+              <a href="author.html#71">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>hi!
+
+some month ago started a project for a driver for the texas instruments card reader chip (part of the pcmcia/firewire/sd/mmc/... chip) found in many (newer) laptops. it is hosted at <A HREF="http://developer.berlios.de/projects/tifmxx/">http://developer.berlios.de/projects/tifmxx/</A> . 
+specifications are only available for the pci interface and not for the API of the chip. while some reverse engineerings started with the windows driver, ti sends  a binary only driver to one person. 
+this driver was (likely) developed by everest (<A HREF="http://www.everestinc.com/fml.htm">http://www.everestinc.com/fml.htm</A>) for texas instruments. this binary driver has some interesting properties:
+modinfo tifm.ko lists a 
+license:        GPL
+
+hexediding thie module lists a gcc-3.3.5 (Debian), but more interesting two includes:
+include/linux/blkdev.h
+include/linux/bio.h
+
+the last one is of special interest because it's under the gpl and copyrighted by you -&gt; that'y why i'm bothering you.
+
+as there is a common interest for using this interface with linux, it's better to have a already written driver than reverseengineering the windows one. 
+
+the question is, what way to go? are you interested in investigating the origin of this driver, should we (the tifm project) ask ti for that (at the moment they are just pointing to everest, which doesn't response - AFAIK) particular pointing to the license, or other thing?
+
+bye...masc.
+
+-- 
+martin.schneebacher
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">masc at operamail.com</A>&gt;
+
+-- 
+_______________________________________________
+Surf the Web in a faster, safer and easier way:
+Download Opera 8 at <A HREF="http://www.opera.com">http://www.opera.com</A>
+
+Powered by Outblaze
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000070.html">[Tifm21-devel] Re: About binary driver and its source
+</A></li>
+	<LI>Next message: <A HREF="000072.html">[Tifm21-devel] Re: binary flash card reader from texas with blockdev
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#71">[ date ]</a>
+              <a href="thread.html#71">[ thread ]</a>
+              <a href="subject.html#71">[ subject ]</a>
+              <a href="author.html#71">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

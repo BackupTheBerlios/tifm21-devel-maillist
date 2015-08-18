@@ -1,0 +1,2577 @@
+From fjesus at us.es  Wed Jun  7 11:29:09 2006
+From: fjesus at us.es (Francisco =?utf-8?q?Jes=C3=BAs_Mart=C3=ADn_Mateos?=)
+Date: Wed, 7 Jun 2006 11:29:09 +0200
+Subject: [Tifm21-devel] Where can I find the last version of the driver?
+Message-ID: <200606071129.10036.fjesus@us.es>
+
+That is, where can I find the last version of the driver (rev 46)
+
+ChesKo
+
+
+From wael at siemens-mobiles.org  Wed Jun  7 11:50:50 2006
+From: wael at siemens-mobiles.org (Wael Nasreddine)
+Date: Wed, 07 Jun 2006 11:50:50 +0200
+Subject: [Tifm21-devel] Where can I find the last version of the driver?
+In-Reply-To: <200606071129.10036.fjesus@us.es>
+References: <200606071129.10036.fjesus@us.es>
+Message-ID: <4486A17A.9090308@siemens-mobiles.org>
+
+Francisco Jes?s Mart?n Mateos wrote:
+> That is, where can I find the last version of the driver (rev 46)
+> 
+> ChesKo
+> _______________________________________________
+> Tifm21-devel mailing list
+> Tifm21-devel at lists.berlios.de
+> http://lists.berlios.de/mailman/listinfo/tifm21-devel
+> 
+
+From oakad at yahoo.com  Sat Jun 10 17:03:23 2006
+From: oakad at yahoo.com (Alex Dubov)
+Date: Sat, 10 Jun 2006 08:03:23 -0700 (PDT)
+Subject: [Tifm21-devel] First release
+In-Reply-To: <4486A17A.9090308@siemens-mobiles.org>
+Message-ID: <20060610150323.24294.qmail@web36708.mail.mud.yahoo.com>
+
+The first "official" release of the driver is now
+available:
+http://developer.berlios.de/project/showfiles.php?group_id=5510
+
+Some highlights:
+1. It works for me, but there may still be problems
+2. It uses dma only for "MULTI" transfers - so there
+may be occasional drops in speed during operation.
+Fortunately, these are rare in normal use. I get
+around 4MB/sec on average.
+3. As this is reverse engineered driver, there are
+many things that I don't know how to fix (see item 2
+above for example).
+
+
+__________________________________________________
+Do You Yahoo!?
+Tired of spam?  Yahoo! Mail has the best spam protection around 
+http://mail.yahoo.com 
+
+
+From mjg59 at srcf.ucam.org  Sat Jun 10 17:13:43 2006
+From: mjg59 at srcf.ucam.org (Matthew Garrett)
+Date: Sat, 10 Jun 2006 16:13:43 +0100
+Subject: [Tifm21-devel] First release
+In-Reply-To: <20060610150323.24294.qmail@web36708.mail.mud.yahoo.com>
+References: <4486A17A.9090308@siemens-mobiles.org> <20060610150323.24294.qmail@web36708.mail.mud.yahoo.com>
+Message-ID: <20060610151343.GA13682@srcf.ucam.org>
+
+Is this purely mmc/sd at this stage, or are the other formats also 
+supported?
+
+-- 
+Matthew Garrett | mjg59 at srcf.ucam.org
+
+
+From wael at siemens-mobiles.org  Sat Jun 10 17:48:45 2006
+From: wael at siemens-mobiles.org (Wael Nasreddine)
+Date: Sat, 10 Jun 2006 17:48:45 +0200
+Subject: [Tifm21-devel] First release
+In-Reply-To: <20060610150323.24294.qmail@web36708.mail.mud.yahoo.com>
+References: <20060610150323.24294.qmail@web36708.mail.mud.yahoo.com>
+Message-ID: <448AE9DD.9020006@siemens-mobiles.org>
+
+Hi,
+
+I confirm it's working very good here, udev received an event, a device
+node was created and unlike revision 46, gnomevfs auto mounted it and
+it's working :)
+
+Thx for your hard work mate finally we can use this chip :)
+Regards,
+Wael Nasreddine
+
+Alex Dubov wrote:
+> The first "official" release of the driver is now
+> available:
+> http://developer.berlios.de/project/showfiles.php?group_id=5510
+>
+> Some highlights:
+> 1. It works for me, but there may still be problems
+> 2. It uses dma only for "MULTI" transfers - so there
+> may be occasional drops in speed during operation.
+> Fortunately, these are rare in normal use. I get
+> around 4MB/sec on average.
+> 3. As this is reverse engineered driver, there are
+> many things that I don't know how to fix (see item 2
+> above for example).
+>
+>
+> __________________________________________________
+> Do You Yahoo!?
+> Tired of spam?  Yahoo! Mail has the best spam protection around 
+> http://mail.yahoo.com 
+> _______________________________________________
+> Tifm21-devel mailing list
+> Tifm21-devel at lists.berlios.de
+> http://lists.berlios.de/mailman/listinfo/tifm21-devel
+>
+>   
+
+
+From jamesrw at eml.cc  Sat Jun 10 18:35:13 2006
+From: jamesrw at eml.cc (James RW)
+Date: Sat, 10 Jun 2006 12:35:13 -0400
+Subject: [Tifm21-devel] First release
+In-Reply-To: <20060610150323.24294.qmail@web36708.mail.mud.yahoo.com>
+References: <20060610150323.24294.qmail@web36708.mail.mud.yahoo.com>
+Message-ID: <1149957313.9310.263517830@webmail.messagingengine.com>
+
+How do I install the driver?
+
+
+On Sat, 10 Jun 2006 08:03:23 -0700 (PDT), "Alex Dubov" <oakad at yahoo.com>
+said:
+> The first "official" release of the driver is now
+> available:
+> http://developer.berlios.de/project/showfiles.php?group_id=5510
+> 
+> Some highlights:
+> 1. It works for me, but there may still be problems
+> 2. It uses dma only for "MULTI" transfers - so there
+> may be occasional drops in speed during operation.
+> Fortunately, these are rare in normal use. I get
+> around 4MB/sec on average.
+> 3. As this is reverse engineered driver, there are
+> many things that I don't know how to fix (see item 2
+> above for example).
+> 
+> 
+> __________________________________________________
+> Do You Yahoo!?
+> Tired of spam?  Yahoo! Mail has the best spam protection around 
+> http://mail.yahoo.com 
+> _______________________________________________
+> Tifm21-devel mailing list
+> Tifm21-devel at lists.berlios.de
+> http://lists.berlios.de/mailman/listinfo/tifm21-devel
+-- 
+  James RW
+  jamesrw at eml.cc
+
+-- 
+http://www.fastmail.fm - I mean, what is it about a decent email service?
+
+
+
+From redhand.pl at gmail.com  Sat Jun 10 18:54:49 2006
+From: redhand.pl at gmail.com (=?ISO-8859-2?Q?Krzysztof_=27RedHand=27_P=EAdrys?=)
+Date: Sat, 10 Jun 2006 18:54:49 +0200
+Subject: [Tifm21-devel] First release
+In-Reply-To: <20060610150323.24294.qmail@web36708.mail.mud.yahoo.com>
+References: <20060610150323.24294.qmail@web36708.mail.mud.yahoo.com>
+Message-ID: <448AF959.1090502@gmail.com>
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Alex Dubov wrote:
+> The first "official" release of the driver is now
+> available:
+
+I'm geting:
+redhand at CountZero ~/paczki/tifm $ sudo insmod tifm_sd.ko
+insmod: error inserting 'tifm_sd.ko': -1 Unknown symbol in module
+
+Any idea?
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.3 (GNU/Linux)
+
+iD8DBQFEivlYvRMbvg9GKc0RAqy8AJoCGwDrUpp1hZeeAE69ajV1jd7J0gCeM2DA
++MwXu52nSQzC5EMAGMjeYRQ=
+=GocY
+-----END PGP SIGNATURE-----
+
+
+From wael at siemens-mobiles.org  Sat Jun 10 19:06:45 2006
+From: wael at siemens-mobiles.org (Wael Nasreddine)
+Date: Sat, 10 Jun 2006 19:06:45 +0200
+Subject: [Tifm21-devel] First release
+In-Reply-To: <1149957313.9310.263517830@webmail.messagingengine.com>
+References: <20060610150323.24294.qmail@web36708.mail.mud.yahoo.com> <1149957313.9310.263517830@webmail.messagingengine.com>
+Message-ID: <448AFC25.8060507@siemens-mobiles.org>
+
+Hi,
+
+Complete reference just for everyone that might ask the same question
+
+---------------------------- CUT
+mkdir /tmp/driver
+cd /tmp/driver
+wget http://download.berlios.de/tifmxx/tifm-0.4.tar.bz2
+tar xjf tifm-0.4.tar.bz2
+make
+mkdir -p /lib/modules/`uname -r`/kernel/drivers/mmc/tifmxx
+cp *.ko /lib/modules/`uname -r`/kernel/drivers/mmc/tifmxx/
+depmod -A
+modprobe mmc_core mmc_block tifm_7xx1 tifm_sd
+---------------------------- CUT
+
+and voil? Enjoy (thx to Alex :) )
+
+Regards,
+Wael Nasreddine
+
+James RW wrote:
+> How do I install the driver?
+>
+>
+> On Sat, 10 Jun 2006 08:03:23 -0700 (PDT), "Alex Dubov" <oakad at yahoo.com>
+> said:
+>   
+>> The first "official" release of the driver is now
+>> available:
+>> http://developer.berlios.de/project/showfiles.php?group_id=5510
+>>
+>> Some highlights:
+>> 1. It works for me, but there may still be problems
+>> 2. It uses dma only for "MULTI" transfers - so there
+>> may be occasional drops in speed during operation.
+>> Fortunately, these are rare in normal use. I get
+>> around 4MB/sec on average.
+>> 3. As this is reverse engineered driver, there are
+>> many things that I don't know how to fix (see item 2
+>> above for example).
+>>
+>>
+>> __________________________________________________
+>> Do You Yahoo!?
+>> Tired of spam?  Yahoo! Mail has the best spam protection around 
+>> http://mail.yahoo.com 
+>> _______________________________________________
+>> Tifm21-devel mailing list
+>> Tifm21-devel at lists.berlios.de
+>> http://lists.berlios.de/mailman/listinfo/tifm21-devel
+>>     
+
+
+From wael at siemens-mobiles.org  Sat Jun 10 19:07:54 2006
+From: wael at siemens-mobiles.org (Wael Nasreddine)
+Date: Sat, 10 Jun 2006 19:07:54 +0200
+Subject: [Tifm21-devel] First release
+In-Reply-To: <448AF959.1090502@gmail.com>
+References: <20060610150323.24294.qmail@web36708.mail.mud.yahoo.com> <448AF959.1090502@gmail.com>
+Message-ID: <448AFC6A.10908@siemens-mobiles.org>
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+You need to load mmc_block first...
+
+# modprobe -a mmc_block mmc_core
+
+Regards,
+Wael Nasreddine
+
+Krzysztof 'RedHand' P?drys wrote:
+> Alex Dubov wrote:
+>>> The first "official" release of the driver is now available:
+>
+> I'm geting: redhand at CountZero ~/paczki/tifm $ sudo insmod
+> tifm_sd.ko insmod: error inserting 'tifm_sd.ko': -1 Unknown symbol
+> in module
+>
+> Any idea? _______________________________________________
+> Tifm21-devel mailing list Tifm21-devel at lists.berlios.de
+> http://lists.berlios.de/mailman/listinfo/tifm21-devel
+>
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.2.2 (GNU/Linux)
+
+iD8DBQFEivxpVWU5RcjdGKIRArNLAJ9aF7PGgqj0qLoIwd8DlIvCzvi1jgCfV2XO
+PTAH69JYg+LRWIMyKV88SJI=
+=QprH
+-----END PGP SIGNATURE-----
+
+
+
+From maillist at fullmotions.com  Sat Jun 10 20:07:52 2006
+From: maillist at fullmotions.com (Danny Brow)
+Date: Sat, 10 Jun 2006 14:07:52 -0400
+Subject: [Tifm21-devel] First release
+In-Reply-To: <20060610150323.24294.qmail@web36708.mail.mud.yahoo.com>
+References: <20060610150323.24294.qmail@web36708.mail.mud.yahoo.com>
+Message-ID: <448B0A78.2020708@fullmotions.com>
+
+Alex Dubov wrote:
+
+>The first "official" release of the driver is now
+>available:
+>http://developer.berlios.de/project/showfiles.php?group_id=5510
+>
+>Some highlights:
+>1. It works for me, but there may still be problems
+>2. It uses dma only for "MULTI" transfers - so there
+>may be occasional drops in speed during operation.
+>Fortunately, these are rare in normal use. I get
+>around 4MB/sec on average.
+>3. As this is reverse engineered driver, there are
+>many things that I don't know how to fix (see item 2
+>above for example).
+>  
+>
+Unpon inserting a card I get the follow dmesg output:
+
+BUG: scheduling while atomic: tifm0/0x00000001/10619
+ <c0346271> schedule+0x43/0x52f  <c0113708> default_wake_function+0x0/0x12
+ <c034688f> wait_for_completion+0x80/0xc3  <c0113708> 
+default_wake_function+0x0/0x12
+ <c0112fcd> try_to_wake_up+0x5c/0xa9  <c0113708> 
+default_wake_function+0x0/0x12
+ <c0113027> wake_up_process+0xd/0xf  <c0126453> kthread_stop_sem+0x6a/0x8c
+ <c01263e6> kthread_stop+0xb/0xe  <c0123cb8> destroy_workqueue+0x21/0x74
+ <f8cfd294> tifm_free_device+0x15/0x20 [tifm_core]  <c026ccce> 
+device_release+0x14/0x44
+ <c020bc56> kobject_cleanup+0x40/0x65  <c020bc7b> kobject_release+0x0/0xa
+ <c020c319> kref_put+0x65/0x70  <c020bc9b> kobject_put+0x16/0x19
+ <c020bc7b> kobject_release+0x0/0xa  <f8d380d8> 
+tifm_7xx1_remove_media+0x6c/0xca [tifm_7xx1]
+ <c0123842> run_workqueue+0xa0/0x100  <f8d3806c> 
+tifm_7xx1_remove_media+0x0/0xca [tifm_7xx1]
+ <c012399a> worker_thread+0xf8/0x12a  <c0113708> 
+default_wake_function+0x0/0x12
+ <c0113708> default_wake_function+0x0/0x12  <c01238a2> 
+worker_thread+0x0/0x12a
+ <c012626a> kthread+0x79/0xa3  <c01261f1> kthread+0x0/0xa3
+ <c01012f9> kernel_thread_helper+0x5/0xb
+
+tried a 1 GB and a 64 MB card. kernel 2.6.17-rc6, compiled for pentium-m.
+
+Thanks,
+Dan.
+
+-- 
+This message has been scanned for viruses and
+dangerous content by MailScanner, and is
+believed to be clean.
+
+
+
+From hbarta at gmail.com  Sat Jun 10 22:17:17 2006
+From: hbarta at gmail.com (Hank Barta)
+Date: Sat, 10 Jun 2006 20:17:17 +0000
+Subject: [Tifm21-devel] First release
+In-Reply-To: <448AFC25.8060507@siemens-mobiles.org>
+References: <20060610150323.24294.qmail@web36708.mail.mud.yahoo.com>
+	 <1149957313.9310.263517830@webmail.messagingengine.com>
+	 <448AFC25.8060507@siemens-mobiles.org>
+Message-ID: <750072490606101317x7b2dc505mcc79b555dfad5977@mail.gmail.com>
+
+On 6/10/06, Wael Nasreddine <wael at siemens-mobiles.org> wrote:
+> Hi,
+>
+> Complete reference just for everyone that might ask the same question
+
+And also just for reference, I just upgraded to the latest Ubuntu
+version and my multi card reader runs out of the box (at least with SD
+cards), this on an AMD64 kernel. I'm both impressed and pleased. I
+don't know if the Ubuntu developers had to do anything out of the
+ordinary to make this work. Relevant information is:
+
+hbarta at baobab:~$ uname -a
+Linux baobab 2.6.15-23-amd64-generic #1 SMP PREEMPT Tue May 23
+13:45:47 UTC 2006 x86_64 GNU/Linux
+
+hbarta at baobab:~$ lspci -v
+ ...
+0000:05:09.3 Mass storage controller: Texas Instruments PCIxx21
+Integrated FlashMedia Controller
+        Subsystem: Hewlett-Packard Company: Unknown device 3091
+        Flags: bus master, medium devsel, latency 64, IRQ 10
+        Memory at c0206000 (32-bit, non-prefetchable) [size=8K]
+        Capabilities: [44] Power Management version 2
+
+0000:05:09.4 0805: Texas Instruments PCI6411, PCI6421, PCI6611,
+PCI6621, PCI7411, PCI7421, PCI7611, PCI7621 Secure Digital (SD)
+Controller
+        Subsystem: Hewlett-Packard Company: Unknown device 3091
+        Flags: bus master, medium devsel, latency 64, IRQ 10
+        Memory at c0209400 (32-bit, non-prefetchable) [size=256]
+        Memory at c0209000 (32-bit, non-prefetchable) [size=256]
+        Memory at c0208400 (32-bit, non-prefetchable) [size=256]
+        Capabilities: [80] Power Management version 2
+
+
+Many thanks to the developers who got this working!
+
+-hank
+
+-- 
+Beautiful Sunny Winfield, Illinois
+
+
+From wael at siemens-mobiles.org  Sat Jun 10 22:53:30 2006
+From: wael at siemens-mobiles.org (Wael Nasreddine)
+Date: Sat, 10 Jun 2006 22:53:30 +0200
+Subject: [Tifm21-devel] Some little problems
+In-Reply-To: <750072490606101317x7b2dc505mcc79b555dfad5977@mail.gmail.com>
+References: <20060610150323.24294.qmail@web36708.mail.mud.yahoo.com>	 <1149957313.9310.263517830@webmail.messagingengine.com>	 <448AFC25.8060507@siemens-mobiles.org> <750072490606101317x7b2dc505mcc79b555dfad5977@mail.gmail.com>
+Message-ID: <448B314A.2030403@siemens-mobiles.org>
+
+Hi,
+
+There seems there's some problems here, which i'll describe with
+details, I presume Danny Brow has the same problem....
+
+When i turn the PC while the card is inserted (the module get loaded on
+startup), the card works, but when i unmount it and remove it, I can't
+use it again unless i reboot, When i insert it the led lights for a
+second and turn off while when it is normally working it is always on
+(when it light a bit there's to device node created...)
+
+When the card is inserted the following output is in dmesg:
+
+tifm_sd [tifm_sd_ios()]: Setting bus width 0
+tifm_sd [tifm_sd_ios()]: Setting bus width 0
+tifm_sd [tifm_sd_ios()]: Setting bus width 0
+tifm_sd [tifm_sd_ios()]: Setting bus width 0
+tifm_sd [tifm_sd_ios()]: Setting bus width 0
+tifm_sd [tifm_sd_execute()]: cmd error 1
+tifm_sd [tifm_sd_execute()]: cmd error 1
+tifm_sd [tifm_sd_execute()]: cmd error 1
+tifm_sd [tifm_sd_execute()]: cmd error 1
+tifm_sd [tifm_sd_execute()]: cmd error 1
+tifm_sd [tifm_sd_ios()]: Setting bus width 0
+
+and unlike Danny Brow I get the output upon removing the card not
+inserting it:
+scheduling while atomic: tifm0/0x00000001/5101
+ [<c02dae67>] schedule+0x43/0x616
+ [<c0117c7f>] activate_task+0x193/0x1a7
+ [<c01189ef>] __wake_up+0x2a/0x3d
+ [<c0117f5b>] try_to_wake_up+0x2c8/0x2d2
+ [<c02db4bb>] wait_for_completion+0x6b/0xa1
+ [<c0117f65>] default_wake_function+0x0/0x15
+ [<c012e4e9>] kthread_stop_sem+0x9f/0xc2
+ [<c012e517>] kthread_stop+0xb/0xe
+ [<c012b686>] cleanup_workqueue_thread+0x2d/0x31
+ [<c012b863>] destroy_workqueue+0x28/0xb8
+ [<de8580e9>] tifm_free_device+0x15/0x20 [tifm_core]
+ [<c01efa5e>] kobject_cleanup+0x3f/0x64
+ [<c01efa83>] kobject_release+0x0/0xa
+ [<c01f044e>] kref_put+0x47/0x52
+ [<c01ef9e2>] kobject_put+0x16/0x19
+ [<c01efa83>] kobject_release+0x0/0xa
+ [<de85b17c>] tifm_7xx1_remove_media+0x6b/0xc1 [tifm_7xx1]
+ [<c012b5d4>] run_workqueue+0x80/0xbc
+ [<de85b111>] tifm_7xx1_remove_media+0x0/0xc1 [tifm_7xx1]
+ [<c012bedc>] worker_thread+0xec/0x117
+ [<c0117f65>] default_wake_function+0x0/0x15
+ [<c012bdf0>] worker_thread+0x0/0x117
+ [<c012e815>] kthread+0xb9/0xe6
+ [<c012e75c>] kthread+0x0/0xe6
+ [<c0101005>] kernel_thread_helper+0x5/0xb
+
+
+Otherwize it is at least working for now, hope all bugs get fixed and
+removed soon...
+
+
+From oakad at yahoo.com  Sun Jun 11 06:29:14 2006
+From: oakad at yahoo.com (Alex Dubov)
+Date: Sat, 10 Jun 2006 21:29:14 -0700 (PDT)
+Subject: [Tifm21-devel] Some little problems
+In-Reply-To: <448B314A.2030403@siemens-mobiles.org>
+Message-ID: <20060611042914.59560.qmail@web36712.mail.mud.yahoo.com>
+
+I have an am64 and it's behaves differently than x86
+with highmem, so I can't see those kind of problems on
+my setup (kmalloc/kmap related). 
+
+Anyway: rev51 / timf-0.4a (usual place).
+
+
+__________________________________________________
+Do You Yahoo!?
+Tired of spam?  Yahoo! Mail has the best spam protection around 
+http://mail.yahoo.com 
+
+
+From oakad at yahoo.com  Sun Jun 11 06:37:14 2006
+From: oakad at yahoo.com (Alex Dubov)
+Date: Sat, 10 Jun 2006 21:37:14 -0700 (PDT)
+Subject: [Tifm21-devel] Some little problems
+In-Reply-To: <448B314A.2030403@siemens-mobiles.org>
+Message-ID: <20060611043714.73088.qmail@web36708.mail.mud.yahoo.com>
+
+One more:
+on my computer there's no flashcard led (and hdd led
+is not connected to it either). While it will be nice
+to have it working correctly I have no way to do  this
+on my machine. Volunteers welcome.
+
+
+__________________________________________________
+Do You Yahoo!?
+Tired of spam?  Yahoo! Mail has the best spam protection around 
+http://mail.yahoo.com 
+
+
+From wael at siemens-mobiles.org  Sun Jun 11 07:15:23 2006
+From: wael at siemens-mobiles.org (Wael Nasreddine)
+Date: Sun, 11 Jun 2006 07:15:23 +0200
+Subject: [Tifm21-devel] Some little problems
+In-Reply-To: <20060611043714.73088.qmail@web36708.mail.mud.yahoo.com>
+References: <20060611043714.73088.qmail@web36708.mail.mud.yahoo.com>
+Message-ID: <448BA6EB.1060502@siemens-mobiles.org>
+
+Alex Dubov wrote:
+> One more:
+> on my computer there's no flashcard led (and hdd led
+> is not connected to it either). While it will be nice
+> to have it working correctly I have no way to do  this
+> on my machine. Volunteers welcome.
+>
+>
+> __________________________________________________
+> Do You Yahoo!?
+> Tired of spam?  Yahoo! Mail has the best spam protection around 
+> http://mail.yahoo.com 
+> _______________________________________________
+> Tifm21-devel mailing list
+> Tifm21-devel at lists.berlios.de
+> http://lists.berlios.de/mailman/listinfo/tifm21-devel
+>
+>   
+Hi,
+
+Ok it removed the messages when removing a card, but still 2 out of 3
+times i just get
+
+tifm_sd [tifm_sd_ios()]: Setting bus width 0
+tifm_sd [tifm_sd_ios()]: Setting bus width 0
+tifm_sd [tifm_sd_ios()]: Setting bus width 0
+tifm_sd [tifm_sd_ios()]: Setting bus width 0
+tifm_sd [tifm_sd_ios()]: Setting bus width 0
+tifm_sd [tifm_sd_execute()]: cmd error 1
+tifm_sd [tifm_sd_execute()]: cmd error 1
+tifm_sd [tifm_sd_execute()]: cmd error 1
+tifm_sd [tifm_sd_execute()]: cmd error 1
+tifm_sd [tifm_sd_execute()]: cmd error 1
+tifm_sd [tifm_sd_ios()]: Setting bus width 0
+
+and no block device is detected..
+
+Regards,
+Wael Nasreddine
+
+
+From oakad at yahoo.com  Sun Jun 11 11:00:43 2006
+From: oakad at yahoo.com (Alex Dubov)
+Date: Sun, 11 Jun 2006 02:00:43 -0700 (PDT)
+Subject: [Tifm21-devel] Some little problems
+In-Reply-To: <448BA6EB.1060502@siemens-mobiles.org>
+Message-ID: <20060611090043.70703.qmail@web36712.mail.mud.yahoo.com>
+
+One of the cases where "too good is no good". Error 1
+is a timeout. Couple of these are normal as mmc will
+try to discover if there's more than one card in the
+socket (sd cards can be chained). Here, try this
+(attached) version, which does not tries to honour
+card specific timeout and always uses uber-long, 1 sec
+value.
+
+
+--- Wael Nasreddine <wael at siemens-mobiles.org> wrote:
+
+> Alex Dubov wrote:
+> > One more:
+> > on my computer there's no flashcard led (and hdd
+> led
+> > is not connected to it either). While it will be
+> nice
+> > to have it working correctly I have no way to do 
+> this
+> > on my machine. Volunteers welcome.
+> >
+> >
+> > __________________________________________________
+> > Do You Yahoo!?
+> > Tired of spam?  Yahoo! Mail has the best spam
+> protection around 
+> > http://mail.yahoo.com 
+> > _______________________________________________
+> > Tifm21-devel mailing list
+> > Tifm21-devel at lists.berlios.de
+> >
+>
+http://lists.berlios.de/mailman/listinfo/tifm21-devel
+> >
+> >   
+> Hi,
+> 
+> Ok it removed the messages when removing a card, but
+> still 2 out of 3
+> times i just get
+> 
+> tifm_sd [tifm_sd_ios()]: Setting bus width 0
+> tifm_sd [tifm_sd_ios()]: Setting bus width 0
+> tifm_sd [tifm_sd_ios()]: Setting bus width 0
+> tifm_sd [tifm_sd_ios()]: Setting bus width 0
+> tifm_sd [tifm_sd_ios()]: Setting bus width 0
+> tifm_sd [tifm_sd_execute()]: cmd error 1
+> tifm_sd [tifm_sd_execute()]: cmd error 1
+> tifm_sd [tifm_sd_execute()]: cmd error 1
+> tifm_sd [tifm_sd_execute()]: cmd error 1
+> tifm_sd [tifm_sd_execute()]: cmd error 1
+> tifm_sd [tifm_sd_ios()]: Setting bus width 0
+> 
+> and no block device is detected..
+> 
+> Regards,
+> Wael Nasreddine
+> _______________________________________________
+> Tifm21-devel mailing list
+> Tifm21-devel at lists.berlios.de
+>
+http://lists.berlios.de/mailman/listinfo/tifm21-devel
+> 
+
+__________________________________________________
+Do You Yahoo!?
+Tired of spam?  Yahoo! Mail has the best spam protection around 
+http://mail.yahoo.com 
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: tifm_sd.c
+Type: text/x-csrc
+Size: 23146 bytes
+Desc: 2197238332-tifm_sd.c
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20060611/6f796f78/attachment.c>
+
+From redhand.pl at gmail.com  Sun Jun 11 11:07:38 2006
+From: redhand.pl at gmail.com (=?ISO-8859-2?Q?Krzysztof_=27RedHand=27_P=EAdrys?=)
+Date: Sun, 11 Jun 2006 11:07:38 +0200
+Subject: [Tifm21-devel] First release
+In-Reply-To: <448AFC6A.10908@siemens-mobiles.org>
+References: <20060610150323.24294.qmail@web36708.mail.mud.yahoo.com> <448AF959.1090502@gmail.com> <448AFC6A.10908@siemens-mobiles.org>
+Message-ID: <448BDD5A.6070209@gmail.com>
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Wael Nasreddine wrote:
+> You need to load mmc_block first...
+> 
+> # modprobe -a mmc_block mmc_core
+> 
+I don't have those files ;-)
+I have tifm_7xx1, tifm_core (propably mmc_core) and tifm_sd.
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.3 (GNU/Linux)
+
+iD8DBQFEi91avRMbvg9GKc0RAiUTAJ9g4fQdFVpVzm3ikzHfopGuPXch1gCgiPQT
+yOpUcANRaep+NXNPWnQSzR0=
+=TXVh
+-----END PGP SIGNATURE-----
+
+
+From wael at siemens-mobiles.org  Sun Jun 11 11:26:51 2006
+From: wael at siemens-mobiles.org (Wael Nasreddine)
+Date: Sun, 11 Jun 2006 11:26:51 +0200
+Subject: [Tifm21-devel] First release
+In-Reply-To: <448BDD5A.6070209@gmail.com>
+References: <20060610150323.24294.qmail@web36708.mail.mud.yahoo.com> <448AF959.1090502@gmail.com> <448AFC6A.10908@siemens-mobiles.org> <448BDD5A.6070209@gmail.com>
+Message-ID: <448BE1DB.4060103@siemens-mobiles.org>
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Krzysztof 'RedHand' P?drys wrote:
+> Wael Nasreddine wrote:
+>>> You need to load mmc_block first...
+>>>
+>>> # modprobe -a mmc_block mmc_core
+>>>
+> I don't have those files ;-) I have tifm_7xx1, tifm_core (propably
+> mmc_core) and tifm_sd.
+>
+Hi,
+
+That's not good, Please ensure that your kernel does have
+CONFIG_MMC_BLOCK = at least m, my kernerl config have:
+(0)[root at nasreddine ../modules/tifmxx-svn]# zcat /proc/config.gz |
+grep MMC | grep -v '#'
+CONFIG_MMC=m
+CONFIG_MMC_BLOCK=m
+CONFIG_MMC_WBSD=m
+
+If you don't have them you need to re-compile your kernel am afraid..
+
+Regards,
+Wael Nasreddine
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.2.2 (GNU/Linux)
+
+iD8DBQFEi+HYVWU5RcjdGKIRAtesAJ0UVakAL2sUinDza2Yzcy9bhYvB8ACgp65u
+/aOz152Jj+sZQRb19H9SjOI=
+=AD1k
+-----END PGP SIGNATURE-----
+
+
+
+From wael at siemens-mobiles.org  Sun Jun 11 11:29:32 2006
+From: wael at siemens-mobiles.org (Wael Nasreddine)
+Date: Sun, 11 Jun 2006 11:29:32 +0200
+Subject: [Tifm21-devel] Some little problems
+In-Reply-To: <20060611090043.70703.qmail@web36712.mail.mud.yahoo.com>
+References: <20060611090043.70703.qmail@web36712.mail.mud.yahoo.com>
+Message-ID: <448BE27C.3020401@siemens-mobiles.org>
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Alex Dubov wrote:
+> One of the cases where "too good is no good". Error 1 is a timeout.
+> Couple of these are normal as mmc will try to discover if there's
+> more than one card in the socket (sd cards can be chained). Here,
+> try this (attached) version, which does not tries to honour card
+> specific timeout and always uses uber-long, 1 sec value.
+Hi,
+
+Okay I patched the file with the attached one and it seems to be quite
+more stable (insert/remove more than 10 times worked each time),
+though i haven't tried with a reboot with/without the card because am
+compiling a kernel with sdhci support to try it, it seems quite stable
+too on ubuntu dapper so am trying it now...
+
+Once the kernel is compiled i'll reboot/test more tifmxx driver and
+report back if any weird stuff occurd again
+
+Thanks !
+
+Regards,
+Wael Nasreddine
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.2.2 (GNU/Linux)
+
+iD8DBQFEi+J7VWU5RcjdGKIRAupaAKC6e0AoMT+6vwEZUfds/JlG4vHLRQCcCDvU
+4kJ0VuTt4vuK+CNscv/jWBQ=
+=CbXd
+-----END PGP SIGNATURE-----
+
+
+
+From redhand.pl at gmail.com  Sun Jun 11 13:19:01 2006
+From: redhand.pl at gmail.com (=?ISO-8859-2?Q?Krzysztof_=27RedHand=27_P=EAdrys?=)
+Date: Sun, 11 Jun 2006 13:19:01 +0200
+Subject: [Tifm21-devel] First release
+In-Reply-To: <448BE1DB.4060103@siemens-mobiles.org>
+References: <20060610150323.24294.qmail@web36708.mail.mud.yahoo.com> <448AF959.1090502@gmail.com> <448AFC6A.10908@siemens-mobiles.org> <448BDD5A.6070209@gmail.com> <448BE1DB.4060103@siemens-mobiles.org>
+Message-ID: <448BFC25.80907@gmail.com>
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+It's working ;-) but...
+When i insert card i get something like that:
+Jun 11 13:17:03 [kernel] mmcblk0: mmc0:a778 SD512 500224KiB
+Jun 11 13:17:03 [kernel]  p1
+Jun 11 13:17:03 [kernel] mmcblk0: error 4 sending stop command
+Jun 11 13:17:03 [kernel] end_request: I/O error, dev mmcblk0, sector 1000440
+Jun 11 13:17:03 [kernel] Buffer I/O error on device mmcblk0, logical
+block 125055
+Jun 11 13:17:03 [kernel] mmcblk0: error 4 sending stop command
+Jun 11 13:17:03 [kernel] end_request: I/O error, dev mmcblk0, sector 1000440
+Jun 11 13:17:03 [kernel] Buffer I/O error on device mmcblk0, logical
+block 125055
+Jun 11 13:17:03 [kernel] mmcblk0: error 4 sending stop command
+Jun 11 13:17:03 [kernel] end_request: I/O error, dev mmcblk0, sector 1000440
+Jun 11 13:17:03 [kernel] Buffer I/O error on device mmcblk0, logical
+block 125055
+Jun 11 13:17:03 [kernel] mmcblk0: error 4 sending stop command
+Jun 11 13:17:03 [kernel] end_request: I/O error, dev mmcblk0, sector 1000440
+Jun 11 13:17:03 [kernel] Buffer I/O error on device mmcblk0, logical
+block 125055
+Jun 11 13:17:03 [kernel] mmcblk0: error 4 sending stop command
+Jun 11 13:17:03 [kernel] end_request: I/O error, dev mmcblk0, sector 1000440
+Jun 11 13:17:03 [kernel] Buffer I/O error on device mmcblk0, logical
+block 125055
+Jun 11 13:17:03 [kernel] mmcblk0: error 4 sending stop command
+Jun 11 13:17:03 [kernel] end_request: I/O error, dev mmcblk0, sector 1000440
+Jun 11 13:17:03 [kernel] Buffer I/O error on device mmcblk0, logical
+block 125055
+
+Is something wrong with my card?
+
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.3 (GNU/Linux)
+
+iD8DBQFEi/wlvRMbvg9GKc0RAjSsAJ9hUwHYG3EJNILIPVjXEheJpqOnFwCeM3UR
+Q7eNjlLmRFncqmK2/DygWk8=
+=qWKT
+-----END PGP SIGNATURE-----
+
+
+From oakad at yahoo.com  Mon Jun 12 08:39:11 2006
+From: oakad at yahoo.com (Alex Dubov)
+Date: Sun, 11 Jun 2006 23:39:11 -0700 (PDT)
+Subject: [Tifm21-devel] First release
+In-Reply-To: <448BFC25.80907@gmail.com>
+Message-ID: <20060612063911.20413.qmail@web36713.mail.mud.yahoo.com>
+
+As i understand it, error 4 is a bad block on the card
+(it's only theory, but a good one).
+
+--- Krzysztof 'RedHand' P???drys
+<redhand.pl at gmail.com> wrote:
+
+> -----BEGIN PGP SIGNED MESSAGE-----
+> Hash: SHA1
+> 
+> It's working ;-) but...
+> When i insert card i get something like that:
+> Jun 11 13:17:03 [kernel] mmcblk0: mmc0:a778 SD512
+> 500224KiB
+> Jun 11 13:17:03 [kernel]  p1
+> Jun 11 13:17:03 [kernel] mmcblk0: error 4 sending
+> stop command
+> Jun 11 13:17:03 [kernel] end_request: I/O error, dev
+> mmcblk0, sector 1000440
+> Jun 11 13:17:03 [kernel] Buffer I/O error on device
+> mmcblk0, logical
+> block 125055
+> Jun 11 13:17:03 [kernel] mmcblk0: error 4 sending
+> stop command
+> Jun 11 13:17:03 [kernel] end_request: I/O error, dev
+> mmcblk0, sector 1000440
+> Jun 11 13:17:03 [kernel] Buffer I/O error on device
+> mmcblk0, logical
+> block 125055
+> Jun 11 13:17:03 [kernel] mmcblk0: error 4 sending
+> stop command
+> Jun 11 13:17:03 [kernel] end_request: I/O error, dev
+> mmcblk0, sector 1000440
+> Jun 11 13:17:03 [kernel] Buffer I/O error on device
+> mmcblk0, logical
+> block 125055
+> Jun 11 13:17:03 [kernel] mmcblk0: error 4 sending
+> stop command
+> Jun 11 13:17:03 [kernel] end_request: I/O error, dev
+> mmcblk0, sector 1000440
+> Jun 11 13:17:03 [kernel] Buffer I/O error on device
+> mmcblk0, logical
+> block 125055
+> Jun 11 13:17:03 [kernel] mmcblk0: error 4 sending
+> stop command
+> Jun 11 13:17:03 [kernel] end_request: I/O error, dev
+> mmcblk0, sector 1000440
+> Jun 11 13:17:03 [kernel] Buffer I/O error on device
+> mmcblk0, logical
+> block 125055
+> Jun 11 13:17:03 [kernel] mmcblk0: error 4 sending
+> stop command
+> Jun 11 13:17:03 [kernel] end_request: I/O error, dev
+> mmcblk0, sector 1000440
+> Jun 11 13:17:03 [kernel] Buffer I/O error on device
+> mmcblk0, logical
+> block 125055
+> 
+> Is something wrong with my card?
+> 
+> 
+> -----BEGIN PGP SIGNATURE-----
+> Version: GnuPG v1.4.3 (GNU/Linux)
+> 
+>
+iD8DBQFEi/wlvRMbvg9GKc0RAjSsAJ9hUwHYG3EJNILIPVjXEheJpqOnFwCeM3UR
+> Q7eNjlLmRFncqmK2/DygWk8=
+> =qWKT
+> -----END PGP SIGNATURE-----
+> _______________________________________________
+> Tifm21-devel mailing list
+> Tifm21-devel at lists.berlios.de
+>
+http://lists.berlios.de/mailman/listinfo/tifm21-devel
+> 
+
+
+__________________________________________________
+Do You Yahoo!?
+Tired of spam?  Yahoo! Mail has the best spam protection around 
+http://mail.yahoo.com 
+
+
+From jamesrw at eml.cc  Mon Jun 12 22:53:24 2006
+From: jamesrw at eml.cc (James RW)
+Date: Mon, 12 Jun 2006 16:53:24 -0400
+Subject: [Tifm21-devel] First release
+In-Reply-To: <448AFC25.8060507@siemens-mobiles.org>
+References: <20060610150323.24294.qmail@web36708.mail.mud.yahoo.com>
+   <1149957313.9310.263517830@webmail.messagingengine.com>
+   <448AFC25.8060507@siemens-mobiles.org>
+Message-ID: <1150145604.9187.263646846@webmail.messagingengine.com>
+
+not getting very far at all... error when i exectue "make":
+
+make: *** /lib/modules/2.6.15-23-amd64-generic/build: No such file or
+directory.  Stop.
+make: *** [all] Error 2
+
+not kernel related is it?
+------------------------------------------------------------------------------------
+
+On Sat, 10 Jun 2006 19:06:45 +0200, "Wael Nasreddine"
+<wael at siemens-mobiles.org> said:
+> Hi,
+> 
+> Complete reference just for everyone that might ask the same question
+> 
+> ---------------------------- CUT
+> mkdir /tmp/driver
+> cd /tmp/driver
+> wget http://download.berlios.de/tifmxx/tifm-0.4.tar.bz2
+> tar xjf tifm-0.4.tar.bz2
+> make
+> mkdir -p /lib/modules/`uname -r`/kernel/drivers/mmc/tifmxx
+> cp *.ko /lib/modules/`uname -r`/kernel/drivers/mmc/tifmxx/
+> depmod -A
+> modprobe mmc_core mmc_block tifm_7xx1 tifm_sd
+> ---------------------------- CUT
+> 
+> and voil? Enjoy (thx to Alex :) )
+> 
+> Regards,
+> Wael Nasreddine
+> 
+> James RW wrote:
+> > How do I install the driver?
+> >
+> >
+> > On Sat, 10 Jun 2006 08:03:23 -0700 (PDT), "Alex Dubov" <oakad at yahoo.com>
+> > said:
+> >   
+> >> The first "official" release of the driver is now
+> >> available:
+> >> http://developer.berlios.de/project/showfiles.php?group_id=5510
+> >>
+> >> Some highlights:
+> >> 1. It works for me, but there may still be problems
+> >> 2. It uses dma only for "MULTI" transfers - so there
+> >> may be occasional drops in speed during operation.
+> >> Fortunately, these are rare in normal use. I get
+> >> around 4MB/sec on average.
+> >> 3. As this is reverse engineered driver, there are
+> >> many things that I don't know how to fix (see item 2
+> >> above for example).
+> >>
+> >>
+> >> __________________________________________________
+> >> Do You Yahoo!?
+> >> Tired of spam?  Yahoo! Mail has the best spam protection around 
+> >> http://mail.yahoo.com 
+> >> _______________________________________________
+> >> Tifm21-devel mailing list
+> >> Tifm21-devel at lists.berlios.de
+> >> http://lists.berlios.de/mailman/listinfo/tifm21-devel
+> >>     
+> _______________________________________________
+> Tifm21-devel mailing list
+> Tifm21-devel at lists.berlios.de
+> http://lists.berlios.de/mailman/listinfo/tifm21-devel
+-- 
+  James RW
+  jamesrw at eml.cc
+
+-- 
+http://www.fastmail.fm - The professional email service
+
+
+
+From wael at siemens-mobiles.org  Mon Jun 12 22:58:05 2006
+From: wael at siemens-mobiles.org (Wael Nasreddine)
+Date: Mon, 12 Jun 2006 22:58:05 +0200
+Subject: [Tifm21-devel] First release
+In-Reply-To: <1150145604.9187.263646846@webmail.messagingengine.com>
+References: <20060610150323.24294.qmail@web36708.mail.mud.yahoo.com>   <1149957313.9310.263517830@webmail.messagingengine.com>   <448AFC25.8060507@siemens-mobiles.org> <1150145604.9187.263646846@webmail.messagingengine.com>
+Message-ID: <448DD55D.8020206@siemens-mobiles.org>
+
+An HTML attachment was scrubbed...
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20060612/156a05e9/attachment.html>
+
+From gustavo-listas at overstep.com.br  Mon Jun 12 23:22:20 2006
+From: gustavo-listas at overstep.com.br (Gustavo Henrique Cervi)
+Date: Mon, 12 Jun 2006 18:22:20 -0300
+Subject: [Tifm21-devel] error feedback
+Message-ID: <448DDB0C.3010102@overstep.com.br>
+
+andromeda ~ # uname -a
+Linux andromeda 2.6.16-gentoo-r7 #10 PREEMPT Sat Jun 10 18:20:14 BRT 
+2006 i686 Intel(R) Pentium(R) M processor 1.70GHz GNU/Linux
+
+with an 32mb MMC (from nokia 6230 mobile)
+
+Jun 12 18:06:54 andromeda tifm_sd [tifm_sd_ios()]: Setting bus width 0
+Jun 12 18:06:54 andromeda tifm_sd [tifm_sd_ios()]: Setting bus width 0
+Jun 12 18:06:54 andromeda tifm_sd [tifm_sd_ios()]: Setting bus width 0
+Jun 12 18:06:54 andromeda tifm_sd [tifm_sd_ios()]: Setting bus width 0
+Jun 12 18:06:54 andromeda MMC: starting cmd 00 arg 00000000 flags 00000040
+Jun 12 18:06:54 andromeda MMC: req done (00): 0: 00000000 00000000 
+00000000 00000000
+Jun 12 18:06:54 andromeda tifm_sd [tifm_sd_ios()]: Setting bus width 0
+Jun 12 18:06:54 andromeda MMC: starting cmd 37 arg 00000000 flags 00000015
+Jun 12 18:06:54 andromeda tifm_sd [tifm_sd_execute()]: cmd error 1
+Jun 12 18:06:54 andromeda MMC: req done (37): 1: 00000000 00000000 
+00000000 00000000
+Jun 12 18:06:54 andromeda MMC: starting cmd 37 arg 00000000 flags 00000015
+Jun 12 18:06:54 andromeda tifm_sd [tifm_sd_execute()]: cmd error 1
+Jun 12 18:06:54 andromeda MMC: req done (37): 1: 00000000 00000000 
+00000000 00000000
+Jun 12 18:06:54 andromeda MMC: starting cmd 37 arg 00000000 flags 00000015
+Jun 12 18:06:54 andromeda tifm_sd [tifm_sd_execute()]: cmd error 1
+Jun 12 18:06:54 andromeda MMC: req done (37): 1: 00000000 00000000 
+00000000 00000000
+Jun 12 18:06:54 andromeda MMC: starting cmd 37 arg 00000000 flags 00000015
+Jun 12 18:06:54 andromeda tifm_sd [tifm_sd_execute()]: cmd error 1
+Jun 12 18:06:54 andromeda MMC: req done (37): 1: 00000000 00000000 
+00000000 00000000
+Jun 12 18:06:54 andromeda MMC: starting cmd 01 arg 00000000 flags 00000061
+Jun 12 18:06:54 andromeda MMC: req done (01): 0: 00ff8000 00000000 
+00000000 00000000
+Jun 12 18:06:54 andromeda tifm_sd [tifm_sd_ios()]: Setting bus width 0
+Jun 12 18:06:54 andromeda tifm_sd [tifm_sd_ios()]: Setting bus width 0
+Jun 12 18:06:54 andromeda MMC: starting cmd 00 arg 00000000 flags 00000040
+Jun 12 18:06:54 andromeda MMC: req done (00): 0: 00ff8000 00000000 
+00000000 00000000
+Jun 12 18:06:54 andromeda tifm_sd [tifm_sd_ios()]: Setting bus width 0
+Jun 12 18:06:54 andromeda MMC: starting cmd 01 arg 00300000 flags 00000061
+Jun 12 18:06:54 andromeda MMC: req done (01): 0: 00ff8000 00000000 
+00000000 00000000
+Jun 12 18:06:54 andromeda MMC: starting cmd 01 arg 00300000 flags 00000061
+Jun 12 18:06:54 andromeda MMC: req done (01): 0: 80ff8000 00000000 
+00000000 00000000
+Jun 12 18:06:54 andromeda MMC: starting cmd 02 arg 00000000 flags 00000067
+Jun 12 18:06:54 andromeda MMC: req done (02): 0: 15000030 30303030 
+3007b202 16fd8701
+Jun 12 18:06:54 andromeda MMC: starting cmd 03 arg 00010000 flags 00000015
+Jun 12 18:06:54 andromeda MMC: req done (03): 0: 00000500 00000000 
+00000000 00000000
+Jun 12 18:06:54 andromeda MMC: starting cmd 02 arg 00000000 flags 00000067
+Jun 12 18:06:55 andromeda tifm_sd [tifm_sd_execute()]: cmd error 1
+Jun 12 18:06:55 andromeda MMC: req done (02): 1: 00000000 00000000 
+00000000 00000000
+Jun 12 18:06:55 andromeda tifm_sd [tifm_sd_execute()]: cmd error 1
+Jun 12 18:06:55 andromeda MMC: req done (02): 1: 00000000 00000000 
+00000000 00000000
+Jun 12 18:06:55 andromeda tifm_sd [tifm_sd_execute()]: cmd error 1
+Jun 12 18:06:55 andromeda MMC: req done (02): 1: 00000000 00000000 
+00000000 00000000
+Jun 12 18:06:55 andromeda tifm_sd [tifm_sd_execute()]: cmd error 1
+Jun 12 18:06:55 andromeda MMC: req done (02): 1: 00000000 00000000 
+00000000 00000000
+Jun 12 18:06:55 andromeda tifm_sd [tifm_sd_ios()]: Setting bus width 0
+Jun 12 18:06:55 andromeda MMC: starting cmd 09 arg 00010000 flags 00000007
+Jun 12 18:06:55 andromeda tifm_sd [tifm_sd_execute()]: cmd error 1
+Jun 12 18:06:55 andromeda MMC: req done (09): 1: 00000000 00000000 
+00000000 00000000
+Jun 12 18:06:55 andromeda MMC: req done (09): 0: 8c26012a 0f5901e9 
+f6d983e3 924040d3
+Jun 12 18:06:55 andromeda MMC: selected 20.000MHz transfer rate
+Jun 12 18:06:55 andromeda tifm_sd [tifm_sd_ios()]: Setting bus width 0
+Jun 12 18:06:55 andromeda MMC: starting cmd 07 arg 00010000 flags 00000015
+Jun 12 18:06:55 andromeda MMC: req done (07): 0: 00000700 00000000 
+00000000 00000000
+Jun 12 18:06:55 andromeda tifm_sd [tifm_sd_ios()]: Setting bus width 0
+Jun 12 18:06:55 andromeda MMC: starting cmd 10 arg 00000200 flags 00000015
+Jun 12 18:06:55 andromeda MMC: req done (10): 0: 00000900 00000000 
+00000000 00000000
+Jun 12 18:06:55 andromeda mmcblk0: mmc0:0001 000000 31360KiB
+Jun 12 18:08:13 andromeda generic_make_request: Trying to access 
+nonexistent block-device mmcblk0 (62592)
+Jun 12 18:08:13 andromeda Buffer I/O error on device mmcblk0, logical 
+block 7824
+Jun 12 18:08:13 andromeda generic_make_request: Trying to access 
+nonexistent block-device mmcblk0 (62592)
+Jun 12 18:08:13 andromeda Buffer I/O error on device mmcblk0, logical 
+block 7824
+Jun 12 18:08:13 andromeda generic_make_request: Trying to access 
+nonexistent block-device mmcblk0 (62712)
+Jun 12 18:08:13 andromeda Buffer I/O error on device mmcblk0, logical 
+block 7839
+Jun 12 18:08:13 andromeda generic_make_request: Trying to access 
+nonexistent block-device mmcblk0 (62712)
+Jun 12 18:08:13 andromeda Buffer I/O error on device mmcblk0, logical 
+block 7839
+Jun 12 18:08:13 andromeda generic_make_request: Trying to access 
+nonexistent block-device mmcblk0 (62712)
+Jun 12 18:08:13 andromeda Buffer I/O error on device mmcblk0, logical 
+block 7839
+Jun 12 18:08:13 andromeda generic_make_request: Trying to access 
+nonexistent block-device mmcblk0 (62712)
+Jun 12 18:08:13 andromeda Buffer I/O error on device mmcblk0, logical 
+block 7839
+Jun 12 18:08:13 andromeda generic_make_request: Trying to access 
+nonexistent block-device mmcblk0 (62712)
+Jun 12 18:08:13 andromeda Buffer I/O error on device mmcblk0, logical 
+block 7839
+Jun 12 18:08:13 andromeda generic_make_request: Trying to access 
+nonexistent block-device mmcblk0 (62712)
+Jun 12 18:08:13 andromeda Buffer I/O error on device mmcblk0, logical 
+block 7839
+Jun 12 18:08:13 andromeda generic_make_request: Trying to access 
+nonexistent block-device mmcblk0 (62656)
+Jun 12 18:08:13 andromeda Buffer I/O error on device mmcblk0, logical 
+block 7832
+Jun 12 18:08:13 andromeda generic_make_request: Trying to access 
+nonexistent block-device mmcblk0 (62656)
+Jun 12 18:08:13 andromeda Buffer I/O error on device mmcblk0, logical 
+block 7832
+Jun 12 18:08:13 andromeda generic_make_request: Trying to access 
+nonexistent block-device mmcblk0 (62704)
+Jun 12 18:08:13 andromeda generic_make_request: Trying to access 
+nonexistent block-device mmcblk0 (62704)
+
+
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20060612/214b7d69/attachment.html>
+
+From oakad at yahoo.com  Tue Jun 13 03:51:09 2006
+From: oakad at yahoo.com (Alex Dubov)
+Date: Mon, 12 Jun 2006 18:51:09 -0700 (PDT)
+Subject: [Tifm21-devel] error feedback
+In-Reply-To: <448DDB0C.3010102@overstep.com.br>
+Message-ID: <20060613015109.794.qmail@web36703.mail.mud.yahoo.com>
+
+I'll have to fix debugging, that for sure.
+Unfortunately, your trace doesn't show the interesting
+things (but you'd better wait for next svn rev). What
+it does shows is that everything works ok and then
+reports error on some block, which may simply be a bad
+one (this should not prevent card from working). In
+general, it may be related to mmc_block - are you
+loading it in advance?
+
+--- Gustavo Henrique Cervi
+<gustavo-listas at overstep.com.br> wrote:
+
+> andromeda ~ # uname -a
+> Linux andromeda 2.6.16-gentoo-r7 #10 PREEMPT Sat Jun
+> 10 18:20:14 BRT 
+> 2006 i686 Intel(R) Pentium(R) M processor 1.70GHz
+> GNU/Linux
+> 
+> with an 32mb MMC (from nokia 6230 mobile)
+> 
+> Jun 12 18:06:54 andromeda tifm_sd [tifm_sd_ios()]:
+> Setting bus width 0
+> Jun 12 18:06:54 andromeda tifm_sd [tifm_sd_ios()]:
+> Setting bus width 0
+> Jun 12 18:06:54 andromeda tifm_sd [tifm_sd_ios()]:
+> Setting bus width 0
+> Jun 12 18:06:54 andromeda tifm_sd [tifm_sd_ios()]:
+> Setting bus width 0
+> Jun 12 18:06:54 andromeda MMC: starting cmd 00 arg
+> 00000000 flags 00000040
+> Jun 12 18:06:54 andromeda MMC: req done (00): 0:
+> 00000000 00000000 
+> 00000000 00000000
+> Jun 12 18:06:54 andromeda tifm_sd [tifm_sd_ios()]:
+> Setting bus width 0
+> Jun 12 18:06:54 andromeda MMC: starting cmd 37 arg
+> 00000000 flags 00000015
+> Jun 12 18:06:54 andromeda tifm_sd
+> [tifm_sd_execute()]: cmd error 1
+> Jun 12 18:06:54 andromeda MMC: req done (37): 1:
+> 00000000 00000000 
+> 00000000 00000000
+> Jun 12 18:06:54 andromeda MMC: starting cmd 37 arg
+> 00000000 flags 00000015
+> Jun 12 18:06:54 andromeda tifm_sd
+> [tifm_sd_execute()]: cmd error 1
+> Jun 12 18:06:54 andromeda MMC: req done (37): 1:
+> 00000000 00000000 
+> 00000000 00000000
+> Jun 12 18:06:54 andromeda MMC: starting cmd 37 arg
+> 00000000 flags 00000015
+> Jun 12 18:06:54 andromeda tifm_sd
+> [tifm_sd_execute()]: cmd error 1
+> Jun 12 18:06:54 andromeda MMC: req done (37): 1:
+> 00000000 00000000 
+> 00000000 00000000
+> Jun 12 18:06:54 andromeda MMC: starting cmd 37 arg
+> 00000000 flags 00000015
+> Jun 12 18:06:54 andromeda tifm_sd
+> [tifm_sd_execute()]: cmd error 1
+> Jun 12 18:06:54 andromeda MMC: req done (37): 1:
+> 00000000 00000000 
+> 00000000 00000000
+> Jun 12 18:06:54 andromeda MMC: starting cmd 01 arg
+> 00000000 flags 00000061
+> Jun 12 18:06:54 andromeda MMC: req done (01): 0:
+> 00ff8000 00000000 
+> 00000000 00000000
+> Jun 12 18:06:54 andromeda tifm_sd [tifm_sd_ios()]:
+> Setting bus width 0
+> Jun 12 18:06:54 andromeda tifm_sd [tifm_sd_ios()]:
+> Setting bus width 0
+> Jun 12 18:06:54 andromeda MMC: starting cmd 00 arg
+> 00000000 flags 00000040
+> Jun 12 18:06:54 andromeda MMC: req done (00): 0:
+> 00ff8000 00000000 
+> 00000000 00000000
+> Jun 12 18:06:54 andromeda tifm_sd [tifm_sd_ios()]:
+> Setting bus width 0
+> Jun 12 18:06:54 andromeda MMC: starting cmd 01 arg
+> 00300000 flags 00000061
+> Jun 12 18:06:54 andromeda MMC: req done (01): 0:
+> 00ff8000 00000000 
+> 00000000 00000000
+> Jun 12 18:06:54 andromeda MMC: starting cmd 01 arg
+> 00300000 flags 00000061
+> Jun 12 18:06:54 andromeda MMC: req done (01): 0:
+> 80ff8000 00000000 
+> 00000000 00000000
+> Jun 12 18:06:54 andromeda MMC: starting cmd 02 arg
+> 00000000 flags 00000067
+> Jun 12 18:06:54 andromeda MMC: req done (02): 0:
+> 15000030 30303030 
+> 3007b202 16fd8701
+> Jun 12 18:06:54 andromeda MMC: starting cmd 03 arg
+> 00010000 flags 00000015
+> Jun 12 18:06:54 andromeda MMC: req done (03): 0:
+> 00000500 00000000 
+> 00000000 00000000
+> Jun 12 18:06:54 andromeda MMC: starting cmd 02 arg
+> 00000000 flags 00000067
+> Jun 12 18:06:55 andromeda tifm_sd
+> [tifm_sd_execute()]: cmd error 1
+> Jun 12 18:06:55 andromeda MMC: req done (02): 1:
+> 00000000 00000000 
+> 00000000 00000000
+> Jun 12 18:06:55 andromeda tifm_sd
+> [tifm_sd_execute()]: cmd error 1
+> Jun 12 18:06:55 andromeda MMC: req done (02): 1:
+> 00000000 00000000 
+> 00000000 00000000
+> Jun 12 18:06:55 andromeda tifm_sd
+> [tifm_sd_execute()]: cmd error 1
+> Jun 12 18:06:55 andromeda MMC: req done (02): 1:
+> 00000000 00000000 
+> 00000000 00000000
+> Jun 12 18:06:55 andromeda tifm_sd
+> [tifm_sd_execute()]: cmd error 1
+> Jun 12 18:06:55 andromeda MMC: req done (02): 1:
+> 00000000 00000000 
+> 00000000 00000000
+> Jun 12 18:06:55 andromeda tifm_sd [tifm_sd_ios()]:
+> Setting bus width 0
+> Jun 12 18:06:55 andromeda MMC: starting cmd 09 arg
+> 00010000 flags 00000007
+> Jun 12 18:06:55 andromeda tifm_sd
+> [tifm_sd_execute()]: cmd error 1
+> Jun 12 18:06:55 andromeda MMC: req done (09): 1:
+> 00000000 00000000 
+> 00000000 00000000
+> Jun 12 18:06:55 andromeda MMC: req done (09): 0:
+> 8c26012a 0f5901e9 
+> f6d983e3 924040d3
+> Jun 12 18:06:55 andromeda MMC: selected 20.000MHz
+> transfer rate
+> Jun 12 18:06:55 andromeda tifm_sd [tifm_sd_ios()]:
+> Setting bus width 0
+> Jun 12 18:06:55 andromeda MMC: starting cmd 07 arg
+> 00010000 flags 00000015
+> Jun 12 18:06:55 andromeda MMC: req done (07): 0:
+> 00000700 00000000 
+> 00000000 00000000
+> Jun 12 18:06:55 andromeda tifm_sd [tifm_sd_ios()]:
+> Setting bus width 0
+> Jun 12 18:06:55 andromeda MMC: starting cmd 10 arg
+> 00000200 flags 00000015
+> Jun 12 18:06:55 andromeda MMC: req done (10): 0:
+> 00000900 00000000 
+> 00000000 00000000
+> Jun 12 18:06:55 andromeda mmcblk0: mmc0:0001 000000
+> 31360KiB
+> Jun 12 18:08:13 andromeda generic_make_request:
+> Trying to access 
+> nonexistent block-device mmcblk0 (62592)
+> Jun 12 18:08:13 andromeda Buffer I/O error on device
+> mmcblk0, logical 
+> block 7824
+> Jun 12 18:08:13 andromeda generic_make_request:
+> Trying to access 
+> nonexistent block-device mmcblk0 (62592)
+> Jun 12 18:08:13 andromeda Buffer I/O error on device
+> mmcblk0, logical 
+> block 7824
+> Jun 12 18:08:13 andromeda generic_make_request:
+> Trying to access 
+> nonexistent block-device mmcblk0 (62712)
+> Jun 12 18:08:13 andromeda Buffer I/O error on device
+> mmcblk0, logical 
+> block 7839
+> Jun 12 18:08:13 andromeda generic_make_request:
+> Trying to access 
+> nonexistent block-device mmcblk0 (62712)
+> Jun 12 18:08:13 andromeda Buffer I/O error on device
+> mmcblk0, logical 
+> block 7839
+> Jun 12 18:08:13 andromeda generic_make_request:
+> Trying to access 
+> nonexistent block-device mmcblk0 (62712)
+> Jun 12 18:08:13 andromeda Buffer I/O error on device
+> mmcblk0, logical 
+> block 7839
+> Jun 12 18:08:13 andromeda generic_make_request:
+> Trying to access 
+> nonexistent block-device mmcblk0 (62712)
+> Jun 12 18:08:13 andromeda Buffer I/O error on device
+> mmcblk0, logical 
+> block 7839
+> Jun 12 18:08:13 andromeda generic_make_request:
+> Trying to access 
+> nonexistent block-device mmcblk0 (62712)
+> Jun 12 18:08:13 andromeda Buffer I/O error on device
+> mmcblk0, logical 
+> block 7839
+> Jun 12 18:08:13 andromeda generic_make_request:
+> Trying to access 
+> nonexistent block-device mmcblk0 (62712)
+> Jun 12 18:08:13 andromeda Buffer I/O error on device
+> mmcblk0, logical 
+> block 7839
+> Jun 12 18:08:13 andromeda generic_make_request:
+> Trying to access 
+> nonexistent block-device mmcblk0 (62656)
+> Jun 12 18:08:13 andromeda Buffer I/O error on device
+> mmcblk0, logical 
+> block 7832
+> Jun 12 18:08:13 andromeda generic_make_request:
+> Trying to access 
+> nonexistent block-device mmcblk0 (62656)
+> Jun 12 18:08:13 andromeda Buffer I/O error on device
+> mmcblk0, logical 
+> block 7832
+> Jun 12 18:08:13 andromeda generic_make_request:
+> Trying to access 
+> 
+=== message truncated ===
+
+
+__________________________________________________
+Do You Yahoo!?
+Tired of spam?  Yahoo! Mail has the best spam protection around 
+http://mail.yahoo.com 
+
+
+From gustavo-listas at overstep.com.br  Tue Jun 13 06:03:42 2006
+From: gustavo-listas at overstep.com.br (Gustavo Henrique Cervi)
+Date: Tue, 13 Jun 2006 01:03:42 -0300
+Subject: [Tifm21-devel] error feedback
+In-Reply-To: <20060613015109.794.qmail@web36703.mail.mud.yahoo.com>
+References: <20060613015109.794.qmail@web36703.mail.mud.yahoo.com>
+Message-ID: <448E391E.6070307@overstep.com.br>
+
+yes, I also tried with an 512mb SD card.
+
+
+Alex Dubov wrote:
+> I'll have to fix debugging, that for sure.
+> Unfortunately, your trace doesn't show the interesting
+> things (but you'd better wait for next svn rev). What
+> it does shows is that everything works ok and then
+> reports error on some block, which may simply be a bad
+> one (this should not prevent card from working). In
+> general, it may be related to mmc_block - are you
+> loading it in advance?
+>
+> --- Gustavo Henrique Cervi
+> <gustavo-listas at overstep.com.br> wrote:
+>
+>   
+>> andromeda ~ # uname -a
+>> Linux andromeda 2.6.16-gentoo-r7 #10 PREEMPT Sat Jun
+>> 10 18:20:14 BRT 
+>> 2006 i686 Intel(R) Pentium(R) M processor 1.70GHz
+>> GNU/Linux
+>>
+>> with an 32mb MMC (from nokia 6230 mobile)
+>>
+>> Jun 12 18:06:54 andromeda tifm_sd [tifm_sd_ios()]:
+>> Setting bus width 0
+>> Jun 12 18:06:54 andromeda tifm_sd [tifm_sd_ios()]:
+>> Setting bus width 0
+>> Jun 12 18:06:54 andromeda tifm_sd [tifm_sd_ios()]:
+>> Setting bus width 0
+>> Jun 12 18:06:54 andromeda tifm_sd [tifm_sd_ios()]:
+>> Setting bus width 0
+>> Jun 12 18:06:54 andromeda MMC: starting cmd 00 arg
+>> 00000000 flags 00000040
+>> Jun 12 18:06:54 andromeda MMC: req done (00): 0:
+>> 00000000 00000000 
+>> 00000000 00000000
+>> Jun 12 18:06:54 andromeda tifm_sd [tifm_sd_ios()]:
+>> Setting bus width 0
+>> Jun 12 18:06:54 andromeda MMC: starting cmd 37 arg
+>> 00000000 flags 00000015
+>> Jun 12 18:06:54 andromeda tifm_sd
+>> [tifm_sd_execute()]: cmd error 1
+>> Jun 12 18:06:54 andromeda MMC: req done (37): 1:
+>> 00000000 00000000 
+>> 00000000 00000000
+>> Jun 12 18:06:54 andromeda MMC: starting cmd 37 arg
+>> 00000000 flags 00000015
+>> Jun 12 18:06:54 andromeda tifm_sd
+>> [tifm_sd_execute()]: cmd error 1
+>> Jun 12 18:06:54 andromeda MMC: req done (37): 1:
+>> 00000000 00000000 
+>> 00000000 00000000
+>> Jun 12 18:06:54 andromeda MMC: starting cmd 37 arg
+>> 00000000 flags 00000015
+>> Jun 12 18:06:54 andromeda tifm_sd
+>> [tifm_sd_execute()]: cmd error 1
+>> Jun 12 18:06:54 andromeda MMC: req done (37): 1:
+>> 00000000 00000000 
+>> 00000000 00000000
+>> Jun 12 18:06:54 andromeda MMC: starting cmd 37 arg
+>> 00000000 flags 00000015
+>> Jun 12 18:06:54 andromeda tifm_sd
+>> [tifm_sd_execute()]: cmd error 1
+>> Jun 12 18:06:54 andromeda MMC: req done (37): 1:
+>> 00000000 00000000 
+>> 00000000 00000000
+>> Jun 12 18:06:54 andromeda MMC: starting cmd 01 arg
+>> 00000000 flags 00000061
+>> Jun 12 18:06:54 andromeda MMC: req done (01): 0:
+>> 00ff8000 00000000 
+>> 00000000 00000000
+>> Jun 12 18:06:54 andromeda tifm_sd [tifm_sd_ios()]:
+>> Setting bus width 0
+>> Jun 12 18:06:54 andromeda tifm_sd [tifm_sd_ios()]:
+>> Setting bus width 0
+>> Jun 12 18:06:54 andromeda MMC: starting cmd 00 arg
+>> 00000000 flags 00000040
+>> Jun 12 18:06:54 andromeda MMC: req done (00): 0:
+>> 00ff8000 00000000 
+>> 00000000 00000000
+>> Jun 12 18:06:54 andromeda tifm_sd [tifm_sd_ios()]:
+>> Setting bus width 0
+>> Jun 12 18:06:54 andromeda MMC: starting cmd 01 arg
+>> 00300000 flags 00000061
+>> Jun 12 18:06:54 andromeda MMC: req done (01): 0:
+>> 00ff8000 00000000 
+>> 00000000 00000000
+>> Jun 12 18:06:54 andromeda MMC: starting cmd 01 arg
+>> 00300000 flags 00000061
+>> Jun 12 18:06:54 andromeda MMC: req done (01): 0:
+>> 80ff8000 00000000 
+>> 00000000 00000000
+>> Jun 12 18:06:54 andromeda MMC: starting cmd 02 arg
+>> 00000000 flags 00000067
+>> Jun 12 18:06:54 andromeda MMC: req done (02): 0:
+>> 15000030 30303030 
+>> 3007b202 16fd8701
+>> Jun 12 18:06:54 andromeda MMC: starting cmd 03 arg
+>> 00010000 flags 00000015
+>> Jun 12 18:06:54 andromeda MMC: req done (03): 0:
+>> 00000500 00000000 
+>> 00000000 00000000
+>> Jun 12 18:06:54 andromeda MMC: starting cmd 02 arg
+>> 00000000 flags 00000067
+>> Jun 12 18:06:55 andromeda tifm_sd
+>> [tifm_sd_execute()]: cmd error 1
+>> Jun 12 18:06:55 andromeda MMC: req done (02): 1:
+>> 00000000 00000000 
+>> 00000000 00000000
+>> Jun 12 18:06:55 andromeda tifm_sd
+>> [tifm_sd_execute()]: cmd error 1
+>> Jun 12 18:06:55 andromeda MMC: req done (02): 1:
+>> 00000000 00000000 
+>> 00000000 00000000
+>> Jun 12 18:06:55 andromeda tifm_sd
+>> [tifm_sd_execute()]: cmd error 1
+>> Jun 12 18:06:55 andromeda MMC: req done (02): 1:
+>> 00000000 00000000 
+>> 00000000 00000000
+>> Jun 12 18:06:55 andromeda tifm_sd
+>> [tifm_sd_execute()]: cmd error 1
+>> Jun 12 18:06:55 andromeda MMC: req done (02): 1:
+>> 00000000 00000000 
+>> 00000000 00000000
+>> Jun 12 18:06:55 andromeda tifm_sd [tifm_sd_ios()]:
+>> Setting bus width 0
+>> Jun 12 18:06:55 andromeda MMC: starting cmd 09 arg
+>> 00010000 flags 00000007
+>> Jun 12 18:06:55 andromeda tifm_sd
+>> [tifm_sd_execute()]: cmd error 1
+>> Jun 12 18:06:55 andromeda MMC: req done (09): 1:
+>> 00000000 00000000 
+>> 00000000 00000000
+>> Jun 12 18:06:55 andromeda MMC: req done (09): 0:
+>> 8c26012a 0f5901e9 
+>> f6d983e3 924040d3
+>> Jun 12 18:06:55 andromeda MMC: selected 20.000MHz
+>> transfer rate
+>> Jun 12 18:06:55 andromeda tifm_sd [tifm_sd_ios()]:
+>> Setting bus width 0
+>> Jun 12 18:06:55 andromeda MMC: starting cmd 07 arg
+>> 00010000 flags 00000015
+>> Jun 12 18:06:55 andromeda MMC: req done (07): 0:
+>> 00000700 00000000 
+>> 00000000 00000000
+>> Jun 12 18:06:55 andromeda tifm_sd [tifm_sd_ios()]:
+>> Setting bus width 0
+>> Jun 12 18:06:55 andromeda MMC: starting cmd 10 arg
+>> 00000200 flags 00000015
+>> Jun 12 18:06:55 andromeda MMC: req done (10): 0:
+>> 00000900 00000000 
+>> 00000000 00000000
+>> Jun 12 18:06:55 andromeda mmcblk0: mmc0:0001 000000
+>> 31360KiB
+>> Jun 12 18:08:13 andromeda generic_make_request:
+>> Trying to access 
+>> nonexistent block-device mmcblk0 (62592)
+>> Jun 12 18:08:13 andromeda Buffer I/O error on device
+>> mmcblk0, logical 
+>> block 7824
+>> Jun 12 18:08:13 andromeda generic_make_request:
+>> Trying to access 
+>> nonexistent block-device mmcblk0 (62592)
+>> Jun 12 18:08:13 andromeda Buffer I/O error on device
+>> mmcblk0, logical 
+>> block 7824
+>> Jun 12 18:08:13 andromeda generic_make_request:
+>> Trying to access 
+>> nonexistent block-device mmcblk0 (62712)
+>> Jun 12 18:08:13 andromeda Buffer I/O error on device
+>> mmcblk0, logical 
+>> block 7839
+>> Jun 12 18:08:13 andromeda generic_make_request:
+>> Trying to access 
+>> nonexistent block-device mmcblk0 (62712)
+>> Jun 12 18:08:13 andromeda Buffer I/O error on device
+>> mmcblk0, logical 
+>> block 7839
+>> Jun 12 18:08:13 andromeda generic_make_request:
+>> Trying to access 
+>> nonexistent block-device mmcblk0 (62712)
+>> Jun 12 18:08:13 andromeda Buffer I/O error on device
+>> mmcblk0, logical 
+>> block 7839
+>> Jun 12 18:08:13 andromeda generic_make_request:
+>> Trying to access 
+>> nonexistent block-device mmcblk0 (62712)
+>> Jun 12 18:08:13 andromeda Buffer I/O error on device
+>> mmcblk0, logical 
+>> block 7839
+>> Jun 12 18:08:13 andromeda generic_make_request:
+>> Trying to access 
+>> nonexistent block-device mmcblk0 (62712)
+>> Jun 12 18:08:13 andromeda Buffer I/O error on device
+>> mmcblk0, logical 
+>> block 7839
+>> Jun 12 18:08:13 andromeda generic_make_request:
+>> Trying to access 
+>> nonexistent block-device mmcblk0 (62712)
+>> Jun 12 18:08:13 andromeda Buffer I/O error on device
+>> mmcblk0, logical 
+>> block 7839
+>> Jun 12 18:08:13 andromeda generic_make_request:
+>> Trying to access 
+>> nonexistent block-device mmcblk0 (62656)
+>> Jun 12 18:08:13 andromeda Buffer I/O error on device
+>> mmcblk0, logical 
+>> block 7832
+>> Jun 12 18:08:13 andromeda generic_make_request:
+>> Trying to access 
+>> nonexistent block-device mmcblk0 (62656)
+>> Jun 12 18:08:13 andromeda Buffer I/O error on device
+>> mmcblk0, logical 
+>> block 7832
+>> Jun 12 18:08:13 andromeda generic_make_request:
+>> Trying to access 
+>>
+>>     
+> === message truncated ===
+>
+>
+> __________________________________________________
+> Do You Yahoo!?
+> Tired of spam?  Yahoo! Mail has the best spam protection around 
+> http://mail.yahoo.com 
+> _______________________________________________
+> Tifm21-devel mailing list
+> Tifm21-devel at lists.berlios.de
+> http://lists.berlios.de/mailman/listinfo/tifm21-devel
+>
+>   
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20060613/20786af2/attachment.html>
+
+From jamesrw at eml.cc  Tue Jun 13 19:17:11 2006
+From: jamesrw at eml.cc (James RW)
+Date: Tue, 13 Jun 2006 13:17:11 -0400
+Subject: [Tifm21-devel] First release
+In-Reply-To: <448DD55D.8020206@siemens-mobiles.org>
+References: <20060610150323.24294.qmail@web36708.mail.mud.yahoo.com>
+   <1149957313.9310.263517830@webmail.messagingengine.com>
+   <448AFC25.8060507@siemens-mobiles.org>
+   <1150145604.9187.263646846@webmail.messagingengine.com>
+   <448DD55D.8020206@siemens-mobiles.org>
+Message-ID: <1150219031.20836.263725472@webmail.messagingengine.com>
+
+On Mon, 12 Jun 2006 22:58:05 +0200, "Wael Nasreddine"
+<wael at siemens-mobiles.org> said:
+> 
+> -----BEGIN PGP SIGNED MESSAGE-----
+> Hash: SHA1
+> James RW wrote:
+> > not getting very far at all... error when i exectue "make":
+> >
+> > make: *** /lib/modules/2.6.15-23-amd64-generic/build: No such file
+> > or directory.  Stop. make: *** [all] Error 2
+> >
+> > not kernel related is it?
+> Hi,
+> You don't have the kernel source tree, which distribution do you have ??
+> P.S: please always reply below the quotes not above them, thx
+> - --
+
+
+Ubuntu 6.06 Dapper Drakemy distribution is..
+
+James RW
+-- 
+  James RW
+  jamesrw at eml.cc
+
+-- 
+http://www.fastmail.fm - One of many happy users:
+  http://www.fastmail.fm/docs/quotes.html
+
+
+
+From masc at operamail.com  Wed Jun 14 22:54:19 2006
+From: masc at operamail.com (martin schneebacher)
+Date: Wed, 14 Jun 2006 21:54:19 +0100
+Subject: [Tifm21-devel] ti binary driver
+Message-ID: <20060614205420.2EC4DCA0A4@ws5-11.us4.outblaze.com>
+
+hi.
+
+after nearly half a year of discussing with texas instruments about their binary driver i had this night a phone conversation with guy from the software department of texas instruments. 
+they are working on a version to release a driver, which is seperated in open and closed source code with a independend HAL (not the best solution), should be in the next weeks. the version which was published unofficially, mixed these parts together so they can't release it, he told me. they are working with everest inc. to seperate it.  
+
+bye...masc.
+
+
+
+-- 
+_______________________________________________
+Surf the Web in a faster, safer and easier way:
+Download Opera 8 at http://www.opera.com
+
+Powered by Outblaze
+
+
+From oakad at yahoo.com  Thu Jun 15 18:08:46 2006
+From: oakad at yahoo.com (Alex Dubov)
+Date: Thu, 15 Jun 2006 09:08:46 -0700 (PDT)
+Subject: [Tifm21-devel] tifm_sd reworked
+In-Reply-To: <20060614205420.2EC4DCA0A4@ws5-11.us4.outblaze.com>
+Message-ID: <20060615160846.49491.qmail@web36714.mail.mud.yahoo.com>
+
+I reworked the tifm_sd driver and bumped version to
+0.5. Hopefully, the new code is better than old one
+(old code's structure was copied from TI, while new
+one uses compact state-machine implementation).
+
+> after nearly half a year of discussing with texas
+> instruments about their binary driver i had this
+> night a phone conversation with guy from the
+> software department of texas instruments. 
+> they are working on a version to release a driver,
+> which is seperated in open and closed source code
+> with a independend HAL (not the best solution),
+> should be in the next weeks. 
+
+The funny thing is that it's already clear (at least
+to me) what their code does. What could be really
+helpful is to get a datasheet for the damn device
+(there are quite a few registers that are touched once
+in the initialization, and the meaning of their values
+is not clear). There's a chance that TI will release a
+heavily documented driver, which will explain all
+those values - unfotunately, the odds of this are
+rather low.
+
+
+__________________________________________________
+Do You Yahoo!?
+Tired of spam?  Yahoo! Mail has the best spam protection around 
+http://mail.yahoo.com 
+
+
+From wael at siemens-mobiles.org  Sat Jun 17 22:07:59 2006
+From: wael at siemens-mobiles.org (Wael Nasreddine)
+Date: Sat, 17 Jun 2006 22:07:59 +0200
+Subject: [Tifm21-devel] led
+Message-ID: <4494611F.6000302@siemens-mobiles.org>
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Hi,
+
+The driver works great here ATM (Rev 55) regarding speed,
+mounting/unmounting except for the LED, I understand that you don't have
+a LED on your PC which makes it a bit hard.
+
+The led now lights on when a CARD is present, lights off when card is
+removed, while the led is actually used upon read/write activity, is it
+possible to make it work this way?
+
+If you need any help, dumps, tests or even ssh root access, please
+contact me..
+
+- --
+Wael Nasreddine
+http://wael.nasreddine.com
+PGP: 1024D/C8DD18A2 06F6 1622 4BC8 4CEB D724  DE12 5565 3945 C8DD 18A2
+
+.: An infinite number of monkeys typing into GNU emacs,
+   would never make a good program. (L. Torvalds 1995) :.
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.2.2 (GNU/Linux)
+
+iD8DBQFElGEfVWU5RcjdGKIRAvvKAJ947m8MWNdlK+hSHIpI2A9ldTJIzACfQh+y
+VtjXyrCj2C1YhR7X6TvcJOE=
+=Qdkm
+-----END PGP SIGNATURE-----
+
+
+From oakad at yahoo.com  Sun Jun 18 09:33:34 2006
+From: oakad at yahoo.com (Alex Dubov)
+Date: Sun, 18 Jun 2006 00:33:34 -0700 (PDT)
+Subject: [Tifm21-devel] led
+In-Reply-To: <4494611F.6000302@siemens-mobiles.org>
+Message-ID: <20060618073334.34075.qmail@web36710.mail.mud.yahoo.com>
+
+I changed a lot of things between rev 53 and rev 55.
+Then I tried to change some more things and got
+totally unstable version that would run amok and do
+all kinds of crazy stuff. And the worst part, I
+couldn't even place my finger on why it's doing it (my
+objective was to use dma with single block r/w).
+Because of this, I'm very reluctant to play with any
+device registers before some kind of additional info
+will be available - that TI release we heard about,
+for example.
+
+By the way, I don't have a clue on why is led behavior
+different between rev 53 and rev 55. It's some sort of
+accident.
+
+--- Wael Nasreddine <wael at siemens-mobiles.org> wrote:
+
+> -----BEGIN PGP SIGNED MESSAGE-----
+> Hash: SHA1
+> 
+> Hi,
+> 
+> The driver works great here ATM (Rev 55) regarding
+> speed,
+> mounting/unmounting except for the LED, I understand
+> that you don't have
+> a LED on your PC which makes it a bit hard.
+> 
+> The led now lights on when a CARD is present, lights
+> off when card is
+> removed, while the led is actually used upon
+> read/write activity, is it
+> possible to make it work this way?
+> 
+> If you need any help, dumps, tests or even ssh root
+> access, please
+> contact me..
+> 
+> - --
+> Wael Nasreddine
+> http://wael.nasreddine.com
+> PGP: 1024D/C8DD18A2 06F6 1622 4BC8 4CEB D724  DE12
+> 5565 3945 C8DD 18A2
+> 
+> .: An infinite number of monkeys typing into GNU
+> emacs,
+>    would never make a good program. (L. Torvalds
+> 1995) :.
+> 
+> -----BEGIN PGP SIGNATURE-----
+> Version: GnuPG v1.4.2.2 (GNU/Linux)
+> 
+>
+iD8DBQFElGEfVWU5RcjdGKIRAvvKAJ947m8MWNdlK+hSHIpI2A9ldTJIzACfQh+y
+> VtjXyrCj2C1YhR7X6TvcJOE=
+> =Qdkm
+> -----END PGP SIGNATURE-----
+> _______________________________________________
+> Tifm21-devel mailing list
+> Tifm21-devel at lists.berlios.de
+>
+http://lists.berlios.de/mailman/listinfo/tifm21-devel
+> 
+
+
+__________________________________________________
+Do You Yahoo!?
+Tired of spam?  Yahoo! Mail has the best spam protection around 
+http://mail.yahoo.com 
+
+
+From syatmaz at gmail.com  Sun Jun 18 10:12:49 2006
+From: syatmaz at gmail.com (=?iso-8859-9?q?Sava=FE_Yatmaz?=)
+Date: Sun, 18 Jun 2006 11:12:49 +0300
+Subject: [Tifm21-devel] Compile error
+Message-ID: <200606181112.49605.syatmaz@gmail.com>
+
+savas at yatmaz:/mnt/depo/users_depo/indirilen/tifm-0.5a$ make
+make -C /lib/modules/2.6.15-23-386/build 
+M=/mnt/depo/users_depo/indirilen/tifm-0.5a
+make[1]: Entering directory `/usr/src/linux-headers-2.6.15-23-386'
+  CC [M]  /mnt/depo/users_depo/indirilen/tifm-0.5a/tifm_core.o
+/mnt/depo/users_depo/indirilen/tifm-0.5a/tifm_core.c: In 
+function 'tifm_uevent':
+/mnt/depo/users_depo/indirilen/tifm-0.5a/tifm_core.c:58: warning: implicit 
+declaration of function 'add_uevent_var'
+/mnt/depo/users_depo/indirilen/tifm-0.5a/tifm_core.c: At top level:
+/mnt/depo/users_depo/indirilen/tifm-0.5a/tifm_core.c:78: error: unknown 
+field 'uevent' specified in initializer
+make[2]: *** [/mnt/depo/users_depo/indirilen/tifm-0.5a/tifm_core.o] Error 1
+make[1]: *** [_module_/mnt/depo/users_depo/indirilen/tifm-0.5a] Error 2
+make[1]: Leaving directory `/usr/src/linux-headers-2.6.15-23-386'
+make: *** [all] Error 2
+
+Kubuntu Dapper Drake,with 2.6.15-23-i386
+
+
+From wael at siemens-mobiles.org  Sun Jun 18 12:43:59 2006
+From: wael at siemens-mobiles.org (Wael Nasreddine)
+Date: Sun, 18 Jun 2006 12:43:59 +0200
+Subject: [Tifm21-devel] led
+In-Reply-To: <20060618073334.34075.qmail@web36710.mail.mud.yahoo.com>
+References: <20060618073334.34075.qmail@web36710.mail.mud.yahoo.com>
+Message-ID: <44952E6F.809@siemens-mobiles.org>
+
+Alex Dubov wrote:
+> I changed a lot of things between rev 53 and rev 55.
+> Then I tried to change some more things and got
+> totally unstable version that would run amok and do
+> all kinds of crazy stuff. And the worst part, I
+> couldn't even place my finger on why it's doing it (my
+> objective was to use dma with single block r/w).
+> Because of this, I'm very reluctant to play with any
+> device registers before some kind of additional info
+> will be available - that TI release we heard about,
+> for example.
+> 
+> By the way, I don't have a clue on why is led behavior
+> different between rev 53 and rev 55. It's some sort of
+> accident.
+> 
+> --- Wael Nasreddine <wael at siemens-mobiles.org> wrote:
+> 
+> Hi,
+> 
+> The driver works great here ATM (Rev 55) regarding
+> speed,
+> mounting/unmounting except for the LED, I understand
+> that you don't have
+> a LED on your PC which makes it a bit hard.
+> 
+> The led now lights on when a CARD is present, lights
+> off when card is
+> removed, while the led is actually used upon
+> read/write activity, is it
+> possible to make it work this way?
+> 
+> If you need any help, dumps, tests or even ssh root
+> access, please
+> contact me..
+> 
+> --
+> Wael Nasreddine
+> http://wael.nasreddine.com
+> PGP: 1024D/C8DD18A2 06F6 1622 4BC8 4CEB D724  DE12
+> 5565 3945 C8DD 18A2
+> 
+> .: An infinite number of monkeys typing into GNU
+> emacs,
+>    would never make a good program. (L. Torvalds
+> 1995) :.
+
+Hi,
+
+No actually it didn't change the behaviour, it was like this since the
+first partial working revision (Rev 12 if i remember well), anyway i
+agree about not playing with it now it's quite stable and at least we
+have a working SD-CARD ATM the LED is not a big issue but it could be
+cool if it's working properly, anyway Send me your PGP ID i send you my
+ip and root pass in an encrypted mail so you can play around with my
+laptop, test and/or get dumps...
+
+-- 
+Wael Nasreddine
+http://wael.nasreddine.com
+PGP: 1024D/C8DD18A2 06F6 1622 4BC8 4CEB D724  DE12 5565 3945 C8DD 18A2
+
+.: An infinite number of monkeys typing into GNU emacs,
+   would never make a good program. (L. Torvalds 1995) :.
+
+
+
+From oakad at yahoo.com  Sun Jun 18 15:13:52 2006
+From: oakad at yahoo.com (Alex Dubov)
+Date: Sun, 18 Jun 2006 06:13:52 -0700 (PDT)
+Subject: [Tifm21-devel] Compile error
+In-Reply-To: <200606181112.49605.syatmaz@gmail.com>
+Message-ID: <20060618131352.32075.qmail@web36714.mail.mud.yahoo.com>
+
+You need a newer kernel. "uevent" is a 2.6.16 feature
+(it is different in 2.6.15 and earlier, and I can't
+support both).
+
+--- Sava??? Yatmaz <syatmaz at gmail.com> wrote:
+
+>
+savas at yatmaz:/mnt/depo/users_depo/indirilen/tifm-0.5a$
+> make
+> make -C /lib/modules/2.6.15-23-386/build 
+> M=/mnt/depo/users_depo/indirilen/tifm-0.5a
+> make[1]: Entering directory
+> `/usr/src/linux-headers-2.6.15-23-386'
+>   CC [M] 
+> /mnt/depo/users_depo/indirilen/tifm-0.5a/tifm_core.o
+>
+/mnt/depo/users_depo/indirilen/tifm-0.5a/tifm_core.c:
+> In 
+> function 'tifm_uevent':
+>
+/mnt/depo/users_depo/indirilen/tifm-0.5a/tifm_core.c:58:
+> warning: implicit 
+> declaration of function 'add_uevent_var'
+>
+/mnt/depo/users_depo/indirilen/tifm-0.5a/tifm_core.c:
+> At top level:
+>
+/mnt/depo/users_depo/indirilen/tifm-0.5a/tifm_core.c:78:
+> error: unknown 
+> field 'uevent' specified in initializer
+> make[2]: ***
+>
+[/mnt/depo/users_depo/indirilen/tifm-0.5a/tifm_core.o]
+> Error 1
+> make[1]: ***
+> [_module_/mnt/depo/users_depo/indirilen/tifm-0.5a]
+> Error 2
+> make[1]: Leaving directory
+> `/usr/src/linux-headers-2.6.15-23-386'
+> make: *** [all] Error 2
+> 
+> Kubuntu Dapper Drake,with 2.6.15-23-i386
+> _______________________________________________
+> Tifm21-devel mailing list
+> Tifm21-devel at lists.berlios.de
+>
+http://lists.berlios.de/mailman/listinfo/tifm21-devel
+> 
+
+
+__________________________________________________
+Do You Yahoo!?
+Tired of spam?  Yahoo! Mail has the best spam protection around 
+http://mail.yahoo.com 
+
+
+From oakad at yahoo.com  Sun Jun 18 15:16:36 2006
+From: oakad at yahoo.com (Alex Dubov)
+Date: Sun, 18 Jun 2006 06:16:36 -0700 (PDT)
+Subject: [Tifm21-devel] led
+In-Reply-To: <44952E6F.809@siemens-mobiles.org>
+Message-ID: <20060618131636.10995.qmail@web36704.mail.mud.yahoo.com>
+
+I don't need access to your machine (I can't see the
+led from here and I bet, my dumps are exacly like
+yours).
+I have one idea about LED - try rev56 when available
+(today or tomorrow).
+
+--- Wael Nasreddine <wael at siemens-mobiles.org> wrote:
+
+> Alex Dubov wrote:
+> > I changed a lot of things between rev 53 and rev
+> 55.
+> > Then I tried to change some more things and got
+> > totally unstable version that would run amok and
+> do
+> > all kinds of crazy stuff. And the worst part, I
+> > couldn't even place my finger on why it's doing it
+> (my
+> > objective was to use dma with single block r/w).
+> > Because of this, I'm very reluctant to play with
+> any
+> > device registers before some kind of additional
+> info
+> > will be available - that TI release we heard
+> about,
+> > for example.
+> > 
+> > By the way, I don't have a clue on why is led
+> behavior
+> > different between rev 53 and rev 55. It's some
+> sort of
+> > accident.
+> > 
+> > --- Wael Nasreddine <wael at siemens-mobiles.org>
+> wrote:
+> > 
+> > Hi,
+> > 
+> > The driver works great here ATM (Rev 55) regarding
+> > speed,
+> > mounting/unmounting except for the LED, I
+> understand
+> > that you don't have
+> > a LED on your PC which makes it a bit hard.
+> > 
+> > The led now lights on when a CARD is present,
+> lights
+> > off when card is
+> > removed, while the led is actually used upon
+> > read/write activity, is it
+> > possible to make it work this way?
+> > 
+> > If you need any help, dumps, tests or even ssh
+> root
+> > access, please
+> > contact me..
+> > 
+> > --
+> > Wael Nasreddine
+> > http://wael.nasreddine.com
+> > PGP: 1024D/C8DD18A2 06F6 1622 4BC8 4CEB D724  DE12
+> > 5565 3945 C8DD 18A2
+> > 
+> > .: An infinite number of monkeys typing into GNU
+> > emacs,
+> >    would never make a good program. (L. Torvalds
+> > 1995) :.
+> 
+> Hi,
+> 
+> No actually it didn't change the behaviour, it was
+> like this since the
+> first partial working revision (Rev 12 if i remember
+> well), anyway i
+> agree about not playing with it now it's quite
+> stable and at least we
+> have a working SD-CARD ATM the LED is not a big
+> issue but it could be
+> cool if it's working properly, anyway Send me your
+> PGP ID i send you my
+> ip and root pass in an encrypted mail so you can
+> play around with my
+> laptop, test and/or get dumps...
+> 
+> -- 
+> Wael Nasreddine
+> http://wael.nasreddine.com
+> PGP: 1024D/C8DD18A2 06F6 1622 4BC8 4CEB D724  DE12
+> 5565 3945 C8DD 18A2
+> 
+> .: An infinite number of monkeys typing into GNU
+> emacs,
+>    would never make a good program. (L. Torvalds
+> 1995) :.
+> 
+> _______________________________________________
+> Tifm21-devel mailing list
+> Tifm21-devel at lists.berlios.de
+>
+http://lists.berlios.de/mailman/listinfo/tifm21-devel
+> 
+
+
+__________________________________________________
+Do You Yahoo!?
+Tired of spam?  Yahoo! Mail has the best spam protection around 
+http://mail.yahoo.com 
+
+
+From wael at siemens-mobiles.org  Sun Jun 18 21:24:30 2006
+From: wael at siemens-mobiles.org (Wael Nasreddine)
+Date: Sun, 18 Jun 2006 21:24:30 +0200
+Subject: [Tifm21-devel] Compile error
+In-Reply-To: <20060618131352.32075.qmail@web36714.mail.mud.yahoo.com>
+References: <20060618131352.32075.qmail@web36714.mail.mud.yahoo.com>
+Message-ID: <4495A86E.7020502@siemens-mobiles.org>
+
+An HTML attachment was scrubbed...
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20060618/d6023bb2/attachment.html>
+
+From wael at siemens-mobiles.org  Sun Jun 18 22:10:15 2006
+From: wael at siemens-mobiles.org (Wael Nasreddine)
+Date: Sun, 18 Jun 2006 22:10:15 +0200
+Subject: [Tifm21-devel] led
+In-Reply-To: <20060618131636.10995.qmail@web36704.mail.mud.yahoo.com>
+References: <20060618131636.10995.qmail@web36704.mail.mud.yahoo.com>
+Message-ID: <4495B327.3050003@siemens-mobiles.org>
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Alex Dubov wrote:
+> I don't need access to your machine (I can't see the
+> led from here and I bet, my dumps are exacly like
+> yours).
+> I have one idea about LED - try rev56 when available
+> (today or tomorrow).
+> 
+Hi,
+
+Okay it works very good now, led only lights on whenever there's read or
+write activity otherwize it stays off, however I'm not sure if it's
+related to anything but i'll mention it, My PC completely hanged 2 times
+when trying to umount the MMC using drivemount_applet2 (gnome-vfs) it
+did not hang on console, and the third time i tried debugging it
+(drivemount_applet2 --sm-disable) It didn't hang, I'll try more often
+today if i get something i'll notify you..
+
+Otherwize Thank you very much for making the LED works, now i can
+finally take back the 4GB of waste for a windows partition just to get
+pics from the MMC :)
+
+- --
+Wael Nasreddine
+http://wael.nasreddine.com
+PGP: 1024D/C8DD18A2 06F6 1622 4BC8 4CEB D724  DE12 5565 3945 C8DD 18A2
+
+.: An infinite number of monkeys typing into GNU emacs,
+   would never make a good program. (L. Torvalds 1995) :.
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.2.2 (GNU/Linux)
+
+iD8DBQFElbMnVWU5RcjdGKIRAmYTAJ9JQqhdJ/5Ln8D9QFWHwRMPv4RtvACgtzwy
+lIJ61pI+Mi7abX758RqcmvM=
+=KtBX
+-----END PGP SIGNATURE-----
+
+
+From oakad at yahoo.com  Mon Jun 19 03:42:17 2006
+From: oakad at yahoo.com (Alex Dubov)
+Date: Sun, 18 Jun 2006 18:42:17 -0700 (PDT)
+Subject: [Tifm21-devel] Compile error
+In-Reply-To: <4495A86E.7020502@siemens-mobiles.org>
+Message-ID: <20060619014217.41153.qmail@web36707.mail.mud.yahoo.com>
+
+> You don't need tifm for TI cards on ubuntu dapper,
+it's > already
+> supported via sdhci (modprobe sdhci)
+
+Unless he has one of those Acer's with sdhci disabled
+- are they take care of this too in Ubuntu (not that
+hard, but takes all the fun from hotplug)?
+
+
+__________________________________________________
+Do You Yahoo!?
+Tired of spam?  Yahoo! Mail has the best spam protection around 
+http://mail.yahoo.com 
+
+
+From oakad at yahoo.com  Mon Jun 19 03:48:57 2006
+From: oakad at yahoo.com (Alex Dubov)
+Date: Sun, 18 Jun 2006 18:48:57 -0700 (PDT)
+Subject: [Tifm21-devel] led
+In-Reply-To: <4495B327.3050003@siemens-mobiles.org>
+Message-ID: <20060619014857.58577.qmail@web36701.mail.mud.yahoo.com>
+
+I have some reports from other users that writes to
+card are not stable (especially when doing sync, for
+obvious reason). May be you are hitting this problem
+(it's some sort of run-away condition that keeps
+machine 100% busy in a tight loop; I don't know yet
+why it happens).
+
+--- Wael Nasreddine <wael at siemens-mobiles.org> wrote:
+
+> -----BEGIN PGP SIGNED MESSAGE-----
+> Hash: SHA1
+> 
+> Alex Dubov wrote:
+> > I don't need access to your machine (I can't see
+> the
+> > led from here and I bet, my dumps are exacly like
+> > yours).
+> > I have one idea about LED - try rev56 when
+> available
+> > (today or tomorrow).
+> > 
+> Hi,
+> 
+> Okay it works very good now, led only lights on
+> whenever there's read or
+> write activity otherwize it stays off, however I'm
+> not sure if it's
+> related to anything but i'll mention it, My PC
+> completely hanged 2 times
+> when trying to umount the MMC using
+> drivemount_applet2 (gnome-vfs) it
+> did not hang on console, and the third time i tried
+> debugging it
+> (drivemount_applet2 --sm-disable) It didn't hang,
+> I'll try more often
+> today if i get something i'll notify you..
+> 
+> Otherwize Thank you very much for making the LED
+> works, now i can
+> finally take back the 4GB of waste for a windows
+> partition just to get
+> pics from the MMC :)
+> 
+> - --
+> Wael Nasreddine
+> http://wael.nasreddine.com
+> PGP: 1024D/C8DD18A2 06F6 1622 4BC8 4CEB D724  DE12
+> 5565 3945 C8DD 18A2
+> 
+> .: An infinite number of monkeys typing into GNU
+> emacs,
+>    would never make a good program. (L. Torvalds
+> 1995) :.
+> 
+> -----BEGIN PGP SIGNATURE-----
+> Version: GnuPG v1.4.2.2 (GNU/Linux)
+> 
+>
+iD8DBQFElbMnVWU5RcjdGKIRAmYTAJ9JQqhdJ/5Ln8D9QFWHwRMPv4RtvACgtzwy
+> lIJ61pI+Mi7abX758RqcmvM=
+> =KtBX
+> -----END PGP SIGNATURE-----
+> _______________________________________________
+> Tifm21-devel mailing list
+> Tifm21-devel at lists.berlios.de
+>
+http://lists.berlios.de/mailman/listinfo/tifm21-devel
+> 
+
+
+__________________________________________________
+Do You Yahoo!?
+Tired of spam?  Yahoo! Mail has the best spam protection around 
+http://mail.yahoo.com 
+
+
+From oakad at yahoo.com  Mon Jun 19 17:03:08 2006
+From: oakad at yahoo.com (Alex Dubov)
+Date: Mon, 19 Jun 2006 08:03:08 -0700 (PDT)
+Subject: [Tifm21-devel] led
+In-Reply-To: <4495B327.3050003@siemens-mobiles.org>
+Message-ID: <20060619150308.42257.qmail@web36710.mail.mud.yahoo.com>
+
+There's a fix in svn for the write bug I mentioned.
+
+--- Wael Nasreddine <wael at siemens-mobiles.org> wrote:
+
+> -----BEGIN PGP SIGNED MESSAGE-----
+> Hash: SHA1
+> 
+> Alex Dubov wrote:
+> > I don't need access to your machine (I can't see
+> the
+> > led from here and I bet, my dumps are exacly like
+> > yours).
+> > I have one idea about LED - try rev56 when
+> available
+> > (today or tomorrow).
+> > 
+> Hi,
+> 
+> Okay it works very good now, led only lights on
+> whenever there's read or
+> write activity otherwize it stays off, however I'm
+> not sure if it's
+> related to anything but i'll mention it, My PC
+> completely hanged 2 times
+> when trying to umount the MMC using
+> drivemount_applet2 (gnome-vfs) it
+> did not hang on console, and the third time i tried
+> debugging it
+> (drivemount_applet2 --sm-disable) It didn't hang,
+> I'll try more often
+> today if i get something i'll notify you..
+> 
+> Otherwize Thank you very much for making the LED
+> works, now i can
+> finally take back the 4GB of waste for a windows
+> partition just to get
+> pics from the MMC :)
+> 
+> - --
+> Wael Nasreddine
+> http://wael.nasreddine.com
+> PGP: 1024D/C8DD18A2 06F6 1622 4BC8 4CEB D724  DE12
+> 5565 3945 C8DD 18A2
+> 
+> .: An infinite number of monkeys typing into GNU
+> emacs,
+>    would never make a good program. (L. Torvalds
+> 1995) :.
+> 
+> -----BEGIN PGP SIGNATURE-----
+> Version: GnuPG v1.4.2.2 (GNU/Linux)
+> 
+>
+iD8DBQFElbMnVWU5RcjdGKIRAmYTAJ9JQqhdJ/5Ln8D9QFWHwRMPv4RtvACgtzwy
+> lIJ61pI+Mi7abX758RqcmvM=
+> =KtBX
+> -----END PGP SIGNATURE-----
+> _______________________________________________
+> Tifm21-devel mailing list
+> Tifm21-devel at lists.berlios.de
+>
+http://lists.berlios.de/mailman/listinfo/tifm21-devel
+> 
+
+
+__________________________________________________
+Do You Yahoo!?
+Tired of spam?  Yahoo! Mail has the best spam protection around 
+http://mail.yahoo.com 
+
+
+From debian.users.portuguese at gmail.com  Mon Jun 26 13:19:15 2006
+From: debian.users.portuguese at gmail.com (Still)
+Date: Mon, 26 Jun 2006 08:19:15 -0300
+Subject: [Tifm21-devel] Rev 5 isn't working for me
+Message-ID: <140a68e50606260419h687c2e8ey61f3de65e3a5278f@mail.gmail.com>
+
+Hello guys;
+
+  I have tried to put my SD to work, but I received some errors. My dmesg
+is:
+
+mmcblk0: mmc0:e624 SR128 123008KiB
+mmcblk0: unknown partition table
+tifm_7xx1: demand removing card from socket 3
+mmcblk0: mmc0:e624 SR128 123008KiB
+mmcblk0: unknown partition table
+FAT: invalid media value (0x23)
+VFS: Can't find a valid FAT filesystem on dev mmcblk0.
+tifm_7xx1: demand removing card from socket 3
+mmcblk0: mmc0:e624 SR128 123008KiB
+mmcblk0: unknown partition table
+
+  Now I'm away from my notebook and I can't see if it supports FAT partition
+or only VFAT.
+  My card is formatted with FAT because, I guess,  it's the default of the
+mobile of my wife.
+  Thanks!
+
+[]'s,
+-- 
+Nelson Luiz Campos
+Engenheiro Eletricista
+Linux User #89621 UIN 11464303
+gnupgID: 55577339
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20060626/cb601e67/attachment.html>
+
+From wael at siemens-mobiles.org  Mon Jun 26 17:30:11 2006
+From: wael at siemens-mobiles.org (Wael Nasreddine)
+Date: Mon, 26 Jun 2006 17:30:11 +0200
+Subject: [Tifm21-devel] Rev 5 isn't working for me
+In-Reply-To: <140a68e50606260419h687c2e8ey61f3de65e3a5278f@mail.gmail.com>
+References: <140a68e50606260419h687c2e8ey61f3de65e3a5278f@mail.gmail.com>
+Message-ID: <449FFD83.60802@siemens-mobiles.org>
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Still wrote:
+- --
+<b>Wael Nasreddine</b><br />
+<a href="http://wael.nasreddine.com">http://wael.nasreddine.com</a><br />
+PGP: 1024D/C8DD18A2 06F6 1622 4BC8 4CEB D724  DE12 5565 3945 C8DD 18A2<br />
+<br />
+<i>.: An infinite number of monkeys typing into GNU emacs,</i><br />
+&nbsp;&nbsp;&nbsp;<i>would never make a good program. (L. Torvalds 1995)
+:.</i>
+
+> Hello guys;
+> 
+>   I have tried to put my SD to work, but I received some errors. My
+> dmesg is:
+> 
+> mmcblk0: mmc0:e624 SR128 123008KiB
+> mmcblk0: unknown partition table
+> tifm_7xx1: demand removing card from socket 3
+> mmcblk0: mmc0:e624 SR128 123008KiB
+> mmcblk0: unknown partition table
+> FAT: invalid media value (0x23)
+> VFS: Can't find a valid FAT filesystem on dev mmcblk0.
+> tifm_7xx1: demand removing card from socket 3
+> mmcblk0: mmc0:e624 SR128 123008KiB
+> mmcblk0: unknown partition table
+> 
+>   Now I'm away from my notebook and I can't see if it supports FAT
+> partition or only VFAT.
+>   My card is formatted with FAT because, I guess,  it's the default of
+> the mobile of my wife.
+>   Thanks!
+> 
+> []'s,
+> -- 
+> Nelson Luiz Campos
+> Engenheiro Eletricista
+> Linux User #89621 UIN 11464303
+> gnupgID: 55577339
+Hi,
+
+What is your wife's mobile ? I have a Siemens SX1 and I had to format
+the card (on windows) as FAT16 (NOT FAT 32), Siemens SX1 does format it
+in it's own filesystem...
+
+You might want to try that...
+
+- --
+Wael Nasreddine
+http://wael.nasreddine.com
+PGP: 1024D/C8DD18A2 06F6 1622 4BC8 4CEB D724  DE12 5565 3945 C8DD 18A2
+
+.: An infinite number of monkeys typing into GNU emacs,
+   would never make a good program. (L. Torvalds 1995) :.
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.2.2 (GNU/Linux)
+
+iD8DBQFEn/2DVWU5RcjdGKIRArn6AJ47P1PpXucxlOYmjAon4PtImYmXfQCfR5bf
+5h9jWJvXcN6Y5zvGqcYzNZE=
+=gdrV
+-----END PGP SIGNATURE-----
+
+
+From oakad at yahoo.com  Tue Jun 27 03:54:20 2006
+From: oakad at yahoo.com (Alex Dubov)
+Date: Mon, 26 Jun 2006 18:54:20 -0700 (PDT)
+Subject: [Tifm21-devel] Rev 5 isn't working for me
+In-Reply-To: <449FFD83.60802@siemens-mobiles.org>
+Message-ID: <20060627015420.32194.qmail@web36702.mail.mud.yahoo.com>
+
+Yep, it does not seems like issue with my driver. It
+looks like VFS problem.
+May be some options in kernel advanced partition table
+support may help with this.
+
+--- Wael Nasreddine <wael at siemens-mobiles.org> wrote:
+
+> -----BEGIN PGP SIGNED MESSAGE-----
+> Hash: SHA1
+> 
+> Still wrote:
+> - --
+> <b>Wael Nasreddine</b><br />
+> <a
+>
+href="http://wael.nasreddine.com">http://wael.nasreddine.com</a><br
+> />
+> PGP: 1024D/C8DD18A2 06F6 1622 4BC8 4CEB D724  DE12
+> 5565 3945 C8DD 18A2<br />
+> <br />
+> <i>.: An infinite number of monkeys typing into GNU
+> emacs,</i><br />
+> &nbsp;&nbsp;&nbsp;<i>would never make a good
+> program. (L. Torvalds 1995)
+> :.</i>
+> 
+> > Hello guys;
+> > 
+> >   I have tried to put my SD to work, but I
+> received some errors. My
+> > dmesg is:
+> > 
+> > mmcblk0: mmc0:e624 SR128 123008KiB
+> > mmcblk0: unknown partition table
+> > tifm_7xx1: demand removing card from socket 3
+> > mmcblk0: mmc0:e624 SR128 123008KiB
+> > mmcblk0: unknown partition table
+> > FAT: invalid media value (0x23)
+> > VFS: Can't find a valid FAT filesystem on dev
+> mmcblk0.
+> > tifm_7xx1: demand removing card from socket 3
+> > mmcblk0: mmc0:e624 SR128 123008KiB
+> > mmcblk0: unknown partition table
+> > 
+> >   Now I'm away from my notebook and I can't see if
+> it supports FAT
+> > partition or only VFAT.
+> >   My card is formatted with FAT because, I guess, 
+> it's the default of
+> > the mobile of my wife.
+> >   Thanks!
+> > 
+> > []'s,
+> > -- 
+> > Nelson Luiz Campos
+> > Engenheiro Eletricista
+> > Linux User #89621 UIN 11464303
+> > gnupgID: 55577339
+> Hi,
+> 
+> What is your wife's mobile ? I have a Siemens SX1
+> and I had to format
+> the card (on windows) as FAT16 (NOT FAT 32), Siemens
+> SX1 does format it
+> in it's own filesystem...
+> 
+> You might want to try that...
+> 
+> - --
+> Wael Nasreddine
+> http://wael.nasreddine.com
+> PGP: 1024D/C8DD18A2 06F6 1622 4BC8 4CEB D724  DE12
+> 5565 3945 C8DD 18A2
+> 
+> .: An infinite number of monkeys typing into GNU
+> emacs,
+>    would never make a good program. (L. Torvalds
+> 1995) :.
+> 
+> -----BEGIN PGP SIGNATURE-----
+> Version: GnuPG v1.4.2.2 (GNU/Linux)
+> 
+>
+iD8DBQFEn/2DVWU5RcjdGKIRArn6AJ47P1PpXucxlOYmjAon4PtImYmXfQCfR5bf
+> 5h9jWJvXcN6Y5zvGqcYzNZE=
+> =gdrV
+> -----END PGP SIGNATURE-----
+> _______________________________________________
+> Tifm21-devel mailing list
+> Tifm21-devel at lists.berlios.de
+>
+http://lists.berlios.de/mailman/listinfo/tifm21-devel
+> 
+
+
+__________________________________________________
+Do You Yahoo!?
+Tired of spam?  Yahoo! Mail has the best spam protection around 
+http://mail.yahoo.com 
+
+

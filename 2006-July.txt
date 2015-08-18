@@ -1,0 +1,402 @@
+From dylan.semler at gmail.com  Fri Jul  7 07:04:13 2006
+From: dylan.semler at gmail.com (Dylan Semler)
+Date: Fri, 7 Jul 2006 01:04:13 -0400
+Subject: [Tifm21-devel] Memory stick support
+Message-ID: <be852c190607062204k97b5e3du4db2254ce3ee732f@mail.gmail.com>
+
+So am I to assume that from the website (
+http://www.webcon.ca/~imorgan/tifm21/) that only SD cards are supported, not
+MemoryStick?  If a core-dump of a MemoryStick would help, I can provide one,
+perhaps with a little hand-holding.
+
+Dylan
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20060707/ec39e13f/attachment.html>
+
+From knefas at gmail.com  Fri Jul  7 09:26:02 2006
+From: knefas at gmail.com (knefas)
+Date: Fri, 7 Jul 2006 09:26:02 +0200
+Subject: [Tifm21-devel] Memory stick support
+In-Reply-To: <be852c190607062204k97b5e3du4db2254ce3ee732f@mail.gmail.com>
+References: <be852c190607062204k97b5e3du4db2254ce3ee732f@mail.gmail.com>
+Message-ID: <8f372ae70607070026x2d0a1543j6c0e7ab11708cf7c@mail.gmail.com>
+
+Dylan Semler wrote:
+> If a core-dump of a MemoryStick would help, I can provide one,
+> perhaps with a little hand-holding.
+
+I can do the same, MS support would be great!
+I am not sure of how much MS now cost, but if needed probably we can
+buy Alex one all together ...
+
+
+From brad at wasp.net.au  Tue Jul 18 13:05:23 2006
+From: brad at wasp.net.au (Brad Campbell)
+Date: Tue, 18 Jul 2006 15:05:23 +0400
+Subject: [Tifm21-devel] Quick intro and results
+Message-ID: <44BCC073.3000009@wasp.net.au>
+
+G'day all,
+
+Just joined the list. (and re-sent this message as I sent it prior to joining last time around. Doh!)
+I'm using a Sony VAIO VGN-TX27GP with the following devices.
+
+0000:06:05.0 CardBus bridge: Texas Instruments PCIxx21/x515 Cardbus Controller
+0000:06:05.2 FireWire (IEEE 1394): Texas Instruments OHCI Compliant IEEE 1394 Host Controller
+0000:06:05.3 Mass storage controller: Texas Instruments PCIxx21 Integrated FlashMedia Controller
+
+My machine has a little amber led on the front next to the card slots and has the standard SD and
+MemoryStick Pro slots.
+
+Just want to report that with the latest SVN tree against a pretty heavily patched 2.6.18-rc1
+kernel, I have tested with a 128MB MMC and 512M SD and they both work perfectly for reading. I get 
+between 2 & 4MB/s. For writing I'm getting 27k/s for the SD and 72k/s for the MMC. I'll investigate 
+further.
+
+I do get this when mounting the SD card if it is formatted FAT16 or FAT32 however it reads ok. Write 
+tests are somewhat hampered by the write speed. Formatted ext2 and it's fine although speed is still 
+a bear.
+
+[ 2276.010000] tifm_7xx1: sd card detected in socket 3
+[ 2277.360000] mmcblk0: mmc0:99d5 SH512 503296KiB
+[ 2277.360000]  mmcblk0: p1
+[ 2277.430000] mmcblk0: error 4 sending stop command
+[ 2277.430000] end_request: I/O error, dev mmcblk0, sector 1006584
+[ 2277.430000] printk: 60 messages suppressed.
+[ 2277.430000] Buffer I/O error on device mmcblk0, logical block 125823
+[ 2277.430000] mmcblk0: error 4 sending stop command
+[ 2277.430000] end_request: I/O error, dev mmcblk0, sector 1006584
+[ 2277.430000] Buffer I/O error on device mmcblk0, logical block 125823
+[ 2277.430000] Reducing readahead size to 32K
+[ 2277.430000] mmcblk0: error 4 sending stop command
+[ 2277.430000] end_request: I/O error, dev mmcblk0, sector 1006584
+[ 2277.430000] Buffer I/O error on device mmcblk0, logical block 125823
+[ 2277.430000] Reducing readahead size to 8K
+[ 2277.430000] mmcblk0: error 4 sending stop command
+[ 2277.430000] end_request: I/O error, dev mmcblk0, sector 1006584
+[ 2277.430000] Buffer I/O error on device mmcblk0, logical block 125823
+[ 2277.430000] Reducing readahead size to 0K
+[ 2277.430000] mmcblk0: error 4 sending stop command
+[ 2277.430000] end_request: I/O error, dev mmcblk0, sector 1006584
+[ 2277.430000] Buffer I/O error on device mmcblk0, logical block 125823
+[ 2277.440000] mmcblk0: error 4 sending stop command
+[ 2277.440000] end_request: I/O error, dev mmcblk0, sector 1006584
+[ 2277.440000] Buffer I/O error on device mmcblk0, logical block 125823
+[ 2277.540000] mmcblk0: error 4 sending stop command
+[ 2277.540000] end_request: I/O error, dev mmcblk0, sector 1006584
+[ 2277.540000] Buffer I/O error on device mmcblk0p1, logical block 125821
+[ 2277.540000] mmcblk0: error 4 sending stop command
+[ 2277.540000] end_request: I/O error, dev mmcblk0, sector 1006584
+[ 2277.540000] Buffer I/O error on device mmcblk0p1, logical block 125821
+[ 2277.540000] Reducing readahead size to 32K
+[ 2277.540000] mmcblk0: error 4 sending stop command
+[ 2277.550000] end_request: I/O error, dev mmcblk0, sector 1006584
+[ 2277.550000] Buffer I/O error on device mmcblk0p1, logical block 125821
+[ 2277.550000] Reducing readahead size to 8K
+[ 2277.550000] mmcblk0: error 4 sending stop command
+[ 2277.550000] end_request: I/O error, dev mmcblk0, sector 1006584
+[ 2277.550000] Buffer I/O error on device mmcblk0p1, logical block 125821
+[ 2277.550000] Reducing readahead size to 0K
+[ 2277.550000] mmcblk0: error 4 sending stop command
+[ 2277.550000] end_request: I/O error, dev mmcblk0, sector 1006584
+[ 2277.550000] mmcblk0: error 4 sending stop command
+[ 2277.550000] end_request: I/O error, dev mmcblk0, sector 1006584
+[ 2277.580000] mmcblk0: error 4 sending stop command
+[ 2277.580000] end_request: I/O error, dev mmcblk0, sector 1006584
+[ 2277.580000] mmcblk0: error 4 sending stop command
+[ 2277.580000] end_request: I/O error, dev mmcblk0, sector 1006584
+[ 2277.580000] Reducing readahead size to 32K
+[ 2277.580000] mmcblk0: error 4 sending stop command
+[ 2277.580000] end_request: I/O error, dev mmcblk0, sector 1006584
+[ 2277.580000] Reducing readahead size to 8K
+[ 2277.580000] mmcblk0: error 4 sending stop command
+[ 2277.580000] end_request: I/O error, dev mmcblk0, sector 1006584
+[ 2277.580000] Reducing readahead size to 0K
+[ 2277.590000] mmcblk0: error 4 sending stop command
+[ 2277.590000] end_request: I/O error, dev mmcblk0, sector 1006584
+[ 2277.590000] mmcblk0: error 4 sending stop command
+[ 2277.590000] end_request: I/O error, dev mmcblk0, sector 1006584
+[ 2277.710000] FAT: utf8 is not a recommended IO charset for FAT filesystems, filesystem will be 
+case sensitive!
+[ 3047.090000] tifm_7xx1: demand removing card from socket 3
+
+
+
+Cheers!
+Brad
+-- 
+"Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so." -- Douglas Adams
+
+
+
+From oakad at yahoo.com  Wed Jul 19 04:08:33 2006
+From: oakad at yahoo.com (Alex Dubov)
+Date: Tue, 18 Jul 2006 19:08:33 -0700 (PDT)
+Subject: [Tifm21-devel] Quick intro and results
+In-Reply-To: <44BCC073.3000009@wasp.net.au>
+Message-ID: <20060719020833.1781.qmail@web36712.mail.mud.yahoo.com>
+
+
+
+--- Brad Campbell <brad at wasp.net.au> wrote:
+
+> G'day all,
+> 
+> Just joined the list. (and re-sent this message as I
+> sent it prior to joining last time around. Doh!)
+> I'm using a Sony VAIO VGN-TX27GP with the following
+> devices.
+I was not doing any development lately, so SVN and
+version 0.5 are actually the same. 4MB/s is probably
+the hardware limit of the chip (though a windows test
+with native driver can be useful). The write speed can
+not be improved without further information about a
+chip (or forgoing the mmc_block module).
+
+Errors you are getting plainly show that block 1006584
+of your card is bad. Happens all the time (just like
+with diskettes).
+
+
+__________________________________________________
+Do You Yahoo!?
+Tired of spam?  Yahoo! Mail has the best spam protection around 
+http://mail.yahoo.com 
+
+
+From brad at wasp.net.au  Wed Jul 19 10:38:10 2006
+From: brad at wasp.net.au (Brad Campbell)
+Date: Wed, 19 Jul 2006 12:38:10 +0400
+Subject: [Tifm21-devel] Quick intro and results
+In-Reply-To: <20060719020833.1781.qmail@web36712.mail.mud.yahoo.com>
+References: <20060719020833.1781.qmail@web36712.mail.mud.yahoo.com>
+Message-ID: <44BDEF72.7040905@wasp.net.au>
+
+Alex Dubov wrote:
+> 
+> --- Brad Campbell <brad at wasp.net.au> wrote:
+> 
+>> G'day all,
+>>
+>> Just joined the list. (and re-sent this message as I
+>> sent it prior to joining last time around. Doh!)
+>> I'm using a Sony VAIO VGN-TX27GP with the following
+>> devices.
+> I was not doing any development lately, so SVN and
+> version 0.5 are actually the same. 4MB/s is probably
+> the hardware limit of the chip (though a windows test
+> with native driver can be useful). The write speed can
+> not be improved without further information about a
+> chip (or forgoing the mmc_block module).
+> 
+> Errors you are getting plainly show that block 1006584
+> of your card is bad. Happens all the time (just like
+> with diskettes).
+
+Except both cards are fine, and both cards throw errors on the tifm driver somewhere around the last 
+4 or 5 blocks on the card.
+I've checked the cards in windows on this hardware, and I've checked them with the in-kernel sdhci 
+driver (which is a bugger to enable on this machine). Both cards (MMC & SD) pass both read and write 
+badblocks tests.
+
+I'm interested in helping debug this issue if I can assist in any way.
+
+Doing some benchmarking the tifm read speeds on both MMC and SD are about the same as the in-kernel 
+sdhci driver. Write speeds appear to be about the same also :)
+
+Nice RE job BTW :)
+
+Brad
+-- 
+"Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so." -- Douglas Adams
+
+
+From brad at wasp.net.au  Wed Jul 19 11:09:45 2006
+From: brad at wasp.net.au (Brad Campbell)
+Date: Wed, 19 Jul 2006 13:09:45 +0400
+Subject: [Tifm21-devel] Quick intro and results
+In-Reply-To: <44BDEF72.7040905@wasp.net.au>
+References: <20060719020833.1781.qmail@web36712.mail.mud.yahoo.com>
+	<44BDEF72.7040905@wasp.net.au>
+Message-ID: <44BDF6D9.3050309@wasp.net.au>
+
+Brad Campbell wrote:
+
+> Except both cards are fine, and both cards throw errors on the tifm driver somewhere around the last 
+> 4 or 5 blocks on the card.
+
+I recompiled the driver with #define CONFIG_TIFM_DEBUG 1
+and now I can't reproduce it. Both cards pass badblocks just fine with this driver now.
+I wonder if there was some strange issue there. My kernel tree has not changed, nor has the source
+tree for tifm. The only thing I did was unload/recomiple/reload. I removed the above #define again 
+and it's all still working great. Very odd indeed.
+
+Anyway it's all fixed now..
+
+Now to chase down an oops when suspending the machine with suspend2.
+
+Brad
+-- 
+"Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so." -- Douglas Adams
+
+
+
+From oakad at yahoo.com  Thu Jul 20 04:10:19 2006
+From: oakad at yahoo.com (Alex Dubov)
+Date: Wed, 19 Jul 2006 19:10:19 -0700 (PDT)
+Subject: [Tifm21-devel] Quick intro and results
+In-Reply-To: <44BDF6D9.3050309@wasp.net.au>
+Message-ID: <20060720021019.6266.qmail@web36710.mail.mud.yahoo.com>
+
+Suspend is probably totally broken. I put in some
+code, but never tested it, as suspend on my machine is
+unstable by itself, to say the least (I have an ill
+fated ati x200 chipset).
+
+As far as I know, block access failrues are very
+common with flash cards. They may be affected by many
+factors, even by temperature.
+
+--- Brad Campbell <brad at wasp.net.au> wrote:
+
+> Brad Campbell wrote:
+> 
+> > Except both cards are fine, and both cards throw
+> errors on the tifm driver somewhere around the last 
+> > 4 or 5 blocks on the card.
+> 
+> I recompiled the driver with #define
+> CONFIG_TIFM_DEBUG 1
+> and now I can't reproduce it. Both cards pass
+> badblocks just fine with this driver now.
+> I wonder if there was some strange issue there. My
+> kernel tree has not changed, nor has the source
+> tree for tifm. The only thing I did was
+> unload/recomiple/reload. I removed the above #define
+> again 
+> and it's all still working great. Very odd indeed.
+> 
+> Anyway it's all fixed now..
+> 
+> Now to chase down an oops when suspending the
+> machine with suspend2.
+> 
+> Brad
+> -- 
+> "Human beings, who are almost unique in having the
+> ability
+> to learn from the experience of others, are also
+> remarkable
+> for their apparent disinclination to do so." --
+> Douglas Adams
+> 
+> _______________________________________________
+> Tifm21-devel mailing list
+> Tifm21-devel at lists.berlios.de
+> http://bat.berlios.de/mailman/listinfo/tifm21-devel
+> 
+
+
+__________________________________________________
+Do You Yahoo!?
+Tired of spam?  Yahoo! Mail has the best spam protection around 
+http://mail.yahoo.com 
+
+
+From brad at wasp.net.au  Sun Jul 16 08:20:30 2006
+From: brad at wasp.net.au (Brad Campbell)
+Date: Sun, 16 Jul 2006 10:20:30 +0400
+Subject: [Tifm21-devel] Quick intro
+Message-ID: <44B9DAAE.4020003@wasp.net.au>
+
+G'day all,
+
+Just joined the list.
+I'm using a Sony VAIO VGN-TX27GP with the following devices.
+
+0000:06:05.0 CardBus bridge: Texas Instruments PCIxx21/x515 Cardbus Controller
+0000:06:05.2 FireWire (IEEE 1394): Texas Instruments OHCI Compliant IEEE 1394 Host Controller
+0000:06:05.3 Mass storage controller: Texas Instruments PCIxx21 Integrated FlashMedia Controller
+
+My machine has a little amber led on the front next to the card slots and has the standard SD and 
+MemoryStick Pro slots.
+
+Just want to report that with the latest SVN tree against a pretty heavily patched 2.6.18-rc1 
+kernel, I have tested with a 128MB MMC and 512M SD and they both work perfectly.
+
+I have no desire to use the memorystick pro, however having a bit of disposable $$ and some time I'd 
+be more than happy to pick one up and assist with any testing that may be required. Frankly I'm 
+wrapped that the SD/MMC work so well as that's all I use anyway.
+
+Cheers!
+Brad
+-- 
+"Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so." -- Douglas Adams
+
+
+From duncan at lithgow-schmidt.dk  Wed Jul 26 11:46:14 2006
+From: duncan at lithgow-schmidt.dk (Duncan Lithgow)
+Date: Wed, 26 Jul 2006 11:46:14 +0200
+Subject: [Tifm21-devel] TI card readers
+Message-ID: <1153907174.5350.18.camel@localhost>
+
+I have a Texas Instruments card reader in a recent model HP (dv8220ea)
+is there some testing I can help you with?
+
+Duncan
+-- 
+Linux user: 372812 | GPG key ID: 21A8C63A | http://lithgow-schmidt.dk
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 191 bytes
+Desc: This is a digitally signed message part
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20060726/319e847e/attachment.pgp>
+
+From oakad at yahoo.com  Thu Jul 27 15:27:20 2006
+From: oakad at yahoo.com (Alex Dubov)
+Date: Thu, 27 Jul 2006 06:27:20 -0700 (PDT)
+Subject: [Tifm21-devel] TI card readers
+In-Reply-To: <1153907174.5350.18.camel@localhost>
+Message-ID: <20060727132720.90315.qmail@web36709.mail.mud.yahoo.com>
+
+Current version of the driver includes everything I
+managed to recover from binary driver. To make any
+progress from here datasheet is needed.
+
+On the other hand, it is supposed to work decently at
+this stage. Do you have any problems?
+
+--- Duncan Lithgow <duncan at lithgow-schmidt.dk> wrote:
+
+> I have a Texas Instruments card reader in a recent
+> model HP (dv8220ea)
+> is there some testing I can help you with?
+> 
+> Duncan
+> -- 
+> Linux user: 372812 | GPG key ID: 21A8C63A |
+> http://lithgow-schmidt.dk
+> > _______________________________________________
+> Tifm21-devel mailing list
+> Tifm21-devel at lists.berlios.de
+> http://bat.berlios.de/mailman/listinfo/tifm21-devel
+> 
+
+
+__________________________________________________
+Do You Yahoo!?
+Tired of spam?  Yahoo! Mail has the best spam protection around 
+http://mail.yahoo.com 
+
+

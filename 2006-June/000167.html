@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] Some little problems
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2006-June/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20Some%20little%20problems&In-Reply-To=%3C20060611090043.70703.qmail%40web36712.mail.mud.yahoo.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000166.html">
+   <LINK REL="Next"  HREF="000170.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] Some little problems</H1>
+    <B>Alex Dubov</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20Some%20little%20problems&In-Reply-To=%3C20060611090043.70703.qmail%40web36712.mail.mud.yahoo.com%3E"
+       TITLE="[Tifm21-devel] Some little problems">oakad at yahoo.com
+       </A><BR>
+    <I>Sun Jun 11 11:00:43 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000166.html">[Tifm21-devel] Some little problems
+</A></li>
+        <LI>Next message: <A HREF="000170.html">[Tifm21-devel] Some little problems
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#167">[ date ]</a>
+              <a href="thread.html#167">[ thread ]</a>
+              <a href="subject.html#167">[ subject ]</a>
+              <a href="author.html#167">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>One of the cases where &quot;too good is no good&quot;. Error 1
+is a timeout. Couple of these are normal as mmc will
+try to discover if there's more than one card in the
+socket (sd cards can be chained). Here, try this
+(attached) version, which does not tries to honour
+card specific timeout and always uses uber-long, 1 sec
+value.
+
+
+--- Wael Nasreddine &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">wael at siemens-mobiles.org</A>&gt; wrote:
+
+&gt;<i> Alex Dubov wrote:
+</I>&gt;<i> &gt; One more:
+</I>&gt;<i> &gt; on my computer there's no flashcard led (and hdd
+</I>&gt;<i> led
+</I>&gt;<i> &gt; is not connected to it either). While it will be
+</I>&gt;<i> nice
+</I>&gt;<i> &gt; to have it working correctly I have no way to do 
+</I>&gt;<i> this
+</I>&gt;<i> &gt; on my machine. Volunteers welcome.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; __________________________________________________
+</I>&gt;<i> &gt; Do You Yahoo!?
+</I>&gt;<i> &gt; Tired of spam?  Yahoo! Mail has the best spam
+</I>&gt;<i> protection around 
+</I>&gt;<i> &gt; <A HREF="http://mail.yahoo.com">http://mail.yahoo.com</A> 
+</I>&gt;<i> &gt; _______________________________________________
+</I>&gt;<i> &gt; Tifm21-devel mailing list
+</I>&gt;<i> &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">Tifm21-devel at lists.berlios.de</A>
+</I>&gt;<i> &gt;
+</I>&gt;<i>
+</I><A HREF="http://lists.berlios.de/mailman/listinfo/tifm21-devel">http://lists.berlios.de/mailman/listinfo/tifm21-devel</A>
+&gt;<i> &gt;
+</I>&gt;<i> &gt;   
+</I>&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> Ok it removed the messages when removing a card, but
+</I>&gt;<i> still 2 out of 3
+</I>&gt;<i> times i just get
+</I>&gt;<i> 
+</I>&gt;<i> tifm_sd [tifm_sd_ios()]: Setting bus width 0
+</I>&gt;<i> tifm_sd [tifm_sd_ios()]: Setting bus width 0
+</I>&gt;<i> tifm_sd [tifm_sd_ios()]: Setting bus width 0
+</I>&gt;<i> tifm_sd [tifm_sd_ios()]: Setting bus width 0
+</I>&gt;<i> tifm_sd [tifm_sd_ios()]: Setting bus width 0
+</I>&gt;<i> tifm_sd [tifm_sd_execute()]: cmd error 1
+</I>&gt;<i> tifm_sd [tifm_sd_execute()]: cmd error 1
+</I>&gt;<i> tifm_sd [tifm_sd_execute()]: cmd error 1
+</I>&gt;<i> tifm_sd [tifm_sd_execute()]: cmd error 1
+</I>&gt;<i> tifm_sd [tifm_sd_execute()]: cmd error 1
+</I>&gt;<i> tifm_sd [tifm_sd_ios()]: Setting bus width 0
+</I>&gt;<i> 
+</I>&gt;<i> and no block device is detected..
+</I>&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Wael Nasreddine
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Tifm21-devel mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">Tifm21-devel at lists.berlios.de</A>
+</I>&gt;<i>
+</I><A HREF="http://lists.berlios.de/mailman/listinfo/tifm21-devel">http://lists.berlios.de/mailman/listinfo/tifm21-devel</A>
+&gt;<i> 
+</I>
+__________________________________________________
+Do You Yahoo!?
+Tired of spam?  Yahoo! Mail has the best spam protection around 
+<A HREF="http://mail.yahoo.com">http://mail.yahoo.com</A> 
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: tifm_sd.c
+Type: text/x-csrc
+Size: 23146 bytes
+Desc: 2197238332-tifm_sd.c
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/tifm21-devel/attachments/20060611/6f796f78/attachment.c">https://lists.berlios.de/pipermail/tifm21-devel/attachments/20060611/6f796f78/attachment.c</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000166.html">[Tifm21-devel] Some little problems
+</A></li>
+	<LI>Next message: <A HREF="000170.html">[Tifm21-devel] Some little problems
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#167">[ date ]</a>
+              <a href="thread.html#167">[ thread ]</a>
+              <a href="subject.html#167">[ subject ]</a>
+              <a href="author.html#167">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

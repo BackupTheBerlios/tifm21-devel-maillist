@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] Issues with kernel 2.6.19
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2007-February/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20Issues%20with%20kernel%202.6.19&In-Reply-To=%3C45C6C49B.8050606%40wasp.net.au%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000236.html">
+   <LINK REL="Next"  HREF="000240.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] Issues with kernel 2.6.19</H1>
+    <B>Brad Campbell</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20Issues%20with%20kernel%202.6.19&In-Reply-To=%3C45C6C49B.8050606%40wasp.net.au%3E"
+       TITLE="[Tifm21-devel] Issues with kernel 2.6.19">brad at wasp.net.au
+       </A><BR>
+    <I>Mon Feb  5 06:46:03 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000236.html">[Tifm21-devel] Issues with kernel 2.6.19
+</A></li>
+        <LI>Next message: <A HREF="000240.html">[Tifm21-devel] Issues with kernel 2.6.19
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#237">[ date ]</a>
+              <a href="thread.html#237">[ thread ]</a>
+              <a href="subject.html#237">[ subject ]</a>
+              <a href="author.html#237">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Alex Dubov wrote:
+&gt;<i> It looks very surprising, especially the fact that driver does nothing for 17 seconds (the
+</I>&gt;<i> software timeout is supposed to kick it out in a 1 sec in case of any problem).
+</I>&gt;<i> Can you compile the driver with DEBUG=1 to see if there's something interesting in the print-outs?
+</I>
+Sure can.
+This is 2.6.20-rc7-git1 with the mmc patches applied from 2.6.20-rc6-mm3 (as it's easier for me to 
+test). Could not get the current SVN to build against the -mm kernel. They all do pretty much the 
+same thing though.
+
+Oh, the 17 seconds is me waiting for something to happen and checking dmesg before I removed the 
+card. Same as in the trace below. I insert, the led flashed once or twice, I check dmesg. Nothing 
+happening so I pop the card out.
+
+[78591.390000] tifm_7xx1 0000:06:05.3: checking media set 8
+[78591.430000] tifm_7xx1: sd card detected in socket 3
+[78591.470000] tifm_sd tifm_sd0:3: Setting bus width 0, power 0
+[78591.470000] tifm_sd tifm_sd0:3: Setting bus width 0, power 1
+[78591.470000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[78591.470000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[78591.470000] tifm_sd tifm_sd0:3: executing opcode 0x0, arg: 0x0, mask: 0x40
+[78591.470000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[78591.470000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[78591.470000] tifm_sd tifm_sd0:3: executing opcode 0x8, arg: 0x1aa, mask: 0x1140
+[78591.470000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[78591.470000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[78591.470000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[78591.470000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x0, mask: 0x1340
+[78591.470000] tifm_sd tifm_sd0:3: host_status 1001, fifo_status 0
+[78591.470000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[78591.470000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[78591.470000] tifm_sd tifm_sd0:3: executing opcode 0x0, arg: 0x0, mask: 0x40
+[78591.470000] tifm_sd tifm_sd0:3: host_status 1001, fifo_status 0
+[78591.470000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[78591.480000] tifm_sd tifm_sd0:3: executing opcode 0x8, arg: 0x1aa, mask: 0x1140
+[78591.480000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[78591.480000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[78591.480000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[78591.480000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x40300000, mask: 0x1340
+[78591.480000] tifm_sd tifm_sd0:3: host_status 1001, fifo_status 0
+[78591.500000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[78591.500000] tifm_sd tifm_sd0:3: host_status 1001, fifo_status 0
+[78591.500000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x40300000, mask: 0x1340
+[78591.500000] tifm_sd tifm_sd0:3: host_status 1001, fifo_status 0
+[78591.520000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[78591.520000] tifm_sd tifm_sd0:3: host_status 1001, fifo_status 0
+[78591.520000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x40300000, mask: 0x1340
+[78591.520000] tifm_sd tifm_sd0:3: host_status 1001, fifo_status 0
+[78591.540000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[78591.540000] tifm_sd tifm_sd0:3: host_status 1001, fifo_status 0
+[78591.540000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x40300000, mask: 0x1340
+[78591.540000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[78591.540000] tifm_sd tifm_sd0:3: executing opcode 0x2, arg: 0x0, mask: 0x1240
+[78591.540000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[78591.540000] tifm_sd tifm_sd0:3: executing opcode 0x3, arg: 0x0, mask: 0x1140
+[78591.540000] tifm_sd tifm_sd0:3: host_status 4000, fifo_status 0
+[78591.540000] tifm_sd tifm_sd0:3: executing opcode 0x3, arg: 0x0, mask: 0x1140
+[78591.540000] tifm_sd tifm_sd0:3: host_status 4000, fifo_status 0
+[78591.540000] tifm_sd tifm_sd0:3: executing opcode 0x3, arg: 0x0, mask: 0x1140
+[78591.540000] tifm_sd tifm_sd0:3: host_status 4000, fifo_status 0
+[78591.540000] tifm_sd tifm_sd0:3: executing opcode 0x3, arg: 0x0, mask: 0x1140
+[78591.540000] tifm_sd tifm_sd0:3: host_status 4000, fifo_status 0
+[78591.540000] tifm_sd tifm_sd0:3: executing opcode 0x2, arg: 0x0, mask: 0x1240
+[78591.540000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+[78591.540000] tifm_sd tifm_sd0:3: executing opcode 0x2, arg: 0x0, mask: 0x1240
+[78591.540000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+[78591.540000] tifm_sd tifm_sd0:3: executing opcode 0x2, arg: 0x0, mask: 0x1240
+[78591.540000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+[78591.540000] tifm_sd tifm_sd0:3: executing opcode 0x2, arg: 0x0, mask: 0x1240
+[78591.540000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+[78591.540000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[78591.540000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[78591.540000] tifm_sd tifm_sd0:3: Setting bus width 0, power 0
+[78591.540000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+[78604.090000] tifm_7xx1 0000:06:05.3: checking media set 8
+[78604.090000] tifm_7xx1: demand removing card from socket 3
+
+Brad
+-- 
+&quot;Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so.&quot; -- Douglas Adams
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000236.html">[Tifm21-devel] Issues with kernel 2.6.19
+</A></li>
+	<LI>Next message: <A HREF="000240.html">[Tifm21-devel] Issues with kernel 2.6.19
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#237">[ date ]</a>
+              <a href="thread.html#237">[ thread ]</a>
+              <a href="subject.html#237">[ subject ]</a>
+              <a href="author.html#237">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

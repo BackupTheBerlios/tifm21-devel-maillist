@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] Works great, a minor problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2006-October/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20Works%20great%2C%20a%20minor%20problem&In-Reply-To=%3C453B4716.2070907%40wasp.net.au%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000228.html">
+   <LINK REL="Next"  HREF="000230.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] Works great, a minor problem</H1>
+    <B>Brad Campbell</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20Works%20great%2C%20a%20minor%20problem&In-Reply-To=%3C453B4716.2070907%40wasp.net.au%3E"
+       TITLE="[Tifm21-devel] Works great, a minor problem">brad at wasp.net.au
+       </A><BR>
+    <I>Sun Oct 22 12:25:26 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000228.html">[Tifm21-devel] Works great, a minor problem
+</A></li>
+        <LI>Next message: <A HREF="000230.html">[Tifm21-devel] Works great, a minor problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#229">[ date ]</a>
+              <a href="thread.html#229">[ thread ]</a>
+              <a href="subject.html#229">[ subject ]</a>
+              <a href="author.html#229">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE><A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">mipehynn at tp.spt.fi</A> wrote:
+
+&gt;<i> tifm_sd loaded as external modules there were no any other problems except the
+</I>&gt;<i> tifm_sd module doesn't come back nicely from suspend. If a card is inserted
+</I>&gt;<i> after suspending the machine while tifm_sd was loaded my keyboard stops working
+</I>&gt;<i> and all other operations slow down greatly as well. This won't happen if the
+</I>&gt;<i> module is removed before suspending the computer. After that it can be loaded
+</I>&gt;<i> back and I can continue using my card reader as nothing had happened.
+</I>&gt;<i> 
+</I>
+I unload/reload the modules around suspend, the driver does not cope with suspend/resume.
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">brad at bklaptop2</A>:~$ cat bin/tifm_load
+#!/bin/bash
+modprobe tifm_core
+modprobe tifm_7xx1
+modprobe tifm_sd
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">brad at bklaptop2</A>:~$ cat bin/tifm_unload
+#!/bin/bash
+if [ -n &quot;`mount | grep mmc`&quot; ] ; then
+         echo Need to remove card or unmount device 1st
+         exit 1
+fi;
+if [ -n &quot;`lsmod | grep ^mmc_block`&quot; ] ; then
+         if [ &quot;`lsmod | grep ^mmc_block | awk '{print $3}'`&quot; -ne &quot;0&quot; ] ; then
+                 echo mmc_block ref count not 0 - not removing driver
+                 exit 1
+         fi;
+fi;
+rmmod ./tifm_sd.ko || true
+rmmod ./tifm_7xx1.ko || true
+rmmod ./tifm_core.ko || true
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">brad at bklaptop2</A>:~$ cat /etc/hibernate/common.conf | grep tifm
+OnResume 05 /home/brad/bin/tifm_load
+OnSuspend 05 /home/brad/bin/tifm_unload
+
+
+&gt;<i> 
+</I>&gt;<i> Thanks for your great effort, I hope we see this driver in the main kernel some
+</I>&gt;<i> day. Sadly there isn't much I can do to help you with.
+</I>
+It's in -mm now and working nicely
+
+Brad
+-- 
+&quot;Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so.&quot; -- Douglas Adams
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000228.html">[Tifm21-devel] Works great, a minor problem
+</A></li>
+	<LI>Next message: <A HREF="000230.html">[Tifm21-devel] Works great, a minor problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#229">[ date ]</a>
+              <a href="thread.html#229">[ thread ]</a>
+              <a href="subject.html#229">[ subject ]</a>
+              <a href="author.html#229">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

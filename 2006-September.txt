@@ -1,0 +1,576 @@
+From oakad at yahoo.com  Fri Sep  1 19:16:39 2006
+From: oakad at yahoo.com (Alex Dubov)
+Date: Fri, 1 Sep 2006 10:16:39 -0700 (PDT)
+Subject: [Tifm21-devel] Driver update: write speed improvement
+Message-ID: <20060901171639.84292.qmail@web36704.mail.mud.yahoo.com>
+
+I made a couple of modifications to the tifm driver.
+Most notables improvements:
+1. PIO speed (no_dma=1 option) is now up to 7x higher
+2. Write speed is up to 5x higher
+(the speed gain may even be better than this; on the
+other hand, it may be worse - one can never know)
+
+A word of caution: new bugs may have beed introduced.
+
+
+__________________________________________________
+Do You Yahoo!?
+Tired of spam?  Yahoo! Mail has the best spam protection around 
+http://mail.yahoo.com 
+
+
+From brad at wasp.net.au  Sat Sep  2 09:36:26 2006
+From: brad at wasp.net.au (Brad Campbell)
+Date: Sat, 02 Sep 2006 11:36:26 +0400
+Subject: [Tifm21-devel] make install target
+Message-ID: <44F9347A.3040002@wasp.net.au>
+
+Don't know if this is interesting or not, but I'm carrying it in my tree so I thought I'd post it in 
+case.
+
+I've attached it because my mailer keeps whitespace damaging the patch.
+
+Regards,
+Brad
+-- 
+"Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so." -- Douglas Adams
+-------------- next part --------------
+Index: Makefile
+===================================================================
+--- Makefile	(revision 59)
++++ Makefile	(working copy)
+@@ -2,6 +2,7 @@
+ 
+ KERNELDIR ?= /lib/modules/$(shell uname -r)/build
+ PWD       := $(shell pwd)
++MODULE_INSTALLDIR = /lib/modules/$(shell uname -r)/misc/
+ 
+ all:
+ 	$(MAKE) -C $(KERNELDIR) M=$(PWD)
+@@ -9,3 +10,13 @@
+ clean:
+ 	rm -rf *.o *.o.d *.ko.d .depend .*.cmd *.ko *.mod.c .tmp_versions
+ 
++install:
++	mkdir -p $(MODULE_INSTALLDIR)
++	rm -f $(MODULE_INSTALLDIR)tifm_core.ko
++	rm -f $(MODULE_INSTALLDIR)tifm_sd.ko
++	rm -f $(MODULE_INSTALLDIR)tifm_7xx1.ko
++	install -c -m 644 tifm_core.ko tifm_7xx1.ko tifm_sd.ko \
++	$(MODULE_INSTALLDIR)
++	/sbin/depmod -ae
++
++
+
+From brad at wasp.net.au  Sat Sep  2 09:50:08 2006
+From: brad at wasp.net.au (Brad Campbell)
+Date: Sat, 02 Sep 2006 11:50:08 +0400
+Subject: [Tifm21-devel] Driver update: write speed improvement
+In-Reply-To: <20060901171639.84292.qmail@web36704.mail.mud.yahoo.com>
+References: <20060901171639.84292.qmail@web36704.mail.mud.yahoo.com>
+Message-ID: <44F937B0.2030803@wasp.net.au>
+
+Alex Dubov wrote:
+> I made a couple of modifications to the tifm driver.
+> Most notables improvements:
+> 1. PIO speed (no_dma=1 option) is now up to 7x higher
+> 2. Write speed is up to 5x higher
+> (the speed gain may even be better than this; on the
+> other hand, it may be worse - one can never know)
+> 
+
+Oh yes.. prior to this I was getting consistent 21KB/s.. now look!
+
+brad at bklaptop2:/media/SANVOL$ dd if=/dev/zero of=test.file4 bs=1M count=100 conv=fsync
+100+0 records in
+100+0 records out
+104857600 bytes (105 MB) copied, 89.6839 seconds, 1.2 MB/s
+
+(Thats is a bit more than a 5x increase!)
+
+Wooooo!
+
+Brad
+-- 
+"Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so." -- Douglas Adams
+
+
+From oakad at yahoo.com  Sat Sep  2 10:47:35 2006
+From: oakad at yahoo.com (Alex Dubov)
+Date: Sat, 2 Sep 2006 01:47:35 -0700 (PDT)
+Subject: [Tifm21-devel] Driver update: write speed improvement
+In-Reply-To: <44F937B0.2030803@wasp.net.au>
+Message-ID: <20060902084735.92548.qmail@web36701.mail.mud.yahoo.com>
+
+Writing is now done with dma, so the speed is, of
+course, much higher. It can cause a bad luck, however,
+to post things like "50x increase in speed".
+
+Now, I think the driver is fit for inclusion into
+kernel. I'll try to do something about it.
+
+--- Brad Campbell <brad at wasp.net.au> wrote:
+
+> Alex Dubov wrote:
+> > I made a couple of modifications to the tifm
+> driver.
+> > Most notables improvements:
+> > 1. PIO speed (no_dma=1 option) is now up to 7x
+> higher
+> > 2. Write speed is up to 5x higher
+> > (the speed gain may even be better than this; on
+> the
+> > other hand, it may be worse - one can never know)
+> > 
+> 
+> Oh yes.. prior to this I was getting consistent
+> 21KB/s.. now look!
+> 
+> brad at bklaptop2:/media/SANVOL$ dd if=/dev/zero
+> of=test.file4 bs=1M count=100 conv=fsync
+> 100+0 records in
+> 100+0 records out
+> 104857600 bytes (105 MB) copied, 89.6839 seconds,
+> 1.2 MB/s
+> 
+> (Thats is a bit more than a 5x increase!)
+> 
+> Wooooo!
+> 
+> Brad
+> -- 
+> "Human beings, who are almost unique in having the
+> ability
+> to learn from the experience of others, are also
+> remarkable
+> for their apparent disinclination to do so." --
+> Douglas Adams
+> _______________________________________________
+> Tifm21-devel mailing list
+> Tifm21-devel at lists.berlios.de
+>
+https://lists.berlios.de/mailman/listinfo/tifm21-devel
+> 
+
+
+__________________________________________________
+Do You Yahoo!?
+Tired of spam?  Yahoo! Mail has the best spam protection around 
+http://mail.yahoo.com 
+
+
+From dylan.semler at gmail.com  Thu Sep  7 02:34:52 2006
+From: dylan.semler at gmail.com (Dylan Semler)
+Date: Wed, 6 Sep 2006 20:34:52 -0400
+Subject: [Tifm21-devel] PCI1620?
+Message-ID: <be852c190609061734i3432ead3h4c03338ad5f4e92e@mail.gmail.com>
+
+Not really understanding a whole lot here.  I had thought that this driver
+was building support for my card reader but now I'm not so sure.  Doing an
+lspci i get, among other things:
+
+02:09.0 CardBus bridge: Texas Instruments PCI1620 PC Card Controller (rev
+01)
+02:09.1 CardBus bridge: Texas Instruments PCI1620 PC Card Controller (rev
+01)
+02:09.2 System peripheral: Texas Instruments PCI1620 Firmware Loading
+Function (rev 01)
+
+But looking at the main website for this driver it seems that supported
+models are, PCI6411, 6421, 6611, 6621, 7411, 7421, 7611, 7621 (hence the
+Pcixx21).  As mine \appears\ to bePCI1620, am I SOL on this working with
+this driver?  Anyone offhand know where I should be looking for support?
+Perhaps lspci is reporting info for the PCMCIA slot and not the card reader?
+
+Cheers,
+Dylan
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20060906/22c0bf74/attachment.html>
+
+From oakad at yahoo.com  Thu Sep  7 04:28:25 2006
+From: oakad at yahoo.com (Alex Dubov)
+Date: Wed, 6 Sep 2006 19:28:25 -0700 (PDT)
+Subject: [Tifm21-devel] PCI1620?
+In-Reply-To: <be852c190609061734i3432ead3h4c03338ad5f4e92e@mail.gmail.com>
+Message-ID: <20060907022825.1113.qmail@web36708.mail.mud.yahoo.com>
+
+You are referring to what is called "ultramedia" controller. We are dealing only with "flashmedia"
+ones.
+Look here: http://penguin-breeder.org/kernel/#tiumfwl
+
+The problem with "ultramedia" chips is proprietary firmware needed to make them work. Unless TI is
+willing to resolve this, you are out of luck.
+
+As I can not be sure of the above, you may post as an output of "lspci -nv", which is considerably
+more informative.
+
+--- Dylan Semler <dylan.semler at gmail.com> wrote:
+
+> Not really understanding a whole lot here.  I had thought that this driver
+> was building support for my card reader but now I'm not so sure.  Doing an
+> lspci i get, among other things:
+> 
+> 02:09.0 CardBus bridge: Texas Instruments PCI1620 PC Card Controller (rev
+> 01)
+> 02:09.1 CardBus bridge: Texas Instruments PCI1620 PC Card Controller (rev
+> 01)
+> 02:09.2 System peripheral: Texas Instruments PCI1620 Firmware Loading
+> Function (rev 01)
+> 
+> But looking at the main website for this driver it seems that supported
+> models are, PCI6411, 6421, 6611, 6621, 7411, 7421, 7611, 7621 (hence the
+> Pcixx21).  As mine \appears\ to bePCI1620, am I SOL on this working with
+> this driver?  Anyone offhand know where I should be looking for support?
+> Perhaps lspci is reporting info for the PCMCIA slot and not the card reader?
+> 
+> Cheers,
+> Dylan
+> > _______________________________________________
+> Tifm21-devel mailing list
+> Tifm21-devel at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/tifm21-devel
+> 
+
+
+__________________________________________________
+Do You Yahoo!?
+Tired of spam?  Yahoo! Mail has the best spam protection around 
+http://mail.yahoo.com 
+
+
+From misho at starrydreams.com  Thu Sep  7 09:07:24 2006
+From: misho at starrydreams.com (Dr.Mihail Tomoff)
+Date: Thu, 07 Sep 2006 09:07:24 +0200
+Subject: [Tifm21-devel] problem with inserting the compiled module
+Message-ID: <44FFC52C.3090208@starrydreams.com>
+
+Hi, I have this problem:
+
+mishaikin at farscape:~/tifmxx/trunk/driver> ls
+l.sh  Makefile  tifm_7xx1.c  tifm_core.c  tifm.h  tifm_sd.c  ul.sh
+mishaikin at farscape:~/tifmxx/trunk/driver> make
+make -C /lib/modules/2.6.16.21-0.13-default/build
+M=/home/mishaikin/tifmxx/trunk/driver
+make[1]: Entering directory
+`/usr/src/linux-2.6.16.21-0.13-obj/x86_64/default'
+make -C ../../../linux-2.6.16.21-0.13
+O=../linux-2.6.16.21-0.13-obj/x86_64/default
+  LD      /home/mishaikin/tifmxx/trunk/driver/built-in.o
+  CC [M]  /home/mishaikin/tifmxx/trunk/driver/tifm_core.o
+  CC [M]  /home/mishaikin/tifmxx/trunk/driver/tifm_7xx1.o
+  CC [M]  /home/mishaikin/tifmxx/trunk/driver/tifm_sd.o
+  Building modules, stage 2.
+  MODPOST
+  CC      /home/mishaikin/tifmxx/trunk/driver/tifm_7xx1.mod.o
+  LD [M]  /home/mishaikin/tifmxx/trunk/driver/tifm_7xx1.ko
+  CC      /home/mishaikin/tifmxx/trunk/driver/tifm_core.mod.o
+  LD [M]  /home/mishaikin/tifmxx/trunk/driver/tifm_core.ko
+  CC      /home/mishaikin/tifmxx/trunk/driver/tifm_sd.mod.o
+  LD [M]  /home/mishaikin/tifmxx/trunk/driver/tifm_sd.ko
+make[1]: Leaving directory
+`/usr/src/linux-2.6.16.21-0.13-obj/x86_64/default'
+mishaikin at farscape:~/tifmxx/trunk/driver> su
+Password:
+farscape:/home/mishaikin/tifmxx/trunk/driver # ls
+built-in.o       tifm_7xx1.ko          tifm_core.c          
+.tifm_core.o.cmd  .tifm_sd.mod.o.cmd
+.built-in.o.cmd  .tifm_7xx1.ko.cmd     tifm_core.ko         
+tifm.h            tifm_sd.o
+l.sh             tifm_7xx1.mod.c       .tifm_core.ko.cmd    
+tifm_sd.c         .tifm_sd.o.cmd
+Makefile         tifm_7xx1.mod.o       tifm_core.mod.c      
+tifm_sd.ko        .tmp_versions
+Modules.symvers  .tifm_7xx1.mod.o.cmd  tifm_core.mod.o      
+.tifm_sd.ko.cmd   ul.sh
+.svn             tifm_7xx1.o           .tifm_core.mod.o.cmd  tifm_sd.mod.c
+tifm_7xx1.c      .tifm_7xx1.o.cmd      tifm_core.o           tifm_sd.mod.o
+farscape:/home/mishaikin/tifmxx/trunk/driver # ./l.sh
+insmod: error inserting './tifm_sd.ko': -1 Unknown symbol in module
+
+My os is SuSE 10.1 64 bit on Amilo A1650G laptop.
+Could you help? I tried both with the published files and the svn the
+result is always the same. Maybe my kernel version is not new enough :-)  ?
+
+
+From brad at wasp.net.au  Thu Sep  7 09:21:35 2006
+From: brad at wasp.net.au (Brad Campbell)
+Date: Thu, 07 Sep 2006 11:21:35 +0400
+Subject: [Tifm21-devel] problem with inserting the compiled module
+In-Reply-To: <44FFC52C.3090208@starrydreams.com>
+References: <44FFC52C.3090208@starrydreams.com>
+Message-ID: <44FFC87F.7050507@wasp.net.au>
+
+Dr.Mihail Tomoff wrote:
+> Hi, I have this problem:
+> 
+> mishaikin at farscape:~/tifmxx/trunk/driver> ls
+> l.sh  Makefile  tifm_7xx1.c  tifm_core.c  tifm.h  tifm_sd.c  ul.sh
+> mishaikin at farscape:~/tifmxx/trunk/driver> make
+> make -C /lib/modules/2.6.16.21-0.13-default/build
+> M=/home/mishaikin/tifmxx/trunk/driver
+> make[1]: Entering directory
+> `/usr/src/linux-2.6.16.21-0.13-obj/x86_64/default'
+> make -C ../../../linux-2.6.16.21-0.13
+> O=../linux-2.6.16.21-0.13-obj/x86_64/default
+>   LD      /home/mishaikin/tifmxx/trunk/driver/built-in.o
+>   CC [M]  /home/mishaikin/tifmxx/trunk/driver/tifm_core.o
+>   CC [M]  /home/mishaikin/tifmxx/trunk/driver/tifm_7xx1.o
+>   CC [M]  /home/mishaikin/tifmxx/trunk/driver/tifm_sd.o
+>   Building modules, stage 2.
+>   MODPOST
+>   CC      /home/mishaikin/tifmxx/trunk/driver/tifm_7xx1.mod.o
+>   LD [M]  /home/mishaikin/tifmxx/trunk/driver/tifm_7xx1.ko
+>   CC      /home/mishaikin/tifmxx/trunk/driver/tifm_core.mod.o
+>   LD [M]  /home/mishaikin/tifmxx/trunk/driver/tifm_core.ko
+>   CC      /home/mishaikin/tifmxx/trunk/driver/tifm_sd.mod.o
+>   LD [M]  /home/mishaikin/tifmxx/trunk/driver/tifm_sd.ko
+> make[1]: Leaving directory
+> `/usr/src/linux-2.6.16.21-0.13-obj/x86_64/default'
+> mishaikin at farscape:~/tifmxx/trunk/driver> su
+> Password:
+> farscape:/home/mishaikin/tifmxx/trunk/driver # ls
+> built-in.o       tifm_7xx1.ko          tifm_core.c          
+> .tifm_core.o.cmd  .tifm_sd.mod.o.cmd
+> .built-in.o.cmd  .tifm_7xx1.ko.cmd     tifm_core.ko         
+> tifm.h            tifm_sd.o
+> l.sh             tifm_7xx1.mod.c       .tifm_core.ko.cmd    
+> tifm_sd.c         .tifm_sd.o.cmd
+> Makefile         tifm_7xx1.mod.o       tifm_core.mod.c      
+> tifm_sd.ko        .tmp_versions
+> Modules.symvers  .tifm_7xx1.mod.o.cmd  tifm_core.mod.o      
+> .tifm_sd.ko.cmd   ul.sh
+> .svn             tifm_7xx1.o           .tifm_core.mod.o.cmd  tifm_sd.mod.c
+> tifm_7xx1.c      .tifm_7xx1.o.cmd      tifm_core.o           tifm_sd.mod.o
+> farscape:/home/mishaikin/tifmxx/trunk/driver # ./l.sh
+> insmod: error inserting './tifm_sd.ko': -1 Unknown symbol in module
+
+do you have mmc_block loaded or compiled in?
+
+brad at bklaptop2:~$ lsmod | grep mmc
+mmc_block               7752  0
+mmc_core               23376  2 tifm_sd,mmc_block
+
+Brad
+-- 
+"Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so." -- Douglas Adams
+
+
+From misho at starrydreams.com  Thu Sep  7 09:41:56 2006
+From: misho at starrydreams.com (Dr.Mihail Tomoff)
+Date: Thu, 07 Sep 2006 09:41:56 +0200
+Subject: [Tifm21-devel] problem with inserting the compiled module
+In-Reply-To: <44FFC87F.7050507@wasp.net.au>
+References: <44FFC52C.3090208@starrydreams.com> <44FFC87F.7050507@wasp.net.au>
+Message-ID: <44FFCD44.8030506@starrydreams.com>
+
+Brad Campbell wrote:
+> Dr.Mihail Tomoff wrote:
+>   
+>> Hi, I have this problem:
+>>
+>> mishaikin at farscape:~/tifmxx/trunk/driver> ls
+>> l.sh  Makefile  tifm_7xx1.c  tifm_core.c  tifm.h  tifm_sd.c  ul.sh
+>> mishaikin at farscape:~/tifmxx/trunk/driver> make
+>> make -C /lib/modules/2.6.16.21-0.13-default/build
+>> M=/home/mishaikin/tifmxx/trunk/driver
+>> make[1]: Entering directory
+>> `/usr/src/linux-2.6.16.21-0.13-obj/x86_64/default'
+>> make -C ../../../linux-2.6.16.21-0.13
+>> O=../linux-2.6.16.21-0.13-obj/x86_64/default
+>>   LD      /home/mishaikin/tifmxx/trunk/driver/built-in.o
+>>   CC [M]  /home/mishaikin/tifmxx/trunk/driver/tifm_core.o
+>>   CC [M]  /home/mishaikin/tifmxx/trunk/driver/tifm_7xx1.o
+>>   CC [M]  /home/mishaikin/tifmxx/trunk/driver/tifm_sd.o
+>>   Building modules, stage 2.
+>>   MODPOST
+>>   CC      /home/mishaikin/tifmxx/trunk/driver/tifm_7xx1.mod.o
+>>   LD [M]  /home/mishaikin/tifmxx/trunk/driver/tifm_7xx1.ko
+>>   CC      /home/mishaikin/tifmxx/trunk/driver/tifm_core.mod.o
+>>   LD [M]  /home/mishaikin/tifmxx/trunk/driver/tifm_core.ko
+>>   CC      /home/mishaikin/tifmxx/trunk/driver/tifm_sd.mod.o
+>>   LD [M]  /home/mishaikin/tifmxx/trunk/driver/tifm_sd.ko
+>> make[1]: Leaving directory
+>> `/usr/src/linux-2.6.16.21-0.13-obj/x86_64/default'
+>> mishaikin at farscape:~/tifmxx/trunk/driver> su
+>> Password:
+>> farscape:/home/mishaikin/tifmxx/trunk/driver # ls
+>> built-in.o       tifm_7xx1.ko          tifm_core.c          
+>> .tifm_core.o.cmd  .tifm_sd.mod.o.cmd
+>> .built-in.o.cmd  .tifm_7xx1.ko.cmd     tifm_core.ko         
+>> tifm.h            tifm_sd.o
+>> l.sh             tifm_7xx1.mod.c       .tifm_core.ko.cmd    
+>> tifm_sd.c         .tifm_sd.o.cmd
+>> Makefile         tifm_7xx1.mod.o       tifm_core.mod.c      
+>> tifm_sd.ko        .tmp_versions
+>> Modules.symvers  .tifm_7xx1.mod.o.cmd  tifm_core.mod.o      
+>> .tifm_sd.ko.cmd   ul.sh
+>> .svn             tifm_7xx1.o           .tifm_core.mod.o.cmd  tifm_sd.mod.c
+>> tifm_7xx1.c      .tifm_7xx1.o.cmd      tifm_core.o           tifm_sd.mod.o
+>> farscape:/home/mishaikin/tifmxx/trunk/driver # ./l.sh
+>> insmod: error inserting './tifm_sd.ko': -1 Unknown symbol in module
+>>     
+>
+> do you have mmc_block loaded or compiled in?
+>
+> brad at bklaptop2:~$ lsmod | grep mmc
+> mmc_block               7752  0
+> mmc_core               23376  2 tifm_sd,mmc_block
+>
+> Brad
+>   
+Hm, they were not loaded. After loading them with modprobe I was able to
+insert the driver.
+Do I have to do s.th. for the mmc_block and mmc_core to load after restart ?
+
+And btw I've noticed that after copying a file (especially big ones) to
+a SD card, the konqueror window stays at "*stalled*" for about a minute
+in spite that it is written that 100% have been copied. The same happens
+with Nautilus ... it stays quite long before closing the copy window.
+
+Regards,
+
+Mihail Tomov
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20060907/58170d59/attachment.html>
+
+From brad at wasp.net.au  Thu Sep  7 09:51:55 2006
+From: brad at wasp.net.au (Brad Campbell)
+Date: Thu, 07 Sep 2006 11:51:55 +0400
+Subject: [Tifm21-devel] problem with inserting the compiled module
+In-Reply-To: <44FFCD44.8030506@starrydreams.com>
+References: <44FFC52C.3090208@starrydreams.com> <44FFC87F.7050507@wasp.net.au>
+	<44FFCD44.8030506@starrydreams.com>
+Message-ID: <44FFCF9B.8000908@wasp.net.au>
+
+Dr.Mihail Tomoff wrote:
+
+> Hm, they were not loaded. After loading them with modprobe I was able to 
+> insert the driver.
+> Do I have to do s.th. for the mmc_block and mmc_core to load after restart ?
+
+Ahh.. yes. unless you copy the tifm drives into your kernel tree, then depmod has no idea it must 
+load mmc_block when you load tifm_sd. So yes, just put mmc_block in your /etc/modules and mmc_block 
+will pull in mmc_core when it loads.
+
+I copy the modules to /lib/modules/$(shell uname -r)/misc/ and issue a depmod -ae, which causes 
+loading tifm_sd to pull mmc_block in when it loads.
+
+> And btw I've noticed that after copying a file (especially big ones) to 
+> a SD card, the konqueror window stays at "*stalled*" for about a minute 
+> in spite that it is written that 100% have been copied. The same happens 
+> with Nautilus ... it stays quite long before closing the copy window.
+
+If the card is mounted async then you could copy 100MB to the card almost instantly and it will sit 
+dirty in cache writing out as fast as the hardware allows. So yes this can happen. You could edit 
+your fstab or however your distribution does it to mount the card -o sync (which is ugly if you have 
+a fat formatted card) or just make sure you wait until the unmount completes prior to popping the 
+card out (or things get very ugly, very quickly).
+
+If you have a version of the driver that is older than about a week, the write speed is terrible. If 
+you use the latest driver from SVN then it goes like a bat out of hell and is the "greatest thing 
+since sliced bread" (tm). (which causes one to wonder what was the greatest thing prior to sliced 
+bread).
+
+
+Brad
+-- 
+"Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so." -- Douglas Adams
+
+
+From misho at starrydreams.com  Fri Sep  8 23:07:40 2006
+From: misho at starrydreams.com (Dr.Mihail Tomoff)
+Date: Fri, 08 Sep 2006 23:07:40 +0200
+Subject: [Tifm21-devel] problem with inserting the compiled module
+In-Reply-To: <44FFCF9B.8000908@wasp.net.au>
+References: <44FFC52C.3090208@starrydreams.com>
+	<44FFC87F.7050507@wasp.net.au>	<44FFCD44.8030506@starrydreams.com>
+	<44FFCF9B.8000908@wasp.net.au>
+Message-ID: <4501DB9C.2060303@starrydreams.com>
+
+Brad Campbell wrote:
+> Dr.Mihail Tomoff wrote:
+>
+>   
+>> Hm, they were not loaded. After loading them with modprobe I was able to 
+>> insert the driver.
+>> Do I have to do s.th. for the mmc_block and mmc_core to load after restart ?
+>>     
+>
+> Ahh.. yes. unless you copy the tifm drives into your kernel tree, then depmod has no idea it must 
+> load mmc_block when you load tifm_sd. So yes, just put mmc_block in your /etc/modules and mmc_block 
+> will pull in mmc_core when it loads.
+>
+> I copy the modules to /lib/modules/$(shell uname -r)/misc/ and issue a depmod -ae, which causes 
+> loading tifm_sd to pull mmc_block in when it loads.
+>
+>   
+>> And btw I've noticed that after copying a file (especially big ones) to 
+>> a SD card, the konqueror window stays at "*stalled*" for about a minute 
+>> in spite that it is written that 100% have been copied. The same happens 
+>> with Nautilus ... it stays quite long before closing the copy window.
+>>     
+>
+> If the card is mounted async then you could copy 100MB to the card almost instantly and it will sit 
+> dirty in cache writing out as fast as the hardware allows. So yes this can happen. You could edit 
+> your fstab or however your distribution does it to mount the card -o sync (which is ugly if you have 
+> a fat formatted card) or just make sure you wait until the unmount completes prior to popping the 
+> card out (or things get very ugly, very quickly).
+>
+> If you have a version of the driver that is older than about a week, the write speed is terrible. If 
+> you use the latest driver from SVN then it goes like a bat out of hell and is the "greatest thing 
+> since sliced bread" (tm). (which causes one to wonder what was the greatest thing prior to sliced 
+> bread).
+>
+>
+> Brad
+>   
+I used the svn version. However, the process often stalls, and what is
+worse is that now when I try to copy files to the sd card, the konqueror
+does not see correctly the free space on the card. So, now I suppose
+will have to format the card.
+About the sync/async, I don't know how to do it. SuSE's way of hanling
+the storage medias are something not very clear for me. Now I have in
+/etc/mtab the line: /dev/mmcblk1p1 /media/NIKON_D50 vfat
+rw,nosuid,nodev,noatime,flush,uid=1000,utf8,shortname=lower 0 0 added by
+some demon when I have inserted the card.
+
+Regards,
+
+Mihail Tomov
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20060908/48767c5a/attachment.html>
+
+From brad at wasp.net.au  Sun Sep 17 06:24:15 2006
+From: brad at wasp.net.au (Brad Campbell)
+Date: Sun, 17 Sep 2006 08:24:15 +0400
+Subject: [Tifm21-devel] Performance report
+Message-ID: <450CCDEF.4040606@wasp.net.au>
+
+G'day all,
+
+Just a little report. I was using SVN driver 59 so it's a little out of date, but I quite 
+comfortably copied 1.8G off a 2G card last evening at an average speed of about 4.2MB/s.
+
+So it's nicely rocketing along, and all the strange problems I used to have with reads timing out 
+and the card ejecting from under me appear to have gone. I've not been able to crash it in quite 
+some time now.
+
+Brad
+-- 
+"Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so." -- Douglas Adams
+
+

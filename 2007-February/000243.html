@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] Issues with kernel 2.6.19
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2007-February/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20Issues%20with%20kernel%202.6.19&In-Reply-To=%3C45CDD9E1.4060201%40wasp.net.au%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000242.html">
+   <LINK REL="Next"  HREF="000244.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] Issues with kernel 2.6.19</H1>
+    <B>Brad Campbell</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20Issues%20with%20kernel%202.6.19&In-Reply-To=%3C45CDD9E1.4060201%40wasp.net.au%3E"
+       TITLE="[Tifm21-devel] Issues with kernel 2.6.19">brad at wasp.net.au
+       </A><BR>
+    <I>Sat Feb 10 15:42:41 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000242.html">[Tifm21-devel] Issues with kernel 2.6.19
+</A></li>
+        <LI>Next message: <A HREF="000244.html">[Tifm21-devel] Issues with kernel 2.6.19
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#243">[ date ]</a>
+              <a href="thread.html#243">[ thread ]</a>
+              <a href="subject.html#243">[ subject ]</a>
+              <a href="author.html#243">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Alex Dubov wrote:
+&gt;&gt;<i> The problem now is that formatting a card from the card reader using either
+</I>&gt;&gt;<i> fdisk or cfdisk produces this error when I try to write the changes to the
+</I>&gt;&gt;<i> disk:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> tifm_sd: card failed to respond for a long period of time&lt;6&gt;tifm_7xx1:
+</I>&gt;&gt;<i> demand removing card from socket 3
+</I>&gt;&gt;&gt;<i> mmcblk0: error 1 requesting status
+</I>&gt;&gt;&gt;<i> end_request: I/O error, dev mmcblk0, sector 0
+</I>&gt;&gt;&gt;<i> printk: 6 messages suppressed.
+</I>&gt;&gt;&gt;<i> Buffer I/O error on device mmcblk0, logical block 0
+</I>&gt;&gt;&gt;<i> lost page write due to I/O error on mmcblk0
+</I>&gt;<i> Please, compile the driver with DEBUG=1 define to enable debug printouts. This may lead us to the
+</I>&gt;<i> cause of the problem.
+</I>
+Log attached. I tried to inline it but thunderbird just choked severely on anything over about 1000 
+lines.. and this is just over 3k lines.
+
+
+Brad
+-- 
+&quot;Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so.&quot; -- Douglas Adams
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: mmclog.gz
+Type: application/x-gzip
+Size: 8039 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/tifm21-devel/attachments/20070210/12386901/attachment.bin">https://lists.berlios.de/pipermail/tifm21-devel/attachments/20070210/12386901/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000242.html">[Tifm21-devel] Issues with kernel 2.6.19
+</A></li>
+	<LI>Next message: <A HREF="000244.html">[Tifm21-devel] Issues with kernel 2.6.19
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#243">[ date ]</a>
+              <a href="thread.html#243">[ thread ]</a>
+              <a href="subject.html#243">[ subject ]</a>
+              <a href="author.html#243">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

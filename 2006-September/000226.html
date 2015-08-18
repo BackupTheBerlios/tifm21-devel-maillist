@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] problem with inserting the compiled module
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2006-September/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20problem%20with%20inserting%20the%20compiled%20module&In-Reply-To=%3C4501DB9C.2060303%40starrydreams.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000225.html">
+   <LINK REL="Next"  HREF="000227.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] problem with inserting the compiled module</H1>
+    <B>Dr.Mihail Tomoff</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20problem%20with%20inserting%20the%20compiled%20module&In-Reply-To=%3C4501DB9C.2060303%40starrydreams.com%3E"
+       TITLE="[Tifm21-devel] problem with inserting the compiled module">misho at starrydreams.com
+       </A><BR>
+    <I>Fri Sep  8 23:07:40 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000225.html">[Tifm21-devel] problem with inserting the compiled module
+</A></li>
+        <LI>Next message: <A HREF="000227.html">[Tifm21-devel] Performance report
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#226">[ date ]</a>
+              <a href="thread.html#226">[ thread ]</a>
+              <a href="subject.html#226">[ subject ]</a>
+              <a href="author.html#226">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Brad Campbell wrote:
+&gt;<i> Dr.Mihail Tomoff wrote:
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i> Hm, they were not loaded. After loading them with modprobe I was able to 
+</I>&gt;&gt;<i> insert the driver.
+</I>&gt;&gt;<i> Do I have to do s.th. for the mmc_block and mmc_core to load after restart ?
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> Ahh.. yes. unless you copy the tifm drives into your kernel tree, then depmod has no idea it must 
+</I>&gt;<i> load mmc_block when you load tifm_sd. So yes, just put mmc_block in your /etc/modules and mmc_block 
+</I>&gt;<i> will pull in mmc_core when it loads.
+</I>&gt;<i>
+</I>&gt;<i> I copy the modules to /lib/modules/$(shell uname -r)/misc/ and issue a depmod -ae, which causes 
+</I>&gt;<i> loading tifm_sd to pull mmc_block in when it loads.
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i> And btw I've noticed that after copying a file (especially big ones) to 
+</I>&gt;&gt;<i> a SD card, the konqueror window stays at &quot;*stalled*&quot; for about a minute 
+</I>&gt;&gt;<i> in spite that it is written that 100% have been copied. The same happens 
+</I>&gt;&gt;<i> with Nautilus ... it stays quite long before closing the copy window.
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> If the card is mounted async then you could copy 100MB to the card almost instantly and it will sit 
+</I>&gt;<i> dirty in cache writing out as fast as the hardware allows. So yes this can happen. You could edit 
+</I>&gt;<i> your fstab or however your distribution does it to mount the card -o sync (which is ugly if you have 
+</I>&gt;<i> a fat formatted card) or just make sure you wait until the unmount completes prior to popping the 
+</I>&gt;<i> card out (or things get very ugly, very quickly).
+</I>&gt;<i>
+</I>&gt;<i> If you have a version of the driver that is older than about a week, the write speed is terrible. If 
+</I>&gt;<i> you use the latest driver from SVN then it goes like a bat out of hell and is the &quot;greatest thing 
+</I>&gt;<i> since sliced bread&quot; (tm). (which causes one to wonder what was the greatest thing prior to sliced 
+</I>&gt;<i> bread).
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Brad
+</I>&gt;<i>   
+</I>I used the svn version. However, the process often stalls, and what is
+worse is that now when I try to copy files to the sd card, the konqueror
+does not see correctly the free space on the card. So, now I suppose
+will have to format the card.
+About the sync/async, I don't know how to do it. SuSE's way of hanling
+the storage medias are something not very clear for me. Now I have in
+/etc/mtab the line: /dev/mmcblk1p1 /media/NIKON_D50 vfat
+rw,nosuid,nodev,noatime,flush,uid=1000,utf8,shortname=lower 0 0 added by
+some demon when I have inserted the card.
+
+Regards,
+
+Mihail Tomov
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/tifm21-devel/attachments/20060908/48767c5a/attachment.html">https://lists.berlios.de/pipermail/tifm21-devel/attachments/20060908/48767c5a/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000225.html">[Tifm21-devel] problem with inserting the compiled module
+</A></li>
+	<LI>Next message: <A HREF="000227.html">[Tifm21-devel] Performance report
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#226">[ date ]</a>
+              <a href="thread.html#226">[ thread ]</a>
+              <a href="subject.html#226">[ subject ]</a>
+              <a href="author.html#226">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

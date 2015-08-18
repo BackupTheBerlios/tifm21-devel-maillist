@@ -1,0 +1,244 @@
+From wael at siemens-mobiles.org  Fri May 26 19:42:01 2006
+From: wael at siemens-mobiles.org (Wael Nasreddine)
+Date: Fri, 26 May 2006 19:42:01 +0200
+Subject: [Tifm21-devel] device nodes?
+Message-ID: <44773DE9.4090809@siemens-mobiles.org>
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Hi,
+
+I see that on today I could load the kernel modules as well as getting
+the MMC card to be detected, also sysfs is aware of the card, however
+udev (at my configurations) does not have a rule for it So no device
+node in /dev is created, I looked in /sys/class/mmc_host ,
+/sys/bus/tifm and in
+/sys/devices/pci0000:00/0000:00:1e.0/0000:02:09.3/tifm_sd0:3/mmc0:0001
+But i couldn't find the major:minor number to create the node
+manually, Can you please give me the major:minor so i can create the
+node with mknod ??
+
+a little information on my system:
+Kernel 2.6.16
+Udev 0.91
+
+udevmonitor:
+(0)[root at nasreddine /home/wael]# udevmonitor
+udevmonitor prints the received event from the kernel [UEVENT]
+and the event which udev sends out after rule processing [UDEV]
+
+UEVENT[1148664956.643443] add@/module/mmc_core
+UDEV  [1148664956.646239] add@/module/mmc_core
+UEVENT[1148664956.665896] add@/module/tifm_sd
+UDEV  [1148664956.667403] add@/module/tifm_sd
+UEVENT[1148664956.668066] add@/bus/tifm/drivers/tifm_sd
+UDEV  [1148664956.669227] add@/bus/tifm/drivers/tifm_sd
+UEVENT[1148665230.886667] add@/class/mmc_host/mmc0
+UDEV  [1148665230.886667] add@/class/mmc_host/mmc0
+UEVENT[1148665232.490352]
+add@/devices/pci0000:00/0000:00:1e.0/0000:02:09.3/tifm_sd0:3/mmc0:0001
+UDEV  [1148665232.635075]
+add@/devices/pci0000:00/0000:00:1e.0/0000:02:09.3/tifm_sd0:3/mmc0:0001
+
+Regards,
+Wael Nasreddine
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.2.2 (GNU/Linux)
+
+iD8DBQFEdz3oVWU5RcjdGKIRAgkpAJ4+NC1HSazTBZDGTHEr5PdiROlf8gCfbHJj
+86rOEwB9UBmGraGpuxJDpoM=
+=eOFG
+-----END PGP SIGNATURE-----
+
+
+
+From oakad at yahoo.com  Sat May 27 18:57:39 2006
+From: oakad at yahoo.com (Alex Dubov)
+Date: Sat, 27 May 2006 09:57:39 -0700 (PDT)
+Subject: [Tifm21-devel] device nodes?
+In-Reply-To: <44773DE9.4090809@siemens-mobiles.org>
+Message-ID: <20060527165739.94414.qmail@web36708.mail.mud.yahoo.com>
+
+Hmm.
+Actually, mmc_block module is supposed to handle udev
+notification and such (I hope you've loaded it).
+
+On my machine, block device gets created with major
+254 and minors as number of partitions (0 is a whole
+device, partitions starting from 1).
+
+--- Wael Nasreddine <wael at siemens-mobiles.org> wrote:
+
+> -----BEGIN PGP SIGNED MESSAGE-----
+> Hash: SHA1
+> 
+> Hi,
+> 
+> I see that on today I could load the kernel modules
+> as well as getting
+> the MMC card to be detected, also sysfs is aware of
+> the card, however
+> udev (at my configurations) does not have a rule for
+> it So no device
+> node in /dev is created, I looked in
+> /sys/class/mmc_host ,
+> /sys/bus/tifm and in
+>
+/sys/devices/pci0000:00/0000:00:1e.0/0000:02:09.3/tifm_sd0:3/mmc0:0001
+> But i couldn't find the major:minor number to create
+> the node
+> manually, Can you please give me the major:minor so
+> i can create the
+> node with mknod ??
+> 
+> a little information on my system:
+> Kernel 2.6.16
+> Udev 0.91
+> 
+> udevmonitor:
+> (0)[root at nasreddine /home/wael]# udevmonitor
+> udevmonitor prints the received event from the
+> kernel [UEVENT]
+> and the event which udev sends out after rule
+> processing [UDEV]
+> 
+> UEVENT[1148664956.643443] add@/module/mmc_core
+> UDEV  [1148664956.646239] add@/module/mmc_core
+> UEVENT[1148664956.665896] add@/module/tifm_sd
+> UDEV  [1148664956.667403] add@/module/tifm_sd
+> UEVENT[1148664956.668066]
+> add@/bus/tifm/drivers/tifm_sd
+> UDEV  [1148664956.669227]
+> add@/bus/tifm/drivers/tifm_sd
+> UEVENT[1148665230.886667] add@/class/mmc_host/mmc0
+> UDEV  [1148665230.886667] add@/class/mmc_host/mmc0
+> UEVENT[1148665232.490352]
+>
+add@/devices/pci0000:00/0000:00:1e.0/0000:02:09.3/tifm_sd0:3/mmc0:0001
+> UDEV  [1148665232.635075]
+>
+add@/devices/pci0000:00/0000:00:1e.0/0000:02:09.3/tifm_sd0:3/mmc0:0001
+> 
+> Regards,
+> Wael Nasreddine
+> -----BEGIN PGP SIGNATURE-----
+> Version: GnuPG v1.4.2.2 (GNU/Linux)
+> 
+>
+iD8DBQFEdz3oVWU5RcjdGKIRAgkpAJ4+NC1HSazTBZDGTHEr5PdiROlf8gCfbHJj
+> 86rOEwB9UBmGraGpuxJDpoM=
+> =eOFG
+> -----END PGP SIGNATURE-----
+> 
+> _______________________________________________
+> Tifm21-devel mailing list
+> Tifm21-devel at lists.berlios.de
+>
+http://lists.berlios.de/mailman/listinfo/tifm21-devel
+> 
+
+
+__________________________________________________
+Do You Yahoo!?
+Tired of spam?  Yahoo! Mail has the best spam protection around 
+http://mail.yahoo.com 
+
+
+From dylan.semler at gmail.com  Mon May 29 03:25:27 2006
+From: dylan.semler at gmail.com (Dylan Semler)
+Date: Sun, 28 May 2006 21:25:27 -0400
+Subject: [Tifm21-devel] New to list
+Message-ID: <be852c190605281825t4055e8cdsad1e155d1e6e16e4@mail.gmail.com>
+
+Hello list.
+
+I myself don't have any programming experience but probably can provide a
+core dump if you are still in need.  I don't know much about my card reader
+except that it's a 4-in-1 TI built in to a Sager 3790 notebook.  I've got a
+sony memory stick duo, and an adapter that I can do a core dump with if
+someone want's to provide instructions.
+
+So what is the current status of the driver?  Is there any functionality yet
+as far as being able to read or write cards?
+
+Cheers,
+Dylan
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20060528/e0cf6921/attachment.html>
+
+From banan at student.ltu.se  Mon May 29 10:24:34 2006
+From: banan at student.ltu.se (Benjamin Larsson)
+Date: Mon, 29 May 2006 10:24:34 +0200
+Subject: [Tifm21-devel] SD card working with rev 46
+Message-ID: <447AAFC2.80506@student.ltu.se>
+
+File operations seems to work reliable and I get around 80kb/sec
+currently on a 64bit Acer laptop.
+
+To get it working I just built the modules and ran the following as root:
+sh l.sh
+mkdir /mnt/mmc
+mount -t vfat /dev/mmcblk0 /mnt/mmc
+
+This might help if you don't have the device nods:
+mknod /dev/mmcblk0 b 254 1
+
+
+MvH
+Benjamin Larsson
+
+-- 
+"incorrect information" is an oxymoron. Information is, by definition, factual, correct.
+
+
+
+From oakad at yahoo.com  Tue May 30 03:37:10 2006
+From: oakad at yahoo.com (Alex Dubov)
+Date: Mon, 29 May 2006 18:37:10 -0700 (PDT)
+Subject: [Tifm21-devel] SD card working with rev 46
+In-Reply-To: <447AAFC2.80506@student.ltu.se>
+Message-ID: <20060530013710.69456.qmail@web36711.mail.mud.yahoo.com>
+
+And this is not surprising as I haven't managed to
+solve the dma problem yet. With dma you should get at
+least 30 times faster than this.
+
+--- Benjamin Larsson <banan at student.ltu.se> wrote:
+
+> File operations seems to work reliable and I get
+> around 80kb/sec
+> currently on a 64bit Acer laptop.
+> 
+> To get it working I just built the modules and ran
+> the following as root:
+> sh l.sh
+> mkdir /mnt/mmc
+> mount -t vfat /dev/mmcblk0 /mnt/mmc
+> 
+> This might help if you don't have the device nods:
+> mknod /dev/mmcblk0 b 254 1
+> 
+> 
+> MvH
+> Benjamin Larsson
+> 
+> -- 
+> "incorrect information" is an oxymoron. Information
+> is, by definition, factual, correct.
+> 
+> _______________________________________________
+> Tifm21-devel mailing list
+> Tifm21-devel at lists.berlios.de
+>
+http://lists.berlios.de/mailman/listinfo/tifm21-devel
+> 
+
+
+__________________________________________________
+Do You Yahoo!?
+Tired of spam?  Yahoo! Mail has the best spam protection around 
+http://mail.yahoo.com 
+
+

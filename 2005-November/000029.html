@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] legal issues
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2005-November/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20legal%20issues&In-Reply-To=%3C44821.st3.1133133168.squirrel%40mail.riseup.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000028.html">
+   <LINK REL="Next"  HREF="000030.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] legal issues</H1>
+    <B>st3 at riseup.net</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20legal%20issues&In-Reply-To=%3C44821.st3.1133133168.squirrel%40mail.riseup.net%3E"
+       TITLE="[Tifm21-devel] legal issues">st3 at riseup.net
+       </A><BR>
+    <I>Mon Nov 28 00:12:48 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000028.html">[Tifm21-devel] mailing list
+</A></li>
+        <LI>Next message: <A HREF="000030.html">[Tifm21-devel] legal issues
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#29">[ date ]</a>
+              <a href="thread.html#29">[ thread ]</a>
+              <a href="subject.html#29">[ subject ]</a>
+              <a href="author.html#29">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I'm very interested about this project, and I'm willing to help. But I
+think there are some urgent legal issues going up with the driver
+development. I already had to deal with this - I'm a developer from the
+bcm43xx Linux Driver project - this way I understood how it's important
+not to overlook legal issues in these cases.
+
+Here goes the matter, this is pasted from a random EULA the windows driver
+is distributed under:
+
+3. Reverse Engineering. You agree that you will not attempt, and if you
+employ employees or engage contractors, you will use your best efforts to
+prevent your employees and contractors from attempting to reverse compile,
+reverse engineer, modify, translate or disassemble the Software in whole
+or in part. Any failure to comply with the above or any other terms and
+conditions contained herein will result in the automatic termination of
+this license and the reversion of the rights granted hereunder to TAIS.
+
+Who distributes this software (e.g. Toshiba) could (and very probably
+will) sue you as you have infringed this clause.
+
+We solved this with cleanroom approach, more information about can be
+found here:
+<A HREF="http://en.wikipedia.org/wiki/Clean_room_design">http://en.wikipedia.org/wiki/Clean_room_design</A>
+
+I propose that the tifm21 project will just deal with the driver
+development, and people who is interested in reverse engineering:
+1) immediately stops contributing to the project (no code, no problem)
+2) unsubscribe from this project and stops accessing to any repository
+3) open a new project elsewhere (on berlios, too) with a different name
+(e.g. tifm21-specs), dealing with _documentation_ about the device, which
+can come from disassembling, testing, anything you want.
+
+The tifm21 project will then write code based on these specifications.
+
+If you accept my proposal, I'll join this project. I know that it can
+sound quite weird, I come here and say you must split the project, but I
+really think this is required for further development. As a matter of
+fact, Broadcom is monitoring closely our project
+(<A HREF="http://bcm43xx.berlios.de/">http://bcm43xx.berlios.de/</A>) progress. Evidence of this is they removed
+some features from the driver that were exploited by reverse engineers
+(<A HREF="http://bcm-specs.sipsolutions.net">http://bcm-specs.sipsolutions.net</A>) in order to understand their code. I
+think that with TI thinks can get even worse, so please fix this issue
+while you can, not any later.
+
+
+--
+ciao
+st3
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000028.html">[Tifm21-devel] mailing list
+</A></li>
+	<LI>Next message: <A HREF="000030.html">[Tifm21-devel] legal issues
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#29">[ date ]</a>
+              <a href="thread.html#29">[ thread ]</a>
+              <a href="subject.html#29">[ subject ]</a>
+              <a href="author.html#29">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

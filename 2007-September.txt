@@ -1,0 +1,245 @@
+From mjg59 at srcf.ucam.org  Sat Sep  1 02:30:12 2007
+From: mjg59 at srcf.ucam.org (Matthew Garrett)
+Date: Sat, 1 Sep 2007 01:30:12 +0100
+Subject: [Tifm21-devel] MemoryStick Pro
+In-Reply-To: <690163.2255.qm@web36714.mail.mud.yahoo.com>
+References: <45E020A4.6080704@wasp.net.au>
+	<690163.2255.qm@web36714.mail.mud.yahoo.com>
+Message-ID: <20070901003012.GA3034@srcf.ucam.org>
+
+On Mon, Aug 27, 2007 at 08:16:38AM -0700, Alex Dubov wrote:
+> As of svn revision 107, memorystick pro support appears to be satisfactory enough for general
+> testing.
+
+Works for me, as long as I don't disable the debug information - if I 
+do, it all breaks horribly. The following diff seems to fix it, so I 
+suspect that the time taken to print the debug statement was enough to 
+slow it to the point it worked.
+
+diff --git a/ubuntu/misc/tifm/tifm_ms.c b/ubuntu/misc/tifm/tifm_ms.c
+index ed33433..5ca6c2b 100644
+--- a/ubuntu/misc/tifm/tifm_ms.c
++++ b/ubuntu/misc/tifm/tifm_ms.c
+@@ -303,6 +303,7 @@ int tifm_ms_issue_cmd(struct tifm_ms *host)
+        cmd |= data_len;
+        writel(cmd, sock->addr + SOCK_MS_COMMAND);
+ 
++       udelay(10);
+        dev_dbg(&sock->dev, "executing TPC %x, %x\n", cmd, cmd_mask);
+        return 0;
+ }
+
+-- 
+Matthew Garrett | mjg59 at srcf.ucam.org
+
+
+From oakad at yahoo.com  Sun Sep  2 10:20:01 2007
+From: oakad at yahoo.com (Alex Dubov)
+Date: Sun, 2 Sep 2007 01:20:01 -0700 (PDT)
+Subject: [Tifm21-devel] MemoryStick Pro
+In-Reply-To: <20070901003012.GA3034@srcf.ucam.org>
+Message-ID: <876058.96022.qm@web36708.mail.mud.yahoo.com>
+
+
+--- Matthew Garrett <mjg59 at srcf.ucam.org> wrote:
+
+> On Mon, Aug 27, 2007 at 08:16:38AM -0700, Alex Dubov wrote:
+> > As of svn revision 107, memorystick pro support appears to be satisfactory enough for general
+> > testing.
+> 
+> Works for me, as long as I don't disable the debug information - if I 
+> do, it all breaks horribly. The following diff seems to fix it, so I 
+> suspect that the time taken to print the debug statement was enough to 
+> slow it to the point it worked.
+
+I must look for real cause of the problem instead of just artificially limiting request issue
+speed. At worst, there may be need to delay only some of the commands, but this should be done in
+the protocol driver, rather than low-level one.
+
+
+
+      ____________________________________________________________________________________
+Park yourself in front of a world of choices in alternative vehicles. Visit the Yahoo! Auto Green Center.
+http://autos.yahoo.com/green_center/ 
+
+
+From oakad at yahoo.com  Wed Sep 12 07:27:23 2007
+From: oakad at yahoo.com (Alex Dubov)
+Date: Tue, 11 Sep 2007 22:27:23 -0700 (PDT)
+Subject: [Tifm21-devel] MemoryStick Pro
+In-Reply-To: <20070901003012.GA3034@srcf.ucam.org>
+Message-ID: <938386.68029.qm@web36712.mail.mud.yahoo.com>
+
+--- Matthew Garrett <mjg59 at srcf.ucam.org> wrote:
+
+> On Mon, Aug 27, 2007 at 08:16:38AM -0700, Alex Dubov wrote:
+> > As of svn revision 107, memorystick pro support appears to be satisfactory enough for general
+> > testing.
+> 
+> Works for me, as long as I don't disable the debug information - if I 
+> do, it all breaks horribly. The following diff seems to fix it, so I 
+> suspect that the time taken to print the debug statement was enough to 
+> slow it to the point it worked.
+> 
+> diff --git a/ubuntu/misc/tifm/tifm_ms.c b/ubuntu/misc/tifm/tifm_ms.c
+> index ed33433..5ca6c2b 100644
+> --- a/ubuntu/misc/tifm/tifm_ms.c
+> +++ b/ubuntu/misc/tifm/tifm_ms.c
+> @@ -303,6 +303,7 @@ int tifm_ms_issue_cmd(struct tifm_ms *host)
+>         cmd |= data_len;
+>         writel(cmd, sock->addr + SOCK_MS_COMMAND);
+>  
+> +       udelay(10);
+>         dev_dbg(&sock->dev, "executing TPC %x, %x\n", cmd, cmd_mask);
+>         return 0;
+>  }
+
+I can not reproduce this problem. Can you give me some more leads where to look? Good idea should
+be to compile tifm_ms without debug messages and mspro_block with them. At least, a good
+description of how it breaks (during initialization or in sustain read/write) can be helpful.
+
+
+
+      ____________________________________________________________________________________
+Shape Yahoo! in your own image.  Join our Network Research Panel today!   http://surveylink.yahoo.com/gmrs/yahoo_panel_invite.asp?a=7 
+
+
+
+
+From cathectic at gmail.com  Wed Sep 12 13:32:45 2007
+From: cathectic at gmail.com (Carlos Corbacho)
+Date: Wed, 12 Sep 2007 12:32:45 +0100
+Subject: [Tifm21-devel] [PATCH] 2.6.23 header fix
+Message-ID: <200709121232.46213.cathectic@gmail.com>
+
+Alex,
+
+In 2.6.23, linux/fs.h is no longer included in linux/mm.h
+
+memstick.c -> <linux/scatterlist.h> -> <linux/mm.h> -> <linux/fs.h>
+
+This breaks compilation of memstick.c (which needs fs.h to define WRITE and 
+READ). Simple fix is to just include fs.h directly.
+
+(There are also some other warnings on 2.6.23 about 'request_queue_t' being 
+deprecated, but tifmxx still works with my MS Pro stick with this patch).
+
+-Carlos
+
+Index: memstick.c
+===================================================================
+--- memstick.c	(revision 108)
++++ memstick.c	(working copy)
+@@ -16,6 +16,7 @@
+ #include "linux/memstick.h"
+ #include <linux/idr.h>
+ #include <linux/scatterlist.h>
++#include <linux/fs.h>
+ 
+ #define DRIVER_NAME "memstick"
+ #define DRIVER_VERSION "0.2"
+
+
+-- 
+E-Mail: cathectic at gmail.com
+Web: strangeworlds.co.uk
+GPG Key ID: 0x23EE722D
+
+
+From oakad at yahoo.com  Thu Sep 13 04:57:12 2007
+From: oakad at yahoo.com (Alex Dubov)
+Date: Wed, 12 Sep 2007 19:57:12 -0700 (PDT)
+Subject: [Tifm21-devel] [PATCH] 2.6.23 header fix
+In-Reply-To: <200709121232.46213.cathectic@gmail.com>
+Message-ID: <646963.22155.qm@web36703.mail.mud.yahoo.com>
+
+
+--- Carlos Corbacho <cathectic at gmail.com> wrote:
+
+> Alex,
+> 
+> In 2.6.23, linux/fs.h is no longer included in linux/mm.h
+> 
+> memstick.c -> <linux/scatterlist.h> -> <linux/mm.h> -> <linux/fs.h>
+> 
+> This breaks compilation of memstick.c (which needs fs.h to define WRITE and 
+> READ). Simple fix is to just include fs.h directly.
+> 
+
+I'm using 2.6.22 for my work, but this change should break nothing, so no problem.
+By the way, can you extend on the problems you were having with debug turned off? Everything seems
+to work fine on my side.
+
+
+
+
+      ____________________________________________________________________________________
+Check out the hottest 2008 models today at Yahoo! Autos.
+http://autos.yahoo.com/new_cars.html
+
+
+From cathectic at gmail.com  Thu Sep 13 12:25:57 2007
+From: cathectic at gmail.com (Carlos Corbacho)
+Date: Thu, 13 Sep 2007 11:25:57 +0100
+Subject: [Tifm21-devel] [PATCH] 2.6.23 header fix
+In-Reply-To: <646963.22155.qm@web36703.mail.mud.yahoo.com>
+References: <646963.22155.qm@web36703.mail.mud.yahoo.com>
+Message-ID: <200709131125.57866.cathectic@gmail.com>
+
+On Thursday 13 September 2007 03:57:12 Alex Dubov wrote:
+> By the way, can you extend on the problems you were having with
+> debug turned off? Everything seems to work fine on my side.
+
+As per usual, when I try to reproduce the error, I can't get it to happen. If 
+I manage to persuade it to reappear before I go on holiday at the weekend, 
+I'll let you know.
+
+IIRC, it was basically a case of /dev/msblk0 was created, but 
+not /dev/msblk0p1, with a huge spew if (I think) read errors - but I wouldn't 
+depend on that, since I don't have logs to back it up with (hopefully Matthew 
+will have more luck reproducing it).
+
+-Carlos
+-- 
+E-Mail: cathectic at gmail.com
+Web: strangeworlds.co.uk
+GPG Key ID: 0x23EE722D
+
+
+From oakad at yahoo.com  Fri Sep 14 05:02:48 2007
+From: oakad at yahoo.com (Alex Dubov)
+Date: Thu, 13 Sep 2007 20:02:48 -0700 (PDT)
+Subject: [Tifm21-devel] [PATCH] 2.6.23 header fix
+In-Reply-To: <200709131125.57866.cathectic@gmail.com>
+Message-ID: <358443.60117.qm@web36713.mail.mud.yahoo.com>
+
+
+--- Carlos Corbacho <cathectic at gmail.com> wrote:
+
+> On Thursday 13 September 2007 03:57:12 Alex Dubov wrote:
+> > By the way, can you extend on the problems you were having with
+> > debug turned off? Everything seems to work fine on my side.
+> 
+> As per usual, when I try to reproduce the error, I can't get it to happen. If 
+> I manage to persuade it to reappear before I go on holiday at the weekend, 
+> I'll let you know.
+> 
+> IIRC, it was basically a case of /dev/msblk0 was created, but 
+> not /dev/msblk0p1, with a huge spew if (I think) read errors - but I wouldn't 
+> depend on that, since I don't have logs to back it up with (hopefully Matthew 
+> will have more luck reproducing it).
+> 
+
+Huge spews of errors are produced by block device layer, as we already learned. The whole thing is
+probably caused by single read error early during initialization. This may be some sort of card
+setup issue - it will be interesting to see if there's a correlation to particular media (brand,
+size, whatever).
+
+
+
+       
+____________________________________________________________________________________
+Moody friends. Drama queens. Your life? Nope! - their life, your story. Play Sims Stories at Yahoo! Games.
+http://sims.yahoo.com/  
+
+

@@ -1,0 +1,308 @@
+From wael at siemens-mobiles.org  Fri Mar 17 07:11:12 2006
+From: wael at siemens-mobiles.org (Wael Nasreddine)
+Date: Fri, 17 Mar 2006 07:11:12 +0100
+Subject: [Tifm21-devel] Trunk 31, errors
+In-Reply-To: <20060214110015.29165.38291.Mailman@bat.berlios.de>
+References: <20060214110015.29165.38291.Mailman@bat.berlios.de>
+Message-ID: <441A5300.6030504@siemens-mobiles.org>
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Hello,
+
+I saw today that oakad SVN has Rev. 31 with "card detection is back" as
+comments so i wanted to try it, but I got the same error that i was
+getting since Rev. 28, the error:
+
+[wael at nasreddine /tmp/driver]$ make
+make -C /lib/modules/2.6.15-archck/build M=/tmp/driver
+make[1]: Entering directory `/usr/src/linux-2.6.15-archck'
+  LD      /tmp/driver/built-in.o
+  CC [M]  /tmp/driver/tifm_core.o
+/tmp/driver/tifm_core.c:61: error: unknown field 'hotplug' specified in
+initializer
+make[2]: *** [/tmp/driver/tifm_core.o] Error 1
+make[1]: *** [_module_/tmp/driver] Error 2
+make[1]: Leaving directory `/usr/src/linux-2.6.15-archck'
+make: *** [all] Error 2
+
+
+My kernel: 2.6.15-archck ( That's a custom kernel that includes Con
+Kolivas Patches, suspend2 and bootsplash ( home page ->
+http://iphitus.loudas.com/archck.php )
+
+My system use Udev, hotplug is no longer in the system so i'm not sure
+if that is the reason
+
+- --
+Regards,
+Wael Nasreddine
+http://wael.nasreddine.com
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.2.2 (GNU/Linux)
+Comment: Using GnuPG with Mozilla - http://enigmail.mozdev.org
+
+iD8DBQFEGlMAnIfTbZJByMwRArL5AJ9R5rJ0+hh5Sbnz0DjABlm5hpr83QCbBdbb
+8MoXbl1IVlryq/iueVOm6lA=
+=XfVt
+-----END PGP SIGNATURE-----
+
+
+From oakad at yahoo.com  Sat Mar 18 07:03:07 2006
+From: oakad at yahoo.com (Alex Dubov)
+Date: Fri, 17 Mar 2006 22:03:07 -0800 (PST)
+Subject: [Tifm21-devel] Trunk 31, errors
+In-Reply-To: <441A5300.6030504@siemens-mobiles.org>
+Message-ID: <20060318060307.1413.qmail@web36715.mail.mud.yahoo.com>
+
+Hmm.
+
+On my kernel, hotplug is an unconditional member of
+struct bus_type in device.h. MMC subsystem uses it
+too. May be in your kernel it's different.
+
+
+--- Wael Nasreddine <wael at siemens-mobiles.org> wrote:
+
+> -----BEGIN PGP SIGNED MESSAGE-----
+> Hash: SHA1
+> 
+> Hello,
+> 
+> I saw today that oakad SVN has Rev. 31 with "card
+> detection is back" as
+> comments so i wanted to try it, but I got the same
+> error that i was
+> getting since Rev. 28, the error:
+> 
+> [wael at nasreddine /tmp/driver]$ make
+> make -C /lib/modules/2.6.15-archck/build
+> M=/tmp/driver
+> make[1]: Entering directory
+> `/usr/src/linux-2.6.15-archck'
+>   LD      /tmp/driver/built-in.o
+>   CC [M]  /tmp/driver/tifm_core.o
+> /tmp/driver/tifm_core.c:61: error: unknown field
+> 'hotplug' specified in
+> initializer
+> make[2]: *** [/tmp/driver/tifm_core.o] Error 1
+> make[1]: *** [_module_/tmp/driver] Error 2
+> make[1]: Leaving directory
+> `/usr/src/linux-2.6.15-archck'
+> make: *** [all] Error 2
+> 
+> 
+> My kernel: 2.6.15-archck ( That's a custom kernel
+> that includes Con
+> Kolivas Patches, suspend2 and bootsplash ( home page
+> ->
+> http://iphitus.loudas.com/archck.php )
+> 
+> My system use Udev, hotplug is no longer in the
+> system so i'm not sure
+> if that is the reason
+> 
+> - --
+> Regards,
+> Wael Nasreddine
+> http://wael.nasreddine.com
+> -----BEGIN PGP SIGNATURE-----
+> Version: GnuPG v1.4.2.2 (GNU/Linux)
+> Comment: Using GnuPG with Mozilla -
+> http://enigmail.mozdev.org
+> 
+>
+iD8DBQFEGlMAnIfTbZJByMwRArL5AJ9R5rJ0+hh5Sbnz0DjABlm5hpr83QCbBdbb
+> 8MoXbl1IVlryq/iueVOm6lA=
+> =XfVt
+> -----END PGP SIGNATURE-----
+> _______________________________________________
+> Tifm21-devel mailing list
+> Tifm21-devel at lists.berlios.de
+>
+http://lists.berlios.de/mailman/listinfo/tifm21-devel
+> 
+
+
+__________________________________________________
+Do You Yahoo!?
+Tired of spam?  Yahoo! Mail has the best spam protection around 
+http://mail.yahoo.com 
+
+
+From wael at siemens-mobiles.org  Sun Mar 19 03:55:34 2006
+From: wael at siemens-mobiles.org (Wael Nasreddine)
+Date: Sun, 19 Mar 2006 03:55:34 +0100
+Subject: [Tifm21-devel] Re: Tifm21-devel digest, Vol 1 #46 - 1 msg
+In-Reply-To: <20060318110017.2301.43132.Mailman@bat.berlios.de>
+References: <20060318110017.2301.43132.Mailman@bat.berlios.de>
+Message-ID: <441CC826.5050205@siemens-mobiles.org>
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+hmmm it may be the issue, what distribution and what is your kernel
+version, i care to test... Thx
+
+- --
+Regards,
+Wael Nasreddine
+
+Alex Dubov <oakad at yahoo.com> wrote:
+> Hmm.
+> 
+> On my kernel, hotplug is an unconditional member of
+> struct bus_type in device.h. MMC subsystem uses it
+> too. May be in your kernel it's different.
+> 
+> 
+> --- Wael Nasreddine <wael at siemens-mobiles.org> wrote:
+> 
+> Hello,
+> 
+> I saw today that oakad SVN has Rev. 31 with "card
+> detection is back" as
+> comments so i wanted to try it, but I got the same
+> error that i was
+> getting since Rev. 28, the error:
+> 
+> [wael at nasreddine /tmp/driver]$ make
+> make -C /lib/modules/2.6.15-archck/build
+> M=/tmp/driver
+> make[1]: Entering directory
+> `/usr/src/linux-2.6.15-archck'
+>   LD      /tmp/driver/built-in.o
+>   CC [M]  /tmp/driver/tifm_core.o
+> /tmp/driver/tifm_core.c:61: error: unknown field
+> 'hotplug' specified in
+> initializer
+> make[2]: *** [/tmp/driver/tifm_core.o] Error 1
+> make[1]: *** [_module_/tmp/driver] Error 2
+> make[1]: Leaving directory
+> `/usr/src/linux-2.6.15-archck'
+> make: *** [all] Error 2
+> 
+> 
+> My kernel: 2.6.15-archck ( That's a custom kernel
+> that includes Con
+> Kolivas Patches, suspend2 and bootsplash ( home page
+> ->
+> http://iphitus.loudas.com/archck.php )
+> 
+> My system use Udev, hotplug is no longer in the
+> system so i'm not sure
+> if that is the reason
+> 
+> --
+> Regards,
+> Wael Nasreddine
+> http://wael.nasreddine.com
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.2.2 (GNU/Linux)
+Comment: Using GnuPG with Mozilla - http://enigmail.mozdev.org
+
+iD8DBQFEHMgmnIfTbZJByMwRAvIFAJ43iBcxGn6r4re/0dRK95v+Z4VKYACfcQ+8
+eulVI4THLbtG0SS+z3czZH8=
+=e3Ru
+-----END PGP SIGNATURE-----
+
+
+From oakad at yahoo.com  Sun Mar 19 06:57:27 2006
+From: oakad at yahoo.com (Alex Dubov)
+Date: Sat, 18 Mar 2006 21:57:27 -0800 (PST)
+Subject: [Tifm21-devel] Re: Tifm21-devel digest, Vol 1 #46 - 1 msg
+In-Reply-To: <441CC826.5050205@siemens-mobiles.org>
+Message-ID: <20060319055727.18010.qmail@web36708.mail.mud.yahoo.com>
+
+I'm using vanilla kernels only -> www.kernel.org
+
+--- Wael Nasreddine <wael at siemens-mobiles.org> wrote:
+
+> -----BEGIN PGP SIGNED MESSAGE-----
+> Hash: SHA1
+> 
+> hmmm it may be the issue, what distribution and what
+> is your kernel
+> version, i care to test... Thx
+> 
+> - --
+> Regards,
+> Wael Nasreddine
+> 
+> Alex Dubov <oakad at yahoo.com> wrote:
+> > Hmm.
+> > 
+> > On my kernel, hotplug is an unconditional member
+> of
+> > struct bus_type in device.h. MMC subsystem uses it
+> > too. May be in your kernel it's different.
+> > 
+> > 
+> > --- Wael Nasreddine <wael at siemens-mobiles.org>
+> wrote:
+> > 
+> > Hello,
+> > 
+> > I saw today that oakad SVN has Rev. 31 with "card
+> > detection is back" as
+> > comments so i wanted to try it, but I got the same
+> > error that i was
+> > getting since Rev. 28, the error:
+> > 
+> > [wael at nasreddine /tmp/driver]$ make
+> > make -C /lib/modules/2.6.15-archck/build
+> > M=/tmp/driver
+> > make[1]: Entering directory
+> > `/usr/src/linux-2.6.15-archck'
+> >   LD      /tmp/driver/built-in.o
+> >   CC [M]  /tmp/driver/tifm_core.o
+> > /tmp/driver/tifm_core.c:61: error: unknown field
+> > 'hotplug' specified in
+> > initializer
+> > make[2]: *** [/tmp/driver/tifm_core.o] Error 1
+> > make[1]: *** [_module_/tmp/driver] Error 2
+> > make[1]: Leaving directory
+> > `/usr/src/linux-2.6.15-archck'
+> > make: *** [all] Error 2
+> > 
+> > 
+> > My kernel: 2.6.15-archck ( That's a custom kernel
+> > that includes Con
+> > Kolivas Patches, suspend2 and bootsplash ( home
+> page
+> > ->
+> > http://iphitus.loudas.com/archck.php )
+> > 
+> > My system use Udev, hotplug is no longer in the
+> > system so i'm not sure
+> > if that is the reason
+> > 
+> > --
+> > Regards,
+> > Wael Nasreddine
+> > http://wael.nasreddine.com
+> -----BEGIN PGP SIGNATURE-----
+> Version: GnuPG v1.4.2.2 (GNU/Linux)
+> Comment: Using GnuPG with Mozilla -
+> http://enigmail.mozdev.org
+> 
+>
+iD8DBQFEHMgmnIfTbZJByMwRAvIFAJ43iBcxGn6r4re/0dRK95v+Z4VKYACfcQ+8
+> eulVI4THLbtG0SS+z3czZH8=
+> =e3Ru
+> -----END PGP SIGNATURE-----
+> _______________________________________________
+> Tifm21-devel mailing list
+> Tifm21-devel at lists.berlios.de
+>
+http://lists.berlios.de/mailman/listinfo/tifm21-devel
+> 
+
+
+__________________________________________________
+Do You Yahoo!?
+Tired of spam?  Yahoo! Mail has the best spam protection around 
+http://mail.yahoo.com 
+
+

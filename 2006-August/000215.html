@@ -1,0 +1,190 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] almost works
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2006-August/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20almost%20works&In-Reply-To=%3C20060817021021.41321.qmail%40web36705.mail.mud.yahoo.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000213.html">
+   <LINK REL="Next"  HREF="000214.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] almost works</H1>
+    <B>Alex Dubov</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20almost%20works&In-Reply-To=%3C20060817021021.41321.qmail%40web36705.mail.mud.yahoo.com%3E"
+       TITLE="[Tifm21-devel] almost works">oakad at yahoo.com
+       </A><BR>
+    <I>Thu Aug 17 04:10:21 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000213.html">[Tifm21-devel] almost works
+</A></li>
+        <LI>Next message: <A HREF="000214.html">[Tifm21-devel] almost works
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#215">[ date ]</a>
+              <a href="thread.html#215">[ thread ]</a>
+              <a href="subject.html#215">[ subject ]</a>
+              <a href="author.html#215">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Card detection is not a reliable process.
+1. I don't know about any cards that can work as both
+xd and sd. The electrical contacts are different. sd
+has 9 (or 8?) contacts on the front edge. xd has more
+(16?) contacts arranged in two funny lines on the
+bottom side.
+When inserting cards, be sure to place contacts (small
+golden plates on the card surface) facing down.
+2. Sometimes mechanical problems with socket can cause
+funny things to happen. If you've seen the card
+working , it may be that your socket requires cleaning
+or some other adjustment.
+
+--- Bartosz Fenski aka fEnIo &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">fenio at debian.org</A>&gt; wrote:
+
+&gt;<i> On Tue, Aug 15, 2006 at 07:22:21PM -0700, Alex Dubov
+</I>&gt;<i> wrote:
+</I>&gt;<i> &gt; Please, try paying attention to what is going on
+</I>&gt;<i> in
+</I>&gt;<i> &gt; your logs. Messages of the form:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; bla-bla: Unknown symbol bla_bla_bla
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; are reported by kernel when some functionality is
+</I>&gt;<i> &gt; missing (correct modules are not loaded). This is
+</I>&gt;<i> &gt; independent of the driver or device you may want
+</I>&gt;<i> to
+</I>&gt;<i> &gt; use and must be resolved first. In case of tifm,
+</I>&gt;<i> &gt; loaded modules must include:
+</I>&gt;<i> &gt; mmc_core
+</I>&gt;<i> &gt; mmc_block
+</I>&gt;<i> &gt; tifm_core
+</I>&gt;<i> &gt; tifm_7xx1
+</I>&gt;<i> &gt; tifm_sd
+</I>&gt;<i> 
+</I>&gt;<i> Ok I was a little unclear last time. Lines with
+</I>&gt;<i> 'Uknown symbol' was printed
+</I>&gt;<i> due to my tries to resolve problem
+</I>&gt;<i> (unloading/loading modules). 
+</I>&gt;<i> Basically I've got all needed modules.
+</I>&gt;<i> 
+</I>&gt;<i> (<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">root at lapik</A>)~#lsmod
+</I>&gt;<i> Module                  Size  Used by
+</I>&gt;<i> tifm_sd                 8708  0
+</I>&gt;<i> tifm_7xx1               7808  0
+</I>&gt;<i> tifm_core               8720  2 tifm_sd,tifm_7xx1
+</I>&gt;<i> ipw2200                93864  0
+</I>&gt;<i> (<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">root at lapik</A>)~#
+</I>&gt;<i> 
+</I>&gt;<i> (<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">root at lapik</A>)~#grep -i mmc /usr/src/linux/.config |
+</I>&gt;<i> grep -v '^#'
+</I>&gt;<i> CONFIG_PCI_MMCONFIG=y
+</I>&gt;<i> CONFIG_MMC=y
+</I>&gt;<i> CONFIG_MMC_BLOCK=y
+</I>&gt;<i> (<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">root at lapik</A>)~#
+</I>&gt;<i> 
+</I>&gt;<i> So MMC part is compiled in kernel (I tried to use
+</I>&gt;<i> them as a modules but
+</I>&gt;<i> without difference).
+</I>&gt;<i>  
+</I>&gt;<i> This is output of dmesg when it worked (as I said it
+</I>&gt;<i> was only once):
+</I>&gt;<i> 
+</I>&gt;<i> tifm_7xx1: sd card detected in socket 3
+</I>&gt;<i> mmcblk0: mmc3:0001 000000 1003520KiB mmcblk0: p1
+</I>&gt;<i> 
+</I>&gt;<i> All I get now is:
+</I>&gt;<i> 
+</I>&gt;<i> tifm_7xx1: demand removing card from socket 3
+</I>&gt;<i> tifm_7xx1: sd card detected in socket 3
+</I>&gt;<i> tifm_7xx1: demand removing card from socket 3
+</I>&gt;<i> tifm_7xx1: sd card detected in socket 3
+</I>&gt;<i> tifm_7xx1: demand removing card from socket 3
+</I>&gt;<i> tifm_7xx1: sd card detected in socket 3
+</I>&gt;<i> tifm_7xx1: demand removing card from socket 3
+</I>&gt;<i> tifm_7xx1: sd card detected in socket 3
+</I>&gt;<i> 
+</I>&gt;<i> So there's no part about assigning mmcblk0 device.
+</I>&gt;<i> 
+</I>&gt;<i> &gt; Xd cards are not currently supported.
+</I>&gt;<i> 
+</I>&gt;<i> Are there any cards that can work both as sd and xd?
+</I>&gt;<i> I'm asking cause I can insert my card in two ways.
+</I>&gt;<i> Normally it's detected
+</I>&gt;<i> as:
+</I>&gt;<i> 
+</I>&gt;<i> tifm_7xx1: sd card detected in socket 3
+</I>&gt;<i> tifm_7xx1: xd card detected in socket 2
+</I>&gt;<i> 
+</I>&gt;<i> But when I insert it upside down then it shows only:
+</I>&gt;<i> 
+</I>&gt;<i> tifm_7xx1: sd card detected in socket 3
+</I>&gt;<i> 
+</I>&gt;<i> I'm not sure what's going on here... as I said it
+</I>&gt;<i> worked once! ;)
+</I>&gt;<i> 
+</I>&gt;<i> I've been able to copy almost 300MB to this card
+</I>&gt;<i> using tifm, but then
+</I>&gt;<i> I removed the card and inserted it to phone to check
+</I>&gt;<i> if data is ok. 
+</I>&gt;<i> It was ok so I tried to insert it again to copy
+</I>&gt;<i> additional data... 
+</I>&gt;<i> unfortunately it doesn't work anymore.
+</I>&gt;<i> 
+</I>&gt;<i> What else can I try?
+</I>&gt;<i> 
+</I>&gt;<i> regards
+</I>&gt;<i> fEnIo
+</I>&gt;<i> -- 
+</I>&gt;<i>   ,''`.  Bartosz Fenski | mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">fenio at debian.org</A> |
+</I>&gt;<i> pgp:0x13fefc40 | irc:fEnIo
+</I>&gt;<i>  : :' :       32-050 Skawina - Glowackiego 3/15 -
+</I>&gt;<i> malopolskie v. - Poland
+</I>&gt;<i>  `. `'           phone:+48602383548 | proud Debian
+</I>&gt;<i> maintainer and user
+</I>&gt;<i>    `-          <A HREF="http://skawina.eu.org">http://skawina.eu.org</A> |
+</I>&gt;<i> jid:<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">fenio at jabber.org</A> | rlu:172001
+</I>&gt;<i> &gt; _______________________________________________
+</I>&gt;<i> Tifm21-devel mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">Tifm21-devel at lists.berlios.de</A>
+</I>&gt;<i>
+</I><A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">https://lists.berlios.de/mailman/listinfo/tifm21-devel</A>
+&gt;<i> 
+</I>
+
+__________________________________________________
+Do You Yahoo!?
+Tired of spam?  Yahoo! Mail has the best spam protection around 
+<A HREF="http://mail.yahoo.com">http://mail.yahoo.com</A> 
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000213.html">[Tifm21-devel] almost works
+</A></li>
+	<LI>Next message: <A HREF="000214.html">[Tifm21-devel] almost works
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#215">[ date ]</a>
+              <a href="thread.html#215">[ thread ]</a>
+              <a href="subject.html#215">[ subject ]</a>
+              <a href="author.html#215">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

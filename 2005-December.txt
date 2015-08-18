@@ -1,0 +1,1576 @@
+From pjwebster at gmail.com  Thu Dec  1 00:00:42 2005
+From: pjwebster at gmail.com (Paul Webster)
+Date: Thu, 1 Dec 2005 09:00:42 +1000
+Subject: [Tifm21-devel] [TIFM21] GPL driver without source from TI?
+In-Reply-To: <20051130214100.GA23092@srcf.ucam.org>
+References: <Pine.LNX.4.64.0511301242291.31551@light.int.webcon.net>
+	 <28095.st3.1133375359.squirrel@mail.riseup.net>
+	 <dc98d8d90511301239s6a360b94qc17f6ee2be906c5@mail.gmail.com>
+	 <438E1BD3.4030909@gmail.com> <20051130214100.GA23092@srcf.ucam.org>
+Message-ID: <dc98d8d90511301500k2d12a49fx7e1152969183202d@mail.gmail.com>
+
+> Are you certain on this? My reading of the information from Everest's
+> website[0] though suggests that the daemon is only used for card
+> insertion notification events to the user (plus it can do some flashy
+> automagical mounting/ unmounting on insertions and removals, but still
+> superfluous).
+
+My mistake. My memory's cache of the page contents is a few months stale.
+
+Appologies to all also for double posting info from Ian M's post RE:
+GPL. I'm suffering a bad case of Monday-Morning-itis and it's not even
+9am Thursday!
+
+I'm just going to shut up now and get some caffine
+
+Paul
+
+
+From oakad at yahoo.com  Thu Dec  1 04:04:20 2005
+From: oakad at yahoo.com (Alex Dubov)
+Date: Wed, 30 Nov 2005 19:04:20 -0800 (PST)
+Subject: [Tifm21-devel] Scsi driver branch
+Message-ID: <20051201030420.42197.qmail@web36710.mail.mud.yahoo.com>
+
+Hi everybody.
+As a proud owner of amd64 box I can't test/use the
+recently posted binary driver. I, however, was doing
+some work on the tifm windows driver. The addition of
+linux driver is very helpful.
+
+Now, as I understood, this driver implements a custom
+block device. To my understanding this is just stupid,
+as everybody is standartizing on scsi these days
+(libata and usb for example). This means that even if
+TI will release the source, some rewrite will still be
+needed. 
+
+To project admins: I've written a skeleton scsi driver
+for my work on the windows one. I will be grateful if
+you can add me to the developers list and give me an
+SVN branch to put my work in. My berlios id: oakad.
+
+
+
+		
+__________________________________ 
+Yahoo! Music Unlimited 
+Access over 1 million songs. Try it free. 
+http://music.yahoo.com/unlimited/
+
+
+From oakad at yahoo.com  Sat Dec  3 05:46:20 2005
+From: oakad at yahoo.com (Alex Dubov)
+Date: Fri, 2 Dec 2005 20:46:20 -0800 (PST)
+Subject: [Tifm21-devel] Quality of the linux binary driver
+Message-ID: <20051203044620.30873.qmail@web36706.mail.mud.yahoo.com>
+
+Does anybody noticed the rather poor quality of the
+recently posted binary driver? Not only it looks like
+2.4 driver hastily ported to load in 2.6, it seems
+that it lacks features, compared to the windows one.
+Most prominently, it lacks SD security filter, which
+is the only real (legal terms) obstacle to the open
+source release.
+
+
+
+		
+__________________________________________ 
+Yahoo! DSL ? Something to write home about. 
+Just $16.99/mo. or less. 
+dsl.yahoo.com 
+
+
+
+From outdooricon at gmail.com  Sat Dec  3 07:47:15 2005
+From: outdooricon at gmail.com (John S)
+Date: Sat, 3 Dec 2005 00:47:15 -0600
+Subject: [Tifm21-devel] Quality of the linux binary driver
+In-Reply-To: <20051203044620.30873.qmail@web36706.mail.mud.yahoo.com>
+References: <20051203044620.30873.qmail@web36706.mail.mud.yahoo.com>
+Message-ID: <33b3a260512022247w56693a5awfe0da272640e43a9@mail.gmail.com>
+
+I'm extremely confused. Where is this driver you speak of?
+~John
+
+On 12/2/05, Alex Dubov <oakad at yahoo.com> wrote:
+>
+> Does anybody noticed the rather poor quality of the
+> recently posted binary driver? Not only it looks like
+> 2.4 driver hastily ported to load in 2.6, it seems
+> that it lacks features, compared to the windows one.
+> Most prominently, it lacks SD security filter, which
+> is the only real (legal terms) obstacle to the open
+> source release.
+>
+>
+>
+>
+> __________________________________________
+> Yahoo! DSL ? Something to write home about.
+> Just $16.99/mo. or less.
+> dsl.yahoo.com
+>
+> _______________________________________________
+> Tifm21-devel mailing list
+> Tifm21-devel at lists.berlios.de
+> http://lists.berlios.de/mailman/listinfo/tifm21-devel
+>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20051203/4979e2cc/attachment.html>
+
+From world.root at gmail.com  Sat Dec  3 13:35:44 2005
+From: world.root at gmail.com (=?ISO-8859-1?Q?Jo=EBl?= Bourquard)
+Date: Sat, 03 Dec 2005 13:35:44 +0100
+Subject: [Tifm21-devel] Quality of the linux binary driver
+In-Reply-To: <20051203044620.30873.qmail@web36706.mail.mud.yahoo.com>
+References: <20051203044620.30873.qmail@web36706.mail.mud.yahoo.com>
+Message-ID: <1133613344.3257.7.camel@localhost>
+
+By mentioning the lack of SD security filter, do you mean it doesn't
+care about DRM attributes on SD cards ?
+
+If no security filter is present, would it mean it's only legally
+supposed to read MMC and not SD cards ?
+
+(not that I care so much about DRM ;-)
+
+
+On Fri, 2005-12-02 at 20:46 -0800, Alex Dubov wrote:
+> Does anybody noticed the rather poor quality of the
+> recently posted binary driver? Not only it looks like
+> 2.4 driver hastily ported to load in 2.6, it seems
+> that it lacks features, compared to the windows one.
+> Most prominently, it lacks SD security filter, which
+> is the only real (legal terms) obstacle to the open
+> source release.
+> 
+> 
+> 
+> 		
+> __________________________________________ 
+> Yahoo! DSL ? Something to write home about. 
+> Just $16.99/mo. or less. 
+> dsl.yahoo.com 
+> 
+> _______________________________________________
+> Tifm21-devel mailing list
+> Tifm21-devel at lists.berlios.de
+> http://lists.berlios.de/mailman/listinfo/tifm21-devel
+
+
+
+From giskard at autistici.org  Sat Dec  3 13:54:11 2005
+From: giskard at autistici.org (giskard)
+Date: Sat, 03 Dec 2005 13:54:11 +0100
+Subject: [Tifm21-devel] Scsi driver branch
+In-Reply-To: <20051201030420.42197.qmail@web36710.mail.mud.yahoo.com>
+References: <20051201030420.42197.qmail@web36710.mail.mud.yahoo.com>
+Message-ID: <1133614451.4529.22.camel@localhost.localdomain>
+
+Il giorno mer, 30/11/2005 alle 19.04 -0800, Alex Dubov ha scritto:
+> Now, as I understood, this driver implements a custom
+> block device. To my understanding this is just stupid,
+> as everybody is standartizing on scsi these days
+> (libata and usb for example). This means that even if
+> TI will release the source, some rewrite will still be
+> needed. 
+
+ok, you are in right..btw, i think TI will never release the
+source of the driver.
+
+> To project admins: I've written a skeleton scsi driver
+> for my work on the windows one. I will be grateful if
+> you can add me to the developers list and give me an
+> SVN branch to put my work in. My berlios id: oakad.
+> 
+
+you have been added :) 
+
+svn co svn+ssh://oakad at svn.berlios.de/svnroot/repos/tifm21/scsi
+
+ 
+-- 
+ciao giskard
+
+banlieues e periferia il problema e' la polizia
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: Questa parte del messaggio ? firmata
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20051203/30fba578/attachment.pgp>
+
+From pjwebster at gmail.com  Sat Dec  3 14:39:56 2005
+From: pjwebster at gmail.com (Paul Webster)
+Date: Sat, 3 Dec 2005 23:39:56 +1000
+Subject: [Tifm21-devel] Quality of the linux binary driver
+In-Reply-To: <1133613344.3257.7.camel@localhost>
+References: <20051203044620.30873.qmail@web36706.mail.mud.yahoo.com>
+	 <1133613344.3257.7.camel@localhost>
+Message-ID: <dc98d8d90512030539h4cef630bjfd7b10d665a8daf6@mail.gmail.com>
+
+> If no security filter is present, would it mean it's only legally
+> supposed to read MMC and not SD cards ?
+
+or SD cards in MMC mode (ie: not using the "secure" part)
+
+
+From oakad at yahoo.com  Sun Dec  4 01:52:48 2005
+From: oakad at yahoo.com (Alex Dubov)
+Date: Sat, 3 Dec 2005 16:52:48 -0800 (PST)
+Subject: [Tifm21-devel] Quality of the linux binary driver
+Message-ID: <20051204005248.39716.qmail@web36707.mail.mud.yahoo.com>
+
+First, for those who missed the exciting news: few
+days ago out friend Cristopher Baker managed to get
+the binary driver from TI and it's now available from
+Ian Morgan's page:
+http://www.webcon.ca/~imorgan/tifm21/ti-binary-driver.tgz
+
+Now on the SD issue. While MMC spec is wide open for
+anybody to download and read, SD security extensions
+spec is hidden and only available to licensees on an
+NDA terms. This is similar to GSM security spec.
+
+Now, the fact that support for this stuff is not
+included in the linux driver removes legal obstacles
+to the release of source code. It also precludes one
+from using DRM-enabled SD cards on linux. One can
+still use SD cards with DRM disabled, because they are
+backward compatible with MMC.
+
+I was also looking at dissassembly of win64 driver
+(there is such thing). It is more readable than win32
+(saner ABI). I'm also trying to guess an optimal
+starting configuration for linux driver. I hope to
+have some results in a few days.
+
+
+
+		
+__________________________________________ 
+Yahoo! DSL ? Something to write home about. 
+Just $16.99/mo. or less. 
+dsl.yahoo.com 
+
+
+
+From iguerendiain at nacholab.com.ar  Mon Dec  5 05:11:07 2005
+From: iguerendiain at nacholab.com.ar (Ignacio Guerendiain)
+Date: Mon, 05 Dec 2005 01:11:07 -0300
+Subject: [Tifm21-devel] =?ISO-8859-1?Q?Suscripci=F3n?=
+Message-ID: <4393BDDB.5030408@nacholab.com.ar>
+
+Suscripci?n
+
+
+From nm85635 at yahoo.com  Thu Dec  8 21:17:51 2005
+From: nm85635 at yahoo.com (Nick Monson)
+Date: Thu, 8 Dec 2005 12:17:51 -0800 (PST)
+Subject: [Tifm21-devel] (no subject)
+Message-ID: <20051208201751.30933.qmail@web35407.mail.mud.yahoo.com>
+
+ 
+ 
+
+__________________________________________________
+Do You Yahoo!?
+Tired of spam?  Yahoo! Mail has the best spam protection around 
+http://mail.yahoo.com 
+
+
+From wael at siemens-mobiles.org  Tue Dec 20 06:54:42 2005
+From: wael at siemens-mobiles.org (Wael Nasreddine)
+Date: Tue, 20 Dec 2005 06:54:42 +0100
+Subject: [Tifm21-devel] linux drivers from ti, how?
+Message-ID: <43A79CA2.7040703@siemens-mobiles.org>
+
+An HTML attachment was scrubbed...
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20051220/e2697ca4/attachment.html>
+
+From gelasi at linuxhelp.uniroma1.it  Tue Dec 20 11:16:41 2005
+From: gelasi at linuxhelp.uniroma1.it (Leandro Gelasi)
+Date: Tue, 20 Dec 2005 11:16:41 +0100
+Subject: [Tifm21-devel] About binary driver and its source
+Message-ID: <200512201116.41409.gelasi@linuxhelp.uniroma1.it>
+
+Hi to all.
+
+I just bought a Toshiba Satellite M70-142 that has a 3-in-1 card reader from 
+TI.
+I just reached the Berlios.de project page searching for a driver that could 
+enable this interface (that works flawlessly under Windows XP HE).
+
+I tried to use the binary driver "provided" by Texas Instruments but it is 
+unusable under SuSE 10 (it is compiled with gcc 3.x, SuSE 10 kernel is 
+compiled with gcc 4.x).
+I would like to help in creating an opensource driver, but, despite I am a 
+Linux senior system administrator, I have no experience at all at kernel 
+programming.  Maybe I can help with some testing?
+I don't know if someone tried it before, but what about a "petition" to TI for 
+releasing the source of their driver? Anyone knows a mail address to write 
+to? 
+On http://www.webcon.ca/~imorgan/tifm21/ I read that "Christopher Baker 
+managed to get a Linux driver for the device from TI, but only binary 
+modules". How did he succeed? Who he contacted?
+If TI has the sources of the driver (I am not sure about that, maybe the 
+source are in the hands of Everest Inc.) it would be very useful to have a 
+binary version compiled with gcc 4, so it is possible to do testing on recent 
+distributions...
+
+Best regards
+
+LG
+-- 
+Dott. Ing. Leandro Gelasi
+LinuxHelp - Servizio supporto utenti Linux
+Universit? di Roma "La Sapienza" - C.I.T.I.Co.R.D.
+Email: gelasi(At)linuxhelp(punto)uniroma1(punto)it
+Home Page: http://linuxhelp.uniroma1.it
+Tel: 0649913828 - 23828 (int)
+
+
+From masc at operamail.com  Tue Dec 20 11:37:41 2005
+From: masc at operamail.com (martin schneebacher)
+Date: Tue, 20 Dec 2005 11:37:41 +0100
+Subject: [Tifm21-devel] About binary driver and its source
+Message-ID: <20051220103742.18E827B524@ws5-10.us4.outblaze.com>
+
+hi, 
+
+----- Original Message -----
+From: "Leandro Gelasi" <gelasi at linuxhelp.uniroma1.it>
+To: tifm21-devel at lists.berlios.de
+Subject: [Tifm21-devel] About binary driver and its source
+Date: Tue, 20 Dec 2005 11:16:41 +0100
+> [...]
+> I don't know if someone tried it before, but what about a "petition" to TI for
+> releasing the source of their driver? Anyone knows a mail address to write
+> to?
+> On http://www.webcon.ca/~imorgan/tifm21/ I read that "Christopher Baker
+> managed to get a Linux driver for the device from TI, but only binary
+> modules". How did he succeed? Who he contacted?
+> If TI has the sources of the driver (I am not sure about that, maybe the
+> source are in the hands of Everest Inc.) it would be very useful to have a
+> binary version compiled with gcc 4, so it is possible to do testing on recent
+> distributions...
+
+the binary driver uses gpl code, so they have to release the source code. but we know whats the unterstanding of the gpl of some 'big' companies... 
+i don't know if there is already any communication with ti about this topic as discussed some weeks earlier in this list. 
+
+bye...masc.
+
+
+
+-- 
+_______________________________________________
+Surf the Web in a faster, safer and easier way:
+Download Opera 8 at http://www.opera.com
+
+Powered by Outblaze
+
+
+From mjg59 at srcf.ucam.org  Tue Dec 20 11:43:26 2005
+From: mjg59 at srcf.ucam.org (Matthew Garrett)
+Date: Tue, 20 Dec 2005 10:43:26 +0000
+Subject: [Tifm21-devel] About binary driver and its source
+In-Reply-To: <20051220103742.18E827B524@ws5-10.us4.outblaze.com>
+References: <20051220103742.18E827B524@ws5-10.us4.outblaze.com>
+Message-ID: <20051220104326.GA2622@srcf.ucam.org>
+
+On Tue, Dec 20, 2005 at 11:37:41AM +0100, martin schneebacher wrote:
+
+> the binary driver uses gpl code, so they have to release the source code. but we know whats the unterstanding of the gpl of some 'big' companies... 
+> i don't know if there is already any communication with ti about this topic as discussed some weeks earlier in this list. 
+
+There's no clear indication that it uses gpl code owned by anyone other 
+than TI, so they're not necessarily under any obligation to release the 
+source.
+
+-- 
+Matthew Garrett | mjg59 at srcf.ucam.org
+
+
+From gelasi at linuxhelp.uniroma1.it  Tue Dec 20 11:55:02 2005
+From: gelasi at linuxhelp.uniroma1.it (Leandro Gelasi)
+Date: Tue, 20 Dec 2005 11:55:02 +0100
+Subject: [Tifm21-devel] About binary driver and its source
+In-Reply-To: <20051220103742.18E827B524@ws5-10.us4.outblaze.com>
+References: <20051220103742.18E827B524@ws5-10.us4.outblaze.com>
+Message-ID: <200512201155.03066.gelasi@linuxhelp.uniroma1.it>
+
+On Tuesday 20 December 2005 11:37, martin schneebacher wrote:
+
+> > If TI has the sources of the driver (I am not sure about that, maybe the
+> > source are in the hands of Everest Inc.) it would be very useful to have
+> > a binary version compiled with gcc 4, so it is possible to do testing on
+> > recent distributions...
+>
+> the binary driver uses gpl code, so they have to release the source code.
+> but we know whats the unterstanding of the gpl of some 'big' companies... i
+> don't know if there is already any communication with ti about this topic
+> as discussed some weeks earlier in this list.
+
+If I have a mail address to write to, I could send them a request...
+I am also thinking about soliciting Toshiba to release Linux drivers for their 
+notebooks.
+
+LG
+-- 
+Dott. Ing. Leandro Gelasi
+LinuxHelp - Servizio supporto utenti Linux
+Universit? di Roma "La Sapienza" - C.I.T.I.Co.R.D.
+Email: gelasi(At)linuxhelp(punto)uniroma1(punto)it
+Home Page: http://linuxhelp.uniroma1.it
+Tel: 0649913828 - 23828 (int)
+
+
+From masc at operamail.com  Tue Dec 20 12:02:37 2005
+From: masc at operamail.com (martin schneebacher)
+Date: Tue, 20 Dec 2005 12:02:37 +0100
+Subject: [Tifm21-devel] About binary driver and its source
+Message-ID: <20051220110237.DF1CD7B524@ws5-10.us4.outblaze.com>
+
+----- Original Message -----
+From: "Matthew Garrett" <mjg59 at srcf.ucam.org>
+To: tifm21-devel at berlios.de
+Subject: Re: [Tifm21-devel] About binary driver and its source
+Date: Tue, 20 Dec 2005 10:43:26 +0000
+
+> 
+> On Tue, Dec 20, 2005 at 11:37:41AM +0100, martin schneebacher wrote:
+> 
+> > the binary driver uses gpl code, so they have to release the 
+> > source code. but we know whats the unterstanding of the gpl of 
+> > some 'big' companies... i don't know if there is already any 
+> > communication with ti about this topic as discussed some weeks 
+> > earlier in this list.
+> 
+> There's no clear indication that it uses gpl code owned by anyone other
+> than TI, so they're not necessarily under any obligation to release the
+> source.
+
+ok. including linux headers is possible in closed source drivers? why does nvidia for example release their kernel part as open source, as we know they prefer closed source? 
+i always thought that when you need the kernel sources for building you have to release under the same gpl? apologies if a was wrong. 
+
+bye...masc.
+
+
+-- 
+_______________________________________________
+Surf the Web in a faster, safer and easier way:
+Download Opera 8 at http://www.opera.com
+
+Powered by Outblaze
+
+
+From mjg59 at srcf.ucam.org  Tue Dec 20 12:11:26 2005
+From: mjg59 at srcf.ucam.org (Matthew Garrett)
+Date: Tue, 20 Dec 2005 11:11:26 +0000
+Subject: [Tifm21-devel] About binary driver and its source
+In-Reply-To: <20051220110237.DF1CD7B524@ws5-10.us4.outblaze.com>
+References: <20051220110237.DF1CD7B524@ws5-10.us4.outblaze.com>
+Message-ID: <20051220111126.GA2754@srcf.ucam.org>
+
+On Tue, Dec 20, 2005 at 12:02:37PM +0100, martin schneebacher wrote:
+
+> ok. including linux headers is possible in closed source drivers? why does nvidia for example release their kernel part as open source, as we know they prefer closed source? 
+> i always thought that when you need the kernel sources for building you have to release under the same gpl? apologies if a was wrong. 
+
+It's unclear. If you're the copyright holder to any of the kernel 
+headers included in the ti driver, then it's might be worth hiring a 
+lawyer. If you're not, then it's unlikely that they'll be convinced.
+
+-- 
+Matthew Garrett | mjg59 at srcf.ucam.org
+
+
+From masc at operamail.com  Tue Dec 20 12:24:12 2005
+From: masc at operamail.com (martin schneebacher)
+Date: Tue, 20 Dec 2005 12:24:12 +0100
+Subject: [Tifm21-devel] About binary driver and its source
+Message-ID: <20051220112412.CE2D07B524@ws5-10.us4.outblaze.com>
+
+----- Original Message -----
+From: "Matthew Garrett" <mjg59 at srcf.ucam.org>
+To: tifm21-devel at berlios.de
+Subject: Re: [Tifm21-devel] About binary driver and its source
+Date: Tue, 20 Dec 2005 11:11:26 +0000
+
+> 
+> On Tue, Dec 20, 2005 at 12:02:37PM +0100, martin schneebacher wrote:
+> 
+> > ok. including linux headers is possible in closed source drivers? 
+> > why does nvidia for example release their kernel part as open 
+> > source, as we know they prefer closed source? i always thought 
+> > that when you need the kernel sources for building you have to 
+> > release under the same gpl? apologies if a was wrong.
+> 
+> It's unclear. If you're the copyright holder to any of the kernel
+> headers included in the ti driver, then it's might be worth hiring a
+> lawyer. If you're not, then it's unlikely that they'll be convinced.
+
+at position 0xB6FE of the binary tifm.ko are two includes: 
+include/linux/blkdev.h
+include/linux/bio.h
+
+you mean that only the writer of this headers has a oportunity for asking for the sources? as there is no information of the author it's impossible to hassle ti?
+
+bye...masc.
+
+
+-- 
+_______________________________________________
+Surf the Web in a faster, safer and easier way:
+Download Opera 8 at http://www.opera.com
+
+Powered by Outblaze
+
+
+From somebody at aol.com  Wed Dec 21 06:14:38 2005
+From: somebody at aol.com (Anonymous)
+Date: Wednesday, 21 Dec 2005 06:14:38
+Subject: [Tifm21-devel] Smart Cards Sockets and Smart Cards
+Message-ID: <4b785e0c-4aa6-40ef-bf32-01828c10334e@IETF.ORG>
+
+Please reply to oliverliu4058 at yahoo.com  Thanks
+
+Dear Sir,
+This is Oliver Liu from Taiwan.
+We are providing high-quality smart card sockets and blank smart cards.
+If you are interested, please do contact me.
+Thanks,
+Merry Christmas
+Oliver Liu
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20051221/2ac94b6c/attachment.html>
+
+From wael at siemens-mobiles.org  Wed Dec 21 15:37:57 2005
+From: wael at siemens-mobiles.org (Wael Nasreddine)
+Date: Wed, 21 Dec 2005 15:37:57 +0100
+Subject: [Tifm21-devel] Re: About binary driver and its source
+In-Reply-To: <20051221110023.3088.53144.Mailman@bat.berlios.de>
+References: <20051221110023.3088.53144.Mailman@bat.berlios.de>
+Message-ID: <43A968C5.8060801@siemens-mobiles.org>
+
+An HTML attachment was scrubbed...
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20051221/570c22d2/attachment.html>
+
+From masc at operamail.com  Wed Dec 21 20:18:57 2005
+From: masc at operamail.com (martin schneebacher)
+Date: Wed, 21 Dec 2005 20:18:57 +0100
+Subject: [Tifm21-devel] Re: About binary driver and its source
+Message-ID: <20051221191857.836F47B524@ws5-10.us4.outblaze.com>
+
+hi, 
+
+
+----- Original Message -----
+From: "Wael Nasreddine" <wael at siemens-mobiles.org>
+To: tifm21-devel at berlios.de
+Subject: [Tifm21-devel] Re: About binary driver and its source
+Date: Wed, 21 Dec 2005 15:37:57 +0100
+
+>          On Tue, Dec 20, 2005 at 11:37:41AM +0100, martin schneebacher wrote:
+> 
+> 
+> 
+>        the binary driver uses gpl code, so they have to release the
+>        source code. but we know whats the unterstanding of the gpl of
+>        some 'big' companies... i don't know if there is already any
+>        communication with ti about this topic as discussed some weeks
+>        earlier in this list.
+> 
+> 
+>      There's no clear indication that it uses gpl code owned by anyone other
+>      than TI, so they're not necessarily under any obligation to release the
+>      source.
+> 
+> 
+>    ok. including linux headers is possible in closed source 
+> drivers? why does nvidia for example release their kernel part as 
+> open source, as we know they prefer closed source?
+>    i always thought that when you need the kernel sources for 
+> building you have to release under the same gpl? apologies if a was 
+> wrong.
+> 
+>    bye...masc.
+> 
+> 
+> 
+> 
+> the file include/linux/bio.h is licensed to Jens Axboe under GPL
+> /*
+>   * 2.5 block I/O model
+>   *
+>   * Copyright (C) 2001 Jens Axboe <axboe at suse.de>
+>   *
+>   * This program is free software; you can redistribute it and/or modify
+>   * it under the terms of the GNU General Public License version 2 as
+>   * published by the Free Software Foundation.
+>   *
+>   * This program is distributed in the hope that it will be useful,
+>   * but WITHOUT ANY WARRANTY; without even the implied warranty of
+> 
+>   * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+>   * GNU General Public License for more details.
+>   *
+>   * You should have received a copy of the GNU General Public Licens
+>   * along with this program; if not, write to the Free Software
+>   * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-
+>   */
+> 
+> Do we take contact with him or not?
+
+i'll send him a mail about this things, if it's ok from you all. 
+
+bye...masc.
+
+
+-- 
+_______________________________________________
+Surf the Web in a faster, safer and easier way:
+Download Opera 8 at http://www.opera.com
+
+Powered by Outblaze
+
+
+From giskard at autistici.org  Wed Dec 21 20:22:17 2005
+From: giskard at autistici.org (giskard)
+Date: Wed, 21 Dec 2005 20:22:17 +0100
+Subject: [Tifm21-devel] Re: About binary driver and its source
+In-Reply-To: <20051221191857.836F47B524@ws5-10.us4.outblaze.com>
+References: <20051221191857.836F47B524@ws5-10.us4.outblaze.com>
+Message-ID: <1135192938.20172.18.camel@localhost.localdomain>
+
+Il giorno mer, 21/12/2005 alle 20.18 +0100, martin schneebacher ha
+scritto:
+> > 
+> > Do we take contact with him or not?
+> 
+> i'll send him a mail about this things, if it's ok from you all. 
+> 
+> bye...masc.
+
+
+go! :)
+-- 
+ciao giskard
+
+banlieues e periferia il problema e' la polizia
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: Questa parte del messaggio ? firmata
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20051221/c4029a36/attachment.pgp>
+
+From masc at operamail.com  Wed Dec 21 21:40:13 2005
+From: masc at operamail.com (martin schneebacher)
+Date: Wed, 21 Dec 2005 21:40:13 +0100
+Subject: [Tifm21-devel] binary flash card reader from texas with blockdev
+Message-ID: <20051221204014.04D557B524@ws5-10.us4.outblaze.com>
+
+hi!
+
+some month ago started a project for a driver for the texas instruments card reader chip (part of the pcmcia/firewire/sd/mmc/... chip) found in many (newer) laptops. it is hosted at http://developer.berlios.de/projects/tifmxx/ . 
+specifications are only available for the pci interface and not for the API of the chip. while some reverse engineerings started with the windows driver, ti sends  a binary only driver to one person. 
+this driver was (likely) developed by everest (http://www.everestinc.com/fml.htm) for texas instruments. this binary driver has some interesting properties:
+modinfo tifm.ko lists a 
+license:        GPL
+
+hexediding thie module lists a gcc-3.3.5 (Debian), but more interesting two includes:
+include/linux/blkdev.h
+include/linux/bio.h
+
+the last one is of special interest because it's under the gpl and copyrighted by you -> that'y why i'm bothering you.
+
+as there is a common interest for using this interface with linux, it's better to have a already written driver than reverseengineering the windows one. 
+
+the question is, what way to go? are you interested in investigating the origin of this driver, should we (the tifm project) ask ti for that (at the moment they are just pointing to everest, which doesn't response - AFAIK) particular pointing to the license, or other thing?
+
+bye...masc.
+
+-- 
+martin.schneebacher
+<masc at operamail.com>
+
+-- 
+_______________________________________________
+Surf the Web in a faster, safer and easier way:
+Download Opera 8 at http://www.opera.com
+
+Powered by Outblaze
+
+
+From axboe at suse.de  Fri Dec 23 10:39:21 2005
+From: axboe at suse.de (Jens Axboe)
+Date: Fri, 23 Dec 2005 10:39:21 +0100
+Subject: [Tifm21-devel] Re: binary flash card reader from texas with blockdev
+In-Reply-To: <20051221204014.04D557B524@ws5-10.us4.outblaze.com>
+References: <20051221204014.04D557B524@ws5-10.us4.outblaze.com>
+Message-ID: <20051223093920.GD2597@suse.de>
+
+On Wed, Dec 21 2005, martin schneebacher wrote:
+> hi!
+> 
+> some month ago started a project for a driver for the texas
+> instruments card reader chip (part of the pcmcia/firewire/sd/mmc/...
+> chip) found in many (newer) laptops. it is hosted at
+> http://developer.berlios.de/projects/tifmxx/ .  specifications are
+> only available for the pci interface and not for the API of the chip.
+> while some reverse engineerings started with the windows driver, ti
+> sends  a binary only driver to one person.  this driver was (likely)
+> developed by everest (http://www.everestinc.com/fml.htm) for texas
+> instruments. this binary driver has some interesting properties:
+> modinfo tifm.ko lists a 
+> license:        GPL
+> 
+> hexediding thie module lists a gcc-3.3.5 (Debian), but more
+> interesting two includes:
+> include/linux/blkdev.h
+> include/linux/bio.h
+> 
+> the last one is of special interest because it's under the gpl and
+> copyrighted by you -> that'y why i'm bothering you.
+> 
+> as there is a common interest for using this interface with linux,
+> it's better to have a already written driver than reverseengineering
+> the windows one. 
+> 
+> the question is, what way to go? are you interested in investigating
+> the origin of this driver, should we (the tifm project) ask ti for
+> that (at the moment they are just pointing to everest, which doesn't
+> response - AFAIK) particular pointing to the license, or other thing?
+
+Well I'm definitely interested in pursuing this. Would it be possible
+for me to inspect this module myself?
+
+-- 
+Jens Axboe
+
+
+
+From giskard at autistici.org  Fri Dec 23 10:55:30 2005
+From: giskard at autistici.org (giskard)
+Date: Fri, 23 Dec 2005 10:55:30 +0100
+Subject: [Tifm21-devel] Re: binary flash card reader from texas with
+	blockdev
+In-Reply-To: <20051223093920.GD2597@suse.de>
+References: <20051221204014.04D557B524@ws5-10.us4.outblaze.com>
+	 <20051223093920.GD2597@suse.de>
+Message-ID: <1135331730.6983.13.camel@localhost.localdomain>
+
+hello,
+
+> Well I'm definitely interested in pursuing this. Would it be possible
+> for me to inspect this module myself?
+> 
+
+yes, you can take the entire tar.gz (which contains the module) here:
+
+http://www.webcon.ca/~imorgan/tifm21/ti-binary-driver.tgz
+
+-- 
+ciao giskard
+
+banlieues e periferia il problema e' la polizia
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: Questa parte del messaggio ? firmata
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20051223/091378c1/attachment.pgp>
+
+From oakad at yahoo.com  Fri Dec 23 17:29:24 2005
+From: oakad at yahoo.com (Alex Dubov)
+Date: Fri, 23 Dec 2005 08:29:24 -0800 (PST)
+Subject: [Tifm21-devel] tifmxx: first results
+Message-ID: <20051223162924.97355.qmail@web36702.mail.mud.yahoo.com>
+
+I'm proud to announce that my tifmxx driver (rev 11 in
+my svn) can be officially considered alpha.
+
+This means - it consistently detects card
+insertion/removal and recognizes card type (in a
+coarse, SM/MS/SD way). It is not supposed to crash and
+compiles cleanly. Nothing else to be said at a moment,
+sans the fact that I'm continuing my work on it.
+
+
+
+		
+__________________________________________ 
+Yahoo! DSL ? Something to write home about. 
+Just $16.99/mo. or less. 
+dsl.yahoo.com 
+
+
+
+From gustavo-listas at overstep.com.br  Fri Dec 23 18:11:45 2005
+From: gustavo-listas at overstep.com.br (Gustavo Henrique Cervi)
+Date: Fri, 23 Dec 2005 15:11:45 -0200
+Subject: [Tifm21-devel] tifmxx: first results
+In-Reply-To: <20051223162924.97355.qmail@web36702.mail.mud.yahoo.com>
+References: <20051223162924.97355.qmail@web36702.mail.mud.yahoo.com>
+Message-ID: <43AC2FD1.3010606@overstep.com.br>
+
+Hi,
+very very thanks....
+
+I think i am doing something wrong. The driver cant load...
+
+Any idea?
+
+
+
+[root at andromeda tifm]# make
+make -C /lib/modules/2.6.13-1.1532_FC4/build M=/data/temp/tifm
+make[1]: Entering directory `/usr/src/kernels/2.6.13-1.1532_FC4-i686'
+LD /data/temp/tifm/built-in.o
+CC [M] /data/temp/tifm/tifm21.o
+Building modules, stage 2.
+MODPOST
+CC /data/temp/tifm/tifm21.mod.o
+LD [M] /data/temp/tifm/tifm21.ko
+make[1]: Leaving directory `/usr/src/kernels/2.6.13-1.1532_FC4-i686'
+[root at andromeda tifm]# insmod ./tifm21.ko
+insmod: error inserting './tifm21.ko': -1 Invalid module format
+[root at andromeda tifm]#
+
+
+
+
+
+Alex Dubov wrote:
+> I'm proud to announce that my tifmxx driver (rev 11 in
+> my svn) can be officially considered alpha.
+>
+> This means - it consistently detects card
+> insertion/removal and recognizes card type (in a
+> coarse, SM/MS/SD way). It is not supposed to crash and
+> compiles cleanly. Nothing else to be said at a moment,
+> sans the fact that I'm continuing my work on it.
+>
+>
+>
+> 		
+> __________________________________________ 
+> Yahoo! DSL ? Something to write home about. 
+> Just $16.99/mo. or less. 
+> dsl.yahoo.com 
+>
+> _______________________________________________
+> Tifm21-devel mailing list
+> Tifm21-devel at lists.berlios.de
+> http://lists.berlios.de/mailman/listinfo/tifm21-devel
+>
+>   
+
+
+
+From st3 at riseup.net  Fri Dec 23 21:05:48 2005
+From: st3 at riseup.net (st3)
+Date: Fri, 23 Dec 2005 21:05:48 +0100
+Subject: [Tifm21-devel] tifmxx: first results
+In-Reply-To: <43AC2FD1.3010606@overstep.com.br>
+References: <20051223162924.97355.qmail@web36702.mail.mud.yahoo.com>
+	<43AC2FD1.3010606@overstep.com.br>
+Message-ID: <20051223210548.489dac8a@horst>
+
+On Fri, 23 Dec 2005 15:11:45 -0200
+Gustavo Henrique Cervi <gustavo-listas at overstep.com.br> wrote:
+
+> [root at andromeda tifm]# insmod ./tifm21.ko
+> insmod: error inserting './tifm21.ko': -1 Invalid module format
+> [root at andromeda tifm]#
+
+dmesg tells you what needed symbols your kernel lacks. Please paste the
+output.
+
+
+--
+ciao
+st3
+
+
+From gustavo-listas at overstep.com.br  Fri Dec 23 20:23:45 2005
+From: gustavo-listas at overstep.com.br (Gustavo Henrique Cervi)
+Date: Fri, 23 Dec 2005 17:23:45 -0200
+Subject: [Tifm21-devel] tifmxx: first results
+In-Reply-To: <20051223210548.489dac8a@horst>
+References: <20051223162924.97355.qmail@web36702.mail.mud.yahoo.com>	<43AC2FD1.3010606@overstep.com.br> <20051223210548.489dac8a@horst>
+Message-ID: <43AC4EC1.4070109@overstep.com.br>
+
+tifm21: version magic '2.6.13-1.1532_FC4 preempt PENTIUMM REGPARM 
+4KSTACKS gcc-4.0' should be '2.6.13-1.1532_FC4 686 REGPARM 4KSTACKS gcc-4.0'
+
+
+st3 wrote:
+> On Fri, 23 Dec 2005 15:11:45 -0200
+> Gustavo Henrique Cervi <gustavo-listas at overstep.com.br> wrote:
+>
+>   
+>> [root at andromeda tifm]# insmod ./tifm21.ko
+>> insmod: error inserting './tifm21.ko': -1 Invalid module format
+>> [root at andromeda tifm]#
+>>     
+>
+> dmesg tells you what needed symbols your kernel lacks. Please paste the
+> output.
+>
+>
+> --
+> ciao
+> st3
+>
+>   
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20051223/604fe18a/attachment.html>
+
+From st3 at riseup.net  Fri Dec 23 21:32:55 2005
+From: st3 at riseup.net (st3)
+Date: Fri, 23 Dec 2005 21:32:55 +0100
+Subject: [Tifm21-devel] tifmxx: first results
+In-Reply-To: <43AC4EC1.4070109@overstep.com.br>
+References: <20051223162924.97355.qmail@web36702.mail.mud.yahoo.com>
+	<43AC2FD1.3010606@overstep.com.br>
+	<20051223210548.489dac8a@horst>
+	<43AC4EC1.4070109@overstep.com.br>
+Message-ID: <20051223213255.7028b09f@horst>
+
+On Fri, 23 Dec 2005 17:23:45 -0200
+Gustavo Henrique Cervi <gustavo-listas at overstep.com.br> wrote:
+
+> tifm21: version magic '2.6.13-1.1532_FC4 preempt PENTIUMM REGPARM 
+> 4KSTACKS gcc-4.0' should be '2.6.13-1.1532_FC4 686 REGPARM 4KSTACKS gcc-4.0'
+
+You compiled the module for CPU subarch PENTIUMM, preemptible, while your
+kernel is compiled for 686, not preemptible.
+
+Please recompile the kernel or the module with appropriate configuration.
+
+
+--
+ciao
+st3
+
+
+
+From gustavo-listas at overstep.com.br  Sat Dec 24 02:54:11 2005
+From: gustavo-listas at overstep.com.br (Gustavo Henrique Cervi)
+Date: Fri, 23 Dec 2005 23:54:11 -0200
+Subject: [Tifm21-devel] tifmxx: first results - undefined symbols
+In-Reply-To: <20051223213255.7028b09f@horst>
+References: <20051223162924.97355.qmail@web36702.mail.mud.yahoo.com>	<43AC2FD1.3010606@overstep.com.br>	<20051223210548.489dac8a@horst>	<43AC4EC1.4070109@overstep.com.br> <20051223213255.7028b09f@horst>
+Message-ID: <43ACAA43.3040103@overstep.com.br>
+
+something is wrong here...
+
+-----
+
+[root at andromeda trunk]# make
+make -C /lib/modules/2.6.13-prep/build M=/data/temp/tifm/dd/trunk
+make[1]: Entering directory `/usr/src/linux-2.6.13'
+LD /data/temp/tifm/dd/trunk/built-in.o
+CC [M] /data/temp/tifm/dd/trunk/tifmxx_hw.o
+/data/temp/tifm/dd/trunk/tifmxx_hw.c: In function ?tifmxx_probe?:
+/data/temp/tifm/dd/trunk/tifmxx_hw.c:277: warning: implicit declaration 
+of function ?pci_intx?
+/data/temp/tifm/dd/trunk/tifmxx_hw.c:330: warning: label 
+?err_out_iounmap? defined but not used
+CC [M] /data/temp/tifm/dd/trunk/tifmxx_scsi.o
+LD [M] /data/temp/tifm/dd/trunk/tifmxx.o
+Building modules, stage 2.
+MODPOST
+*** Warning: "pci_intx" [/data/temp/tifm/dd/trunk/tifmxx.ko] undefined!
+CC /data/temp/tifm/dd/trunk/tifmxx.mod.o
+LD [M] /data/temp/tifm/dd/trunk/tifmxx.ko
+make[1]: Leaving directory `/usr/src/linux-2.6.13'
+[root at andromeda trunk]# insmod ./tifmxx.ko
+insmod: error inserting './tifmxx.ko': -1 Unknown symbol in module
+[root at andromeda trunk]#
+
+DMESG says:
+
+tifmxx: Unknown symbol scsi_remove_host
+tifmxx: Unknown symbol pci_intx
+tifmxx: Unknown symbol scsi_host_put
+tifmxx: Unknown symbol scsi_add_host
+tifmxx: Unknown symbol scsi_host_alloc
+
+
+thanks...
+-Gustavo
+
+
+
+
+From gustavo-listas at overstep.com.br  Sat Dec 24 02:54:11 2005
+From: gustavo-listas at overstep.com.br (Gustavo Henrique Cervi)
+Date: Fri, 23 Dec 2005 23:54:11 -0200
+Subject: [Tifm21-devel] tifmxx: first results - undefined symbols
+In-Reply-To: <20051223213255.7028b09f@horst>
+References: <20051223162924.97355.qmail@web36702.mail.mud.yahoo.com>	<43AC2FD1.3010606@overstep.com.br>	<20051223210548.489dac8a@horst>	<43AC4EC1.4070109@overstep.com.br> <20051223213255.7028b09f@horst>
+Message-ID: <43ACAA43.3040103@overstep.com.br>
+
+something is wrong here...
+
+-----
+
+[root at andromeda trunk]# make
+make -C /lib/modules/2.6.13-prep/build M=/data/temp/tifm/dd/trunk
+make[1]: Entering directory `/usr/src/linux-2.6.13'
+LD /data/temp/tifm/dd/trunk/built-in.o
+CC [M] /data/temp/tifm/dd/trunk/tifmxx_hw.o
+/data/temp/tifm/dd/trunk/tifmxx_hw.c: In function ?tifmxx_probe?:
+/data/temp/tifm/dd/trunk/tifmxx_hw.c:277: warning: implicit declaration 
+of function ?pci_intx?
+/data/temp/tifm/dd/trunk/tifmxx_hw.c:330: warning: label 
+?err_out_iounmap? defined but not used
+CC [M] /data/temp/tifm/dd/trunk/tifmxx_scsi.o
+LD [M] /data/temp/tifm/dd/trunk/tifmxx.o
+Building modules, stage 2.
+MODPOST
+*** Warning: "pci_intx" [/data/temp/tifm/dd/trunk/tifmxx.ko] undefined!
+CC /data/temp/tifm/dd/trunk/tifmxx.mod.o
+LD [M] /data/temp/tifm/dd/trunk/tifmxx.ko
+make[1]: Leaving directory `/usr/src/linux-2.6.13'
+[root at andromeda trunk]# insmod ./tifmxx.ko
+insmod: error inserting './tifmxx.ko': -1 Unknown symbol in module
+[root at andromeda trunk]#
+
+DMESG says:
+
+tifmxx: Unknown symbol scsi_remove_host
+tifmxx: Unknown symbol pci_intx
+tifmxx: Unknown symbol scsi_host_put
+tifmxx: Unknown symbol scsi_add_host
+tifmxx: Unknown symbol scsi_host_alloc
+
+
+thanks...
+-Gustavo
+
+
+
+
+From oakad at yahoo.com  Sat Dec 24 04:08:15 2005
+From: oakad at yahoo.com (Alex Dubov)
+Date: Fri, 23 Dec 2005 19:08:15 -0800 (PST)
+Subject: [Tifm21-devel] tifmxx: first results - undefined symbols
+In-Reply-To: <43ACAA43.3040103@overstep.com.br>
+Message-ID: <20051224030815.34073.qmail@web36706.mail.mud.yahoo.com>
+
+I would like to comment here that alpha drivers are
+not supposed to be used by general public. It is too
+early for support requests and such.
+
+However, specific problem that we see here is, of
+course, caused by the scsi subsystem missing from the
+kernel (not compiled in or not loaded in advance).
+
+pci_intx is a relatively new addition to the pci core.
+May be it's missing from some kernels.
+
+
+
+		
+__________________________________________ 
+Yahoo! DSL ? Something to write home about. 
+Just $16.99/mo. or less. 
+dsl.yahoo.com 
+
+
+
+From gustavo-listas at overstep.com.br  Sat Dec 24 04:46:33 2005
+From: gustavo-listas at overstep.com.br (Gustavo Henrique Cervi)
+Date: Sat, 24 Dec 2005 01:46:33 -0200
+Subject: [Tifm21-devel] tifmxx: first results - undefined symbols
+In-Reply-To: <20051224030815.34073.qmail@web36706.mail.mud.yahoo.com>
+References: <20051224030815.34073.qmail@web36706.mail.mud.yahoo.com>
+Message-ID: <43ACC499.40209@overstep.com.br>
+
+Hey, don't worry about it...
+
+Im only trying to help your project...
+unfortunately I have no time to make "open box" tests, thus, I'm mailing 
+this list the problems I found "as is".
+Dont think this as "support requests".
+
+btw, If my reports are boring you, I can stop my "closed box" tests.
+
+Thanks a lot.
+
+-Gustavo
+
+
+Alex Dubov wrote:
+> I would like to comment here that alpha drivers are
+> not supposed to be used by general public. It is too
+> early for support requests and such.
+>
+> However, specific problem that we see here is, of
+> course, caused by the scsi subsystem missing from the
+> kernel (not compiled in or not loaded in advance).
+>
+> pci_intx is a relatively new addition to the pci core.
+> May be it's missing from some kernels.
+>
+>
+>
+> 		
+> __________________________________________ 
+> Yahoo! DSL ? Something to write home about. 
+> Just $16.99/mo. or less. 
+> dsl.yahoo.com 
+>
+> _______________________________________________
+> Tifm21-devel mailing list
+> Tifm21-devel at lists.berlios.de
+> http://lists.berlios.de/mailman/listinfo/tifm21-devel
+>
+>   
+
+
+
+From jordant at blue-ferret.com.au  Sat Dec 24 06:11:34 2005
+From: jordant at blue-ferret.com.au (Jordan T.)
+Date: Sat, 24 Dec 2005 13:11:34 +0800
+Subject: [Tifm21-devel] tifmxx: first results - undefined symbols
+In-Reply-To: <43ACC499.40209@overstep.com.br>
+References: <20051224030815.34073.qmail@web36706.mail.mud.yahoo.com> <43ACC499.40209@overstep.com.br>
+Message-ID: <20051224051033.M27387@blue-ferret.com.au>
+
+Hey fellas, lets remember what time of the year it is eh?
+
+Merry Christmas & Happy Holidays :)
+
+Take a break and get some sunshine!
+
+Jordan
+
+On Sat, 24 Dec 2005 01:46:33 -0200, Gustavo Henrique Cervi wrote
+> Hey, don't worry about it...
+> 
+> Im only trying to help your project...
+> unfortunately I have no time to make "open box" tests, thus, I'm mailing 
+> this list the problems I found "as is".
+> Dont think this as "support requests".
+> 
+> btw, If my reports are boring you, I can stop my "closed box" tests.
+> 
+> Thanks a lot.
+> 
+> -Gustavo
+> 
+> Alex Dubov wrote:
+> > I would like to comment here that alpha drivers are
+> > not supposed to be used by general public. It is too
+> > early for support requests and such.
+> >
+> > However, specific problem that we see here is, of
+> > course, caused by the scsi subsystem missing from the
+> > kernel (not compiled in or not loaded in advance).
+> >
+> > pci_intx is a relatively new addition to the pci core.
+> > May be it's missing from some kernels.
+> >
+> >
+> >
+> > 		
+> > __________________________________________ 
+> > Yahoo! DSL [WINDOWS-1252?]? Something to write home about. 
+> > Just $16.99/mo. or less. 
+> > dsl.yahoo.com 
+> >
+> > _______________________________________________
+> > Tifm21-devel mailing list
+> > Tifm21-devel at lists.berlios.de
+> > http://lists.berlios.de/mailman/listinfo/tifm21-devel
+> >
+> >
+> 
+> _______________________________________________
+> Tifm21-devel mailing list
+> Tifm21-devel at lists.berlios.de
+> http://lists.berlios.de/mailman/listinfo/tifm21-devel
+
+
+
+From wael at siemens-mobiles.org  Sat Dec 24 08:49:09 2005
+From: wael at siemens-mobiles.org (Wael Nasreddine)
+Date: Sat, 24 Dec 2005 08:49:09 +0100
+Subject: [Tifm21-devel] tifmxx: first results
+In-Reply-To: <20051221110023.3088.53144.Mailman@bat.berlios.de>
+References: <20051221110023.3088.53144.Mailman@bat.berlios.de>
+Message-ID: <43ACFD75.4000603@siemens-mobiles.org>
+
+>I'm proud to announce that my tifmxx driver (rev 11 in
+>my svn) can be officially considered alpha.
+>
+>This means - it consistently detects card
+>insertion/removal and recognizes card type (in a
+>coarse, SM/MS/SD way). It is not supposed to crash and
+>compiles cleanly. Nothing else to be said at a moment,
+>sans the fact that I'm continuing my work on it.
+>
+Very Good Work Alex, it compiles and load quite cool on my Laptop (I'm
+using 2.6.14 ck1 btw), it detects cerrectly my MMC card
+
+wael at nasreddine:/tmp/11$ dmesg |tail
+[4297419.690000] tifmxx: Got interrupt
+[4297419.690000] tifmxx: Bottom half
+[4297419.723000] tifmxx: MMC/SD in socket 3 detected
+
+If you want more testing results, dumps or anything else, please tell me
+
+Regards,
+Wael Nasreddine
+
+
+
+From syatmaz at gmail.com  Sat Dec 24 09:09:20 2005
+From: syatmaz at gmail.com (=?utf-8?q?Sava=C5=9F_Yatmaz?=)
+Date: Sat, 24 Dec 2005 10:09:20 +0200
+Subject: [Tifm21-devel] tifmxx: first results
+In-Reply-To: <20051223162924.97355.qmail@web36702.mail.mud.yahoo.com>
+References: <20051223162924.97355.qmail@web36702.mail.mud.yahoo.com>
+Message-ID: <200512241009.20232.syatmaz@gmail.com>
+
+Hi,
+
+I can find rev 6 on the svn.Where is rev 11?
+
+Thanks
+
+Savas Yatmaz
+
+Cum 23 18:29 tarihinde, Alex Dubov ?unlar? yazm??t?: 
+> I'm proud to announce that my tifmxx driver (rev 11 in
+> my svn) can be officially considered alpha.
+>
+> This means - it consistently detects card
+> insertion/removal and recognizes card type (in a
+> coarse, SM/MS/SD way). It is not supposed to crash and
+> compiles cleanly. Nothing else to be said at a moment,
+> sans the fact that I'm continuing my work on it.
+>
+>
+>
+>
+> __________________________________________
+> Yahoo! DSL ? Something to write home about.
+> Just $16.99/mo. or less.
+> dsl.yahoo.com
+>
+> _______________________________________________
+> Tifm21-devel mailing list
+> Tifm21-devel at lists.berlios.de
+> http://lists.berlios.de/mailman/listinfo/tifm21-devel
+
+
+From juan at xdracco.net  Sat Dec 24 09:32:51 2005
+From: juan at xdracco.net (Juan Gonzalez)
+Date: Sat, 24 Dec 2005 00:32:51 -0800
+Subject: [Tifm21-devel] URL
+In-Reply-To: <200512241009.20232.syatmaz@gmail.com>
+References: <20051223162924.97355.qmail@web36702.mail.mud.yahoo.com> <200512241009.20232.syatmaz@gmail.com>
+Message-ID: <200512240032.51440.juan@xdracco.net>
+
+Retarded question, but what's the URL again? Searching berlios was 
+unproductive.. =\
+
+Juan
+
+
+From wael at siemens-mobiles.org  Sat Dec 24 09:37:41 2005
+From: wael at siemens-mobiles.org (Wael Nasreddine)
+Date: Sat, 24 Dec 2005 09:37:41 +0100
+Subject: [Tifm21-devel] URL For Revision 11 for whom are lost
+Message-ID: <43AD08D5.6080605@siemens-mobiles.org>
+
+Hello,
+
+For whom wants to test the revision 11 it's at
+http://developer.berlios.de/projects/tifmxx/ project
+direct link : http://svn.berlios.de/viewcvs/tifmxx/trunk/
+
+Regards,
+Wael Nasreddine
+
+
+From juan at xdracco.net  Sat Dec 24 09:39:23 2005
+From: juan at xdracco.net (Juan Gonzalez)
+Date: Sat, 24 Dec 2005 00:39:23 -0800
+Subject: [Tifm21-devel] URL
+In-Reply-To: <200512240032.51440.juan@xdracco.net>
+References: <20051223162924.97355.qmail@web36702.mail.mud.yahoo.com> <200512241009.20232.syatmaz@gmail.com> <200512240032.51440.juan@xdracco.net>
+Message-ID: <200512240039.23628.juan@xdracco.net>
+
+Nevermind... It's late... blah!
+
+On Sat December 24 2005 12:32 am, Juan Gonzalez wrote:
+> Retarded question, but what's the URL again? Searching berlios was
+> unproductive.. =\
+>
+> Juan
+> _______________________________________________
+> Tifm21-devel mailing list
+> Tifm21-devel at lists.berlios.de
+> http://lists.berlios.de/mailman/listinfo/tifm21-devel
+
+-- 
+_______________________________________________
+Juan G.
+www.xdracco.net
+
+
+From misho at starrydreams.com  Sat Dec 24 12:02:57 2005
+From: misho at starrydreams.com (Dr.Mihail Tomoff)
+Date: Sat, 24 Dec 2005 12:02:57 +0100
+Subject: [Tifm21-devel] tifmxx: first results - undefined symbols
+In-Reply-To: <20051224030815.34073.qmail@web36706.mail.mud.yahoo.com>
+References: <20051224030815.34073.qmail@web36706.mail.mud.yahoo.com>
+Message-ID: <43AD2AE1.4040004@starrydreams.com>
+
+Alex Dubov wrote:
+> I would like to comment here that alpha drivers are
+> not supposed to be used by general public. It is too
+> early for support requests and such.
+>
+> However, specific problem that we see here is, of
+> course, caused by the scsi subsystem missing from the
+> kernel (not compiled in or not loaded in advance).
+>
+> pci_intx is a relatively new addition to the pci core.
+> May be it's missing from some kernels.
+>
+>
+>
+> 		
+> __________________________________________ 
+> Yahoo! DSL ? Something to write home about. 
+> Just $16.99/mo. or less. 
+> dsl.yahoo.com 
+>
+> _______________________________________________
+> Tifm21-devel mailing list
+> Tifm21-devel at lists.berlios.de
+> http://lists.berlios.de/mailman/listinfo/tifm21-devel
+>
+>   
+How new must be the kernel? Mine is kernel-default-2.6.13-15.7 of SUSE
+64 bit, however I get the same errors when compiling it:
+make
+make -C /lib/modules/2.6.13-15.7-default/build
+M=/home/mishaikin/tifmxx/trunk
+make[1]: Entering directory `/usr/src/linux-2.6.13-15.7-obj/x86_64/default'
+make -C ../../../linux-2.6.13-15.7 O=../linux-2.6.13-15.7-obj/x86_64/default
+LD /home/mishaikin/tifmxx/trunk/built-in.o
+CC [M] /home/mishaikin/tifmxx/trunk/tifmxx_hw.o
+/home/mishaikin/tifmxx/trunk/tifmxx_hw.c: In function ?tifmxx_probe?:
+/home/mishaikin/tifmxx/trunk/tifmxx_hw.c:277: error: implicit
+declaration of function ?pci_intx?
+/home/mishaikin/tifmxx/trunk/tifmxx_hw.c:330: warning: label
+?err_out_iounmap? defined but not used
+make[4]: *** [/home/mishaikin/tifmxx/trunk/tifmxx_hw.o] Error 1
+make[3]: *** [_module_/home/mishaikin/tifmxx/trunk] Error 2
+make[2]: *** [_all] Error 2
+make[1]: *** [all] Error 2
+make[1]: Leaving directory `/usr/src/linux-2.6.13-15.7-obj/x86_64/default'
+make: *** [all] Error 2
+
+Greetings,
+Mihail Tomov
+
+
+
+From st3 at riseup.net  Sat Dec 24 14:24:49 2005
+From: st3 at riseup.net (Stefano Brivio)
+Date: Sat, 24 Dec 2005 14:24:49 +0100
+Subject: [Tifm21-devel] tifmxx: first results
+In-Reply-To: <20051223162924.97355.qmail@web36702.mail.mud.yahoo.com>
+References: <20051223162924.97355.qmail@web36702.mail.mud.yahoo.com>
+Message-ID: <20051224142449.769b2ebe@horst>
+
+On Fri, 23 Dec 2005 08:29:24 -0800 (PST)
+Alex Dubov <oakad at yahoo.com> wrote:
+
+> I'm proud to announce that my tifmxx driver (rev 11 in
+> my svn) can be officially considered alpha.
+> 
+> This means - it consistently detects card
+> insertion/removal and recognizes card type (in a
+> coarse, SM/MS/SD way). It is not supposed to crash and
+> compiles cleanly. Nothing else to be said at a moment,
+> sans the fact that I'm continuing my work on it.
+
+Congrats.
+
+Now, I don't think it makes sense to keep two separate projects for the
+same thing. You are the only one working on it, and this confusion doesn't
+help when it comes to possible collaboration. Paul Webster and Ian Morgan
+had started writing code some time ago, e.g. I think what makes more sense
+is merging the two projects. Which doesn't mean merging the code, IMHO, as
+yours looks a very good starting point, and maybe something more than a
+starting point. It means closing the tifm21 project and opening a new
+mailing list related to the tifmxx project. It's up to you, giskard and
+Paul Webster, i guess.
+
+But I don't agree with some of the things you state on the wiki. Yes, in a
+free world, reverse engineering wouldn't even be needed. I don't think we
+live in a free world. See the Sklyarov case. Cleanroom approach is just a
+method to avoid companies suing you. I'm collaborating at the bcm43xx
+driver project following this method, not because I like it (even if it
+works), but because I don't feel like Broadcom sue me. Even Compaq did
+this with the IBM PC bios, BTW.
+
+Plus, I guess you are just using the binary Linux driver for reverse
+engineering purposes. That's GPL'ed, and it's not a problem at all to keep
+it into the trunk. Reverse engineering it is legal, and what's not legal is
+that TI doesn't release the source for it. But I can't understand why
+you committed into trunk the windows binary driver. This is absolutely
+useless and could lead to legal issues. Why?
+
+I hope Jens Axboe will successfully pursue TI for the GPL violation. But,
+as we all know, this is going to be very difficult.
+
+
+--
+ciao
+st3
+
+
+From pjwebster at gmail.com  Sun Dec 25 01:43:04 2005
+From: pjwebster at gmail.com (Paul Webster)
+Date: Sun, 25 Dec 2005 10:43:04 +1000
+Subject: [Tifm21-devel] tifmxx: first results
+In-Reply-To: <20051224142449.769b2ebe@horst>
+References: <20051223162924.97355.qmail@web36702.mail.mud.yahoo.com>
+	 <20051224142449.769b2ebe@horst>
+Message-ID: <dc98d8d90512241643r1224a660s21c2db9945f72714@mail.gmail.com>
+
+> Now, I don't think it makes sense to keep two separate projects for the
+> same thing. You are the only one working on it, and this confusion doesn't
+> help when it comes to possible collaboration. Paul Webster and Ian Morgan
+> had started writing code some time ago, e.g. I think what makes more sense
+> is merging the two projects. Which doesn't mean merging the code, IMHO, as
+> yours looks a very good starting point, and maybe something more than a
+> starting point. It means closing the tifm21 project and opening a new
+> mailing list related to the tifmxx project. It's up to you, giskard and
+> Paul Webster, i guess.
+
+I agree, I had been "examining" the assorted objects of the binary
+files found by Ian, but field work, a lack of experience in assembly
+and just the time of year in general has meant that I haven't made
+much progress.
+
+> But I don't agree with some of the things you state on the wiki. Yes, in a
+> free world, reverse engineering wouldn't even be needed. I don't think we
+> live in a free world. See the Sklyarov case. Cleanroom approach is just a
+> method to avoid companies suing you. I'm collaborating at the bcm43xx
+> driver project following this method, not because I like it (even if it
+> works), but because I don't feel like Broadcom sue me. Even Compaq did
+> this with the IBM PC bios, BTW.
+>
+> Plus, I guess you are just using the binary Linux driver for reverse
+> engineering purposes. That's GPL'ed, and it's not a problem at all to keep
+> it into the trunk. Reverse engineering it is legal, and what's not legal is
+> that TI doesn't release the source for it. But I can't understand why
+> you committed into trunk the windows binary driver. This is absolutely
+> useless and could lead to legal issues. Why?
+
+After the whole Christmas thing, I'll give the tifmxx code a try and
+see if I can contribute
+
+
+From oakad at yahoo.com  Sun Dec 25 04:35:39 2005
+From: oakad at yahoo.com (Alex Dubov)
+Date: Sat, 24 Dec 2005 19:35:39 -0800 (PST)
+Subject: [Tifm21-devel] tifmxx: first results
+In-Reply-To: <dc98d8d90512241643r1224a660s21c2db9945f72714@mail.gmail.com>
+Message-ID: <20051225033539.28086.qmail@web36713.mail.mud.yahoo.com>
+
+Hmm, I see a lot of buzz generated by my humble
+announcement (and it is humble, as nothing useful can
+be done with the tifmxx right now and there is no
+guarantee that it will be ever possible).
+
+Now to the issues:
+1. pci_intx is part of pci core in 2.6.14, but some
+time before it was only present in libata. It well may
+be that 2.6.13 without libata can have this symbol
+missing.
+
+2. The reason I ever started tifmxx (instead of
+contributing to tifm21) is that I have no desire to
+mess with all those "legal issues". I don't give a
+shit, frankly. I only want the dumb device to work.
+
+3. Contrary to what somebody might think, I'm working
+on the windows driver code, not on linux one. First,
+I've started this long before the linux driver emerged
+and second, TI's linux driver is itself hastily ported
+from the windows code.
+
+
+
+		
+__________________________________________ 
+Yahoo! DSL ? Something to write home about. 
+Just $16.99/mo. or less. 
+dsl.yahoo.com 
+
+
+
+From st3 at riseup.net  Mon Dec 26 02:07:07 2005
+From: st3 at riseup.net (Stefano Brivio)
+Date: Mon, 26 Dec 2005 02:07:07 +0100
+Subject: [Tifm21-devel] tifmxx: first results
+In-Reply-To: <20051225033539.28086.qmail@web36713.mail.mud.yahoo.com>
+References: <dc98d8d90512241643r1224a660s21c2db9945f72714@mail.gmail.com>
+	<20051225033539.28086.qmail@web36713.mail.mud.yahoo.com>
+Message-ID: <20051226020707.560cfc41@horst>
+
+On Sat, 24 Dec 2005 19:35:39 -0800 (PST)
+Alex Dubov <oakad at yahoo.com> wrote:
+> 
+> 2. The reason I ever started tifmxx (instead of
+> contributing to tifm21) is that I have no desire to
+> mess with all those "legal issues". I don't give a
+> shit, frankly. I only want the dumb device to work.
+
+For the dumb device to work, you may need collaboration. And people may
+want to mess with legal issues. My best wishes to you. This is no sarcasm.
+
+
+--
+ciao
+st3
+
+
+From carlosrm at tiscali.be  Thu Dec 29 19:37:58 2005
+From: carlosrm at tiscali.be (Carlos Romero-Martin)
+Date: Thu, 29 Dec 2005 19:37:58 +0100
+Subject: [Tifm21-devel] Use tifm21 module
+Message-ID: <200512291937.58079.carlosrm@tiscali.be>
+
+Hello,
+Can you help me to use "tifm21" module, configuration file.
+I load it and all is ok
+Thank
+Happy New Year
+-- 
+Carlos Romero-Martin
+
+

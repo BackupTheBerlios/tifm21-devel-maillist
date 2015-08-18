@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] First release
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2006-June/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20First%20release&In-Reply-To=%3C1150145604.9187.263646846%40webmail.messagingengine.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000170.html">
+   <LINK REL="Next"  HREF="000174.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] First release</H1>
+    <B>James RW</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20First%20release&In-Reply-To=%3C1150145604.9187.263646846%40webmail.messagingengine.com%3E"
+       TITLE="[Tifm21-devel] First release">jamesrw at eml.cc
+       </A><BR>
+    <I>Mon Jun 12 22:53:24 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000170.html">[Tifm21-devel] Some little problems
+</A></li>
+        <LI>Next message: <A HREF="000174.html">[Tifm21-devel] First release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#173">[ date ]</a>
+              <a href="thread.html#173">[ thread ]</a>
+              <a href="subject.html#173">[ subject ]</a>
+              <a href="author.html#173">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>not getting very far at all... error when i exectue &quot;make&quot;:
+
+make: *** /lib/modules/2.6.15-23-amd64-generic/build: No such file or
+directory.  Stop.
+make: *** [all] Error 2
+
+not kernel related is it?
+------------------------------------------------------------------------------------
+
+On Sat, 10 Jun 2006 19:06:45 +0200, &quot;Wael Nasreddine&quot;
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">wael at siemens-mobiles.org</A>&gt; said:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> Complete reference just for everyone that might ask the same question
+</I>&gt;<i> 
+</I>&gt;<i> ---------------------------- CUT
+</I>&gt;<i> mkdir /tmp/driver
+</I>&gt;<i> cd /tmp/driver
+</I>&gt;<i> wget <A HREF="http://download.berlios.de/tifmxx/tifm-0.4.tar.bz2">http://download.berlios.de/tifmxx/tifm-0.4.tar.bz2</A>
+</I>&gt;<i> tar xjf tifm-0.4.tar.bz2
+</I>&gt;<i> make
+</I>&gt;<i> mkdir -p /lib/modules/`uname -r`/kernel/drivers/mmc/tifmxx
+</I>&gt;<i> cp *.ko /lib/modules/`uname -r`/kernel/drivers/mmc/tifmxx/
+</I>&gt;<i> depmod -A
+</I>&gt;<i> modprobe mmc_core mmc_block tifm_7xx1 tifm_sd
+</I>&gt;<i> ---------------------------- CUT
+</I>&gt;<i> 
+</I>&gt;<i> and voil&#224; Enjoy (thx to Alex :) )
+</I>&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Wael Nasreddine
+</I>&gt;<i> 
+</I>&gt;<i> James RW wrote:
+</I>&gt;<i> &gt; How do I install the driver?
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; On Sat, 10 Jun 2006 08:03:23 -0700 (PDT), &quot;Alex Dubov&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">oakad at yahoo.com</A>&gt;
+</I>&gt;<i> &gt; said:
+</I>&gt;<i> &gt;   
+</I>&gt;<i> &gt;&gt; The first &quot;official&quot; release of the driver is now
+</I>&gt;<i> &gt;&gt; available:
+</I>&gt;<i> &gt;&gt; <A HREF="http://developer.berlios.de/project/showfiles.php?group_id=5510">http://developer.berlios.de/project/showfiles.php?group_id=5510</A>
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; Some highlights:
+</I>&gt;<i> &gt;&gt; 1. It works for me, but there may still be problems
+</I>&gt;<i> &gt;&gt; 2. It uses dma only for &quot;MULTI&quot; transfers - so there
+</I>&gt;<i> &gt;&gt; may be occasional drops in speed during operation.
+</I>&gt;<i> &gt;&gt; Fortunately, these are rare in normal use. I get
+</I>&gt;<i> &gt;&gt; around 4MB/sec on average.
+</I>&gt;<i> &gt;&gt; 3. As this is reverse engineered driver, there are
+</I>&gt;<i> &gt;&gt; many things that I don't know how to fix (see item 2
+</I>&gt;<i> &gt;&gt; above for example).
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; __________________________________________________
+</I>&gt;<i> &gt;&gt; Do You Yahoo!?
+</I>&gt;<i> &gt;&gt; Tired of spam?  Yahoo! Mail has the best spam protection around 
+</I>&gt;<i> &gt;&gt; <A HREF="http://mail.yahoo.com">http://mail.yahoo.com</A> 
+</I>&gt;<i> &gt;&gt; _______________________________________________
+</I>&gt;<i> &gt;&gt; Tifm21-devel mailing list
+</I>&gt;<i> &gt;&gt; <A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">Tifm21-devel at lists.berlios.de</A>
+</I>&gt;<i> &gt;&gt; <A HREF="http://lists.berlios.de/mailman/listinfo/tifm21-devel">http://lists.berlios.de/mailman/listinfo/tifm21-devel</A>
+</I>&gt;<i> &gt;&gt;     
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Tifm21-devel mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">Tifm21-devel at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="http://lists.berlios.de/mailman/listinfo/tifm21-devel">http://lists.berlios.de/mailman/listinfo/tifm21-devel</A>
+</I>-- 
+  James RW
+  <A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">jamesrw at eml.cc</A>
+
+-- 
+<A HREF="http://www.fastmail.fm">http://www.fastmail.fm</A> - The professional email service
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000170.html">[Tifm21-devel] Some little problems
+</A></li>
+	<LI>Next message: <A HREF="000174.html">[Tifm21-devel] First release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#173">[ date ]</a>
+              <a href="thread.html#173">[ thread ]</a>
+              <a href="subject.html#173">[ subject ]</a>
+              <a href="author.html#173">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

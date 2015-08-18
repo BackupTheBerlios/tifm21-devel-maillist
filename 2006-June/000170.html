@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] Some little problems
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2006-June/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20Some%20little%20problems&In-Reply-To=%3C448BE27C.3020401%40siemens-mobiles.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000167.html">
+   <LINK REL="Next"  HREF="000173.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] Some little problems</H1>
+    <B>Wael Nasreddine</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20Some%20little%20problems&In-Reply-To=%3C448BE27C.3020401%40siemens-mobiles.org%3E"
+       TITLE="[Tifm21-devel] Some little problems">wael at siemens-mobiles.org
+       </A><BR>
+    <I>Sun Jun 11 11:29:32 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000167.html">[Tifm21-devel] Some little problems
+</A></li>
+        <LI>Next message: <A HREF="000173.html">[Tifm21-devel] First release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#170">[ date ]</a>
+              <a href="thread.html#170">[ thread ]</a>
+              <a href="subject.html#170">[ subject ]</a>
+              <a href="author.html#170">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Alex Dubov wrote:
+&gt;<i> One of the cases where &quot;too good is no good&quot;. Error 1 is a timeout.
+</I>&gt;<i> Couple of these are normal as mmc will try to discover if there's
+</I>&gt;<i> more than one card in the socket (sd cards can be chained). Here,
+</I>&gt;<i> try this (attached) version, which does not tries to honour card
+</I>&gt;<i> specific timeout and always uses uber-long, 1 sec value.
+</I>Hi,
+
+Okay I patched the file with the attached one and it seems to be quite
+more stable (insert/remove more than 10 times worked each time),
+though i haven't tried with a reboot with/without the card because am
+compiling a kernel with sdhci support to try it, it seems quite stable
+too on ubuntu dapper so am trying it now...
+
+Once the kernel is compiled i'll reboot/test more tifmxx driver and
+report back if any weird stuff occurd again
+
+Thanks !
+
+Regards,
+Wael Nasreddine
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.2.2 (GNU/Linux)
+
+iD8DBQFEi+J7VWU5RcjdGKIRAupaAKC6e0AoMT+6vwEZUfds/JlG4vHLRQCcCDvU
+4kJ0VuTt4vuK+CNscv/jWBQ=
+=CbXd
+-----END PGP SIGNATURE-----
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000167.html">[Tifm21-devel] Some little problems
+</A></li>
+	<LI>Next message: <A HREF="000173.html">[Tifm21-devel] First release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#170">[ date ]</a>
+              <a href="thread.html#170">[ thread ]</a>
+              <a href="subject.html#170">[ subject ]</a>
+              <a href="author.html#170">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

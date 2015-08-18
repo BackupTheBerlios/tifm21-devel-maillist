@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] almost works
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2006-August/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20almost%20works&In-Reply-To=%3C20060816062116.GB8856%40debian%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000212.html">
+   <LINK REL="Next"  HREF="000215.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] almost works</H1>
+    <B>Bartosz Fenski aka fEnIo</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20almost%20works&In-Reply-To=%3C20060816062116.GB8856%40debian%3E"
+       TITLE="[Tifm21-devel] almost works">fenio at debian.org
+       </A><BR>
+    <I>Wed Aug 16 08:21:16 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000212.html">[Tifm21-devel] almost works
+</A></li>
+        <LI>Next message: <A HREF="000215.html">[Tifm21-devel] almost works
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#213">[ date ]</a>
+              <a href="thread.html#213">[ thread ]</a>
+              <a href="subject.html#213">[ subject ]</a>
+              <a href="author.html#213">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, Aug 15, 2006 at 07:22:21PM -0700, Alex Dubov wrote:
+&gt;<i> Please, try paying attention to what is going on in
+</I>&gt;<i> your logs. Messages of the form:
+</I>&gt;<i> 
+</I>&gt;<i> bla-bla: Unknown symbol bla_bla_bla
+</I>&gt;<i> 
+</I>&gt;<i> are reported by kernel when some functionality is
+</I>&gt;<i> missing (correct modules are not loaded). This is
+</I>&gt;<i> independent of the driver or device you may want to
+</I>&gt;<i> use and must be resolved first. In case of tifm,
+</I>&gt;<i> loaded modules must include:
+</I>&gt;<i> mmc_core
+</I>&gt;<i> mmc_block
+</I>&gt;<i> tifm_core
+</I>&gt;<i> tifm_7xx1
+</I>&gt;<i> tifm_sd
+</I>
+Ok I was a little unclear last time. Lines with 'Uknown symbol' was printed
+due to my tries to resolve problem (unloading/loading modules). 
+Basically I've got all needed modules.
+
+(<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">root at lapik</A>)~#lsmod
+Module                  Size  Used by
+tifm_sd                 8708  0
+tifm_7xx1               7808  0
+tifm_core               8720  2 tifm_sd,tifm_7xx1
+ipw2200                93864  0
+(<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">root at lapik</A>)~#
+
+(<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">root at lapik</A>)~#grep -i mmc /usr/src/linux/.config | grep -v '^#'
+CONFIG_PCI_MMCONFIG=y
+CONFIG_MMC=y
+CONFIG_MMC_BLOCK=y
+(<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">root at lapik</A>)~#
+
+So MMC part is compiled in kernel (I tried to use them as a modules but
+without difference).
+ 
+This is output of dmesg when it worked (as I said it was only once):
+
+tifm_7xx1: sd card detected in socket 3
+mmcblk0: mmc3:0001 000000 1003520KiB mmcblk0: p1
+
+All I get now is:
+
+tifm_7xx1: demand removing card from socket 3
+tifm_7xx1: sd card detected in socket 3
+tifm_7xx1: demand removing card from socket 3
+tifm_7xx1: sd card detected in socket 3
+tifm_7xx1: demand removing card from socket 3
+tifm_7xx1: sd card detected in socket 3
+tifm_7xx1: demand removing card from socket 3
+tifm_7xx1: sd card detected in socket 3
+
+So there's no part about assigning mmcblk0 device.
+
+&gt;<i> Xd cards are not currently supported.
+</I>
+Are there any cards that can work both as sd and xd?
+I'm asking cause I can insert my card in two ways. Normally it's detected
+as:
+
+tifm_7xx1: sd card detected in socket 3
+tifm_7xx1: xd card detected in socket 2
+
+But when I insert it upside down then it shows only:
+
+tifm_7xx1: sd card detected in socket 3
+
+I'm not sure what's going on here... as I said it worked once! ;)
+
+I've been able to copy almost 300MB to this card using tifm, but then
+I removed the card and inserted it to phone to check if data is ok. 
+It was ok so I tried to insert it again to copy additional data... 
+unfortunately it doesn't work anymore.
+
+What else can I try?
+
+regards
+fEnIo
+-- 
+  ,''`.  Bartosz Fenski | mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">fenio at debian.org</A> | pgp:0x13fefc40 | irc:fEnIo
+ : :' :       32-050 Skawina - Glowackiego 3/15 - malopolskie v. - Poland
+ `. `'           phone:+48602383548 | proud Debian maintainer and user
+   `-          <A HREF="http://skawina.eu.org">http://skawina.eu.org</A> | jid:<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">fenio at jabber.org</A> | rlu:172001
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: Digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/tifm21-devel/attachments/20060816/f0ed4f43/attachment.pgp">https://lists.berlios.de/pipermail/tifm21-devel/attachments/20060816/f0ed4f43/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000212.html">[Tifm21-devel] almost works
+</A></li>
+	<LI>Next message: <A HREF="000215.html">[Tifm21-devel] almost works
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#213">[ date ]</a>
+              <a href="thread.html#213">[ thread ]</a>
+              <a href="subject.html#213">[ subject ]</a>
+              <a href="author.html#213">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

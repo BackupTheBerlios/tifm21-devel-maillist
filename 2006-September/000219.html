@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] Driver update: write speed improvement
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2006-September/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20Driver%20update%3A%20write%20speed%20improvement&In-Reply-To=%3C20060902084735.92548.qmail%40web36701.mail.mud.yahoo.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000218.html">
+   <LINK REL="Next"  HREF="000217.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] Driver update: write speed improvement</H1>
+    <B>Alex Dubov</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20Driver%20update%3A%20write%20speed%20improvement&In-Reply-To=%3C20060902084735.92548.qmail%40web36701.mail.mud.yahoo.com%3E"
+       TITLE="[Tifm21-devel] Driver update: write speed improvement">oakad at yahoo.com
+       </A><BR>
+    <I>Sat Sep  2 10:47:35 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000218.html">[Tifm21-devel] Driver update: write speed improvement
+</A></li>
+        <LI>Next message: <A HREF="000217.html">[Tifm21-devel] make install target
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#219">[ date ]</a>
+              <a href="thread.html#219">[ thread ]</a>
+              <a href="subject.html#219">[ subject ]</a>
+              <a href="author.html#219">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Writing is now done with dma, so the speed is, of
+course, much higher. It can cause a bad luck, however,
+to post things like &quot;50x increase in speed&quot;.
+
+Now, I think the driver is fit for inclusion into
+kernel. I'll try to do something about it.
+
+--- Brad Campbell &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">brad at wasp.net.au</A>&gt; wrote:
+
+&gt;<i> Alex Dubov wrote:
+</I>&gt;<i> &gt; I made a couple of modifications to the tifm
+</I>&gt;<i> driver.
+</I>&gt;<i> &gt; Most notables improvements:
+</I>&gt;<i> &gt; 1. PIO speed (no_dma=1 option) is now up to 7x
+</I>&gt;<i> higher
+</I>&gt;<i> &gt; 2. Write speed is up to 5x higher
+</I>&gt;<i> &gt; (the speed gain may even be better than this; on
+</I>&gt;<i> the
+</I>&gt;<i> &gt; other hand, it may be worse - one can never know)
+</I>&gt;<i> &gt; 
+</I>&gt;<i> 
+</I>&gt;<i> Oh yes.. prior to this I was getting consistent
+</I>&gt;<i> 21KB/s.. now look!
+</I>&gt;<i> 
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">brad at bklaptop2</A>:/media/SANVOL$ dd if=/dev/zero
+</I>&gt;<i> of=test.file4 bs=1M count=100 conv=fsync
+</I>&gt;<i> 100+0 records in
+</I>&gt;<i> 100+0 records out
+</I>&gt;<i> 104857600 bytes (105 MB) copied, 89.6839 seconds,
+</I>&gt;<i> 1.2 MB/s
+</I>&gt;<i> 
+</I>&gt;<i> (Thats is a bit more than a 5x increase!)
+</I>&gt;<i> 
+</I>&gt;<i> Wooooo!
+</I>&gt;<i> 
+</I>&gt;<i> Brad
+</I>&gt;<i> -- 
+</I>&gt;<i> &quot;Human beings, who are almost unique in having the
+</I>&gt;<i> ability
+</I>&gt;<i> to learn from the experience of others, are also
+</I>&gt;<i> remarkable
+</I>&gt;<i> for their apparent disinclination to do so.&quot; --
+</I>&gt;<i> Douglas Adams
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Tifm21-devel mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">Tifm21-devel at lists.berlios.de</A>
+</I>&gt;<i>
+</I><A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">https://lists.berlios.de/mailman/listinfo/tifm21-devel</A>
+&gt;<i> 
+</I>
+
+__________________________________________________
+Do You Yahoo!?
+Tired of spam?  Yahoo! Mail has the best spam protection around 
+<A HREF="http://mail.yahoo.com">http://mail.yahoo.com</A> 
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000218.html">[Tifm21-devel] Driver update: write speed improvement
+</A></li>
+	<LI>Next message: <A HREF="000217.html">[Tifm21-devel] make install target
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#219">[ date ]</a>
+              <a href="thread.html#219">[ thread ]</a>
+              <a href="subject.html#219">[ subject ]</a>
+              <a href="author.html#219">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

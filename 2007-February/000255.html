@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] finally got a log
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2007-February/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20finally%20got%20a%20log&In-Reply-To=%3C45D17A95.6000606%40wasp.net.au%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000254.html">
+   <LINK REL="Next"  HREF="000257.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] finally got a log</H1>
+    <B>Brad Campbell</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20finally%20got%20a%20log&In-Reply-To=%3C45D17A95.6000606%40wasp.net.au%3E"
+       TITLE="[Tifm21-devel] finally got a log">brad at wasp.net.au
+       </A><BR>
+    <I>Tue Feb 13 09:45:09 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000254.html">[Tifm21-devel] finally got a log
+</A></li>
+        <LI>Next message: <A HREF="000257.html">[Tifm21-devel] finally got a log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#255">[ date ]</a>
+              <a href="thread.html#255">[ thread ]</a>
+              <a href="subject.html#255">[ subject ]</a>
+              <a href="author.html#255">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Alex Dubov wrote:
+&gt;<i> Lets put the thing in order:
+</I>&gt;<i> 1. We don't have any problems with hal anymore, correct?
+</I>
+I'm not sure.. I can't get the cards to detect reliably (read as it worked briefly once after my 
+last hal upgrade but I had the /dev/mmc(x) in /etc/fstab so I don't know if it's that which caused 
+gnome to pop up the window). In any case, I'll leave the hal debugging until I can at least plug a 
+card in and have it reliably detect.
+
+&gt;<i> 2. I've found a data corruption under certain write scenarious. This may explain some symptoms.
+</I>
+Excellent.
+
+&gt;<i> 3. Bad hardware state - it is not very probable at this point. If controller talks to cards at all
+</I>&gt;<i> (it appears so in your earlier log) then hardware is ok.
+</I>
+It's completely bizzare. Very occasionally when I insert a card, it will properly detect and create 
+the device nodes, but mostly it just does what all the logs indicate. This is my greatest 
+frustration right now as I can't even read/write test the cards.
+
+
+&gt;<i> By the way, you may want to re-format your cards on a known good configuration (the fat is
+</I>&gt;<i> probably corrupted in some bizarre way).
+</I>
+Ok.. I need to find some way to get the data off these cards, reformat them and get the data back on 
+again then. Might have to go and buy a usb card reader. :(
+
+&gt;<i> 
+</I>&gt;<i> And, of course, the whole thing is quite frustrating for me too. There's no documentation
+</I>&gt;<i> whatsoever for these controllers - the only reference I have is a disassembly of the windows
+</I>&gt;<i> driver.
+</I>
+Yep, I can understand that. Worse still, I guess you never see what I see so making it impossible to 
+really test locally, combined with our obviously disparate timezones. Do you use irc at all?
+
+Brad
+-- 
+&quot;Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so.&quot; -- Douglas Adams
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000254.html">[Tifm21-devel] finally got a log
+</A></li>
+	<LI>Next message: <A HREF="000257.html">[Tifm21-devel] finally got a log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#255">[ date ]</a>
+              <a href="thread.html#255">[ thread ]</a>
+              <a href="subject.html#255">[ subject ]</a>
+              <a href="author.html#255">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

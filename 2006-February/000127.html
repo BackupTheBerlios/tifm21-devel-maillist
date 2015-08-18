@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] SD driver class?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2006-February/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20SD%20driver%20class%3F&In-Reply-To=%3C43F0C97B.2020100%40eternach.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000126.html">
+   <LINK REL="Next"  HREF="000128.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] SD driver class?</H1>
+    <B>Andreas Eternach</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20SD%20driver%20class%3F&In-Reply-To=%3C43F0C97B.2020100%40eternach.de%3E"
+       TITLE="[Tifm21-devel] SD driver class?">andreas at eternach.de
+       </A><BR>
+    <I>Mon Feb 13 19:01:31 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000126.html">[Tifm21-devel] SD driver class?
+</A></li>
+        <LI>Next message: <A HREF="000128.html">[Tifm21-devel] SD driver class?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#127">[ date ]</a>
+              <a href="thread.html#127">[ thread ]</a>
+              <a href="subject.html#127">[ subject ]</a>
+              <a href="author.html#127">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Matthew,
+
+thanks for your reply. But now im a bit confused now:
+
+That means only the flash media support is missing, and the SD-support 
+is already present?
+
+In this case, couldn't we use the SD-driver as a template for the 
+MC-driver?
+
+Regards,
+Andreas
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">tifm21-devel-request at berlios.de</A> wrote:
+
+&gt;<i>Send Tifm21-devel mailing list submissions to
+</I>&gt;<i>	<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">tifm21-devel at lists.berlios.de</A>
+</I>&gt;<i>
+</I>&gt;<i>To subscribe or unsubscribe via the World Wide Web, visit
+</I>&gt;<i>	<A HREF="http://lists.berlios.de/mailman/listinfo/tifm21-devel">http://lists.berlios.de/mailman/listinfo/tifm21-devel</A>
+</I>&gt;<i>or, via email, send a message with subject or body 'help' to
+</I>&gt;<i>	<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">tifm21-devel-request at lists.berlios.de</A>
+</I>&gt;<i>
+</I>&gt;<i>You can reach the person managing the list at
+</I>&gt;<i>	<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">tifm21-devel-admin at lists.berlios.de</A>
+</I>&gt;<i>
+</I>&gt;<i>When replying, please edit your Subject line so it is more specific
+</I>&gt;<i>than &quot;Re: Contents of Tifm21-devel digest...&quot;
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>Today's Topics:
+</I>&gt;<i>
+</I>&gt;<i>   1. SD driver class? (Andreas Eternach)
+</I>&gt;<i>   2. Re: SD driver class? (Matthew Garrett)
+</I>&gt;<i>
+</I>&gt;<i>--__--__--
+</I>&gt;<i>
+</I>&gt;<i>Message: 1
+</I>&gt;<i>Date: Sun, 12 Feb 2006 17:22:28 +0100
+</I>&gt;<i>From: Andreas Eternach &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">andreas at eternach.de</A>&gt;
+</I>&gt;<i>To: <A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">tifm21-devel at lists.berlios.de</A>
+</I>&gt;<i>Subject: [Tifm21-devel] SD driver class?
+</I>&gt;<i>Reply-To: <A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">tifm21-devel at lists.berlios.de</A>
+</I>&gt;<i>
+</I>&gt;<i>Hi guys,
+</I>&gt;<i>
+</I>&gt;<i>i am new to this group an have an newbie question, maybe someone is 
+</I>&gt;<i>willing to answer:
+</I>&gt;<i>
+</I>&gt;<i>I have the following chip within my laptop:
+</I>&gt;<i>06:06.0 CardBus bridge: Texas Instruments PCIxx21/x515 Cardbus Controller
+</I>&gt;<i>06:06.2 FireWire (IEEE 1394): Texas Instruments OHCI Compliant IEEE 1394 
+</I>&gt;<i>Host Controller
+</I>&gt;<i>06:06.3 Mass storage controller: Texas Instruments PCIxx21 Integrated 
+</I>&gt;<i>FlashMedia Controller
+</I>&gt;<i>06:06.4 Class 0805: Texas Instruments PCI6411, PCI6421, PCI6611, 
+</I>&gt;<i>PCI6621, PCI7411, PCI7421, PCI7611, PCI7621 Secure Digital (SD) Controller
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>Some recherche turned out, that this is a multifunction-chip. It 
+</I>&gt;<i>contains functions for:
+</I>&gt;<i>1. PCMCIA (working with linux for me)
+</I>&gt;<i>2. USB OHCI (not connected for my laptop, i have an additional one from ATI)
+</I>&gt;<i>3. Flash Controller (no linux driver yet)
+</I>&gt;<i>4. SD card controller (no linux driver yet)
+</I>&gt;<i>4. 1394 (not sure whether driver s already existing)
+</I>&gt;<i>
+</I>&gt;<i>Now following question: Look at the last line of the driver listing. 
+</I>&gt;<i>linux doesnt even find a class for this kind of hardware. anyone knows 
+</I>&gt;<i>whether linux already supports this class of hardware? Or maybe my 
+</I>&gt;<i>kernel is way to old?
+</I>&gt;<i>
+</I>&gt;<i>uname -a: Linux tripol 2.6.13-gentoo-r1 #15 SMP Sat Feb 4 16:11:59 CET 
+</I>&gt;<i>2006 x86_64 AMD Turion(tm) 64 Mobile Technology ML-30 AuthenticAMD GNU/Linux
+</I>&gt;<i>
+</I>&gt;<i>Best Regards and thanks in advance,
+</I>&gt;<i>Andreas
+</I>&gt;<i>
+</I>&gt;<i>--__--__--
+</I>&gt;<i>
+</I>&gt;<i>Message: 2
+</I>&gt;<i>Date: Sun, 12 Feb 2006 16:42:15 +0000
+</I>&gt;<i>From: Matthew Garrett &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">mjg59 at srcf.ucam.org</A>&gt;
+</I>&gt;<i>To: <A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">tifm21-devel at berlios.de</A>
+</I>&gt;<i>Subject: Re: [Tifm21-devel] SD driver class?
+</I>&gt;<i>Reply-To: <A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">tifm21-devel at lists.berlios.de</A>
+</I>&gt;<i>
+</I>&gt;<i>On Sun, Feb 12, 2006 at 05:22:28PM +0100, Andreas Eternach wrote:
+</I>&gt;<i>
+</I>&gt;<i>  
+</I>&gt;<i>
+</I>&gt;&gt;<i>4. SD card controller (no linux driver yet)
+</I>&gt;&gt;<i>    
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>Untrue. See <A HREF="http://mmc.drzeus.cx/wiki/Linux/Drivers/sdhci">http://mmc.drzeus.cx/wiki/Linux/Drivers/sdhci</A> . Now, things 
+</I>&gt;<i>get a little more complicated in the TI case - the physical SD slot can 
+</I>&gt;<i>be driven by either the flashmedia controller or by the SDHCI 
+</I>&gt;<i>controller. In order to use the latter, you need to disable the former.
+</I>&gt;<i>
+</I>&gt;<i>  
+</I>&gt;<i>
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000126.html">[Tifm21-devel] SD driver class?
+</A></li>
+	<LI>Next message: <A HREF="000128.html">[Tifm21-devel] SD driver class?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#127">[ date ]</a>
+              <a href="thread.html#127">[ thread ]</a>
+              <a href="subject.html#127">[ subject ]</a>
+              <a href="author.html#127">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

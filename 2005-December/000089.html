@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] tifmxx: first results - undefined symbols
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2005-December/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20tifmxx%3A%20first%20results%20-%20undefined%20symbols&In-Reply-To=%3C43AD2AE1.4040004%40starrydreams.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000083.html">
+   <LINK REL="Next"  HREF="000085.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] tifmxx: first results - undefined symbols</H1>
+    <B>Dr.Mihail Tomoff</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20tifmxx%3A%20first%20results%20-%20undefined%20symbols&In-Reply-To=%3C43AD2AE1.4040004%40starrydreams.com%3E"
+       TITLE="[Tifm21-devel] tifmxx: first results - undefined symbols">misho at starrydreams.com
+       </A><BR>
+    <I>Sat Dec 24 12:02:57 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000083.html">[Tifm21-devel] tifmxx: first results - undefined symbols
+</A></li>
+        <LI>Next message: <A HREF="000085.html">[Tifm21-devel] tifmxx: first results
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#89">[ date ]</a>
+              <a href="thread.html#89">[ thread ]</a>
+              <a href="subject.html#89">[ subject ]</a>
+              <a href="author.html#89">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Alex Dubov wrote:
+&gt;<i> I would like to comment here that alpha drivers are
+</I>&gt;<i> not supposed to be used by general public. It is too
+</I>&gt;<i> early for support requests and such.
+</I>&gt;<i>
+</I>&gt;<i> However, specific problem that we see here is, of
+</I>&gt;<i> course, caused by the scsi subsystem missing from the
+</I>&gt;<i> kernel (not compiled in or not loaded in advance).
+</I>&gt;<i>
+</I>&gt;<i> pci_intx is a relatively new addition to the pci core.
+</I>&gt;<i> May be it's missing from some kernels.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> 		
+</I>&gt;<i> __________________________________________ 
+</I>&gt;<i> Yahoo! DSL &#8211; Something to write home about. 
+</I>&gt;<i> Just $16.99/mo. or less. 
+</I>&gt;<i> dsl.yahoo.com 
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Tifm21-devel mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">Tifm21-devel at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="http://lists.berlios.de/mailman/listinfo/tifm21-devel">http://lists.berlios.de/mailman/listinfo/tifm21-devel</A>
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>How new must be the kernel? Mine is kernel-default-2.6.13-15.7 of SUSE
+64 bit, however I get the same errors when compiling it:
+make
+make -C /lib/modules/2.6.13-15.7-default/build
+M=/home/mishaikin/tifmxx/trunk
+make[1]: Entering directory `/usr/src/linux-2.6.13-15.7-obj/x86_64/default'
+make -C ../../../linux-2.6.13-15.7 O=../linux-2.6.13-15.7-obj/x86_64/default
+LD /home/mishaikin/tifmxx/trunk/built-in.o
+CC [M] /home/mishaikin/tifmxx/trunk/tifmxx_hw.o
+/home/mishaikin/tifmxx/trunk/tifmxx_hw.c: In function &#8216;tifmxx_probe&#8217;:
+/home/mishaikin/tifmxx/trunk/tifmxx_hw.c:277: error: implicit
+declaration of function &#8216;pci_intx&#8217;
+/home/mishaikin/tifmxx/trunk/tifmxx_hw.c:330: warning: label
+&#8216;err_out_iounmap&#8217; defined but not used
+make[4]: *** [/home/mishaikin/tifmxx/trunk/tifmxx_hw.o] Error 1
+make[3]: *** [_module_/home/mishaikin/tifmxx/trunk] Error 2
+make[2]: *** [_all] Error 2
+make[1]: *** [all] Error 2
+make[1]: Leaving directory `/usr/src/linux-2.6.13-15.7-obj/x86_64/default'
+make: *** [all] Error 2
+
+Greetings,
+Mihail Tomov
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000083.html">[Tifm21-devel] tifmxx: first results - undefined symbols
+</A></li>
+	<LI>Next message: <A HREF="000085.html">[Tifm21-devel] tifmxx: first results
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#89">[ date ]</a>
+              <a href="thread.html#89">[ thread ]</a>
+              <a href="subject.html#89">[ subject ]</a>
+              <a href="author.html#89">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

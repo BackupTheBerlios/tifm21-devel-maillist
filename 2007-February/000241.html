@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] Issues with kernel 2.6.19
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2007-February/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20Issues%20with%20kernel%202.6.19&In-Reply-To=%3Ce67787dd0702091550i7fdd6bacx9535b3a9df8d37a3%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000240.html">
+   <LINK REL="Next"  HREF="000242.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] Issues with kernel 2.6.19</H1>
+    <B>coomac</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20Issues%20with%20kernel%202.6.19&In-Reply-To=%3Ce67787dd0702091550i7fdd6bacx9535b3a9df8d37a3%40mail.gmail.com%3E"
+       TITLE="[Tifm21-devel] Issues with kernel 2.6.19">coomac at gmail.com
+       </A><BR>
+    <I>Sat Feb 10 00:50:34 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000240.html">[Tifm21-devel] Issues with kernel 2.6.19
+</A></li>
+        <LI>Next message: <A HREF="000242.html">[Tifm21-devel] Issues with kernel 2.6.19
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#241">[ date ]</a>
+              <a href="thread.html#241">[ thread ]</a>
+              <a href="subject.html#241">[ subject ]</a>
+              <a href="author.html#241">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I was having the same problem using the  vanilla 2.6.20 kernel, ie the card
+insertion is detected, but nothing happens. After patching my kernel with
+tifm_sd.c.diff, the card now mounts after insertion. Thanks for the patch.
+
+The problem now is that formatting a card from the card reader using either
+fdisk or cfdisk produces this error when I try to write the changes to the
+disk:
+
+&gt;<i>tifm_sd: card failed to respond for a long period of time&lt;6&gt;tifm_7xx1:
+</I>demand removing card from socket 3
+&gt;<i>mmcblk0: error 1 requesting status
+</I>&gt;<i>end_request: I/O error, dev mmcblk0, sector 0
+</I>&gt;<i>printk: 6 messages suppressed.
+</I>&gt;<i>Buffer I/O error on device mmcblk0, logical block 0
+</I>&gt;<i>lost page write due to I/O error on mmcblk0
+</I>
+After removing and reinserting the card, 'fdisk -l' recognizes that the card
+was formatted and prints:
+
+&gt;<i>Disk /dev/mmcblk0: 4217 MB, 4217372672 bytes
+</I>&gt;<i>4 heads, 16 sectors/track, 128704 cylinders
+</I>&gt;<i>Units = cylinders of 64 * 512 = 32768 bytes
+</I>&gt;<i>
+</I>&gt;<i>        Device Boot      Start         End      Blocks   Id  System
+</I>&gt;<i>/dev/mmcblk0p1   *           1      128704     4118520    b  W95 FAT32
+</I>
+Cool. I go ahead and use mkfs.vfat to create my partition. No error messages
+show up, however mkfs only lasts for a fraction of a second - it normally
+takes at least 4 seconds to get through a 4 gig card (using 2.6.18 with
+driver from tifm-0.6b that is). I remove and reinsert the card again and kde
+automounts it. Not surprisingly, the card is completely filled with files
+with names like &#229;rjfc&#9565;f&#252;.xz.
+
+Any suggestions? Or is this issue fixed in git4? Thanks.
+
+lspci -v
+06:09.3 Mass storage controller: Texas Instruments PCIxx21 Integrated
+FlashMedia Controller
+       Subsystem: Acer Incorporated [ALI] Unknown device 007e
+       Flags: bus master, medium devsel, latency 64, IRQ 23
+       Memory at c0306000 (32-bit, non-prefetchable) [size=8K]
+       Capabilities: [44] Power Management version 2
+Laptop is an Acer Ferrari running opensuse 10.2.
+
+
+
+On 2/9/07, Alex Dubov &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">oakad at yahoo.com</A>&gt; wrote:
+&gt;<i>
+</I>&gt;<i> I don't recall in what kernel version the particular problem was
+</I>&gt;<i> introduced, but the attached
+</I>&gt;<i> patch should fix a problem similar to your's on 2.6.20 one.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> ____________________________________________________________________________________
+</I>&gt;<i> Have a burning question?
+</I>&gt;<i> Go to www.Answers.yahoo.com and get answers from real people who know.
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Tifm21-devel mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">Tifm21-devel at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">https://lists.berlios.de/mailman/listinfo/tifm21-devel</A>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/tifm21-devel/attachments/20070209/60dcb9a8/attachment.html">https://lists.berlios.de/pipermail/tifm21-devel/attachments/20070209/60dcb9a8/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000240.html">[Tifm21-devel] Issues with kernel 2.6.19
+</A></li>
+	<LI>Next message: <A HREF="000242.html">[Tifm21-devel] Issues with kernel 2.6.19
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#241">[ date ]</a>
+              <a href="thread.html#241">[ thread ]</a>
+              <a href="subject.html#241">[ subject ]</a>
+              <a href="author.html#241">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

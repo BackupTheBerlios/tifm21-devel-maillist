@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] [TIFM21] GPL driver without source from TI?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2005-November/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20%5BTIFM21%5D%20GPL%20driver%20without%20source%20from%20TI%3F&In-Reply-To=%3Cdc98d8d90511301239s6a360b94qc17f6ee2be906c5%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000044.html">
+   <LINK REL="Next"  HREF="000047.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] [TIFM21] GPL driver without source from TI?</H1>
+    <B>Paul Webster</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20%5BTIFM21%5D%20GPL%20driver%20without%20source%20from%20TI%3F&In-Reply-To=%3Cdc98d8d90511301239s6a360b94qc17f6ee2be906c5%40mail.gmail.com%3E"
+       TITLE="[Tifm21-devel] [TIFM21] GPL driver without source from TI?">pjwebster at gmail.com
+       </A><BR>
+    <I>Wed Nov 30 21:39:25 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000044.html">[Tifm21-devel] [TIFM21] GPL driver without source from TI?
+</A></li>
+        <LI>Next message: <A HREF="000047.html">[Tifm21-devel] [TIFM21] GPL driver without source from TI?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#45">[ date ]</a>
+              <a href="thread.html#45">[ thread ]</a>
+              <a href="subject.html#45">[ subject ]</a>
+              <a href="author.html#45">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> Good job. Yes, I think it'll be difficult and it's unlikely that this will
+</I>&gt;<i> succeed. I'm getting in touch with EFF. But I think it's worth a try to
+</I>&gt;<i> politely asking them for the source, before.
+</I>&gt;<i>
+</I>&gt;<i> About disassembling, did he get those with an EULA? This would be quite
+</I>&gt;<i> ridicolous, actually. Anyway, I think we are now absolutely free to do
+</I>&gt;<i> what we want with that binary, so it makes no sense at all to split the
+</I>&gt;<i> project. A quick objdump -d on it shows they didn't stripped function
+</I>&gt;<i> names. (It was compiled with GCC: (GNU) 3.3.5 (Debian 1:3.3.5-8) =)
+</I>&gt;<i>
+</I>&gt;<i> They did even included:
+</I>&gt;<i> include/linux/blkdev.h
+</I>&gt;<i> include/linux/bio.h
+</I>
+This is good. Thanks to all involved.
+
+I'm amazed anyone managed to get anything from TI. I've been trying to
+illicit a response from both TI and Everest for months now and have
+had no luck aside from an initial, next-day reply from TI saying &quot;Ask
+Everest&quot;. Despite their rapid response, it was less than helpful, not
+to mention rather insulting as it was a blatent copy of a forum post
+regarding the driver that I had actually made myself.
+
+On the supplied binary, I havent had a chance to test it yet, but my
+understanding from both everest's site and other sources is that
+Everests device driver does not create a standard block device and
+consequently requires a daemon to work.
+
+One thing to note: modinfo tifm.ko says that the license on the driver
+is GPL. I'm not an expert, but doesn't that mean that someone has to
+release the source code that was used to make that particular driver
+somewhere?
+
+Regardless, as we now have &quot;viable&quot; linux drivers as a reference, I
+can drop my attempts at the decompilation of the windows version. I
+was fumbling in the dark anyway, since assembly is not my thing
+(hadn't done any since the MC68HC11 in Intro to Microprocessors at
+uni).
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000044.html">[Tifm21-devel] [TIFM21] GPL driver without source from TI?
+</A></li>
+	<LI>Next message: <A HREF="000047.html">[Tifm21-devel] [TIFM21] GPL driver without source from TI?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#45">[ date ]</a>
+              <a href="thread.html#45">[ thread ]</a>
+              <a href="subject.html#45">[ subject ]</a>
+              <a href="author.html#45">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

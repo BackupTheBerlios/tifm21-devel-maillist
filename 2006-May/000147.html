@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] device nodes?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2006-May/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20device%20nodes%3F&In-Reply-To=%3C20060527165739.94414.qmail%40web36708.mail.mud.yahoo.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000146.html">
+   <LINK REL="Next"  HREF="000148.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] device nodes?</H1>
+    <B>Alex Dubov</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20device%20nodes%3F&In-Reply-To=%3C20060527165739.94414.qmail%40web36708.mail.mud.yahoo.com%3E"
+       TITLE="[Tifm21-devel] device nodes?">oakad at yahoo.com
+       </A><BR>
+    <I>Sat May 27 18:57:39 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000146.html">[Tifm21-devel] device nodes?
+</A></li>
+        <LI>Next message: <A HREF="000148.html">[Tifm21-devel] New to list
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#147">[ date ]</a>
+              <a href="thread.html#147">[ thread ]</a>
+              <a href="subject.html#147">[ subject ]</a>
+              <a href="author.html#147">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hmm.
+Actually, mmc_block module is supposed to handle udev
+notification and such (I hope you've loaded it).
+
+On my machine, block device gets created with major
+254 and minors as number of partitions (0 is a whole
+device, partitions starting from 1).
+
+--- Wael Nasreddine &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">wael at siemens-mobiles.org</A>&gt; wrote:
+
+&gt;<i> -----BEGIN PGP SIGNED MESSAGE-----
+</I>&gt;<i> Hash: SHA1
+</I>&gt;<i> 
+</I>&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> I see that on today I could load the kernel modules
+</I>&gt;<i> as well as getting
+</I>&gt;<i> the MMC card to be detected, also sysfs is aware of
+</I>&gt;<i> the card, however
+</I>&gt;<i> udev (at my configurations) does not have a rule for
+</I>&gt;<i> it So no device
+</I>&gt;<i> node in /dev is created, I looked in
+</I>&gt;<i> /sys/class/mmc_host ,
+</I>&gt;<i> /sys/bus/tifm and in
+</I>&gt;<i>
+</I>/sys/devices/pci0000:00/0000:00:1e.0/0000:02:09.3/tifm_sd0:3/mmc0:0001
+&gt;<i> But i couldn't find the major:minor number to create
+</I>&gt;<i> the node
+</I>&gt;<i> manually, Can you please give me the major:minor so
+</I>&gt;<i> i can create the
+</I>&gt;<i> node with mknod ??
+</I>&gt;<i> 
+</I>&gt;<i> a little information on my system:
+</I>&gt;<i> Kernel 2.6.16
+</I>&gt;<i> Udev 0.91
+</I>&gt;<i> 
+</I>&gt;<i> udevmonitor:
+</I>&gt;<i> (0)[<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">root at nasreddine</A> /home/wael]# udevmonitor
+</I>&gt;<i> udevmonitor prints the received event from the
+</I>&gt;<i> kernel [UEVENT]
+</I>&gt;<i> and the event which udev sends out after rule
+</I>&gt;<i> processing [UDEV]
+</I>&gt;<i> 
+</I>&gt;<i> UEVENT[1148664956.643443] add@/module/mmc_core
+</I>&gt;<i> UDEV  [1148664956.646239] add@/module/mmc_core
+</I>&gt;<i> UEVENT[1148664956.665896] add@/module/tifm_sd
+</I>&gt;<i> UDEV  [1148664956.667403] add@/module/tifm_sd
+</I>&gt;<i> UEVENT[1148664956.668066]
+</I>&gt;<i> add@/bus/tifm/drivers/tifm_sd
+</I>&gt;<i> UDEV  [1148664956.669227]
+</I>&gt;<i> add@/bus/tifm/drivers/tifm_sd
+</I>&gt;<i> UEVENT[1148665230.886667] add@/class/mmc_host/mmc0
+</I>&gt;<i> UDEV  [1148665230.886667] add@/class/mmc_host/mmc0
+</I>&gt;<i> UEVENT[1148665232.490352]
+</I>&gt;<i>
+</I>add@/devices/pci0000:00/0000:00:1e.0/0000:02:09.3/tifm_sd0:3/mmc0:0001
+&gt;<i> UDEV  [1148665232.635075]
+</I>&gt;<i>
+</I>add@/devices/pci0000:00/0000:00:1e.0/0000:02:09.3/tifm_sd0:3/mmc0:0001
+&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Wael Nasreddine
+</I>&gt;<i> -----BEGIN PGP SIGNATURE-----
+</I>&gt;<i> Version: GnuPG v1.4.2.2 (GNU/Linux)
+</I>&gt;<i> 
+</I>&gt;<i>
+</I>iD8DBQFEdz3oVWU5RcjdGKIRAgkpAJ4+NC1HSazTBZDGTHEr5PdiROlf8gCfbHJj
+&gt;<i> 86rOEwB9UBmGraGpuxJDpoM=
+</I>&gt;<i> =eOFG
+</I>&gt;<i> -----END PGP SIGNATURE-----
+</I>&gt;<i> 
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Tifm21-devel mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">Tifm21-devel at lists.berlios.de</A>
+</I>&gt;<i>
+</I><A HREF="http://lists.berlios.de/mailman/listinfo/tifm21-devel">http://lists.berlios.de/mailman/listinfo/tifm21-devel</A>
+&gt;<i> 
+</I>
+
+__________________________________________________
+Do You Yahoo!?
+Tired of spam?  Yahoo! Mail has the best spam protection around 
+<A HREF="http://mail.yahoo.com">http://mail.yahoo.com</A> 
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000146.html">[Tifm21-devel] device nodes?
+</A></li>
+	<LI>Next message: <A HREF="000148.html">[Tifm21-devel] New to list
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#147">[ date ]</a>
+              <a href="thread.html#147">[ thread ]</a>
+              <a href="subject.html#147">[ subject ]</a>
+              <a href="author.html#147">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

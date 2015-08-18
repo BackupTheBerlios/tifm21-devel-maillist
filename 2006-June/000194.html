@@ -1,0 +1,158 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] Rev 5 isn't working for me
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2006-June/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20Rev%205%20isn%27t%20working%20for%20me&In-Reply-To=%3C20060627015420.32194.qmail%40web36702.mail.mud.yahoo.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000193.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] Rev 5 isn't working for me</H1>
+    <B>Alex Dubov</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20Rev%205%20isn%27t%20working%20for%20me&In-Reply-To=%3C20060627015420.32194.qmail%40web36702.mail.mud.yahoo.com%3E"
+       TITLE="[Tifm21-devel] Rev 5 isn't working for me">oakad at yahoo.com
+       </A><BR>
+    <I>Tue Jun 27 03:54:20 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000193.html">[Tifm21-devel] Rev 5 isn't working for me
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#194">[ date ]</a>
+              <a href="thread.html#194">[ thread ]</a>
+              <a href="subject.html#194">[ subject ]</a>
+              <a href="author.html#194">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Yep, it does not seems like issue with my driver. It
+looks like VFS problem.
+May be some options in kernel advanced partition table
+support may help with this.
+
+--- Wael Nasreddine &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">wael at siemens-mobiles.org</A>&gt; wrote:
+
+&gt;<i> -----BEGIN PGP SIGNED MESSAGE-----
+</I>&gt;<i> Hash: SHA1
+</I>&gt;<i> 
+</I>&gt;<i> Still wrote:
+</I>&gt;<i> - --
+</I>&gt;<i> &lt;b&gt;Wael Nasreddine&lt;/b&gt;&lt;br /&gt;
+</I>&gt;<i> &lt;a
+</I>&gt;<i>
+</I>href=&quot;<A HREF="http://wael.nasreddine.com">http://wael.nasreddine.com</A>&quot;&gt;<A HREF="http://wael.nasreddine.com&lt;/a">http://wael.nasreddine.com&lt;/a</A>&gt;&lt;br
+&gt;<i> /&gt;
+</I>&gt;<i> PGP: 1024D/C8DD18A2 06F6 1622 4BC8 4CEB D724  DE12
+</I>&gt;<i> 5565 3945 C8DD 18A2&lt;br /&gt;
+</I>&gt;<i> &lt;br /&gt;
+</I>&gt;<i> &lt;i&gt;.: An infinite number of monkeys typing into GNU
+</I>&gt;<i> emacs,&lt;/i&gt;&lt;br /&gt;
+</I>&gt;<i> &nbsp;&nbsp;&nbsp;&lt;i&gt;would never make a good
+</I>&gt;<i> program. (L. Torvalds 1995)
+</I>&gt;<i> :.&lt;/i&gt;
+</I>&gt;<i> 
+</I>&gt;<i> &gt; Hello guys;
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt;   I have tried to put my SD to work, but I
+</I>&gt;<i> received some errors. My
+</I>&gt;<i> &gt; dmesg is:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; mmcblk0: mmc0:e624 SR128 123008KiB
+</I>&gt;<i> &gt; mmcblk0: unknown partition table
+</I>&gt;<i> &gt; tifm_7xx1: demand removing card from socket 3
+</I>&gt;<i> &gt; mmcblk0: mmc0:e624 SR128 123008KiB
+</I>&gt;<i> &gt; mmcblk0: unknown partition table
+</I>&gt;<i> &gt; FAT: invalid media value (0x23)
+</I>&gt;<i> &gt; VFS: Can't find a valid FAT filesystem on dev
+</I>&gt;<i> mmcblk0.
+</I>&gt;<i> &gt; tifm_7xx1: demand removing card from socket 3
+</I>&gt;<i> &gt; mmcblk0: mmc0:e624 SR128 123008KiB
+</I>&gt;<i> &gt; mmcblk0: unknown partition table
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt;   Now I'm away from my notebook and I can't see if
+</I>&gt;<i> it supports FAT
+</I>&gt;<i> &gt; partition or only VFAT.
+</I>&gt;<i> &gt;   My card is formatted with FAT because, I guess, 
+</I>&gt;<i> it's the default of
+</I>&gt;<i> &gt; the mobile of my wife.
+</I>&gt;<i> &gt;   Thanks!
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; []'s,
+</I>&gt;<i> &gt; -- 
+</I>&gt;<i> &gt; Nelson Luiz Campos
+</I>&gt;<i> &gt; Engenheiro Eletricista
+</I>&gt;<i> &gt; Linux User #89621 UIN 11464303
+</I>&gt;<i> &gt; gnupgID: 55577339
+</I>&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> What is your wife's mobile ? I have a Siemens SX1
+</I>&gt;<i> and I had to format
+</I>&gt;<i> the card (on windows) as FAT16 (NOT FAT 32), Siemens
+</I>&gt;<i> SX1 does format it
+</I>&gt;<i> in it's own filesystem...
+</I>&gt;<i> 
+</I>&gt;<i> You might want to try that...
+</I>&gt;<i> 
+</I>&gt;<i> - --
+</I>&gt;<i> Wael Nasreddine
+</I>&gt;<i> <A HREF="http://wael.nasreddine.com">http://wael.nasreddine.com</A>
+</I>&gt;<i> PGP: 1024D/C8DD18A2 06F6 1622 4BC8 4CEB D724  DE12
+</I>&gt;<i> 5565 3945 C8DD 18A2
+</I>&gt;<i> 
+</I>&gt;<i> .: An infinite number of monkeys typing into GNU
+</I>&gt;<i> emacs,
+</I>&gt;<i>    would never make a good program. (L. Torvalds
+</I>&gt;<i> 1995) :.
+</I>&gt;<i> 
+</I>&gt;<i> -----BEGIN PGP SIGNATURE-----
+</I>&gt;<i> Version: GnuPG v1.4.2.2 (GNU/Linux)
+</I>&gt;<i> 
+</I>&gt;<i>
+</I>iD8DBQFEn/2DVWU5RcjdGKIRArn6AJ47P1PpXucxlOYmjAon4PtImYmXfQCfR5bf
+&gt;<i> 5h9jWJvXcN6Y5zvGqcYzNZE=
+</I>&gt;<i> =gdrV
+</I>&gt;<i> -----END PGP SIGNATURE-----
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Tifm21-devel mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">Tifm21-devel at lists.berlios.de</A>
+</I>&gt;<i>
+</I><A HREF="http://lists.berlios.de/mailman/listinfo/tifm21-devel">http://lists.berlios.de/mailman/listinfo/tifm21-devel</A>
+&gt;<i> 
+</I>
+
+__________________________________________________
+Do You Yahoo!?
+Tired of spam?  Yahoo! Mail has the best spam protection around 
+<A HREF="http://mail.yahoo.com">http://mail.yahoo.com</A> 
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000193.html">[Tifm21-devel] Rev 5 isn't working for me
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#194">[ date ]</a>
+              <a href="thread.html#194">[ thread ]</a>
+              <a href="subject.html#194">[ subject ]</a>
+              <a href="author.html#194">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

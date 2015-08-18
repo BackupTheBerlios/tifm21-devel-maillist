@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] finally got a log
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2007-February/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20finally%20got%20a%20log&In-Reply-To=%3C803714.71121.qm%40web36705.mail.mud.yahoo.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000261.html">
+   <LINK REL="Next"  HREF="000263.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] finally got a log</H1>
+    <B>Alex Dubov</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20finally%20got%20a%20log&In-Reply-To=%3C803714.71121.qm%40web36705.mail.mud.yahoo.com%3E"
+       TITLE="[Tifm21-devel] finally got a log">oakad at yahoo.com
+       </A><BR>
+    <I>Wed Feb 14 03:13:45 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000261.html">[Tifm21-devel] finally got a log
+</A></li>
+        <LI>Next message: <A HREF="000263.html">[Tifm21-devel] finally got a log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#262">[ date ]</a>
+              <a href="thread.html#262">[ thread ]</a>
+              <a href="subject.html#262">[ subject ]</a>
+              <a href="author.html#262">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> 
+</I>&gt;<i> Logs from a 128MB MMC (no recognise again) and a 2G SD which at least is now recognised each
+</I>&gt;<i> time I 
+</I>&gt;<i> insert it. Still can't write to it without it exploding though.
+</I>&gt;<i> 
+</I>&gt;<i> Making progress.
+</I>&gt;<i> The 1st time I insert the SD card, HAL picks it up, mounts it and everything goes nicely. After
+</I>&gt;<i> it 
+</I>&gt;<i> explodes the 1st time it gets ugly from there.
+</I>&gt;<i> 
+</I>
+We are looking at two different problems here:
+1. MMC card just does not works. This can be problem with clock, voltage (I have no idea how to
+set it to anything other than default) or it may be a real timeout. The last point can be tested
+by changing this line in tifm_sd:
+----
+// command timeout fixed to 64 clocks for now
+writel(64, sock-&gt;addr + SOCK_MMCSD_COMMAND_TO);
+----
+(put a larger value instead of 64, say 128).
+I must also ask - had this MMC card ever worked before on linux? And if yes, on what
+configuration?
+
+2. The SD card does nothing wrong as far as I can see. It simply gets ejected without provocation:
+----
+[  375.310000] tifm_7xx1 0000:06:05.3: checking media set 8
+[  375.310000] tifm_7xx1: demand removing card from socket 0:3
+----
+This is more or less clear cut hardware problem. Most probably something with power.
+We can try the following:
+Add this printout to tifm_sd_ios:
+--------------------------------
+--- tifm_sd.c.orig      2007-02-14 12:48:20.000000000 +1100
++++ tifm_sd.c   2007-02-14 12:50:17.000000000 +1100
+@@ -712,6 +712,8 @@
+
+        dev_dbg(&amp;sock-&gt;dev, &quot;Setting bus width %d, power %d\n&quot;, ios-&gt;bus_width,
+                ios-&gt;power_mode);
++       dev_dbg(&amp;sock-&gt;dev, &quot;Setting vdd  %hu\n&quot;, ios-&gt;vdd);
++
+        if (ios-&gt;bus_width == MMC_BUS_WIDTH_4) {
+                writel(TIFM_MMCSD_4BBUS | readl(sock-&gt;addr + SOCK_MMCSD_CONFIG),
+                       sock-&gt;addr + SOCK_MMCSD_CONFIG);
+--------------------------------
+
+Then, I may need a log where card fails, you get it out and then put back in - may be we'll be
+able to nail the particular problem.
+
+I still believe that the ugly parts are not my fault, so to say. It seems like some problem in
+block layer (mmc_block or above) is triggered by sudden death of the block device. We can do an
+experiment: say card failed, you plugged it out/in and nothing gets detected. From my experience,
+main block device gets created by udev (/dev/mmcblk0 or any other number), but partition table is
+not read. You can test this by running &quot;cfdisk&quot; on the /dev/mmcblk0 to make sure that reading
+indeed works (cfdisk will display the correct partition table and no errors will be reported).
+
+
+
+
+ 
+____________________________________________________________________________________
+No need to miss a message. Get email on-the-go 
+with Yahoo! Mail for Mobile. Get started.
+<A HREF="http://mobile.yahoo.com/mail">http://mobile.yahoo.com/mail</A> 
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000261.html">[Tifm21-devel] finally got a log
+</A></li>
+	<LI>Next message: <A HREF="000263.html">[Tifm21-devel] finally got a log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#262">[ date ]</a>
+              <a href="thread.html#262">[ thread ]</a>
+              <a href="subject.html#262">[ subject ]</a>
+              <a href="author.html#262">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

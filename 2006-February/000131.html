@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] SD driver class?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2006-February/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20SD%20driver%20class%3F&In-Reply-To=%3C20060214125520.2826643844%40ws5-1.us4.outblaze.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000130.html">
+   <LINK REL="Next"  HREF="000132.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] SD driver class?</H1>
+    <B>martin schneebacher</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20SD%20driver%20class%3F&In-Reply-To=%3C20060214125520.2826643844%40ws5-1.us4.outblaze.com%3E"
+       TITLE="[Tifm21-devel] SD driver class?">masc at operamail.com
+       </A><BR>
+    <I>Tue Feb 14 13:55:20 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000130.html">[Tifm21-devel] SD driver class?
+</A></li>
+        <LI>Next message: <A HREF="000132.html">[Tifm21-devel] SD driver class?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#131">[ date ]</a>
+              <a href="thread.html#131">[ thread ]</a>
+              <a href="subject.html#131">[ subject ]</a>
+              <a href="author.html#131">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>hi!
+
+
+&gt;<i> ----- Original Message -----
+</I>&gt;<i> From: &quot;Alex Dubov&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">oakad at yahoo.com</A>&gt;
+</I>&gt;<i> To: <A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">tifm21-devel at berlios.de</A>
+</I>&gt;<i> Subject: Re: [Tifm21-devel] SD driver class?
+</I>&gt;<i> Date: Tue, 14 Feb 2006 04:29:31 -0800 (PST)
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> By the way, does anybody tried this new SDHCI driver?
+</I>&gt;<i> It seems, SDHCI interface is present in devices 8034
+</I>&gt;<i> and 8035, but not in 8033 (which I have) or 8031/803b.
+</I>&gt;<i> Can anybody comment on this?
+</I>
+yes, i'm watching (and testing) this driver on my  Texas Instruments PCIxx21 Integrated FlashMedia Controller with lspci -n
+0000:06:09.0 0607: 104c:8031
+0000:06:09.2 0c00: 104c:8032
+0000:06:09.3 0180: 104c:8033
+0000:06:09.4 0805: 104c:8034
+lspci
+0000:06:09.0 CardBus bridge: Texas Instruments PCIxx21/x515 Cardbus Controller
+0000:06:09.2 FireWire (IEEE 1394): Texas Instruments OHCI Compliant IEEE 1394 Host Controller
+0000:06:09.3 Mass storage controller: Texas Instruments PCIxx21 Integrated FlashMedia Controller
+0000:06:09.4 0805: Texas Instruments PCI6411, PCI6421, PCI6611, PCI6621, PCI7411, PCI7421, PCI7611, PCI7621 Secure Digital (SD) Controller
+
+the most important thing is, that normally per default the flashmedia controller is activated and not the sd controller. as you can only use one at a time it is necessary to activate the sd part with  'setpci -s 09.3 4c=02', then it works without any problems. please read <A HREF="http://list.drzeus.cx/pipermail/sdhci-devel/2005-November/000036.html">http://list.drzeus.cx/pipermail/sdhci-devel/2005-November/000036.html</A> too, as the byte in the pci register my differ (i have a aopen barebook) and you just have to set bit 2 of 4c. 
+
+bye...masc.
+
+
+
+-- 
+_______________________________________________
+Surf the Web in a faster, safer and easier way:
+Download Opera 8 at <A HREF="http://www.opera.com">http://www.opera.com</A>
+
+Powered by Outblaze
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000130.html">[Tifm21-devel] SD driver class?
+</A></li>
+	<LI>Next message: <A HREF="000132.html">[Tifm21-devel] SD driver class?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#131">[ date ]</a>
+              <a href="thread.html#131">[ thread ]</a>
+              <a href="subject.html#131">[ subject ]</a>
+              <a href="author.html#131">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

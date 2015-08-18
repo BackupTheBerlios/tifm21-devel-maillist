@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] Some little problems
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2006-June/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20Some%20little%20problems&In-Reply-To=%3C448B314A.2030403%40siemens-mobiles.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000162.html">
+   <LINK REL="Next"  HREF="000164.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] Some little problems</H1>
+    <B>Wael Nasreddine</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20Some%20little%20problems&In-Reply-To=%3C448B314A.2030403%40siemens-mobiles.org%3E"
+       TITLE="[Tifm21-devel] Some little problems">wael at siemens-mobiles.org
+       </A><BR>
+    <I>Sat Jun 10 22:53:30 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000162.html">[Tifm21-devel] First release
+</A></li>
+        <LI>Next message: <A HREF="000164.html">[Tifm21-devel] Some little problems
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#163">[ date ]</a>
+              <a href="thread.html#163">[ thread ]</a>
+              <a href="subject.html#163">[ subject ]</a>
+              <a href="author.html#163">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+There seems there's some problems here, which i'll describe with
+details, I presume Danny Brow has the same problem....
+
+When i turn the PC while the card is inserted (the module get loaded on
+startup), the card works, but when i unmount it and remove it, I can't
+use it again unless i reboot, When i insert it the led lights for a
+second and turn off while when it is normally working it is always on
+(when it light a bit there's to device node created...)
+
+When the card is inserted the following output is in dmesg:
+
+tifm_sd [tifm_sd_ios()]: Setting bus width 0
+tifm_sd [tifm_sd_ios()]: Setting bus width 0
+tifm_sd [tifm_sd_ios()]: Setting bus width 0
+tifm_sd [tifm_sd_ios()]: Setting bus width 0
+tifm_sd [tifm_sd_ios()]: Setting bus width 0
+tifm_sd [tifm_sd_execute()]: cmd error 1
+tifm_sd [tifm_sd_execute()]: cmd error 1
+tifm_sd [tifm_sd_execute()]: cmd error 1
+tifm_sd [tifm_sd_execute()]: cmd error 1
+tifm_sd [tifm_sd_execute()]: cmd error 1
+tifm_sd [tifm_sd_ios()]: Setting bus width 0
+
+and unlike Danny Brow I get the output upon removing the card not
+inserting it:
+scheduling while atomic: tifm0/0x00000001/5101
+ [&lt;c02dae67&gt;] schedule+0x43/0x616
+ [&lt;c0117c7f&gt;] activate_task+0x193/0x1a7
+ [&lt;c01189ef&gt;] __wake_up+0x2a/0x3d
+ [&lt;c0117f5b&gt;] try_to_wake_up+0x2c8/0x2d2
+ [&lt;c02db4bb&gt;] wait_for_completion+0x6b/0xa1
+ [&lt;c0117f65&gt;] default_wake_function+0x0/0x15
+ [&lt;c012e4e9&gt;] kthread_stop_sem+0x9f/0xc2
+ [&lt;c012e517&gt;] kthread_stop+0xb/0xe
+ [&lt;c012b686&gt;] cleanup_workqueue_thread+0x2d/0x31
+ [&lt;c012b863&gt;] destroy_workqueue+0x28/0xb8
+ [&lt;de8580e9&gt;] tifm_free_device+0x15/0x20 [tifm_core]
+ [&lt;c01efa5e&gt;] kobject_cleanup+0x3f/0x64
+ [&lt;c01efa83&gt;] kobject_release+0x0/0xa
+ [&lt;c01f044e&gt;] kref_put+0x47/0x52
+ [&lt;c01ef9e2&gt;] kobject_put+0x16/0x19
+ [&lt;c01efa83&gt;] kobject_release+0x0/0xa
+ [&lt;de85b17c&gt;] tifm_7xx1_remove_media+0x6b/0xc1 [tifm_7xx1]
+ [&lt;c012b5d4&gt;] run_workqueue+0x80/0xbc
+ [&lt;de85b111&gt;] tifm_7xx1_remove_media+0x0/0xc1 [tifm_7xx1]
+ [&lt;c012bedc&gt;] worker_thread+0xec/0x117
+ [&lt;c0117f65&gt;] default_wake_function+0x0/0x15
+ [&lt;c012bdf0&gt;] worker_thread+0x0/0x117
+ [&lt;c012e815&gt;] kthread+0xb9/0xe6
+ [&lt;c012e75c&gt;] kthread+0x0/0xe6
+ [&lt;c0101005&gt;] kernel_thread_helper+0x5/0xb
+
+
+Otherwize it is at least working for now, hope all bugs get fixed and
+removed soon...
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000162.html">[Tifm21-devel] First release
+</A></li>
+	<LI>Next message: <A HREF="000164.html">[Tifm21-devel] Some little problems
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#163">[ date ]</a>
+              <a href="thread.html#163">[ thread ]</a>
+              <a href="subject.html#163">[ subject ]</a>
+              <a href="author.html#163">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

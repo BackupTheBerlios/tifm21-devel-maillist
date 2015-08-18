@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] Issues with kernel 2.6.19 - a possible fix?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2007-February/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20Issues%20with%20kernel%202.6.19%20-%20a%20possible%20fix%3F&In-Reply-To=%3C45CBAB5F.7070702%40eridani.co.uk%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000251.html">
+   <LINK REL="Next"  HREF="000239.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] Issues with kernel 2.6.19 - a possible fix?</H1>
+    <B>Michael McConnell</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20Issues%20with%20kernel%202.6.19%20-%20a%20possible%20fix%3F&In-Reply-To=%3C45CBAB5F.7070702%40eridani.co.uk%3E"
+       TITLE="[Tifm21-devel] Issues with kernel 2.6.19 - a possible fix?">soruk at eridani.co.uk
+       </A><BR>
+    <I>Thu Feb  8 23:59:43 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000251.html">[Tifm21-devel] Issues with kernel 2.6.19
+</A></li>
+        <LI>Next message: <A HREF="000239.html">[Tifm21-devel] Issues with kernel 2.6.19 - a possible fix?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#238">[ date ]</a>
+              <a href="thread.html#238">[ thread ]</a>
+              <a href="subject.html#238">[ subject ]</a>
+              <a href="author.html#238">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Firstly, sorry for the new thread, I joined the list after the last post 
+to the existing one.
+
+Like Brad found he could write smaller files easily but the driver 
+choked on large files, I was running into exactly the same problem.
+
+Admittedly I was following a hunch based on the errors in the log rather 
+than doing a &quot;properly&quot; engineered fix, but this patch (attached, 
+against SVN -r76) does the trick for me on my Sony Vaio BX-297XP.
+
+The write speed seems pretty slow, I don't know if it's the driver, my 
+patch or the chipset, but I get faster writes using an off-the-shelf 
+USB2 reader/writer.
+
+-- 
+-- Michael &quot;Soruk&quot; McConnell
+    Eridani Star System
+
+    MailStripper - <A HREF="http://www.MailStripper.eu/">http://www.MailStripper.eu/</A> - SMTP spam filter
+    Mail Me Anywhere - <A HREF="http://www.MailMeAnywhere.com/">http://www.MailMeAnywhere.com/</A> - Mobile email
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: tifm_sd.c.diff
+Type: text/x-patch
+Size: 389 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/tifm21-devel/attachments/20070208/b8e6a180/attachment.bin">https://lists.berlios.de/pipermail/tifm21-devel/attachments/20070208/b8e6a180/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000251.html">[Tifm21-devel] Issues with kernel 2.6.19
+</A></li>
+	<LI>Next message: <A HREF="000239.html">[Tifm21-devel] Issues with kernel 2.6.19 - a possible fix?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#238">[ date ]</a>
+              <a href="thread.html#238">[ thread ]</a>
+              <a href="subject.html#238">[ subject ]</a>
+              <a href="author.html#238">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

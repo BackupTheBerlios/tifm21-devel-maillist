@@ -1,0 +1,30 @@
+From bogus@does.not.exist.com  Wed Mar 14 16:27:11 2012
+From: bogus@does.not.exist.com ()
+Date: Wed, 14 Mar 2012 15:27:11 -0000
+Subject: No subject
+Message-ID: <mailman.0.1331738830.13178.tifm21-devel@lists.berlios.de>
+
+both before and after you insert the module.
+
+As the interrupt code is only for testing purposes, I'll disable it
+until it's ready.
+
+Regards
+
+Paul W
+
+
+From bogus@does.not.exist.com  Wed Mar 14 16:27:11 2012
+From: bogus@does.not.exist.com ()
+Date: Wed, 14 Mar 2012 15:27:11 -0000
+Subject: No subject
+Message-ID: <mailman.1.1331738831.13178.tifm21-devel@lists.berlios.de>
+
+svn co svn://svn.berlios.de/tifmxx/trunk/driver
+
+and the driver will be in the folder "driver" ...
+
+Regards,
+Wael Nasreddine
+
+

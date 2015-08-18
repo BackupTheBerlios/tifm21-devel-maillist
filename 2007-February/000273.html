@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] No logs to report! : was: Re:  finally got a log
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2007-February/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20No%20logs%20to%20report%21%20%3A%20was%3A%20Re%3A%20%20finally%20got%20a%20log&In-Reply-To=%3C45D5BE15.2050705%40wasp.net.au%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000272.html">
+   <LINK REL="Next"  HREF="000274.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] No logs to report! : was: Re:  finally got a log</H1>
+    <B>Brad Campbell</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20No%20logs%20to%20report%21%20%3A%20was%3A%20Re%3A%20%20finally%20got%20a%20log&In-Reply-To=%3C45D5BE15.2050705%40wasp.net.au%3E"
+       TITLE="[Tifm21-devel] No logs to report! : was: Re:  finally got a log">brad at wasp.net.au
+       </A><BR>
+    <I>Fri Feb 16 15:22:13 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000272.html">[Tifm21-devel] finally got a log
+</A></li>
+        <LI>Next message: <A HREF="000274.html">[Tifm21-devel] No logs to report! : was: Re: finally got a log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#273">[ date ]</a>
+              <a href="thread.html#273">[ thread ]</a>
+              <a href="subject.html#273">[ subject ]</a>
+              <a href="author.html#273">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Alex Dubov wrote:
+&gt;<i> Beloved comrad Stalin used to say: we are not accustomed to seek for easy ways.
+</I>&gt;<i> 
+</I>&gt;<i> Revision 84 on berlios.
+</I>
+Comrade I'm afraid I have no logs to report.
+
+It's passed slightly harder than cursory testing on
+128MB MMC
+512MB SD
+2GB SD
+2GB SD (the one you said was SDHC)
+
+The MMC read/write speed is somewhere around 1.5MB/S, the SD read/write speeds are somewhere between 
+4 &amp; 6MB/s consistently. (Oh, that's with debugging turned off, with debug on it drops by 1-1.5MB/s)
+
+I've not tried *hard* to break it yet, but it's passed all the tests I've managed to blow it up with 
+previously.
+
+I might pick up a card I don't mind killing and run bonnie on it or something, but my usual &quot;queue 
+up 100MB of files then sync it all at once&quot; passes with flying colours, as do all the rsync checksum 
+tests on the written files and media fsck's ..
+
+It's looking a lot better than it has been ;)
+
+Nice work!
+
+Ok, I'll include one bit of log just for the hell of it.. this is a snip of dmesg | grep dma
+
+[25033.670000] tifm_sd tifm_sd0:3: setting dma for 72 blocks
+[25033.680000] tifm_sd tifm_sd0:3: setting dma for 72 blocks
+[25033.700000] tifm_sd tifm_sd0:3: setting dma for 32 blocks
+[25033.730000] tifm_sd tifm_sd0:3: setting dma for 40 blocks
+[25033.740000] tifm_sd tifm_sd0:3: setting dma for 72 blocks
+[25033.760000] tifm_sd tifm_sd0:3: setting dma for 72 blocks
+[25033.770000] tifm_sd tifm_sd0:3: setting dma for 72 blocks
+[25033.830000] tifm_sd tifm_sd0:3: setting dma for 72 blocks
+[25033.860000] tifm_sd tifm_sd0:3: setting dma for 24 blocks
+[25033.910000] tifm_sd tifm_sd0:3: setting dma for 48 blocks
+[25033.910000] tifm_sd tifm_sd0:3: setting dma for 72 blocks
+[25033.970000] tifm_sd tifm_sd0:3: setting dma for 8 blocks
+[25033.970000] tifm_sd tifm_sd0:3: setting dma for 8 blocks
+[25033.970000] tifm_sd tifm_sd0:3: setting dma for 8 blocks
+
+Brad (Can I get excited now??)
+-- 
+&quot;Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so.&quot; -- Douglas Adams
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000272.html">[Tifm21-devel] finally got a log
+</A></li>
+	<LI>Next message: <A HREF="000274.html">[Tifm21-devel] No logs to report! : was: Re: finally got a log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#273">[ date ]</a>
+              <a href="thread.html#273">[ thread ]</a>
+              <a href="subject.html#273">[ subject ]</a>
+              <a href="author.html#273">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

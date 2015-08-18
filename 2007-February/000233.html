@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] Issues with kernel 2.6.19
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2007-February/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20Issues%20with%20kernel%202.6.19&In-Reply-To=%3C45C47FBA.1000108%40wasp.net.au%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000234.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] Issues with kernel 2.6.19</H1>
+    <B>Brad Campbell</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20Issues%20with%20kernel%202.6.19&In-Reply-To=%3C45C47FBA.1000108%40wasp.net.au%3E"
+       TITLE="[Tifm21-devel] Issues with kernel 2.6.19">brad at wasp.net.au
+       </A><BR>
+    <I>Sat Feb  3 13:27:38 CET 2007</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000234.html">[Tifm21-devel] Issues with kernel 2.6.19
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#233">[ date ]</a>
+              <a href="thread.html#233">[ thread ]</a>
+              <a href="subject.html#233">[ subject ]</a>
+              <a href="author.html#233">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>G'day Alex,
+
+I'm having issues writing large amounts of data to SD cards.
+
+I have had absolutely no issues reading from any of my cards any amount of data, and I can write 
+small chunks at a time, like creating directories and small test files, but when I try and copy a 
+directory of about 150MB in 20 files, I get the following log.
+
+I've tried this on a Sandisk 2.0GB, HP 2GB and Panasonic 512MB card, same result every time.
+
+I also downloaded the latest SVN driver and beat it to work &quot;for certain definitions of work&quot; on a 
+2.6.20-rc7 kernel and the 2.6.19 kernel, and it appears to give the same result, but then I may have 
+bent it a little far to make it fit.
+
+What kernel is the SVN driver currently compiling against and what information can I offer to assist 
+in debugging this ? (Got a bit of time and a couple of test cards available)
+
+Controller is
+0000:06:05.3 Mass storage controller: Texas Instruments PCIxx21 Integrated FlashMedia Controller
+In a Sony VAIO VGN-TX27GP.
+
+Kernel currently is
+Linux bklaptop2 2.6.19-rc6-git8-bkc1 #3 Thu Feb 1 16:17:23 GST 2007 i686 GNU/Linux
+But I've tried with 2.6.19.2 2.6.20-rc7 &amp; -rc7-git1, both in-tree drivers and latest SVN
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">brad at bklaptop2</A>:~/src/tifm-svn/driver$ svn update
+At revision 79.
+
+Feb  3 16:08:49 localhost kernel: [ 3701.660000] tifm_7xx1: sd card detected in socket 3
+Feb  3 16:08:49 localhost NetworkManager: &lt;debug info&gt;^I[1170504529.104056] nm_hal_device_added (): 
+New device added (hal udi is '/org/freedesktop/Hal/devices/pci_104c_8033_mmc_host').
+Feb  3 16:08:49 localhost NetworkManager: &lt;debug info&gt;^I[1170504529.677372] nm_hal_device_added (): 
+New device added (hal udi is '/org/freedesktop/Hal/devices/pci_104c_8033_mmc_host_mmc_card_rca39381').
+Feb  3 16:08:49 localhost kernel: [ 3702.240000] mmcblk0: mmc0:99d5 SH512 503296KiB
+Feb  3 16:08:49 localhost kernel: [ 3702.240000]  mmcblk0: p1
+Feb  3 16:08:49 localhost NetworkManager: &lt;debug info&gt;^I[1170504529.812791] nm_hal_device_added (): 
+New device added (hal udi is 
+'/org/freedesktop/Hal/devices/pci_104c_8033_mmc_host_mmc_card_rca39381_storage').
+Feb  3 16:08:49 localhost NetworkManager: &lt;debug info&gt;^I[1170504529.967834] nm_hal_device_added (): 
+New device added (hal udi is '/org/freedesktop/Hal/devices/volume_label_NO_NAME').
+Feb  3 16:08:50 localhost kernel: [ 3702.680000] FAT: utf8 is not a recommended IO charset for FAT 
+filesystems, filesystem will be case sensitive!
+Feb  3 16:09:26 localhost kernel: [ 3738.660000] tifm_sd: card failed to respond for a long period 
+of time&lt;6&gt;tifm_7xx1: demand removing card from socket 3
+Feb  3 16:09:26 localhost kernel: [ 3738.660000] mmcblk0: error 1 requesting status
+Feb  3 16:09:26 localhost kernel: [ 3738.660000] end_request: I/O error, dev mmcblk0, sector 338056
+Feb  3 16:09:26 localhost kernel: [ 3738.660000] mmcblk0: error 1 sending read/write command
+Feb  3 16:09:26 localhost kernel: [ 3738.660000] end_request: I/O error, dev mmcblk0, sector 338064
+Feb  3 16:09:26 localhost kernel: [ 3738.660000] mmcblk0: error 1 sending read/write command
+Feb  3 16:09:26 localhost kernel: [ 3738.660000] end_request: I/O error, dev mmcblk0, sector 338072
+Feb  3 16:09:26 localhost kernel: [ 3738.660000] mmcblk0: error 1 sending read/write command
+Feb  3 16:09:26 localhost kernel: [ 3738.660000] end_request: I/O error, dev mmcblk0, sector 338080
+Feb  3 16:09:26 localhost kernel: [ 3738.660000] mmcblk0: error 1 sending read/write command
+Feb  3 16:09:26 localhost kernel: [ 3738.660000] end_request: I/O error, dev mmcblk0, sector 338088
+&lt;heaps and heaps of these repeated&gt;
+
+I recall having this working at some point with an earlier SVN driver prior to it being included in 
+the mainline kernel.
+
+Regards,
+Brad
+-- 
+&quot;Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so.&quot; -- Douglas Adams
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000234.html">[Tifm21-devel] Issues with kernel 2.6.19
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#233">[ date ]</a>
+              <a href="thread.html#233">[ thread ]</a>
+              <a href="subject.html#233">[ subject ]</a>
+              <a href="author.html#233">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,84 @@
+From oakad at yahoo.com  Mon Aug 27 17:16:38 2007
+From: oakad at yahoo.com (Alex Dubov)
+Date: Mon, 27 Aug 2007 08:16:38 -0700 (PDT)
+Subject: [Tifm21-devel] MemoryStick Pro
+In-Reply-To: <45E020A4.6080704@wasp.net.au>
+Message-ID: <690163.2255.qm@web36714.mail.mud.yahoo.com>
+
+As of svn revision 107, memorystick pro support appears to be satisfactory enough for general
+testing.
+
+The things are not so bright for legacy memorystick cards, but progress is steady.
+
+
+
+       
+____________________________________________________________________________________
+Building a website is a piece of cake. Yahoo! Small Business gives you all the tools to get online.
+http://smallbusiness.yahoo.com/webhosting 
+
+
+From cathectic at gmail.com  Tue Aug 28 08:08:21 2007
+From: cathectic at gmail.com (Carlos Corbacho)
+Date: Tue, 28 Aug 2007 07:08:21 +0100
+Subject: [Tifm21-devel] MemoryStick Pro
+In-Reply-To: <690163.2255.qm@web36714.mail.mud.yahoo.com>
+References: <690163.2255.qm@web36714.mail.mud.yahoo.com>
+Message-ID: <200708280708.22387.cathectic@gmail.com>
+
+Alex,
+
+On Monday 27 August 2007 16:16:38 Alex Dubov wrote:
+> As of svn revision 107, memorystick pro support appears to be satisfactory
+> enough for general testing.
+
+tifm_ms can detect my Memory Stick Pro (SanDisk 512MB) but doesn't appear to 
+be creating any device nodes in /dev to mount (this is with a 64 bit 2.6.22 
+kernel) - is there anything else I'm missing?
+
+-Carlos
+-- 
+E-Mail: cathectic at gmail.com
+Web: strangeworlds.co.uk
+GPG Key ID: 0x23EE722D
+
+
+From oakad at yahoo.com  Wed Aug 29 03:32:05 2007
+From: oakad at yahoo.com (Alex Dubov)
+Date: Tue, 28 Aug 2007 18:32:05 -0700 (PDT)
+Subject: [Tifm21-devel] MemoryStick Pro
+In-Reply-To: <200708280708.22387.cathectic@gmail.com>
+Message-ID: <706211.56257.qm@web36706.mail.mud.yahoo.com>
+
+Make sure you have these loaded:
+memstick.ko
+mspro_block.ko
+
+
+--- Carlos Corbacho <cathectic at gmail.com> wrote:
+
+> Alex,
+> 
+> On Monday 27 August 2007 16:16:38 Alex Dubov wrote:
+> > As of svn revision 107, memorystick pro support appears to be satisfactory
+> > enough for general testing.
+> 
+> tifm_ms can detect my Memory Stick Pro (SanDisk 512MB) but doesn't appear to 
+> be creating any device nodes in /dev to mount (this is with a 64 bit 2.6.22 
+> kernel) - is there anything else I'm missing?
+> 
+> -Carlos
+> -- 
+> E-Mail: cathectic at gmail.com
+> Web: strangeworlds.co.uk
+> GPG Key ID: 0x23EE722D
+> 
+
+
+
+       
+____________________________________________________________________________________
+Looking for a deal? Find great prices on flights and hotels with Yahoo! FareChase.
+http://farechase.yahoo.com/
+
+

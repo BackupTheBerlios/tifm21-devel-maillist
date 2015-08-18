@@ -1,0 +1,289 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] finally got a log
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2007-February/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20finally%20got%20a%20log&In-Reply-To=%3C45D53579.9050602%40wasp.net.au%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000270.html">
+   <LINK REL="Next"  HREF="000272.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] finally got a log</H1>
+    <B>Brad Campbell</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20finally%20got%20a%20log&In-Reply-To=%3C45D53579.9050602%40wasp.net.au%3E"
+       TITLE="[Tifm21-devel] finally got a log">brad at wasp.net.au
+       </A><BR>
+    <I>Fri Feb 16 05:39:21 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000270.html">[Tifm21-devel] finally got a log
+</A></li>
+        <LI>Next message: <A HREF="000272.html">[Tifm21-devel] finally got a log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#271">[ date ]</a>
+              <a href="thread.html#271">[ thread ]</a>
+              <a href="subject.html#271">[ subject ]</a>
+              <a href="author.html#271">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Alex Dubov wrote:
+&gt;&gt;<i> This is rev83 which although it did not recognise the MMC card, worked with a 1GB SD.. and this
+</I>&gt;&gt;<i> is 
+</I>&gt;&gt;<i> where it explodes on a large write/sync
+</I>&gt;<i> 
+</I>&gt;<i> The only thing that can possibly affect mmc detection:
+</I>&gt;<i> Notice that there's a commented out line in the end of tifm_sd_event:
+</I>&gt;<i> //      writel(host_status, sock-&gt;addr + SOCK_MMCSD_STATUS);
+</I>&gt;<i> 
+</I>&gt;<i> Try to uncomment it and see what happens.
+</I>
+Yeah, that got it.. detecting the MMC card is now as solid as the SD
+
+&gt;<i> As to SD card problem: the thing chokes on really large requests. The simplest solution will be to
+</I>&gt;<i> limit the request size. I want to investigate this a little, though.
+</I>
+No problem. I've added your pci_ids.h to my SVN tree now (Now why didn't I think of that?) so you 
+can just ping me to update SVN if you need something tested.
+
+In addition, I've managed to source an old 512MB SD card that can not possibly have the SDHC command 
+set, so I'm all geared up for beating it to death as required.
+
+Managed to rsync over 80MB to the 128M MMC card at about 1.2M/sec with no explosions.
+
+Copying a 3MB file to the 512MB SD died in the usual way.
+
+[46412.170000] tifm_sd tifm_sd0:3: host event: host_status 4, flags 21
+[46412.170000] tifm_sd tifm_sd0:3: host event: host_status 10, flags 1
+[46412.170000] tifm_sd tifm_sd0:3: host event: host_status 14, flags 1
+[46412.170000] tifm_sd tifm_sd0:3: setting dma for 8 blocks
+[46412.170000] tifm_sd tifm_sd0:3: data event: fifo_status 1, flags 1
+[46412.170000] tifm_sd tifm_sd0:3: host event: host_status 14, flags 1
+[46412.170000] tifm_sd tifm_sd0:3: host event: host_status 14, flags 1
+[46412.170000] tifm_sd tifm_sd0:3: host event: host_status 14, flags 1
+[46412.170000] tifm_sd tifm_sd0:3: host event: host_status 14, flags 1
+[46412.170000] tifm_sd tifm_sd0:3: host event: host_status 14, flags 1
+[46412.170000] tifm_sd tifm_sd0:3: host event: host_status 14, flags 1
+[46412.170000] tifm_sd tifm_sd0:3: host event: host_status 4, flags 21
+[46412.170000] tifm_sd tifm_sd0:3: host event: host_status 10, flags 1
+[46412.170000] tifm_sd tifm_sd0:3: host event: host_status 14, flags 1
+[46412.170000] tifm_sd tifm_sd0:3: data event: fifo_status 1, flags 3
+[46412.170000] tifm_sd tifm_sd0:3: host event: host_status 14, flags 3
+[46412.170000] tifm_sd tifm_sd0:3: host event: host_status 14, flags 3
+[46412.170000] tifm_sd tifm_sd0:3: executing opcode 0xc, arg: 0x0, mask: 0x2900
+[46412.170000] tifm_sd tifm_sd0:3: host event: host_status 1c, flags f
+[46412.170000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1f
+[46412.170000] tifm_sd tifm_sd0:3: host event: host_status 10, flags 1f
+[46413.060000] tifm_sd0:3 : card failed to respond for a long period of time (19, 1f)
+[46413.060000] tifm_7xx1 0000:06:05.3: checking media set 8
+[46413.060000] tifm0 : demand removing card from socket 0:3
+[46413.060000] tifm_sd tifm_sd0:3: w_bl 128, num_bl 0, b_s 512, bsh 1
+[46413.060000] mmcblk0: error 1 sending read/write command
+[46413.060000] end_request: I/O error, dev mmcblk0, sector 47648
+[46413.060000] end_request: I/O error, dev mmcblk0, sector 47656
+
+For a laugh I tried passing the no_dma=1 option to tifm_sd and did not even get past card 
+detection.. see log
+
+[46516.910000] tifm_7xx1 0000:06:05.3: checking media set 8
+[46516.960000] tifm_core: MMC/SD card detected in socket 0:3
+[46517.040000] tifm_sd tifm_sd0:3: ios: clock = 0, vdd = 0, bus_mode = 1, chip_select = 0, 
+power_mode = 0, bus_width = 0
+[46517.040000] tifm_sd tifm_sd0:3: ios: clock = 0, vdd = 15, bus_mode = 1, chip_select = 0, 
+power_mode = 1, bus_width = 0
+[46517.040000] tifm_sd tifm_sd0:3: ios: clock = 333333, vdd = 15, bus_mode = 1, chip_select = 0, 
+power_mode = 2, bus_width = 0
+[46517.040000] tifm_sd tifm_sd0:3: ios: clock = 333333, vdd = 15, bus_mode = 1, chip_select = 1, 
+power_mode = 2, bus_width = 0
+[46517.040000] tifm_sd tifm_sd0:3: executing opcode 0x0, arg: 0x0, mask: 0x40
+[46517.040000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.040000] tifm_sd tifm_sd0:3: ios: clock = 333333, vdd = 15, bus_mode = 1, chip_select = 0, 
+power_mode = 2, bus_width = 0
+[46517.040000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[46517.040000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.040000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x0, mask: 0x1340
+[46517.040000] tifm_sd tifm_sd0:3: host event: host_status 1001, flags 1
+[46517.040000] tifm_sd tifm_sd0:3: ios: clock = 333333, vdd = 14, bus_mode = 1, chip_select = 0, 
+power_mode = 2, bus_width = 0
+[46517.040000] tifm_sd tifm_sd0:3: ios: clock = 333333, vdd = 14, bus_mode = 1, chip_select = 1, 
+power_mode = 2, bus_width = 0
+[46517.040000] tifm_sd tifm_sd0:3: executing opcode 0x0, arg: 0x0, mask: 0x40
+[46517.040000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.040000] tifm_sd tifm_sd0:3: ios: clock = 333333, vdd = 14, bus_mode = 1, chip_select = 0, 
+power_mode = 2, bus_width = 0
+[46517.050000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[46517.050000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.050000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x300000, mask: 0x1340
+[46517.050000] tifm_sd tifm_sd0:3: host event: host_status 1001, flags 1
+[46517.070000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[46517.070000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.070000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x300000, mask: 0x1340
+[46517.070000] tifm_sd tifm_sd0:3: host event: host_status 1001, flags 1
+[46517.090000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[46517.090000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.090000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x300000, mask: 0x1340
+[46517.090000] tifm_sd tifm_sd0:3: host event: host_status 1001, flags 1
+[46517.110000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[46517.110000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.110000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x300000, mask: 0x1340
+[46517.110000] tifm_sd tifm_sd0:3: host event: host_status 1001, flags 1
+[46517.130000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[46517.130000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.130000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x300000, mask: 0x1340
+[46517.130000] tifm_sd tifm_sd0:3: host event: host_status 1001, flags 1
+[46517.150000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[46517.150000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.150000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x300000, mask: 0x1340
+[46517.150000] tifm_sd tifm_sd0:3: host event: host_status 1001, flags 1
+[46517.170000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[46517.170000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.170000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x300000, mask: 0x1340
+[46517.170000] tifm_sd tifm_sd0:3: host event: host_status 1001, flags 1
+[46517.190000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[46517.190000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.190000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x300000, mask: 0x1340
+[46517.190000] tifm_sd tifm_sd0:3: host event: host_status 1001, flags 1
+[46517.210000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[46517.210000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.210000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x300000, mask: 0x1340
+[46517.210000] tifm_sd tifm_sd0:3: host event: host_status 1001, flags 1
+[46517.230000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[46517.230000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.230000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x300000, mask: 0x1340
+[46517.230000] tifm_sd tifm_sd0:3: host event: host_status 1001, flags 1
+[46517.250000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[46517.250000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.250000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x300000, mask: 0x1340
+[46517.250000] tifm_sd tifm_sd0:3: host event: host_status 1001, flags 1
+[46517.270000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[46517.270000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.270000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x300000, mask: 0x1340
+[46517.270000] tifm_sd tifm_sd0:3: host event: host_status 1001, flags 1
+[46517.290000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[46517.290000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.290000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x300000, mask: 0x1340
+[46517.290000] tifm_sd tifm_sd0:3: host event: host_status 1001, flags 1
+[46517.310000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[46517.310000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.310000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x300000, mask: 0x1340
+[46517.310000] tifm_sd tifm_sd0:3: host event: host_status 1001, flags 1
+[46517.330000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[46517.330000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.330000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x300000, mask: 0x1340
+[46517.330000] tifm_sd tifm_sd0:3: host event: host_status 1001, flags 1
+[46517.350000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[46517.350000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.350000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x300000, mask: 0x1340
+[46517.350000] tifm_sd tifm_sd0:3: host event: host_status 1001, flags 1
+[46517.370000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[46517.370000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.370000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x300000, mask: 0x1340
+[46517.370000] tifm_sd tifm_sd0:3: host event: host_status 1001, flags 1
+[46517.390000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[46517.390000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.390000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x300000, mask: 0x1340
+[46517.390000] tifm_sd tifm_sd0:3: host event: host_status 1001, flags 1
+[46517.410000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[46517.410000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.410000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x300000, mask: 0x1340
+[46517.410000] tifm_sd tifm_sd0:3: host event: host_status 1001, flags 1
+[46517.430000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[46517.430000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.430000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x300000, mask: 0x1340
+[46517.430000] tifm_sd tifm_sd0:3: host event: host_status 1001, flags 1
+[46517.450000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[46517.450000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.450000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x300000, mask: 0x1340
+[46517.450000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.450000] tifm_sd tifm_sd0:3: executing opcode 0x2, arg: 0x0, mask: 0x1240
+[46517.450000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.450000] tifm_sd tifm_sd0:3: executing opcode 0x3, arg: 0x0, mask: 0x1140
+[46517.450000] tifm_sd tifm_sd0:3: host event: host_status 4000, flags 1
+[46517.450000] tifm_sd tifm_sd0:3: executing opcode 0x2, arg: 0x0, mask: 0x1240
+[46517.450000] tifm_sd tifm_sd0:3: host event: host_status 80, flags 0
+[46517.450000] tifm_sd tifm_sd0:3: executing opcode 0x2, arg: 0x0, mask: 0x1240
+[46517.450000] tifm_sd tifm_sd0:3: host event: host_status 80, flags 0
+[46517.450000] tifm_sd tifm_sd0:3: executing opcode 0x2, arg: 0x0, mask: 0x1240
+[46517.450000] tifm_sd tifm_sd0:3: host event: host_status 80, flags 0
+[46517.450000] tifm_sd tifm_sd0:3: executing opcode 0x2, arg: 0x0, mask: 0x1240
+[46517.450000] tifm_sd tifm_sd0:3: host event: host_status 80, flags 0
+[46517.450000] tifm_sd tifm_sd0:3: ios: clock = 333333, vdd = 14, bus_mode = 2, chip_select = 0, 
+power_mode = 2, bus_width = 0
+[46517.450000] tifm_sd tifm_sd0:3: executing opcode 0x9, arg: 0x99d50000, mask: 0x2200
+[46517.450000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.450000] tifm_sd tifm_sd0:3: executing opcode 0x7, arg: 0x99d50000, mask: 0x2100
+[46517.450000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.450000] tifm_sd tifm_sd0:3: ios: clock = 333333, vdd = 14, bus_mode = 2, chip_select = 0, 
+power_mode = 2, bus_width = 0
+[46517.450000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x99d50000, mask: 0x2100
+[46517.450000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.450000] tifm_sd tifm_sd0:3: executing opcode 0x33, arg: 0x0, mask: 0xb100
+[46517.450000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.450000] tifm_sd tifm_sd0:3: host event: host_status 8, flags 5
+[46517.450000] tifm_sd tifm_sd0:3: w_bl 0, num_bl 0, b_s 8, bsh 0
+[46517.450000] tifm_sd tifm_sd0:3: executing opcode 0x7, arg: 0x0, mask: 0x2000
+[46517.450000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.450000] tifm_sd tifm_sd0:3: ios: clock = 24000000, vdd = 14, bus_mode = 2, chip_select = 0, 
+power_mode = 2, bus_width = 0
+[46517.460000] tifm_sd tifm_sd0:3: executing opcode 0x7, arg: 0x99d50000, mask: 0x2100
+[46517.460000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.470000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x99d50000, mask: 0x2100
+[46517.470000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.470000] tifm_sd tifm_sd0:3: executing opcode 0x6, arg: 0x2, mask: 0x2100
+[46517.470000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.470000] tifm_sd tifm_sd0:3: ios: clock = 24000000, vdd = 14, bus_mode = 2, chip_select = 0, 
+power_mode = 2, bus_width = 2
+[46517.470000] tifm_sd tifm_sd0:3: executing opcode 0x10, arg: 0x200, mask: 0x2100
+[46517.470000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.470000] mmcblk0: mmc0:99d5 SH512 503296KiB
+[46517.470000]  mmcblk0:&lt;7&gt;tifm_sd tifm_sd0:3: executing opcode 0x12, arg: 0x0, mask: 0xb100
+[46517.470000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.470000] tifm_sd tifm_sd0:3: host event: host_status 400, flags 1
+[46518.470000] tifm_sd0:3 : card failed to respond for a long period of time (12, 1)
+[46518.470000] tifm_7xx1 0000:06:05.3: checking media set 8
+[46518.470000] tifm0 : demand removing card from socket 0:3
+
+mmc_block hangs up here in the way you describe.. and the reader led is stuck on.. I'll see how long 
+it takes to time out..
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">brad at bklaptop2</A>:~$ sudo bin/tifm_unload
+mmc_block ref count not 0 - not removing driver
+
+My gut feeling is it's getting closer anyway..
+
+-- 
+&quot;Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so.&quot; -- Douglas Adams
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000270.html">[Tifm21-devel] finally got a log
+</A></li>
+	<LI>Next message: <A HREF="000272.html">[Tifm21-devel] finally got a log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#271">[ date ]</a>
+              <a href="thread.html#271">[ thread ]</a>
+              <a href="subject.html#271">[ subject ]</a>
+              <a href="author.html#271">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

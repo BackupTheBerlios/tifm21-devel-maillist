@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] Issues
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2006-October/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20Issues&In-Reply-To=%3C20061023160925.GA28607%40panelnet.cz%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000231.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] Issues</H1>
+    <B>Dalibor Straka</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20Issues&In-Reply-To=%3C20061023160925.GA28607%40panelnet.cz%3E"
+       TITLE="[Tifm21-devel] Issues">dast at panelnet.cz
+       </A><BR>
+    <I>Mon Oct 23 18:09:25 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000231.html">[Tifm21-devel] Issues
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#232">[ date ]</a>
+              <a href="thread.html#232">[ thread ]</a>
+              <a href="subject.html#232">[ subject ]</a>
+              <a href="author.html#232">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sun, Oct 22, 2006 at 07:40:23PM -0700, Alex Dubov wrote:
+&gt;<i> I probably need to make some clarifications:
+</I>&gt;<i> 1. I'm working on MemoryStick support for TI controller, but it's not compatible with ENE one.
+</I>&gt;<i> There also exists support for winbond memorystick controller, but it's not compatible either. Bad
+</I>&gt;<i> luck with this one.
+</I>&gt;<i> 2. Suspend/resume functionality is not my priority at the moment. It's probably broken and will be
+</I>&gt;<i> fixed some time in the future.
+</I>&gt;<i> 3. Other problems: I'll appreciate any bug report against 2.6.18 kernel. I don't currently have
+</I>&gt;<i> any 2.6.19-rc installed, so I can't test those. It's not that fortunate, of course, but I can't do
+</I>&gt;<i> anything about this at the moment.
+</I>&gt;<i> 
+</I>Hi,
+
+I've started writing the same driver as you did, but when you post it to
+the LKML I realized that you are far ahead me ;-). I have the second
+pci_id:
+
+/* this line should go to the  include/linux/pci_ids.h */
+#define PCI_DEVICE_ID_TI_0x803B       0x803b
+
+static struct pci_device_id ti_mcr_ids[] = {
+        { PCI_DEVICE(PCI_VENDOR_ID_TI, PCI_DEVICE_ID_TI_0x803B) },
+		{ }
+};  
+
+I'm using the lastest 2.6.19-rc2,
+-- Dalibor 
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000231.html">[Tifm21-devel] Issues
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#232">[ date ]</a>
+              <a href="thread.html#232">[ thread ]</a>
+              <a href="subject.html#232">[ subject ]</a>
+              <a href="author.html#232">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,158 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] almost works
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2006-August/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20almost%20works&In-Reply-To=%3C1155667036.23027.268444276%40webmail.messagingengine.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000210.html">
+   <LINK REL="Next"  HREF="000212.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] almost works</H1>
+    <B>James RW</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20almost%20works&In-Reply-To=%3C1155667036.23027.268444276%40webmail.messagingengine.com%3E"
+       TITLE="[Tifm21-devel] almost works">jamesrw at eml.cc
+       </A><BR>
+    <I>Tue Aug 15 20:37:16 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000210.html">[Tifm21-devel] almost works
+</A></li>
+        <LI>Next message: <A HREF="000212.html">[Tifm21-devel] almost works
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#211">[ date ]</a>
+              <a href="thread.html#211">[ thread ]</a>
+              <a href="subject.html#211">[ subject ]</a>
+              <a href="author.html#211">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+On Tue, 15 Aug 2006 15:02:12 +0200, &quot;Bartosz Fenski aka fEnIo&quot;
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">fenio at debian.org</A>&gt; said:
+&gt;<i> Hello.
+</I>&gt;<i> 
+</I>&gt;<i> I'm just trying to launch my card reader in Compaq Presario V2000. Here
+</I>&gt;<i> goes lspci output:
+</I>&gt;<i> 
+</I>&gt;<i> 00:00.0 Host bridge: Intel Corporation 82852/82855 GM/GME/PM/GMV
+</I>&gt;<i> Processor to I/O Controller (rev 02)
+</I>&gt;<i> 00:00.1 System peripheral: Intel Corporation 82852/82855 GM/GME/PM/GMV
+</I>&gt;<i> Processor to I/O Controller (rev 02)
+</I>&gt;<i> 00:00.3 System peripheral: Intel Corporation 82852/82855 GM/GME/PM/GMV
+</I>&gt;<i> Processor to I/O Controller (rev 02)
+</I>&gt;<i> 00:02.0 VGA compatible controller: Intel Corporation 82852/855GM
+</I>&gt;<i> Integrated Graphics Device (rev 02)
+</I>&gt;<i> 00:02.1 Display controller: Intel Corporation 82852/855GM Integrated
+</I>&gt;<i> Graphics Device (rev 02)
+</I>&gt;<i> 00:1d.0 USB Controller: Intel Corporation 82801DB/DBL/DBM
+</I>&gt;<i> (ICH4/ICH4-L/ICH4-M) USB UHCI Controller #1 (rev 03)
+</I>&gt;<i> 00:1d.1 USB Controller: Intel Corporation 82801DB/DBL/DBM
+</I>&gt;<i> (ICH4/ICH4-L/ICH4-M) USB UHCI Controller #2 (rev 03)
+</I>&gt;<i> 00:1d.2 USB Controller: Intel Corporation 82801DB/DBL/DBM
+</I>&gt;<i> (ICH4/ICH4-L/ICH4-M) USB UHCI Controller #3 (rev 03)
+</I>&gt;<i> 00:1d.7 USB Controller: Intel Corporation 82801DB/DBM (ICH4/ICH4-M) USB2
+</I>&gt;<i> EHCI Controller (rev 03)
+</I>&gt;<i> 00:1e.0 PCI bridge: Intel Corporation 82801 Mobile PCI Bridge (rev 83)
+</I>&gt;<i> 00:1f.0 ISA bridge: Intel Corporation 82801DBM (ICH4-M) LPC Interface
+</I>&gt;<i> Bridge (rev 03)
+</I>&gt;<i> 00:1f.1 IDE interface: Intel Corporation 82801DBM (ICH4-M) IDE Controller
+</I>&gt;<i> (rev 03)
+</I>&gt;<i> 00:1f.3 SMBus: Intel Corporation 82801DB/DBL/DBM (ICH4/ICH4-L/ICH4-M)
+</I>&gt;<i> SMBus Controller (rev 03)
+</I>&gt;<i> 00:1f.5 Multimedia audio controller: Intel Corporation 82801DB/DBL/DBM
+</I>&gt;<i> (ICH4/ICH4-L/ICH4-M) AC'97 Audio Controller (rev 03)
+</I>&gt;<i> 00:1f.6 Modem: Intel Corporation 82801DB/DBL/DBM (ICH4/ICH4-L/ICH4-M)
+</I>&gt;<i> AC'97 Modem Controller (rev 03)
+</I>&gt;<i> 02:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd.
+</I>&gt;<i> RTL-8139/8139C/8139C+ (rev 10)
+</I>&gt;<i> 02:06.0 Network controller: Intel Corporation PRO/Wireless 2200BG Network
+</I>&gt;<i> Connection (rev 05)
+</I>&gt;<i> 02:09.0 CardBus bridge: Texas Instruments PCIxx21/x515 Cardbus Controller
+</I>&gt;<i> 02:09.2 FireWire (IEEE 1394): Texas Instruments OHCI Compliant IEEE 1394
+</I>&gt;<i> Host Controller
+</I>&gt;<i> 02:09.3 Mass storage controller: Texas Instruments PCIxx21 Integrated
+</I>&gt;<i> FlashMedia Controller
+</I>&gt;<i> 02:09.4 Class 0805: Texas Instruments PCI6411, PCI6421, PCI6611, PCI6621,
+</I>&gt;<i> PCI7411, PCI7421, PCI7611, PCI7621 Secure Digital (SD) Controller
+</I>&gt;<i> 
+</I>&gt;<i> In fact I'm not sure what to say... it worked for me ONCE. Now it only 
+</I>&gt;<i> says that it detects new card but doesn't assign /dev/ device for it.
+</I>&gt;<i> 
+</I>&gt;<i> tifm_7xx1: sd card detected in socket 3
+</I>&gt;<i> tifm_7xx1: demand removing card from socket 3
+</I>&gt;<i> tifm_7xx1: xd card detected in socket 2
+</I>&gt;<i> tifm_7xx1: demand removing card from socket 2
+</I>&gt;<i> tifm_7xx1: sd card detected in socket 3
+</I>&gt;<i> tifm_7xx1: demand removing card from socket 3
+</I>&gt;<i> tifm_7xx1: sd card detected in socket 3
+</I>&gt;<i> tifm_7xx1: xd card detected in socket 2
+</I>&gt;<i> tifm_7xx1: demand removing card from socket 2
+</I>&gt;<i> tifm_7xx1: demand removing card from socket 3
+</I>&gt;<i> tifm_7xx1: sd card detected in socket 3
+</I>&gt;<i> tifm_7xx1: demand removing card from socket 3
+</I>&gt;<i> ACPI: PCI interrupt for device 0000:02:09.3 disabled
+</I>&gt;<i> No module found in object
+</I>&gt;<i> ACPI: PCI Interrupt 0000:02:09.3[A] -&gt; GSI 20 (level, low) -&gt; IRQ 16
+</I>&gt;<i> tifm_7xx1: sd card detected in socket 3
+</I>&gt;<i> tifm_7xx1: demand removing card from socket 3
+</I>&gt;<i> ACPI: PCI interrupt for device 0000:02:09.3 disabled
+</I>&gt;<i> tifm_7xx1: Unknown symbol tifm_add_adapter
+</I>&gt;<i> tifm_7xx1: Unknown symbol tifm_alloc_adapter
+</I>&gt;<i> tifm_7xx1: Unknown symbol tifm_alloc_device
+</I>&gt;<i> tifm_7xx1: Unknown symbol tifm_remove_adapter
+</I>&gt;<i> tifm_7xx1: Unknown symbol tifm_free_device
+</I>&gt;<i> tifm_7xx1: Unknown symbol tifm_free_adapter
+</I>&gt;<i> ACPI: PCI Interrupt 0000:02:09.3[A] -&gt; GSI 20 (level, low) -&gt; IRQ 16
+</I>&gt;<i> tifm_7xx1: sd card detected in socket 3
+</I>&gt;<i> 
+</I>&gt;<i> As you can see I tried to load/unload modules and similar things but
+</I>&gt;<i> all I get is detection of card and nothing else... what could I do
+</I>&gt;<i> to force it to create /dev/ device and mount it?
+</I>&gt;<i> 
+</I>&gt;<i> regards
+</I>&gt;<i> fEnIo
+</I>
+I have the same computer (V2000Z).. please keep me posted on getting
+this to work! is there somewhere that howto's can be written upand
+posted? forum?
+-- 
+  James RW
+  <A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">jamesrw at eml.cc</A>
+
+-- 
+<A HREF="http://www.fastmail.fm">http://www.fastmail.fm</A> - Access all of your messages and folders
+                          wherever you are
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000210.html">[Tifm21-devel] almost works
+</A></li>
+	<LI>Next message: <A HREF="000212.html">[Tifm21-devel] almost works
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#211">[ date ]</a>
+              <a href="thread.html#211">[ thread ]</a>
+              <a href="subject.html#211">[ subject ]</a>
+              <a href="author.html#211">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

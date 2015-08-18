@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] finally got a log
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2007-February/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20finally%20got%20a%20log&In-Reply-To=%3C45D3DB7B.5080105%40wasp.net.au%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000264.html">
+   <LINK REL="Next"  HREF="000256.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] finally got a log</H1>
+    <B>Brad Campbell</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20finally%20got%20a%20log&In-Reply-To=%3C45D3DB7B.5080105%40wasp.net.au%3E"
+       TITLE="[Tifm21-devel] finally got a log">brad at wasp.net.au
+       </A><BR>
+    <I>Thu Feb 15 05:03:07 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000264.html">[Tifm21-devel] finally got a log
+</A></li>
+        <LI>Next message: <A HREF="000256.html">[Tifm21-devel] New logs with freshly formatted cards
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#265">[ date ]</a>
+              <a href="thread.html#265">[ thread ]</a>
+              <a href="subject.html#265">[ subject ]</a>
+              <a href="author.html#265">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Alex Dubov wrote:
+&gt;&gt;&gt;<i> I must also ask - had this MMC card ever worked before on linux? And if yes, on what
+</I>&gt;&gt;&gt;<i> configuration?
+</I>&gt;&gt;<i> Yes.. I used it yesterday with this inbuilt reader and a 2.6.19 kernel using the integrated tifm
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> driver. In fact, I wrote about 80MB to the card, the did a full verify on it. At 172kb/s mind
+</I>&gt;&gt;<i> you, 
+</I>&gt;&gt;<i> but none the less it worked.
+</I>&gt;<i> This is totally weird, don't you think? Can you please make the log of the working version (same
+</I>&gt;<i> DEBUG=1) - maybe we'll see the difference. There were a lot of changes in mmc layer between 2.6.19
+</I>&gt;<i> and 2.6.20.
+</I>&gt;<i> 
+</I>&gt;<i> Everything else: attached rev82 of the driver - I fixed some more problems.
+</I>
+Using vanilla 2.6.20 kernel and rev82 MMC and SD detection is now reliable.
+It still blows up writing to the card though, trying to get some form of usable log for you.
+
+(cc'd Pierre Ossman for hal issues)
+
+Found the issue with HAL also. If a card is forcibly removed while mounted, HAL is not removing it 
+from the device tree, so next time a card is inserted HAL just sits on it's backside. (This used to 
+work). Pierre I've got CONFIG_SYSFS_DEPRECATED=y at the moment, but it does not seem to matter.
+
+If I properly unmount the card prior to the eject, then it is properly removed from the HAL device 
+tree and HAL works on the next insert. Something to do with the card still being mounted before the 
+sysfs entries are removed. Not sure how to debug further yet.
+
+Attached is a log of the 128MB MMC card. Insert, copy some data (6MB of mp3's), umount from desktop 
+- which forces a sync - *boom*. Alex, this card was freshly formatted FAT16 (formatted in my camera)
+
+I think this is where it goes pear shaped..
+
+[ 1205.730000] tifm_sd tifm_sd0:3: data event: fifo_status 1, flags 3
+[ 1205.730000] tifm_sd tifm_sd0:3: host event: host_status 4, flags 23
+[ 1205.730000] tifm_sd tifm_sd0:3: host event: host_status 10, flags 3
+[ 1205.730000] tifm_sd tifm_sd0:3: host event: host_status 4, flags 23
+[ 1205.730000] tifm_sd tifm_sd0:3: host event: host_status 10, flags 3
+[ 1205.730000] tifm_sd tifm_sd0:3: host event: host_status 4, flags 23
+[ 1205.730000] tifm_sd tifm_sd0:3: host event: host_status 10, flags 3
+[ 1206.580000] tifm_sd0:3 : card failed to respond for a long period of time
+[ 1206.580000] tifm_7xx1 0000:06:05.3: checking media set 8
+[ 1206.580000] tifm_7xx1: demand removing card from socket 0:3
+[ 1206.580000] tifm_sd tifm_sd0:3: w_bl 384, num_bl 640, b_s 512, bsh 1
+[ 1206.580000] mmcblk0: error 1 sending read/write command
+[ 1206.580000] end_request: I/O error, dev mmcblk0, sector 15936
+[ 1206.580000] end_request: I/O error, dev mmcblk0, sector 15944
+[ 1206.580000] end_request: I/O error, dev mmcblk0, sector 15952
+
+I'm trying to get my hands on a non-SDHC SD card for testing, at the moment the MMC is all I have as 
+the other 2G cards appear to be SDHC
+
+Brad
+-- 
+&quot;Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so.&quot; -- Douglas Adams
+
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: mmclog3.bz2
+Type: application/x-bzip
+Size: 11068 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/tifm21-devel/attachments/20070215/ce6ee4a0/attachment.bin">https://lists.berlios.de/pipermail/tifm21-devel/attachments/20070215/ce6ee4a0/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000264.html">[Tifm21-devel] finally got a log
+</A></li>
+	<LI>Next message: <A HREF="000256.html">[Tifm21-devel] New logs with freshly formatted cards
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#265">[ date ]</a>
+              <a href="thread.html#265">[ thread ]</a>
+              <a href="subject.html#265">[ subject ]</a>
+              <a href="author.html#265">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

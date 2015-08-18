@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] finally got a log
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2007-February/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20finally%20got%20a%20log&In-Reply-To=%3C45D1C973.1010502%40wasp.net.au%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000258.html">
+   <LINK REL="Next"  HREF="000260.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] finally got a log</H1>
+    <B>Brad Campbell</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20finally%20got%20a%20log&In-Reply-To=%3C45D1C973.1010502%40wasp.net.au%3E"
+       TITLE="[Tifm21-devel] finally got a log">brad at wasp.net.au
+       </A><BR>
+    <I>Tue Feb 13 15:21:39 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000258.html">[Tifm21-devel] finally got a log
+</A></li>
+        <LI>Next message: <A HREF="000260.html">[Tifm21-devel] finally got a log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#259">[ date ]</a>
+              <a href="thread.html#259">[ thread ]</a>
+              <a href="subject.html#259">[ subject ]</a>
+              <a href="author.html#259">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Alex Dubov wrote:
+&gt;<i> I don't like IRC, for whatever reasons (call it childhood trauma if you want).
+</I>&gt;<i> 
+</I>&gt;<i> Anyway, I think I've found the problem.
+</I>&gt;<i> 1. The bizarre behavior with device creation is caused by mmc_block instance. Certain errors cause
+</I>&gt;<i> its thread to get stuck in memory, yet after some prolonged time it manages to die. We shall give
+</I>&gt;<i> it a good fix sometime soon. To check if this is happening, you can unload tifm modules and then
+</I>&gt;<i> try &quot;rmmod mmc_block&quot; - even though used by no one, it won't go.
+</I>&gt;<i> 2. Write corruption - new version of tifm_sd attached (rev 81 in SVN).
+</I>
+Ok, which kernel are you compiling against ?
+I'm still using 2.4.20-git4 here, but I can use whatever is required.
+
+   CC [M]  drivers/mmc/tifm_sd.o
+drivers/mmc/tifm_sd.c: In function &#8216;tifm_sd_do_write_cmd&#8217;:
+drivers/mmc/tifm_sd.c:373: warning: format &#8216;%ld&#8217; expects type &#8216;long int&#8217;, but argument 4 has type 
+&#8216;size_t&#8217;
+drivers/mmc/tifm_sd.c: In function &#8216;tifm_sd_set_dma&#8217;:
+drivers/mmc/tifm_sd.c:416: error: &#8216;TIFM_DMA_SZMASK&#8217; undeclared (first use in this function)
+drivers/mmc/tifm_sd.c:416: error: (Each undeclared identifier is reported only once
+drivers/mmc/tifm_sd.c:416: error: for each function it appears in.)
+drivers/mmc/tifm_sd.c: In function &#8216;tifm_sd_end_cmd&#8217;:
+drivers/mmc/tifm_sd.c:682: warning: format &#8216;%ld&#8217; expects type &#8216;long int&#8217;, but argument 4 has type 
+&#8216;size_t&#8217;
+drivers/mmc/tifm_sd.c: In function &#8216;tifm_sd_probe&#8217;:
+drivers/mmc/tifm_sd.c:894: error: &#8216;struct mmc_host&#8217; has no member named &#8216;max_sectors&#8217;
+drivers/mmc/tifm_sd.c: In function &#8216;tifm_sd_resume&#8217;:
+drivers/mmc/tifm_sd.c:965: error: &#8216;struct tifm_dev&#8217; has no member named &#8216;type&#8217;
+drivers/mmc/tifm_sd.c:966: error: &#8216;TIFM_TYPE_SD&#8217; undeclared (first use in this function)
+drivers/mmc/tifm_sd.c: At top level:
+drivers/mmc/tifm_sd.c:982: error: &#8216;TIFM_TYPE_SD&#8217; undeclared here (not in a function)
+drivers/mmc/tifm_sd.c:990: warning: initialisation from incompatible pointer type
+make[2]: *** [drivers/mmc/tifm_sd.o] Error 1
+make[1]: *** [drivers/mmc] Error 2
+make: *** [drivers] Error 2
+
+
+-- 
+&quot;Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so.&quot; -- Douglas Adams
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000258.html">[Tifm21-devel] finally got a log
+</A></li>
+	<LI>Next message: <A HREF="000260.html">[Tifm21-devel] finally got a log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#259">[ date ]</a>
+              <a href="thread.html#259">[ thread ]</a>
+              <a href="subject.html#259">[ subject ]</a>
+              <a href="author.html#259">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

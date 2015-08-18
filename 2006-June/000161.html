@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] First release
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2006-June/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20First%20release&In-Reply-To=%3C448B0A78.2020708%40fullmotions.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000172.html">
+   <LINK REL="Next"  HREF="000175.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] First release</H1>
+    <B>Danny Brow</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20First%20release&In-Reply-To=%3C448B0A78.2020708%40fullmotions.com%3E"
+       TITLE="[Tifm21-devel] First release">maillist at fullmotions.com
+       </A><BR>
+    <I>Sat Jun 10 20:07:52 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000172.html">[Tifm21-devel] First release
+</A></li>
+        <LI>Next message: <A HREF="000175.html">[Tifm21-devel] error feedback
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#161">[ date ]</a>
+              <a href="thread.html#161">[ thread ]</a>
+              <a href="subject.html#161">[ subject ]</a>
+              <a href="author.html#161">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Alex Dubov wrote:
+
+&gt;<i>The first &quot;official&quot; release of the driver is now
+</I>&gt;<i>available:
+</I>&gt;<i><A HREF="http://developer.berlios.de/project/showfiles.php?group_id=5510">http://developer.berlios.de/project/showfiles.php?group_id=5510</A>
+</I>&gt;<i>
+</I>&gt;<i>Some highlights:
+</I>&gt;<i>1. It works for me, but there may still be problems
+</I>&gt;<i>2. It uses dma only for &quot;MULTI&quot; transfers - so there
+</I>&gt;<i>may be occasional drops in speed during operation.
+</I>&gt;<i>Fortunately, these are rare in normal use. I get
+</I>&gt;<i>around 4MB/sec on average.
+</I>&gt;<i>3. As this is reverse engineered driver, there are
+</I>&gt;<i>many things that I don't know how to fix (see item 2
+</I>&gt;<i>above for example).
+</I>&gt;<i>  
+</I>&gt;<i>
+</I>Unpon inserting a card I get the follow dmesg output:
+
+BUG: scheduling while atomic: tifm0/0x00000001/10619
+ &lt;c0346271&gt; schedule+0x43/0x52f  &lt;c0113708&gt; default_wake_function+0x0/0x12
+ &lt;c034688f&gt; wait_for_completion+0x80/0xc3  &lt;c0113708&gt; 
+default_wake_function+0x0/0x12
+ &lt;c0112fcd&gt; try_to_wake_up+0x5c/0xa9  &lt;c0113708&gt; 
+default_wake_function+0x0/0x12
+ &lt;c0113027&gt; wake_up_process+0xd/0xf  &lt;c0126453&gt; kthread_stop_sem+0x6a/0x8c
+ &lt;c01263e6&gt; kthread_stop+0xb/0xe  &lt;c0123cb8&gt; destroy_workqueue+0x21/0x74
+ &lt;f8cfd294&gt; tifm_free_device+0x15/0x20 [tifm_core]  &lt;c026ccce&gt; 
+device_release+0x14/0x44
+ &lt;c020bc56&gt; kobject_cleanup+0x40/0x65  &lt;c020bc7b&gt; kobject_release+0x0/0xa
+ &lt;c020c319&gt; kref_put+0x65/0x70  &lt;c020bc9b&gt; kobject_put+0x16/0x19
+ &lt;c020bc7b&gt; kobject_release+0x0/0xa  &lt;f8d380d8&gt; 
+tifm_7xx1_remove_media+0x6c/0xca [tifm_7xx1]
+ &lt;c0123842&gt; run_workqueue+0xa0/0x100  &lt;f8d3806c&gt; 
+tifm_7xx1_remove_media+0x0/0xca [tifm_7xx1]
+ &lt;c012399a&gt; worker_thread+0xf8/0x12a  &lt;c0113708&gt; 
+default_wake_function+0x0/0x12
+ &lt;c0113708&gt; default_wake_function+0x0/0x12  &lt;c01238a2&gt; 
+worker_thread+0x0/0x12a
+ &lt;c012626a&gt; kthread+0x79/0xa3  &lt;c01261f1&gt; kthread+0x0/0xa3
+ &lt;c01012f9&gt; kernel_thread_helper+0x5/0xb
+
+tried a 1 GB and a 64 MB card. kernel 2.6.17-rc6, compiled for pentium-m.
+
+Thanks,
+Dan.
+
+-- 
+This message has been scanned for viruses and
+dangerous content by MailScanner, and is
+believed to be clean.
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000172.html">[Tifm21-devel] First release
+</A></li>
+	<LI>Next message: <A HREF="000175.html">[Tifm21-devel] error feedback
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#161">[ date ]</a>
+              <a href="thread.html#161">[ thread ]</a>
+              <a href="subject.html#161">[ subject ]</a>
+              <a href="author.html#161">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

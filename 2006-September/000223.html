@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] problem with inserting the compiled module
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2006-September/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20problem%20with%20inserting%20the%20compiled%20module&In-Reply-To=%3C44FFC87F.7050507%40wasp.net.au%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000222.html">
+   <LINK REL="Next"  HREF="000224.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] problem with inserting the compiled module</H1>
+    <B>Brad Campbell</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20problem%20with%20inserting%20the%20compiled%20module&In-Reply-To=%3C44FFC87F.7050507%40wasp.net.au%3E"
+       TITLE="[Tifm21-devel] problem with inserting the compiled module">brad at wasp.net.au
+       </A><BR>
+    <I>Thu Sep  7 09:21:35 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000222.html">[Tifm21-devel] problem with inserting the compiled module
+</A></li>
+        <LI>Next message: <A HREF="000224.html">[Tifm21-devel] problem with inserting the compiled module
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#223">[ date ]</a>
+              <a href="thread.html#223">[ thread ]</a>
+              <a href="subject.html#223">[ subject ]</a>
+              <a href="author.html#223">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Dr.Mihail Tomoff wrote:
+&gt;<i> Hi, I have this problem:
+</I>&gt;<i> 
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">mishaikin at farscape</A>:~/tifmxx/trunk/driver&gt; ls
+</I>&gt;<i> l.sh  Makefile  tifm_7xx1.c  tifm_core.c  tifm.h  tifm_sd.c  ul.sh
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">mishaikin at farscape</A>:~/tifmxx/trunk/driver&gt; make
+</I>&gt;<i> make -C /lib/modules/2.6.16.21-0.13-default/build
+</I>&gt;<i> M=/home/mishaikin/tifmxx/trunk/driver
+</I>&gt;<i> make[1]: Entering directory
+</I>&gt;<i> `/usr/src/linux-2.6.16.21-0.13-obj/x86_64/default'
+</I>&gt;<i> make -C ../../../linux-2.6.16.21-0.13
+</I>&gt;<i> O=../linux-2.6.16.21-0.13-obj/x86_64/default
+</I>&gt;<i>   LD      /home/mishaikin/tifmxx/trunk/driver/built-in.o
+</I>&gt;<i>   CC [M]  /home/mishaikin/tifmxx/trunk/driver/tifm_core.o
+</I>&gt;<i>   CC [M]  /home/mishaikin/tifmxx/trunk/driver/tifm_7xx1.o
+</I>&gt;<i>   CC [M]  /home/mishaikin/tifmxx/trunk/driver/tifm_sd.o
+</I>&gt;<i>   Building modules, stage 2.
+</I>&gt;<i>   MODPOST
+</I>&gt;<i>   CC      /home/mishaikin/tifmxx/trunk/driver/tifm_7xx1.mod.o
+</I>&gt;<i>   LD [M]  /home/mishaikin/tifmxx/trunk/driver/tifm_7xx1.ko
+</I>&gt;<i>   CC      /home/mishaikin/tifmxx/trunk/driver/tifm_core.mod.o
+</I>&gt;<i>   LD [M]  /home/mishaikin/tifmxx/trunk/driver/tifm_core.ko
+</I>&gt;<i>   CC      /home/mishaikin/tifmxx/trunk/driver/tifm_sd.mod.o
+</I>&gt;<i>   LD [M]  /home/mishaikin/tifmxx/trunk/driver/tifm_sd.ko
+</I>&gt;<i> make[1]: Leaving directory
+</I>&gt;<i> `/usr/src/linux-2.6.16.21-0.13-obj/x86_64/default'
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">mishaikin at farscape</A>:~/tifmxx/trunk/driver&gt; su
+</I>&gt;<i> Password:
+</I>&gt;<i> farscape:/home/mishaikin/tifmxx/trunk/driver # ls
+</I>&gt;<i> built-in.o       tifm_7xx1.ko          tifm_core.c          
+</I>&gt;<i> .tifm_core.o.cmd  .tifm_sd.mod.o.cmd
+</I>&gt;<i> .built-in.o.cmd  .tifm_7xx1.ko.cmd     tifm_core.ko         
+</I>&gt;<i> tifm.h            tifm_sd.o
+</I>&gt;<i> l.sh             tifm_7xx1.mod.c       .tifm_core.ko.cmd    
+</I>&gt;<i> tifm_sd.c         .tifm_sd.o.cmd
+</I>&gt;<i> Makefile         tifm_7xx1.mod.o       tifm_core.mod.c      
+</I>&gt;<i> tifm_sd.ko        .tmp_versions
+</I>&gt;<i> Modules.symvers  .tifm_7xx1.mod.o.cmd  tifm_core.mod.o      
+</I>&gt;<i> .tifm_sd.ko.cmd   ul.sh
+</I>&gt;<i> .svn             tifm_7xx1.o           .tifm_core.mod.o.cmd  tifm_sd.mod.c
+</I>&gt;<i> tifm_7xx1.c      .tifm_7xx1.o.cmd      tifm_core.o           tifm_sd.mod.o
+</I>&gt;<i> farscape:/home/mishaikin/tifmxx/trunk/driver # ./l.sh
+</I>&gt;<i> insmod: error inserting './tifm_sd.ko': -1 Unknown symbol in module
+</I>
+do you have mmc_block loaded or compiled in?
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">brad at bklaptop2</A>:~$ lsmod | grep mmc
+mmc_block               7752  0
+mmc_core               23376  2 tifm_sd,mmc_block
+
+Brad
+-- 
+&quot;Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so.&quot; -- Douglas Adams
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000222.html">[Tifm21-devel] problem with inserting the compiled module
+</A></li>
+	<LI>Next message: <A HREF="000224.html">[Tifm21-devel] problem with inserting the compiled module
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#223">[ date ]</a>
+              <a href="thread.html#223">[ thread ]</a>
+              <a href="subject.html#223">[ subject ]</a>
+              <a href="author.html#223">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

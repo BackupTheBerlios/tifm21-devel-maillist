@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] Driver update: write speed improvement
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2006-September/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20Driver%20update%3A%20write%20speed%20improvement&In-Reply-To=%3C44F937B0.2030803%40wasp.net.au%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000216.html">
+   <LINK REL="Next"  HREF="000219.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] Driver update: write speed improvement</H1>
+    <B>Brad Campbell</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20Driver%20update%3A%20write%20speed%20improvement&In-Reply-To=%3C44F937B0.2030803%40wasp.net.au%3E"
+       TITLE="[Tifm21-devel] Driver update: write speed improvement">brad at wasp.net.au
+       </A><BR>
+    <I>Sat Sep  2 09:50:08 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000216.html">[Tifm21-devel] Driver update: write speed improvement
+</A></li>
+        <LI>Next message: <A HREF="000219.html">[Tifm21-devel] Driver update: write speed improvement
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#218">[ date ]</a>
+              <a href="thread.html#218">[ thread ]</a>
+              <a href="subject.html#218">[ subject ]</a>
+              <a href="author.html#218">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Alex Dubov wrote:
+&gt;<i> I made a couple of modifications to the tifm driver.
+</I>&gt;<i> Most notables improvements:
+</I>&gt;<i> 1. PIO speed (no_dma=1 option) is now up to 7x higher
+</I>&gt;<i> 2. Write speed is up to 5x higher
+</I>&gt;<i> (the speed gain may even be better than this; on the
+</I>&gt;<i> other hand, it may be worse - one can never know)
+</I>&gt;<i> 
+</I>
+Oh yes.. prior to this I was getting consistent 21KB/s.. now look!
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">brad at bklaptop2</A>:/media/SANVOL$ dd if=/dev/zero of=test.file4 bs=1M count=100 conv=fsync
+100+0 records in
+100+0 records out
+104857600 bytes (105 MB) copied, 89.6839 seconds, 1.2 MB/s
+
+(Thats is a bit more than a 5x increase!)
+
+Wooooo!
+
+Brad
+-- 
+&quot;Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so.&quot; -- Douglas Adams
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000216.html">[Tifm21-devel] Driver update: write speed improvement
+</A></li>
+	<LI>Next message: <A HREF="000219.html">[Tifm21-devel] Driver update: write speed improvement
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#218">[ date ]</a>
+              <a href="thread.html#218">[ thread ]</a>
+              <a href="subject.html#218">[ subject ]</a>
+              <a href="author.html#218">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] Quick intro and results
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2006-July/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20Quick%20intro%20and%20results&In-Reply-To=%3C44BCC073.3000009%40wasp.net.au%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000202.html">
+   <LINK REL="Next"  HREF="000198.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] Quick intro and results</H1>
+    <B>Brad Campbell</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20Quick%20intro%20and%20results&In-Reply-To=%3C44BCC073.3000009%40wasp.net.au%3E"
+       TITLE="[Tifm21-devel] Quick intro and results">brad at wasp.net.au
+       </A><BR>
+    <I>Tue Jul 18 13:05:23 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000202.html">[Tifm21-devel] Quick intro
+</A></li>
+        <LI>Next message: <A HREF="000198.html">[Tifm21-devel] Quick intro and results
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#197">[ date ]</a>
+              <a href="thread.html#197">[ thread ]</a>
+              <a href="subject.html#197">[ subject ]</a>
+              <a href="author.html#197">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>G'day all,
+
+Just joined the list. (and re-sent this message as I sent it prior to joining last time around. Doh!)
+I'm using a Sony VAIO VGN-TX27GP with the following devices.
+
+0000:06:05.0 CardBus bridge: Texas Instruments PCIxx21/x515 Cardbus Controller
+0000:06:05.2 FireWire (IEEE 1394): Texas Instruments OHCI Compliant IEEE 1394 Host Controller
+0000:06:05.3 Mass storage controller: Texas Instruments PCIxx21 Integrated FlashMedia Controller
+
+My machine has a little amber led on the front next to the card slots and has the standard SD and
+MemoryStick Pro slots.
+
+Just want to report that with the latest SVN tree against a pretty heavily patched 2.6.18-rc1
+kernel, I have tested with a 128MB MMC and 512M SD and they both work perfectly for reading. I get 
+between 2 &amp; 4MB/s. For writing I'm getting 27k/s for the SD and 72k/s for the MMC. I'll investigate 
+further.
+
+I do get this when mounting the SD card if it is formatted FAT16 or FAT32 however it reads ok. Write 
+tests are somewhat hampered by the write speed. Formatted ext2 and it's fine although speed is still 
+a bear.
+
+[ 2276.010000] tifm_7xx1: sd card detected in socket 3
+[ 2277.360000] mmcblk0: mmc0:99d5 SH512 503296KiB
+[ 2277.360000]  mmcblk0: p1
+[ 2277.430000] mmcblk0: error 4 sending stop command
+[ 2277.430000] end_request: I/O error, dev mmcblk0, sector 1006584
+[ 2277.430000] printk: 60 messages suppressed.
+[ 2277.430000] Buffer I/O error on device mmcblk0, logical block 125823
+[ 2277.430000] mmcblk0: error 4 sending stop command
+[ 2277.430000] end_request: I/O error, dev mmcblk0, sector 1006584
+[ 2277.430000] Buffer I/O error on device mmcblk0, logical block 125823
+[ 2277.430000] Reducing readahead size to 32K
+[ 2277.430000] mmcblk0: error 4 sending stop command
+[ 2277.430000] end_request: I/O error, dev mmcblk0, sector 1006584
+[ 2277.430000] Buffer I/O error on device mmcblk0, logical block 125823
+[ 2277.430000] Reducing readahead size to 8K
+[ 2277.430000] mmcblk0: error 4 sending stop command
+[ 2277.430000] end_request: I/O error, dev mmcblk0, sector 1006584
+[ 2277.430000] Buffer I/O error on device mmcblk0, logical block 125823
+[ 2277.430000] Reducing readahead size to 0K
+[ 2277.430000] mmcblk0: error 4 sending stop command
+[ 2277.430000] end_request: I/O error, dev mmcblk0, sector 1006584
+[ 2277.430000] Buffer I/O error on device mmcblk0, logical block 125823
+[ 2277.440000] mmcblk0: error 4 sending stop command
+[ 2277.440000] end_request: I/O error, dev mmcblk0, sector 1006584
+[ 2277.440000] Buffer I/O error on device mmcblk0, logical block 125823
+[ 2277.540000] mmcblk0: error 4 sending stop command
+[ 2277.540000] end_request: I/O error, dev mmcblk0, sector 1006584
+[ 2277.540000] Buffer I/O error on device mmcblk0p1, logical block 125821
+[ 2277.540000] mmcblk0: error 4 sending stop command
+[ 2277.540000] end_request: I/O error, dev mmcblk0, sector 1006584
+[ 2277.540000] Buffer I/O error on device mmcblk0p1, logical block 125821
+[ 2277.540000] Reducing readahead size to 32K
+[ 2277.540000] mmcblk0: error 4 sending stop command
+[ 2277.550000] end_request: I/O error, dev mmcblk0, sector 1006584
+[ 2277.550000] Buffer I/O error on device mmcblk0p1, logical block 125821
+[ 2277.550000] Reducing readahead size to 8K
+[ 2277.550000] mmcblk0: error 4 sending stop command
+[ 2277.550000] end_request: I/O error, dev mmcblk0, sector 1006584
+[ 2277.550000] Buffer I/O error on device mmcblk0p1, logical block 125821
+[ 2277.550000] Reducing readahead size to 0K
+[ 2277.550000] mmcblk0: error 4 sending stop command
+[ 2277.550000] end_request: I/O error, dev mmcblk0, sector 1006584
+[ 2277.550000] mmcblk0: error 4 sending stop command
+[ 2277.550000] end_request: I/O error, dev mmcblk0, sector 1006584
+[ 2277.580000] mmcblk0: error 4 sending stop command
+[ 2277.580000] end_request: I/O error, dev mmcblk0, sector 1006584
+[ 2277.580000] mmcblk0: error 4 sending stop command
+[ 2277.580000] end_request: I/O error, dev mmcblk0, sector 1006584
+[ 2277.580000] Reducing readahead size to 32K
+[ 2277.580000] mmcblk0: error 4 sending stop command
+[ 2277.580000] end_request: I/O error, dev mmcblk0, sector 1006584
+[ 2277.580000] Reducing readahead size to 8K
+[ 2277.580000] mmcblk0: error 4 sending stop command
+[ 2277.580000] end_request: I/O error, dev mmcblk0, sector 1006584
+[ 2277.580000] Reducing readahead size to 0K
+[ 2277.590000] mmcblk0: error 4 sending stop command
+[ 2277.590000] end_request: I/O error, dev mmcblk0, sector 1006584
+[ 2277.590000] mmcblk0: error 4 sending stop command
+[ 2277.590000] end_request: I/O error, dev mmcblk0, sector 1006584
+[ 2277.710000] FAT: utf8 is not a recommended IO charset for FAT filesystems, filesystem will be 
+case sensitive!
+[ 3047.090000] tifm_7xx1: demand removing card from socket 3
+
+
+
+Cheers!
+Brad
+-- 
+&quot;Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so.&quot; -- Douglas Adams
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000202.html">[Tifm21-devel] Quick intro
+</A></li>
+	<LI>Next message: <A HREF="000198.html">[Tifm21-devel] Quick intro and results
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#197">[ date ]</a>
+              <a href="thread.html#197">[ thread ]</a>
+              <a href="subject.html#197">[ subject ]</a>
+              <a href="author.html#197">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

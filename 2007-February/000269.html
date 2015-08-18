@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] finally got a log
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2007-February/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20finally%20got%20a%20log&In-Reply-To=%3C45D48724.4020902%40wasp.net.au%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000268.html">
+   <LINK REL="Next"  HREF="000270.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] finally got a log</H1>
+    <B>Brad Campbell</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20finally%20got%20a%20log&In-Reply-To=%3C45D48724.4020902%40wasp.net.au%3E"
+       TITLE="[Tifm21-devel] finally got a log">brad at wasp.net.au
+       </A><BR>
+    <I>Thu Feb 15 17:15:32 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000268.html">[Tifm21-devel] finally got a log
+</A></li>
+        <LI>Next message: <A HREF="000270.html">[Tifm21-devel] finally got a log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#269">[ date ]</a>
+              <a href="thread.html#269">[ thread ]</a>
+              <a href="subject.html#269">[ subject ]</a>
+              <a href="author.html#269">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Alex Dubov wrote:
+&gt;<i> The gods have definitely forsaken us!
+</I>&gt;<i> Anyway, this should be it - rev83.
+</I>&gt;<i> 
+</I>
+This is rev83 which although it did not recognise the MMC card, worked with a 1GB SD.. and this is 
+where it explodes on a large write/sync
+
+Do you need more of the log? this one is *huge*
+
+Feb 15 20:13:08 localhost kernel: [ 2037.870000] tifm_sd tifm_sd0:3: data event: fifo_status 1, flags 3
+Feb 15 20:13:08 localhost kernel: [ 2037.870000] tifm_sd tifm_sd0:3: host event: host_status 4, flags 23
+Feb 15 20:13:08 localhost kernel: [ 2037.870000] tifm_sd tifm_sd0:3: host event: host_status 10, flags 3
+Feb 15 20:13:08 localhost kernel: [ 2037.870000] tifm_sd tifm_sd0:3: host event: host_status 14, flags 3
+Feb 15 20:13:08 localhost kernel: [ 2037.880000] tifm_sd tifm_sd0:3: host event: host_status 1c, flags 7
+Feb 15 20:13:08 localhost kernel: [ 2038.560000] tifm_sd0:3 : card failed to respond for a long 
+period of time (19, 7)
+Feb 15 20:13:08 localhost kernel: [ 2038.560000] tifm_7xx1 0000:06:05.3: checking media set 8
+Feb 15 20:13:08 localhost kernel: [ 2038.560000] tifm0 : demand removing card from socket 0:3
+Feb 15 20:13:08 localhost kernel: [ 2038.560000] tifm_sd tifm_sd0:3: w_bl 1023, num_bl 0, b_s 512, bsh 1
+Feb 15 20:13:08 localhost kernel: [ 2038.560000] mmcblk0: error 1 sending read/write command
+Feb 15 20:13:08 localhost kernel: [ 2038.560000] end_request: I/O error, dev mmcblk0, sector 1696
+Feb 15 20:13:08 localhost kernel: [ 2038.560000] end_request: I/O error, dev mmcblk0, sector 1704
+Feb 15 20:13:08 localhost kernel: [ 2038.560000] end_request: I/O error, dev mmcblk0, sector 1712
+Feb 15 20:13:08 localhost kernel: [ 2038.560000] end_request: I/O error, dev mmcblk0, sector 1720
+Feb 15 20:13:08 localhost kernel: [ 2038.560000] end_request: I/O error, dev mmcblk0, sector 1728
+
+-- 
+&quot;Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so.&quot; -- Douglas Adams
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000268.html">[Tifm21-devel] finally got a log
+</A></li>
+	<LI>Next message: <A HREF="000270.html">[Tifm21-devel] finally got a log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#269">[ date ]</a>
+              <a href="thread.html#269">[ thread ]</a>
+              <a href="subject.html#269">[ subject ]</a>
+              <a href="author.html#269">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

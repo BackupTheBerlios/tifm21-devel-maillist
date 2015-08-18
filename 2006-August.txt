@@ -1,0 +1,636 @@
+From mjg59 at srcf.ucam.org  Tue Aug  8 18:33:09 2006
+From: mjg59 at srcf.ucam.org (Matthew Garrett)
+Date: Tue, 8 Aug 2006 17:33:09 +0100
+Subject: [Tifm21-devel] Memory stick protocol implementation
+Message-ID: <20060808163309.GA19435@srcf.ucam.org>
+
+Hi,
+
+http://zeniv.linux.org.uk/~winbond/ (especially the wbmscard.c and .h 
+files) has what looks like a fairly generic implementation of the memory 
+stick protocol. Assuming that the tifm part is a similarly thin hardware 
+layer over the memory stick itself, I'd expect it to be fairly easily 
+ported. 
+
+Do we have any idea how to do basic stuff like enable the clock and send 
+commands on memory stick slots?
+
+-- 
+Matthew Garrett | mjg59 at srcf.ucam.org
+
+
+From oakad at yahoo.com  Wed Aug  9 04:16:55 2006
+From: oakad at yahoo.com (Alex Dubov)
+Date: Tue, 8 Aug 2006 19:16:55 -0700 (PDT)
+Subject: [Tifm21-devel] Memory stick protocol implementation
+In-Reply-To: <20060808163309.GA19435@srcf.ucam.org>
+Message-ID: <20060809021655.11215.qmail@web36709.mail.mud.yahoo.com>
+
+As you can guess, everything is in the TI's assembly
+dump. The day will come and it will be read.
+
+Currently I'm slightly short on time and then I'd want
+to finish the dma thingy with SD. After that I'll look
+at the MS.
+
+--- Matthew Garrett <mjg59 at srcf.ucam.org> wrote:
+
+> Hi,
+> 
+> http://zeniv.linux.org.uk/~winbond/ (especially the
+> wbmscard.c and .h 
+> files) has what looks like a fairly generic
+> implementation of the memory 
+> stick protocol. Assuming that the tifm part is a
+> similarly thin hardware 
+> layer over the memory stick itself, I'd expect it to
+> be fairly easily 
+> ported. 
+> 
+> Do we have any idea how to do basic stuff like
+> enable the clock and send 
+> commands on memory stick slots?
+> 
+> -- 
+> Matthew Garrett | mjg59 at srcf.ucam.org
+> _______________________________________________
+> Tifm21-devel mailing list
+> Tifm21-devel at lists.berlios.de
+> http://bat.berlios.de/mailman/listinfo/tifm21-devel
+> 
+
+
+__________________________________________________
+Do You Yahoo!?
+Tired of spam?  Yahoo! Mail has the best spam protection around 
+http://mail.yahoo.com 
+
+
+From mjg59 at srcf.ucam.org  Wed Aug  9 04:49:08 2006
+From: mjg59 at srcf.ucam.org (Matthew Garrett)
+Date: Wed, 9 Aug 2006 03:49:08 +0100
+Subject: [Tifm21-devel] Memory stick protocol implementation
+In-Reply-To: <20060809021655.11215.qmail@web36709.mail.mud.yahoo.com>
+References: <20060808163309.GA19435@srcf.ucam.org>
+	<20060809021655.11215.qmail@web36709.mail.mud.yahoo.com>
+Message-ID: <20060809024908.GA32440@srcf.ucam.org>
+
+On Tue, Aug 08, 2006 at 07:16:55PM -0700, Alex Dubov wrote:
+> As you can guess, everything is in the TI's assembly
+> dump. The day will come and it will be read.
+> 
+> Currently I'm slightly short on time and then I'd want
+> to finish the dma thingy with SD. After that I'll look
+> at the MS.
+
+Heh. I'm similarly short of time, but I'll take a look into it if I have 
+a chance. I have a machine here which has a tifm but only exposes the MS 
+socket. If I find the time I'll probably try to do a generic ms layer 
+similar to the mmc/sd one.
+
+-- 
+Matthew Garrett | mjg59 at srcf.ucam.org
+
+
+From brad at wasp.net.au  Wed Aug  9 11:23:27 2006
+From: brad at wasp.net.au (Brad Campbell)
+Date: Wed, 09 Aug 2006 13:23:27 +0400
+Subject: [Tifm21-devel] Not able to use a 2G SD card
+Message-ID: <44D9A98F.20600@wasp.net.au>
+
+[ 4572.800000] tifm_7xx1: sd card detected in socket 3
+[ 4573.770000] mmcblk1: unable to set block size to 1024: 4
+[ 4573.770000] mmcblk: probe of mmc0:b368 failed with error -22
+
+2.6.18-rc4 vanilla kernel with todays SVN
+How may I help ?
+
+Brad
+-- 
+"Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so." -- Douglas Adams
+
+
+From brad at wasp.net.au  Wed Aug  9 11:46:11 2006
+From: brad at wasp.net.au (Brad Campbell)
+Date: Wed, 09 Aug 2006 13:46:11 +0400
+Subject: [Tifm21-devel] Not able to use a 2G SD card
+In-Reply-To: <44D9A98F.20600@wasp.net.au>
+References: <44D9A98F.20600@wasp.net.au>
+Message-ID: <44D9AEE3.30801@wasp.net.au>
+
+Brad Campbell wrote:
+> [ 4572.800000] tifm_7xx1: sd card detected in socket 3
+> [ 4573.770000] mmcblk1: unable to set block size to 1024: 4
+> [ 4573.770000] mmcblk: probe of mmc0:b368 failed with error -22
+> 
+> 2.6.18-rc4 vanilla kernel with todays SVN
+> How may I help ?
+
+Scratch that.. Applied this patch to the kernel
+http://marc.theaimsgroup.com/?l=linux-kernel&m=114980773206129&w=2
+
+Problem worked around..
+
+Brad
+-- 
+"Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so." -- Douglas Adams
+
+
+From fenio at debian.org  Tue Aug 15 15:02:12 2006
+From: fenio at debian.org (Bartosz Fenski aka fEnIo)
+Date: Tue, 15 Aug 2006 15:02:12 +0200
+Subject: [Tifm21-devel] almost works
+Message-ID: <20060815130212.GA13681@debian>
+
+Hello.
+
+I'm just trying to launch my card reader in Compaq Presario V2000. Here
+goes lspci output:
+
+00:00.0 Host bridge: Intel Corporation 82852/82855 GM/GME/PM/GMV Processor to I/O Controller (rev 02)
+00:00.1 System peripheral: Intel Corporation 82852/82855 GM/GME/PM/GMV Processor to I/O Controller (rev 02)
+00:00.3 System peripheral: Intel Corporation 82852/82855 GM/GME/PM/GMV Processor to I/O Controller (rev 02)
+00:02.0 VGA compatible controller: Intel Corporation 82852/855GM Integrated Graphics Device (rev 02)
+00:02.1 Display controller: Intel Corporation 82852/855GM Integrated Graphics Device (rev 02)
+00:1d.0 USB Controller: Intel Corporation 82801DB/DBL/DBM (ICH4/ICH4-L/ICH4-M) USB UHCI Controller #1 (rev 03)
+00:1d.1 USB Controller: Intel Corporation 82801DB/DBL/DBM (ICH4/ICH4-L/ICH4-M) USB UHCI Controller #2 (rev 03)
+00:1d.2 USB Controller: Intel Corporation 82801DB/DBL/DBM (ICH4/ICH4-L/ICH4-M) USB UHCI Controller #3 (rev 03)
+00:1d.7 USB Controller: Intel Corporation 82801DB/DBM (ICH4/ICH4-M) USB2 EHCI Controller (rev 03)
+00:1e.0 PCI bridge: Intel Corporation 82801 Mobile PCI Bridge (rev 83)
+00:1f.0 ISA bridge: Intel Corporation 82801DBM (ICH4-M) LPC Interface Bridge (rev 03)
+00:1f.1 IDE interface: Intel Corporation 82801DBM (ICH4-M) IDE Controller (rev 03)
+00:1f.3 SMBus: Intel Corporation 82801DB/DBL/DBM (ICH4/ICH4-L/ICH4-M) SMBus Controller (rev 03)
+00:1f.5 Multimedia audio controller: Intel Corporation 82801DB/DBL/DBM (ICH4/ICH4-L/ICH4-M) AC'97 Audio Controller (rev 03)
+00:1f.6 Modem: Intel Corporation 82801DB/DBL/DBM (ICH4/ICH4-L/ICH4-M) AC'97 Modem Controller (rev 03)
+02:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL-8139/8139C/8139C+ (rev 10)
+02:06.0 Network controller: Intel Corporation PRO/Wireless 2200BG Network Connection (rev 05)
+02:09.0 CardBus bridge: Texas Instruments PCIxx21/x515 Cardbus Controller
+02:09.2 FireWire (IEEE 1394): Texas Instruments OHCI Compliant IEEE 1394 Host Controller
+02:09.3 Mass storage controller: Texas Instruments PCIxx21 Integrated FlashMedia Controller
+02:09.4 Class 0805: Texas Instruments PCI6411, PCI6421, PCI6611, PCI6621, PCI7411, PCI7421, PCI7611, PCI7621 Secure Digital (SD) Controller
+
+In fact I'm not sure what to say... it worked for me ONCE. Now it only 
+says that it detects new card but doesn't assign /dev/ device for it.
+
+tifm_7xx1: sd card detected in socket 3
+tifm_7xx1: demand removing card from socket 3
+tifm_7xx1: xd card detected in socket 2
+tifm_7xx1: demand removing card from socket 2
+tifm_7xx1: sd card detected in socket 3
+tifm_7xx1: demand removing card from socket 3
+tifm_7xx1: sd card detected in socket 3
+tifm_7xx1: xd card detected in socket 2
+tifm_7xx1: demand removing card from socket 2
+tifm_7xx1: demand removing card from socket 3
+tifm_7xx1: sd card detected in socket 3
+tifm_7xx1: demand removing card from socket 3
+ACPI: PCI interrupt for device 0000:02:09.3 disabled
+No module found in object
+ACPI: PCI Interrupt 0000:02:09.3[A] -> GSI 20 (level, low) -> IRQ 16
+tifm_7xx1: sd card detected in socket 3
+tifm_7xx1: demand removing card from socket 3
+ACPI: PCI interrupt for device 0000:02:09.3 disabled
+tifm_7xx1: Unknown symbol tifm_add_adapter
+tifm_7xx1: Unknown symbol tifm_alloc_adapter
+tifm_7xx1: Unknown symbol tifm_alloc_device
+tifm_7xx1: Unknown symbol tifm_remove_adapter
+tifm_7xx1: Unknown symbol tifm_free_device
+tifm_7xx1: Unknown symbol tifm_free_adapter
+ACPI: PCI Interrupt 0000:02:09.3[A] -> GSI 20 (level, low) -> IRQ 16
+tifm_7xx1: sd card detected in socket 3
+
+As you can see I tried to load/unload modules and similar things but
+all I get is detection of card and nothing else... what could I do
+to force it to create /dev/ device and mount it?
+
+regards
+fEnIo
+
+-- 
+  ,''`.  Bartosz Fenski | mailto:fenio at debian.org | pgp:0x13fefc40 | irc:fEnIo
+ : :' :       32-050 Skawina - Glowackiego 3/15 - malopolskie v. - Poland
+ `. `'           phone:+48602383548 | proud Debian maintainer and user
+   `-          http://skawina.eu.org | jid:fenio at jabber.org | rlu:172001
+
+
+From jamesrw at eml.cc  Tue Aug 15 20:37:16 2006
+From: jamesrw at eml.cc (James RW)
+Date: Tue, 15 Aug 2006 14:37:16 -0400
+Subject: [Tifm21-devel] almost works
+In-Reply-To: <20060815130212.GA13681@debian>
+References: <20060815130212.GA13681@debian>
+Message-ID: <1155667036.23027.268444276@webmail.messagingengine.com>
+
+
+On Tue, 15 Aug 2006 15:02:12 +0200, "Bartosz Fenski aka fEnIo"
+<fenio at debian.org> said:
+> Hello.
+> 
+> I'm just trying to launch my card reader in Compaq Presario V2000. Here
+> goes lspci output:
+> 
+> 00:00.0 Host bridge: Intel Corporation 82852/82855 GM/GME/PM/GMV
+> Processor to I/O Controller (rev 02)
+> 00:00.1 System peripheral: Intel Corporation 82852/82855 GM/GME/PM/GMV
+> Processor to I/O Controller (rev 02)
+> 00:00.3 System peripheral: Intel Corporation 82852/82855 GM/GME/PM/GMV
+> Processor to I/O Controller (rev 02)
+> 00:02.0 VGA compatible controller: Intel Corporation 82852/855GM
+> Integrated Graphics Device (rev 02)
+> 00:02.1 Display controller: Intel Corporation 82852/855GM Integrated
+> Graphics Device (rev 02)
+> 00:1d.0 USB Controller: Intel Corporation 82801DB/DBL/DBM
+> (ICH4/ICH4-L/ICH4-M) USB UHCI Controller #1 (rev 03)
+> 00:1d.1 USB Controller: Intel Corporation 82801DB/DBL/DBM
+> (ICH4/ICH4-L/ICH4-M) USB UHCI Controller #2 (rev 03)
+> 00:1d.2 USB Controller: Intel Corporation 82801DB/DBL/DBM
+> (ICH4/ICH4-L/ICH4-M) USB UHCI Controller #3 (rev 03)
+> 00:1d.7 USB Controller: Intel Corporation 82801DB/DBM (ICH4/ICH4-M) USB2
+> EHCI Controller (rev 03)
+> 00:1e.0 PCI bridge: Intel Corporation 82801 Mobile PCI Bridge (rev 83)
+> 00:1f.0 ISA bridge: Intel Corporation 82801DBM (ICH4-M) LPC Interface
+> Bridge (rev 03)
+> 00:1f.1 IDE interface: Intel Corporation 82801DBM (ICH4-M) IDE Controller
+> (rev 03)
+> 00:1f.3 SMBus: Intel Corporation 82801DB/DBL/DBM (ICH4/ICH4-L/ICH4-M)
+> SMBus Controller (rev 03)
+> 00:1f.5 Multimedia audio controller: Intel Corporation 82801DB/DBL/DBM
+> (ICH4/ICH4-L/ICH4-M) AC'97 Audio Controller (rev 03)
+> 00:1f.6 Modem: Intel Corporation 82801DB/DBL/DBM (ICH4/ICH4-L/ICH4-M)
+> AC'97 Modem Controller (rev 03)
+> 02:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd.
+> RTL-8139/8139C/8139C+ (rev 10)
+> 02:06.0 Network controller: Intel Corporation PRO/Wireless 2200BG Network
+> Connection (rev 05)
+> 02:09.0 CardBus bridge: Texas Instruments PCIxx21/x515 Cardbus Controller
+> 02:09.2 FireWire (IEEE 1394): Texas Instruments OHCI Compliant IEEE 1394
+> Host Controller
+> 02:09.3 Mass storage controller: Texas Instruments PCIxx21 Integrated
+> FlashMedia Controller
+> 02:09.4 Class 0805: Texas Instruments PCI6411, PCI6421, PCI6611, PCI6621,
+> PCI7411, PCI7421, PCI7611, PCI7621 Secure Digital (SD) Controller
+> 
+> In fact I'm not sure what to say... it worked for me ONCE. Now it only 
+> says that it detects new card but doesn't assign /dev/ device for it.
+> 
+> tifm_7xx1: sd card detected in socket 3
+> tifm_7xx1: demand removing card from socket 3
+> tifm_7xx1: xd card detected in socket 2
+> tifm_7xx1: demand removing card from socket 2
+> tifm_7xx1: sd card detected in socket 3
+> tifm_7xx1: demand removing card from socket 3
+> tifm_7xx1: sd card detected in socket 3
+> tifm_7xx1: xd card detected in socket 2
+> tifm_7xx1: demand removing card from socket 2
+> tifm_7xx1: demand removing card from socket 3
+> tifm_7xx1: sd card detected in socket 3
+> tifm_7xx1: demand removing card from socket 3
+> ACPI: PCI interrupt for device 0000:02:09.3 disabled
+> No module found in object
+> ACPI: PCI Interrupt 0000:02:09.3[A] -> GSI 20 (level, low) -> IRQ 16
+> tifm_7xx1: sd card detected in socket 3
+> tifm_7xx1: demand removing card from socket 3
+> ACPI: PCI interrupt for device 0000:02:09.3 disabled
+> tifm_7xx1: Unknown symbol tifm_add_adapter
+> tifm_7xx1: Unknown symbol tifm_alloc_adapter
+> tifm_7xx1: Unknown symbol tifm_alloc_device
+> tifm_7xx1: Unknown symbol tifm_remove_adapter
+> tifm_7xx1: Unknown symbol tifm_free_device
+> tifm_7xx1: Unknown symbol tifm_free_adapter
+> ACPI: PCI Interrupt 0000:02:09.3[A] -> GSI 20 (level, low) -> IRQ 16
+> tifm_7xx1: sd card detected in socket 3
+> 
+> As you can see I tried to load/unload modules and similar things but
+> all I get is detection of card and nothing else... what could I do
+> to force it to create /dev/ device and mount it?
+> 
+> regards
+> fEnIo
+
+I have the same computer (V2000Z).. please keep me posted on getting
+this to work! is there somewhere that howto's can be written upand
+posted? forum?
+-- 
+  James RW
+  jamesrw at eml.cc
+
+-- 
+http://www.fastmail.fm - Access all of your messages and folders
+                          wherever you are
+
+
+
+From oakad at yahoo.com  Wed Aug 16 04:22:21 2006
+From: oakad at yahoo.com (Alex Dubov)
+Date: Tue, 15 Aug 2006 19:22:21 -0700 (PDT)
+Subject: [Tifm21-devel] almost works
+In-Reply-To: <1155667036.23027.268444276@webmail.messagingengine.com>
+Message-ID: <20060816022221.18425.qmail@web36712.mail.mud.yahoo.com>
+
+Please, try paying attention to what is going on in
+your logs. Messages of the form:
+
+bla-bla: Unknown symbol bla_bla_bla
+
+are reported by kernel when some functionality is
+missing (correct modules are not loaded). This is
+independent of the driver or device you may want to
+use and must be resolved first. In case of tifm,
+loaded modules must include:
+mmc_core
+mmc_block
+tifm_core
+tifm_7xx1
+tifm_sd
+
+Xd cards are not currently supported.
+
+
+__________________________________________________
+Do You Yahoo!?
+Tired of spam?  Yahoo! Mail has the best spam protection around 
+http://mail.yahoo.com 
+
+
+From fenio at debian.org  Wed Aug 16 08:21:16 2006
+From: fenio at debian.org (Bartosz Fenski aka fEnIo)
+Date: Wed, 16 Aug 2006 08:21:16 +0200
+Subject: [Tifm21-devel] almost works
+In-Reply-To: <20060816022221.18425.qmail@web36712.mail.mud.yahoo.com>
+References: <1155667036.23027.268444276@webmail.messagingengine.com>
+	<20060816022221.18425.qmail@web36712.mail.mud.yahoo.com>
+Message-ID: <20060816062116.GB8856@debian>
+
+On Tue, Aug 15, 2006 at 07:22:21PM -0700, Alex Dubov wrote:
+> Please, try paying attention to what is going on in
+> your logs. Messages of the form:
+> 
+> bla-bla: Unknown symbol bla_bla_bla
+> 
+> are reported by kernel when some functionality is
+> missing (correct modules are not loaded). This is
+> independent of the driver or device you may want to
+> use and must be resolved first. In case of tifm,
+> loaded modules must include:
+> mmc_core
+> mmc_block
+> tifm_core
+> tifm_7xx1
+> tifm_sd
+
+Ok I was a little unclear last time. Lines with 'Uknown symbol' was printed
+due to my tries to resolve problem (unloading/loading modules). 
+Basically I've got all needed modules.
+
+(root at lapik)~#lsmod
+Module                  Size  Used by
+tifm_sd                 8708  0
+tifm_7xx1               7808  0
+tifm_core               8720  2 tifm_sd,tifm_7xx1
+ipw2200                93864  0
+(root at lapik)~#
+
+(root at lapik)~#grep -i mmc /usr/src/linux/.config | grep -v '^#'
+CONFIG_PCI_MMCONFIG=y
+CONFIG_MMC=y
+CONFIG_MMC_BLOCK=y
+(root at lapik)~#
+
+So MMC part is compiled in kernel (I tried to use them as a modules but
+without difference).
+ 
+This is output of dmesg when it worked (as I said it was only once):
+
+tifm_7xx1: sd card detected in socket 3
+mmcblk0: mmc3:0001 000000 1003520KiB mmcblk0: p1
+
+All I get now is:
+
+tifm_7xx1: demand removing card from socket 3
+tifm_7xx1: sd card detected in socket 3
+tifm_7xx1: demand removing card from socket 3
+tifm_7xx1: sd card detected in socket 3
+tifm_7xx1: demand removing card from socket 3
+tifm_7xx1: sd card detected in socket 3
+tifm_7xx1: demand removing card from socket 3
+tifm_7xx1: sd card detected in socket 3
+
+So there's no part about assigning mmcblk0 device.
+
+> Xd cards are not currently supported.
+
+Are there any cards that can work both as sd and xd?
+I'm asking cause I can insert my card in two ways. Normally it's detected
+as:
+
+tifm_7xx1: sd card detected in socket 3
+tifm_7xx1: xd card detected in socket 2
+
+But when I insert it upside down then it shows only:
+
+tifm_7xx1: sd card detected in socket 3
+
+I'm not sure what's going on here... as I said it worked once! ;)
+
+I've been able to copy almost 300MB to this card using tifm, but then
+I removed the card and inserted it to phone to check if data is ok. 
+It was ok so I tried to insert it again to copy additional data... 
+unfortunately it doesn't work anymore.
+
+What else can I try?
+
+regards
+fEnIo
+-- 
+  ,''`.  Bartosz Fenski | mailto:fenio at debian.org | pgp:0x13fefc40 | irc:fEnIo
+ : :' :       32-050 Skawina - Glowackiego 3/15 - malopolskie v. - Poland
+ `. `'           phone:+48602383548 | proud Debian maintainer and user
+   `-          http://skawina.eu.org | jid:fenio at jabber.org | rlu:172001
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: Digital signature
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20060816/f0ed4f43/attachment.pgp>
+
+From fenio at debian.org  Wed Aug 16 08:25:54 2006
+From: fenio at debian.org (Bartosz Fenski aka fEnIo)
+Date: Wed, 16 Aug 2006 08:25:54 +0200
+Subject: [Tifm21-devel] almost works
+In-Reply-To: <1155667036.23027.268444276@webmail.messagingengine.com>
+References: <20060815130212.GA13681@debian>
+	<1155667036.23027.268444276@webmail.messagingengine.com>
+Message-ID: <20060816062554.GA9364@debian>
+
+On Tue, Aug 15, 2006 at 02:37:16PM -0400, James RW wrote:
+
+> > As you can see I tried to load/unload modules and similar things but
+> > all I get is detection of card and nothing else... what could I do
+> > to force it to create /dev/ device and mount it?
+> > 
+> I have the same computer (V2000Z).. please keep me posted on getting
+> this to work! is there somewhere that howto's can be written upand
+> posted? forum?
+
+Well I could write howto for you but I doubt you'd like to have howto get
+it work one time ;)
+
+regards
+fEnIo
+
+-- 
+  ,''`.  Bartosz Fenski | mailto:fenio at debian.org | pgp:0x13fefc40 | irc:fEnIo
+ : :' :       32-050 Skawina - Glowackiego 3/15 - malopolskie v. - Poland
+ `. `'           phone:+48602383548 | proud Debian maintainer and user
+   `-          http://skawina.eu.org | jid:fenio at jabber.org | rlu:172001
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: Digital signature
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20060816/b1d42c1d/attachment.pgp>
+
+From oakad at yahoo.com  Thu Aug 17 04:10:21 2006
+From: oakad at yahoo.com (Alex Dubov)
+Date: Wed, 16 Aug 2006 19:10:21 -0700 (PDT)
+Subject: [Tifm21-devel] almost works
+In-Reply-To: <20060816062116.GB8856@debian>
+Message-ID: <20060817021021.41321.qmail@web36705.mail.mud.yahoo.com>
+
+Card detection is not a reliable process.
+1. I don't know about any cards that can work as both
+xd and sd. The electrical contacts are different. sd
+has 9 (or 8?) contacts on the front edge. xd has more
+(16?) contacts arranged in two funny lines on the
+bottom side.
+When inserting cards, be sure to place contacts (small
+golden plates on the card surface) facing down.
+2. Sometimes mechanical problems with socket can cause
+funny things to happen. If you've seen the card
+working , it may be that your socket requires cleaning
+or some other adjustment.
+
+--- Bartosz Fenski aka fEnIo <fenio at debian.org> wrote:
+
+> On Tue, Aug 15, 2006 at 07:22:21PM -0700, Alex Dubov
+> wrote:
+> > Please, try paying attention to what is going on
+> in
+> > your logs. Messages of the form:
+> > 
+> > bla-bla: Unknown symbol bla_bla_bla
+> > 
+> > are reported by kernel when some functionality is
+> > missing (correct modules are not loaded). This is
+> > independent of the driver or device you may want
+> to
+> > use and must be resolved first. In case of tifm,
+> > loaded modules must include:
+> > mmc_core
+> > mmc_block
+> > tifm_core
+> > tifm_7xx1
+> > tifm_sd
+> 
+> Ok I was a little unclear last time. Lines with
+> 'Uknown symbol' was printed
+> due to my tries to resolve problem
+> (unloading/loading modules). 
+> Basically I've got all needed modules.
+> 
+> (root at lapik)~#lsmod
+> Module                  Size  Used by
+> tifm_sd                 8708  0
+> tifm_7xx1               7808  0
+> tifm_core               8720  2 tifm_sd,tifm_7xx1
+> ipw2200                93864  0
+> (root at lapik)~#
+> 
+> (root at lapik)~#grep -i mmc /usr/src/linux/.config |
+> grep -v '^#'
+> CONFIG_PCI_MMCONFIG=y
+> CONFIG_MMC=y
+> CONFIG_MMC_BLOCK=y
+> (root at lapik)~#
+> 
+> So MMC part is compiled in kernel (I tried to use
+> them as a modules but
+> without difference).
+>  
+> This is output of dmesg when it worked (as I said it
+> was only once):
+> 
+> tifm_7xx1: sd card detected in socket 3
+> mmcblk0: mmc3:0001 000000 1003520KiB mmcblk0: p1
+> 
+> All I get now is:
+> 
+> tifm_7xx1: demand removing card from socket 3
+> tifm_7xx1: sd card detected in socket 3
+> tifm_7xx1: demand removing card from socket 3
+> tifm_7xx1: sd card detected in socket 3
+> tifm_7xx1: demand removing card from socket 3
+> tifm_7xx1: sd card detected in socket 3
+> tifm_7xx1: demand removing card from socket 3
+> tifm_7xx1: sd card detected in socket 3
+> 
+> So there's no part about assigning mmcblk0 device.
+> 
+> > Xd cards are not currently supported.
+> 
+> Are there any cards that can work both as sd and xd?
+> I'm asking cause I can insert my card in two ways.
+> Normally it's detected
+> as:
+> 
+> tifm_7xx1: sd card detected in socket 3
+> tifm_7xx1: xd card detected in socket 2
+> 
+> But when I insert it upside down then it shows only:
+> 
+> tifm_7xx1: sd card detected in socket 3
+> 
+> I'm not sure what's going on here... as I said it
+> worked once! ;)
+> 
+> I've been able to copy almost 300MB to this card
+> using tifm, but then
+> I removed the card and inserted it to phone to check
+> if data is ok. 
+> It was ok so I tried to insert it again to copy
+> additional data... 
+> unfortunately it doesn't work anymore.
+> 
+> What else can I try?
+> 
+> regards
+> fEnIo
+> -- 
+>   ,''`.  Bartosz Fenski | mailto:fenio at debian.org |
+> pgp:0x13fefc40 | irc:fEnIo
+>  : :' :       32-050 Skawina - Glowackiego 3/15 -
+> malopolskie v. - Poland
+>  `. `'           phone:+48602383548 | proud Debian
+> maintainer and user
+>    `-          http://skawina.eu.org |
+> jid:fenio at jabber.org | rlu:172001
+> > _______________________________________________
+> Tifm21-devel mailing list
+> Tifm21-devel at lists.berlios.de
+>
+https://lists.berlios.de/mailman/listinfo/tifm21-devel
+> 
+
+
+__________________________________________________
+Do You Yahoo!?
+Tired of spam?  Yahoo! Mail has the best spam protection around 
+http://mail.yahoo.com 
+
+

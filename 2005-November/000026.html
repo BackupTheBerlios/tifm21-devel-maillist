@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] &quot;Good news everybody...&quot;
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2005-November/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20%22Good%20news%20everybody...%22&In-Reply-To=%3C200511250136.42917.syatmaz%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000024.html">
+   <LINK REL="Next"  HREF="000016.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] &quot;Good news everybody...&quot;</H1>
+    <B>Sava&#351; Yatmaz</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20%22Good%20news%20everybody...%22&In-Reply-To=%3C200511250136.42917.syatmaz%40gmail.com%3E"
+       TITLE="[Tifm21-devel] &quot;Good news everybody...&quot;">syatmaz at gmail.com
+       </A><BR>
+    <I>Fri Nov 25 00:36:42 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000024.html">[Tifm21-devel] &quot;Good news everybody...&quot;
+</A></li>
+        <LI>Next message: <A HREF="000016.html">[Tifm21-devel] &quot;Good news everybody...&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#26">[ date ]</a>
+              <a href="thread.html#26">[ thread ]</a>
+              <a href="subject.html#26">[ subject ]</a>
+              <a href="author.html#26">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i> Looks like something else is sharing the interrupt assigned to the
+</I>&gt;<i> driver (IRQ16 I think from your previous logs)
+</I>&gt;<i>
+</I>&gt;<i> From a fresh boot, can you post the output of &quot;cat /proc/interrupts&quot;
+</I>&gt;<i> both before and after you insert the module.
+</I>&gt;<i>
+</I>&gt;<i> As the interrupt code is only for testing purposes, I'll disable it
+</I>&gt;<i> until it's ready.
+</I>&gt;<i>
+</I>&gt;<i> Regards
+</I>&gt;<i>
+</I>&gt;<i> Paul W
+</I>
+Before :
+==================================================================
+
+           CPU0       
+  0:    2978504    IO-APIC-edge  timer
+  1:      12839    IO-APIC-edge  i8042
+  8:         12    IO-APIC-edge  rtc
+  9:       6945   IO-APIC-level  acpi
+ 12:     130068    IO-APIC-edge  i8042
+ 14:     124154    IO-APIC-edge  ide0
+ 16:      57337   IO-APIC-level  yenta, uhci_hcd:usb5, HDA Intel, 
+<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">i915 at pci</A>:0000:00:02.0
+ 17:      48935   IO-APIC-level  ipw2200
+ 18:          3   IO-APIC-level  ohci1394, uhci_hcd:usb4
+ 19:     588221   IO-APIC-level  ehci_hcd:usb1, uhci_hcd:usb2
+ 20:          0   IO-APIC-level  uhci_hcd:usb3, eth1
+NMI:          0 
+LOC:    2978561 
+ERR:          0
+MIS:          0
+
+==================================================================
+
+After : 
+==================================================================
+
+           CPU0       
+  0:    3010012    IO-APIC-edge  timer
+  1:      13031    IO-APIC-edge  i8042
+  8:         12    IO-APIC-edge  rtc
+  9:       7012   IO-APIC-level  acpi
+ 12:     130068    IO-APIC-edge  i8042
+ 14:     125311    IO-APIC-edge  ide0
+ 16:      57337   IO-APIC-level  yenta, uhci_hcd:usb5, HDA Intel, 
+<A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">i915 at pci</A>:0000:00:02.0, tifm21
+ 17:      49268   IO-APIC-level  ipw2200
+ 18:          3   IO-APIC-level  ohci1394, uhci_hcd:usb4
+ 19:     594524   IO-APIC-level  ehci_hcd:usb1, uhci_hcd:usb2
+ 20:          0   IO-APIC-level  uhci_hcd:usb3, eth1
+NMI:          0 
+LOC:    3010071 
+ERR:          0
+MIS:          0
+
+==================================================================
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000024.html">[Tifm21-devel] &quot;Good news everybody...&quot;
+</A></li>
+	<LI>Next message: <A HREF="000016.html">[Tifm21-devel] &quot;Good news everybody...&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#26">[ date ]</a>
+              <a href="thread.html#26">[ thread ]</a>
+              <a href="subject.html#26">[ subject ]</a>
+              <a href="author.html#26">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

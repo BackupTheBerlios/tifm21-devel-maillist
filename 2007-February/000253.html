@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] finally got a log
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2007-February/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20finally%20got%20a%20log&In-Reply-To=%3C45D0D563.10304%40wasp.net.au%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000252.html">
+   <LINK REL="Next"  HREF="000254.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] finally got a log</H1>
+    <B>Brad Campbell</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20finally%20got%20a%20log&In-Reply-To=%3C45D0D563.10304%40wasp.net.au%3E"
+       TITLE="[Tifm21-devel] finally got a log">brad at wasp.net.au
+       </A><BR>
+    <I>Mon Feb 12 22:00:19 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000252.html">[Tifm21-devel] Still having card recognition problems with	2.6.20-git4 + tifm_sd.c.diff
+</A></li>
+        <LI>Next message: <A HREF="000254.html">[Tifm21-devel] finally got a log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#253">[ date ]</a>
+              <a href="thread.html#253">[ thread ]</a>
+              <a href="subject.html#253">[ subject ]</a>
+              <a href="author.html#253">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>G'day Alex,
+
+This is perhaps an interesting log..
+
+Clean(ish) boot. No suspend/resume.
+
+Insert card and is detected (my shiny new hal detects it, mounts it and pops up a window for it)
+
+I rsync some data to the card and it dies.
+
+Pull the card, manually unmount
+
+try re-inserting the card. No go.
+
+unload/reload modules and try several more insertions, no go..
+
+So this is a continuous log. 1st one is a success, I can read the card. When I write to it, it dies 
+horribly. This may be related to the SDHC thing, but after this happens once I can no longer get a 
+card to detect properly. Even suspend/resume or cold boot I have trouble getting a card detected, 
+it's almost like the hardware is being left in an odd state. If I leave it powered off for 20 mins 
+or so it usually works.
+
+log is 27k b2zipped and 2M uncompressed. I've snipped most of the irrelevant stuff.
+Hope this helps. It's 2.6.20-git4 + the patch you sent me + the patch from the mmc git tree you 
+pointed me at.
+
+Brad
+-- 
+&quot;Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so.&quot; -- Douglas Adams
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: mmclog.bz2
+Type: application/x-bzip
+Size: 26843 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/tifm21-devel/attachments/20070213/97d55481/attachment.bin">https://lists.berlios.de/pipermail/tifm21-devel/attachments/20070213/97d55481/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000252.html">[Tifm21-devel] Still having card recognition problems with	2.6.20-git4 + tifm_sd.c.diff
+</A></li>
+	<LI>Next message: <A HREF="000254.html">[Tifm21-devel] finally got a log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#253">[ date ]</a>
+              <a href="thread.html#253">[ thread ]</a>
+              <a href="subject.html#253">[ subject ]</a>
+              <a href="author.html#253">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

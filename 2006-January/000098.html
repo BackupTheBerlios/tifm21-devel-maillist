@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] Error in module tifmxx.ko
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2006-January/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20Error%20in%20module%20tifmxx.ko&In-Reply-To=%3C43BD0158.9010506%40freezee.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000097.html">
+   <LINK REL="Next"  HREF="000100.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] Error in module tifmxx.ko</H1>
+    <B>Damien Szczyt</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20Error%20in%20module%20tifmxx.ko&In-Reply-To=%3C43BD0158.9010506%40freezee.org%3E"
+       TITLE="[Tifm21-devel] Error in module tifmxx.ko">damien at freezee.org
+       </A><BR>
+    <I>Thu Jan  5 12:22:00 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000097.html">[Tifm21-devel] Error in module tifmxx.ko
+</A></li>
+        <LI>Next message: <A HREF="000100.html">[Tifm21-devel] Error in module tifmxx.ko
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#98">[ date ]</a>
+              <a href="thread.html#98">[ thread ]</a>
+              <a href="subject.html#98">[ subject ]</a>
+              <a href="author.html#98">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Still a &#233;crit :
+
+&gt;<i>Hello Folks;
+</I>&gt;<i>
+</I>&gt;<i>	I have a little problem here with the module.
+</I>&gt;<i>	When I was compiling the module, I got some warnings:
+</I>&gt;<i>
+</I>&gt;<i>bella-linux:~# make all
+</I>&gt;<i>make -C /lib/modules/2.6.12/build M=/root
+</I>&gt;<i>make[1]: Entrando no diret&#243;rio `/usr/src/linux-source-2.6.12'
+</I>&gt;<i>  LD      /root/built-in.o
+</I>&gt;<i>  CC [M]  /root/tifmxx_hw.o
+</I>&gt;<i>/root/tifmxx_hw.c: In function 'tifmxx_probe':
+</I>&gt;<i>/root/tifmxx_hw.c:235: warning: implicit declaration of function
+</I>&gt;<i>'pci_intx'
+</I>&gt;<i>  CC [M]  /root/tifmxx_scsi.o
+</I>&gt;<i>  CC [M]  /root/tifmxx_mmcsd.o
+</I>&gt;<i>/root/tifmxx_mmcsd.c: In function 'tifmxx_mmcsd_init_card':
+</I>&gt;<i>/root/tifmxx_mmcsd.c:133: warning: implicit declaration of function
+</I>&gt;<i>'tifmxx_mmcsd_detect_card_type'
+</I>&gt;<i>/root/tifmxx_mmcsd.c:146: warning: implicit declaration of function
+</I>&gt;<i>'tifmxx_mmcsd_standby'
+</I>&gt;<i>/root/tifmxx_mmcsd.c:147: warning: implicit declaration of function
+</I>&gt;<i>'tifmxx_mmcsd_read_csd_info'
+</I>&gt;<i>/root/tifmxx_mmcsd.c:155: warning: implicit declaration of function
+</I>&gt;<i>'tifmxx_mmcsd_read_serial_number'
+</I>&gt;<i>/root/tifmxx_mmcsd.c:156: warning: implicit declaration of function
+</I>&gt;<i>'tifmxx_mmcsd_exec_card_cmd'
+</I>&gt;<i>/root/tifmxx_mmcsd.c:172: warning: implicit declaration of function
+</I>&gt;<i>'tifmxx_mmcsd_execute'
+</I>&gt;<i>/root/tifmxx_mmcsd.c:193: warning: implicit declaration of function
+</I>&gt;<i>'GetState'
+</I>&gt;<i>  LD [M]  /root/tifmxx.o
+</I>&gt;<i>  Building modules, stage 2.
+</I>&gt;<i>  MODPOST
+</I>&gt;<i>*** Warning: &quot;tifmxx_mmcsd_standby&quot; [/root/tifmxx.ko] undefined!
+</I>&gt;<i>*** Warning: &quot;tifmxx_mmcsd_read_serial_number&quot; [/root/tifmxx.ko]
+</I>&gt;<i>undefined!
+</I>&gt;<i>*** Warning: &quot;tifmxx_mmcsd_detect_card_type&quot; [/root/tifmxx.ko]
+</I>&gt;<i>undefined!
+</I>&gt;<i>*** Warning: &quot;GetState&quot; [/root/tifmxx.ko] undefined!
+</I>&gt;<i>*** Warning: &quot;pci_intx&quot; [/root/tifmxx.ko] undefined!
+</I>&gt;<i>*** Warning: &quot;tifmxx_mmcsd_execute&quot; [/root/tifmxx.ko] undefined!
+</I>&gt;<i>*** Warning: &quot;tifmxx_mmcsd_read_csd_info&quot; [/root/tifmxx.ko] undefined!
+</I>&gt;<i>*** Warning: &quot;tifmxx_mmcsd_exec_card_cmd&quot; [/root/tifmxx.ko] undefined!
+</I>&gt;<i>  CC      /root/tifmxx.mod.o
+</I>&gt;<i>  LD [M]  /root/tifmxx.ko
+</I>&gt;<i>make[1]: Saindo do diret&#243;rio `/usr/src/linux-source-2.6.12'
+</I>&gt;<i>
+</I>&gt;<i>bella-linux:~# insmod tifmxx.ko
+</I>&gt;<i>insmod: error inserting 'tifmxx.ko': -1 Unknown symbol in module
+</I>&gt;<i>bella-linux:~# dmesg
+</I>&gt;<i>...
+</I>&gt;<i>tifmxx: Unknown symbol tifmxx_mmcsd_exec_card_cmd
+</I>&gt;<i>tifmxx: Unknown symbol tifmxx_mmcsd_read_csd_info
+</I>&gt;<i>tifmxx: Unknown symbol tifmxx_mmcsd_execute
+</I>&gt;<i>tifmxx: Unknown symbol pci_intx
+</I>&gt;<i>tifmxx: Unknown symbol GetState
+</I>&gt;<i>tifmxx: Unknown symbol tifmxx_mmcsd_detect_card_type
+</I>&gt;<i>tifmxx: Unknown symbol tifmxx_mmcsd_read_serial_number
+</I>&gt;<i>tifmxx: Unknown symbol tifmxx_mmcsd_standby
+</I>&gt;<i>
+</I>&gt;<i>	My system:
+</I>&gt;<i>
+</I>&gt;<i>Compaq Presario V2000
+</I>&gt;<i>Memory Card Reader 6-in-1
+</I>&gt;<i>Debian Gnu/Linux, kernel 2.6.12, gcc 4.0
+</I>&gt;<i>scsi_mod loaded
+</I>&gt;<i>
+</I>&gt;<i>	Which packages I need in order to compile the module without
+</I>&gt;<i>warnings ?
+</I>&gt;<i>
+</I>&gt;<i>Kind regards,
+</I>&gt;<i>
+</I>&gt;<i>Still
+</I>&gt;<i>--
+</I>&gt;<i>Nelson Luiz Campos                  .''`.     | I hear; I forget.
+</I>&gt;<i>Engenheiro Eletricista             : :'  :    | I see; I remember.
+</I>&gt;<i>Linux User #89621 UIN 11464303     `. `'`     | I do; I understand.
+</I>&gt;<i>gpgID: 55577339 Skype Still_by_Still `-       | Chinese Proverb
+</I>&gt;<i>  
+</I>&gt;<i>
+</I>Hi,
+
+Last revision of tifm21 is full of bugs ! Revision 11 is the lastest 
+expected to compile cleanly.
+
+Damien Szczyt
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000097.html">[Tifm21-devel] Error in module tifmxx.ko
+</A></li>
+	<LI>Next message: <A HREF="000100.html">[Tifm21-devel] Error in module tifmxx.ko
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#98">[ date ]</a>
+              <a href="thread.html#98">[ thread ]</a>
+              <a href="subject.html#98">[ subject ]</a>
+              <a href="author.html#98">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

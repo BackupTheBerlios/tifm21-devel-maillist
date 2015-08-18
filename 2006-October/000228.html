@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] Works great, a minor problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2006-October/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20Works%20great%2C%20a%20minor%20problem&In-Reply-To=%3C1161508839.453b37e749f4c%40webmail.tp.spt.fi%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000229.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] Works great, a minor problem</H1>
+    <B>mipehynn at tp.spt.fi</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20Works%20great%2C%20a%20minor%20problem&In-Reply-To=%3C1161508839.453b37e749f4c%40webmail.tp.spt.fi%3E"
+       TITLE="[Tifm21-devel] Works great, a minor problem">mipehynn at tp.spt.fi
+       </A><BR>
+    <I>Sun Oct 22 11:20:39 CEST 2006</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000229.html">[Tifm21-devel] Works great, a minor problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#228">[ date ]</a>
+              <a href="thread.html#228">[ thread ]</a>
+              <a href="subject.html#228">[ subject ]</a>
+              <a href="author.html#228">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi all,
+
+I found this tifm21 project yesterday and it seems to work almost perfectly. It
+took a little time and effort to dig the right driver source code and
+information but luckily it was worth it. Perhaps the front page needs also the
+tifmxx svn source tree that everybody could easily find and try it too? It's
+the working main project anyway, isn't it?
+
+Well, back to the driver. I have the same Mass storage controller: Texas
+Instruments PCIxx21 Integrated FlashMedia Controller as many others here seems
+to own. Writing speed was a little above 700kB/s and reading speed was
+something like 5MB/s for my 64MB MMC card. With tifm_core, tifm_7xx1 and
+tifm_sd loaded as external modules there were no any other problems except the
+tifm_sd module doesn't come back nicely from suspend. If a card is inserted
+after suspending the machine while tifm_sd was loaded my keyboard stops working
+and all other operations slow down greatly as well. This won't happen if the
+module is removed before suspending the computer. After that it can be loaded
+back and I can continue using my card reader as nothing had happened.
+
+The debug messages for the tifm_sd after resuming from suspend and inserting a
+mmc card:
+
+Message from <A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">syslogd at localhost</A> at Sun Oct 22 12:20:05 2006 ...
+localhost kernel: Oops: 0000 [#1]
+
+Message from <A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">syslogd at localhost</A> at Sun Oct 22 12:20:05 2006 ...
+localhost kernel: PREEMPT 
+
+Message from <A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">syslogd at localhost</A> at Sun Oct 22 12:20:05 2006 ...
+localhost kernel: CPU:    0
+
+Message from <A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">syslogd at localhost</A> at Sun Oct 22 12:20:05 2006 ...
+localhost kernel: EIP is at mmc_rescan+0x7d/0xd70
+
+Message from <A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">syslogd at localhost</A> at Sun Oct 22 12:20:05 2006 ...
+localhost kernel: eax: dd257000   ebx: 00000001   ecx: 6669743d   edx: dd2570b8
+
+Message from <A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">syslogd at localhost</A> at Sun Oct 22 12:20:05 2006 ...
+localhost kernel: esi: dfff3500   edi: dd2570b8   ebp: dd257000   esp: c17e9e74
+
+Message from <A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">syslogd at localhost</A> at Sun Oct 22 12:20:05 2006 ...
+localhost kernel: ds: 007b   es: 007b   ss: 0068
+
+Message from <A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">syslogd at localhost</A> at Sun Oct 22 12:20:05 2006 ...
+localhost kernel: Process events/0 (pid: 3, ti=c17e8000 task=c17cb030
+task.ti=c17e8000)
+
+Message from <A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">syslogd at localhost</A> at Sun Oct 22 12:20:05 2006 ...
+localhost kernel: Stack: dffb6008 00000400 00000202 00000400 00000300 00000000
+00000000 00000020 
+
+Message from <A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">syslogd at localhost</A> at Sun Oct 22 12:20:05 2006 ...
+localhost kernel:        dd2570cc dd2570b8 00000008 00000000 00000008 c04a33e0
+f6a6c030 c17e9ec0 
+
+Message from <A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">syslogd at localhost</A> at Sun Oct 22 12:20:05 2006 ...
+localhost kernel:        c0119311 00000001 f6a6c030 c17e9ee8 00000082 00000000
+00000001 072c1c00 
+
+Message from <A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">syslogd at localhost</A> at Sun Oct 22 12:20:05 2006 ...
+localhost kernel: Call Trace:
+
+Message from <A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">syslogd at localhost</A> at Sun Oct 22 12:20:05 2006 ...
+localhost kernel: Code: 00 00 00 89 e8 c6 85 be 00 00 00 01 c6 85 bf 00 00 00 00
+c6 85 c0 00 00 00 01 c6 85 c1 00 00 00 00 89 7c 24 24 8b 8d 98 00 00 00 &lt;ff&gt; 51
+04 b8 01 00 00 00 e8 e6 c2 e1 ff 8b 85 9c 00 00 00 89 fa 
+
+Message from <A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">syslogd at localhost</A> at Sun Oct 22 12:20:05 2006 ...
+localhost kernel: EIP: [mmc_rescan+125/3440] mmc_rescan+0x7d/0xd70 SS:ESP
+0068:c17e9e74
+
+Message from <A HREF="https://lists.berlios.de/mailman/listinfo/tifm21-devel">syslogd at localhost</A> at Sun Oct 22 12:20:05 2006 ...
+localhost kernel: EIP: [&lt;c030a70d&gt;] mmc_rescan+0x7d/0xd70 SS:ESP 0068:c17e9e74
+
+
+
+Thanks for your great effort, I hope we see this driver in the main kernel some
+day. Sadly there isn't much I can do to help you with.
+
+-----
+Mika Hynn&#228;, linux user
+
+------------------------------------------------------
+   Satakunnan ammattikorkeakoulu / Tekniikka Pori     
+    T&#228;m&#228; posti l&#228;hetetty WebMAIL-palvelun kautta      
+              <A HREF="http://www.tp.spt.fi/">http://www.tp.spt.fi/</A>                   
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000229.html">[Tifm21-devel] Works great, a minor problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#228">[ date ]</a>
+              <a href="thread.html#228">[ thread ]</a>
+              <a href="subject.html#228">[ subject ]</a>
+              <a href="author.html#228">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

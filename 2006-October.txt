@@ -1,0 +1,236 @@
+From mipehynn at tp.spt.fi  Sun Oct 22 11:20:39 2006
+From: mipehynn at tp.spt.fi (mipehynn at tp.spt.fi)
+Date: Sun, 22 Oct 2006 12:20:39 +0300
+Subject: [Tifm21-devel] Works great, a minor problem
+Message-ID: <1161508839.453b37e749f4c@webmail.tp.spt.fi>
+
+Hi all,
+
+I found this tifm21 project yesterday and it seems to work almost perfectly. It
+took a little time and effort to dig the right driver source code and
+information but luckily it was worth it. Perhaps the front page needs also the
+tifmxx svn source tree that everybody could easily find and try it too? It's
+the working main project anyway, isn't it?
+
+Well, back to the driver. I have the same Mass storage controller: Texas
+Instruments PCIxx21 Integrated FlashMedia Controller as many others here seems
+to own. Writing speed was a little above 700kB/s and reading speed was
+something like 5MB/s for my 64MB MMC card. With tifm_core, tifm_7xx1 and
+tifm_sd loaded as external modules there were no any other problems except the
+tifm_sd module doesn't come back nicely from suspend. If a card is inserted
+after suspending the machine while tifm_sd was loaded my keyboard stops working
+and all other operations slow down greatly as well. This won't happen if the
+module is removed before suspending the computer. After that it can be loaded
+back and I can continue using my card reader as nothing had happened.
+
+The debug messages for the tifm_sd after resuming from suspend and inserting a
+mmc card:
+
+Message from syslogd at localhost at Sun Oct 22 12:20:05 2006 ...
+localhost kernel: Oops: 0000 [#1]
+
+Message from syslogd at localhost at Sun Oct 22 12:20:05 2006 ...
+localhost kernel: PREEMPT 
+
+Message from syslogd at localhost at Sun Oct 22 12:20:05 2006 ...
+localhost kernel: CPU:    0
+
+Message from syslogd at localhost at Sun Oct 22 12:20:05 2006 ...
+localhost kernel: EIP is at mmc_rescan+0x7d/0xd70
+
+Message from syslogd at localhost at Sun Oct 22 12:20:05 2006 ...
+localhost kernel: eax: dd257000   ebx: 00000001   ecx: 6669743d   edx: dd2570b8
+
+Message from syslogd at localhost at Sun Oct 22 12:20:05 2006 ...
+localhost kernel: esi: dfff3500   edi: dd2570b8   ebp: dd257000   esp: c17e9e74
+
+Message from syslogd at localhost at Sun Oct 22 12:20:05 2006 ...
+localhost kernel: ds: 007b   es: 007b   ss: 0068
+
+Message from syslogd at localhost at Sun Oct 22 12:20:05 2006 ...
+localhost kernel: Process events/0 (pid: 3, ti=c17e8000 task=c17cb030
+task.ti=c17e8000)
+
+Message from syslogd at localhost at Sun Oct 22 12:20:05 2006 ...
+localhost kernel: Stack: dffb6008 00000400 00000202 00000400 00000300 00000000
+00000000 00000020 
+
+Message from syslogd at localhost at Sun Oct 22 12:20:05 2006 ...
+localhost kernel:        dd2570cc dd2570b8 00000008 00000000 00000008 c04a33e0
+f6a6c030 c17e9ec0 
+
+Message from syslogd at localhost at Sun Oct 22 12:20:05 2006 ...
+localhost kernel:        c0119311 00000001 f6a6c030 c17e9ee8 00000082 00000000
+00000001 072c1c00 
+
+Message from syslogd at localhost at Sun Oct 22 12:20:05 2006 ...
+localhost kernel: Call Trace:
+
+Message from syslogd at localhost at Sun Oct 22 12:20:05 2006 ...
+localhost kernel: Code: 00 00 00 89 e8 c6 85 be 00 00 00 01 c6 85 bf 00 00 00 00
+c6 85 c0 00 00 00 01 c6 85 c1 00 00 00 00 89 7c 24 24 8b 8d 98 00 00 00 <ff> 51
+04 b8 01 00 00 00 e8 e6 c2 e1 ff 8b 85 9c 00 00 00 89 fa 
+
+Message from syslogd at localhost at Sun Oct 22 12:20:05 2006 ...
+localhost kernel: EIP: [mmc_rescan+125/3440] mmc_rescan+0x7d/0xd70 SS:ESP
+0068:c17e9e74
+
+Message from syslogd at localhost at Sun Oct 22 12:20:05 2006 ...
+localhost kernel: EIP: [<c030a70d>] mmc_rescan+0x7d/0xd70 SS:ESP 0068:c17e9e74
+
+
+
+Thanks for your great effort, I hope we see this driver in the main kernel some
+day. Sadly there isn't much I can do to help you with.
+
+-----
+Mika Hynn?, linux user
+
+------------------------------------------------------
+   Satakunnan ammattikorkeakoulu / Tekniikka Pori     
+    T?m? posti l?hetetty WebMAIL-palvelun kautta      
+              http://www.tp.spt.fi/                   
+
+
+
+From brad at wasp.net.au  Sun Oct 22 12:25:26 2006
+From: brad at wasp.net.au (Brad Campbell)
+Date: Sun, 22 Oct 2006 14:25:26 +0400
+Subject: [Tifm21-devel] Works great, a minor problem
+In-Reply-To: <1161508839.453b37e749f4c@webmail.tp.spt.fi>
+References: <1161508839.453b37e749f4c@webmail.tp.spt.fi>
+Message-ID: <453B4716.2070907@wasp.net.au>
+
+mipehynn at tp.spt.fi wrote:
+
+> tifm_sd loaded as external modules there were no any other problems except the
+> tifm_sd module doesn't come back nicely from suspend. If a card is inserted
+> after suspending the machine while tifm_sd was loaded my keyboard stops working
+> and all other operations slow down greatly as well. This won't happen if the
+> module is removed before suspending the computer. After that it can be loaded
+> back and I can continue using my card reader as nothing had happened.
+> 
+
+I unload/reload the modules around suspend, the driver does not cope with suspend/resume.
+
+brad at bklaptop2:~$ cat bin/tifm_load
+#!/bin/bash
+modprobe tifm_core
+modprobe tifm_7xx1
+modprobe tifm_sd
+
+brad at bklaptop2:~$ cat bin/tifm_unload
+#!/bin/bash
+if [ -n "`mount | grep mmc`" ] ; then
+         echo Need to remove card or unmount device 1st
+         exit 1
+fi;
+if [ -n "`lsmod | grep ^mmc_block`" ] ; then
+         if [ "`lsmod | grep ^mmc_block | awk '{print $3}'`" -ne "0" ] ; then
+                 echo mmc_block ref count not 0 - not removing driver
+                 exit 1
+         fi;
+fi;
+rmmod ./tifm_sd.ko || true
+rmmod ./tifm_7xx1.ko || true
+rmmod ./tifm_core.ko || true
+
+brad at bklaptop2:~$ cat /etc/hibernate/common.conf | grep tifm
+OnResume 05 /home/brad/bin/tifm_load
+OnSuspend 05 /home/brad/bin/tifm_unload
+
+
+> 
+> Thanks for your great effort, I hope we see this driver in the main kernel some
+> day. Sadly there isn't much I can do to help you with.
+
+It's in -mm now and working nicely
+
+Brad
+-- 
+"Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so." -- Douglas Adams
+
+
+From dast at panelnet.cz  Sun Oct 22 23:13:40 2006
+From: dast at panelnet.cz (Dalibor Straka)
+Date: Sun, 22 Oct 2006 23:13:40 +0200
+Subject: [Tifm21-devel] Works great, a minor problem
+In-Reply-To: <453B4716.2070907@wasp.net.au>
+References: <1161508839.453b37e749f4c@webmail.tp.spt.fi>
+	<453B4716.2070907@wasp.net.au>
+Message-ID: <20061022211340.GA2177@panelnet.cz>
+
+On Sun, Oct 22, 2006 at 02:25:26PM +0400, Brad Campbell wrote:
+> It's in -mm now and working nicely
+> 
+It's in the kernel from 2.6.19-rc1 and working... somehow ;-)
+It messes dmesg output and fails when i swap a few cards but its
+on the best way to be great.
+
+-- Dalibor
+
+
+From oakad at yahoo.com  Mon Oct 23 04:40:23 2006
+From: oakad at yahoo.com (Alex Dubov)
+Date: Sun, 22 Oct 2006 19:40:23 -0700 (PDT)
+Subject: [Tifm21-devel] Issues
+In-Reply-To: <20061022211340.GA2177@panelnet.cz>
+Message-ID: <20061023024023.77382.qmail@web36712.mail.mud.yahoo.com>
+
+I probably need to make some clarifications:
+1. I'm working on MemoryStick support for TI controller, but it's not compatible with ENE one.
+There also exists support for winbond memorystick controller, but it's not compatible either. Bad
+luck with this one.
+2. Suspend/resume functionality is not my priority at the moment. It's probably broken and will be
+fixed some time in the future.
+3. Other problems: I'll appreciate any bug report against 2.6.18 kernel. I don't currently have
+any 2.6.19-rc installed, so I can't test those. It's not that fortunate, of course, but I can't do
+anything about this at the moment.
+
+
+__________________________________________________
+Do You Yahoo!?
+Tired of spam?  Yahoo! Mail has the best spam protection around 
+http://mail.yahoo.com 
+
+
+From dast at panelnet.cz  Mon Oct 23 18:09:25 2006
+From: dast at panelnet.cz (Dalibor Straka)
+Date: Mon, 23 Oct 2006 18:09:25 +0200
+Subject: [Tifm21-devel] Issues
+In-Reply-To: <20061023024023.77382.qmail@web36712.mail.mud.yahoo.com>
+References: <20061022211340.GA2177@panelnet.cz>
+	<20061023024023.77382.qmail@web36712.mail.mud.yahoo.com>
+Message-ID: <20061023160925.GA28607@panelnet.cz>
+
+On Sun, Oct 22, 2006 at 07:40:23PM -0700, Alex Dubov wrote:
+> I probably need to make some clarifications:
+> 1. I'm working on MemoryStick support for TI controller, but it's not compatible with ENE one.
+> There also exists support for winbond memorystick controller, but it's not compatible either. Bad
+> luck with this one.
+> 2. Suspend/resume functionality is not my priority at the moment. It's probably broken and will be
+> fixed some time in the future.
+> 3. Other problems: I'll appreciate any bug report against 2.6.18 kernel. I don't currently have
+> any 2.6.19-rc installed, so I can't test those. It's not that fortunate, of course, but I can't do
+> anything about this at the moment.
+> 
+Hi,
+
+I've started writing the same driver as you did, but when you post it to
+the LKML I realized that you are far ahead me ;-). I have the second
+pci_id:
+
+/* this line should go to the  include/linux/pci_ids.h */
+#define PCI_DEVICE_ID_TI_0x803B       0x803b
+
+static struct pci_device_id ti_mcr_ids[] = {
+        { PCI_DEVICE(PCI_VENDOR_ID_TI, PCI_DEVICE_ID_TI_0x803B) },
+		{ }
+};  
+
+I'm using the lastest 2.6.19-rc2,
+-- Dalibor 
+
+

@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] finally got a log
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2007-February/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20finally%20got%20a%20log&In-Reply-To=%3C45D1C82D.9070608%40wasp.net.au%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000257.html">
+   <LINK REL="Next"  HREF="000259.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] finally got a log</H1>
+    <B>Brad Campbell</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20finally%20got%20a%20log&In-Reply-To=%3C45D1C82D.9070608%40wasp.net.au%3E"
+       TITLE="[Tifm21-devel] finally got a log">brad at wasp.net.au
+       </A><BR>
+    <I>Tue Feb 13 15:16:13 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000257.html">[Tifm21-devel] finally got a log
+</A></li>
+        <LI>Next message: <A HREF="000259.html">[Tifm21-devel] finally got a log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#258">[ date ]</a>
+              <a href="thread.html#258">[ thread ]</a>
+              <a href="subject.html#258">[ subject ]</a>
+              <a href="author.html#258">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Alex Dubov wrote:
+&gt;<i> I don't like IRC, for whatever reasons (call it childhood trauma if you want).
+</I>
+Fair enough too.. I find it good using freenode to interact with developers when I'm abusing their 
+software :)
+
+&gt;<i> Anyway, I think I've found the problem.
+</I>&gt;<i> 1. The bizarre behavior with device creation is caused by mmc_block instance. Certain errors cause
+</I>&gt;<i> its thread to get stuck in memory, yet after some prolonged time it manages to die. We shall give
+</I>&gt;<i> it a good fix sometime soon. To check if this is happening, you can unload tifm modules and then
+</I>&gt;<i> try &quot;rmmod mmc_block&quot; - even though used by no one, it won't go.
+</I>
+I'm not so sure about that from what I've seen. I have a script I use to unload the tifm modules and 
+it also unloads mmc_block and mmc_core, then checks to make *sure* they are unloaded and complains 
+*loudly* if they fail to unload. I've not seen mmc_block getting stuck.
+
+The last mail I sent titled &quot;New logs with freshly formatted cards&quot; are 4 insertion logs using 3 
+different cards and done after a clean boot and module load, so mmc_block never even gets 
+referenced. Still just having basic issues recognising the card.
+
+&gt;<i> 2. Write corruption - new version of tifm_sd attached (rev 81 in SVN).
+</I>
+Will give this a whirl right now and see how we go.
+
+
+-- 
+&quot;Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so.&quot; -- Douglas Adams
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000257.html">[Tifm21-devel] finally got a log
+</A></li>
+	<LI>Next message: <A HREF="000259.html">[Tifm21-devel] finally got a log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#258">[ date ]</a>
+              <a href="thread.html#258">[ thread ]</a>
+              <a href="subject.html#258">[ subject ]</a>
+              <a href="author.html#258">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

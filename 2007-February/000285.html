@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] Suspend/Resume - &quot;me too&quot;s are useful;	no 2.6.19 backport
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2007-February/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20Suspend/Resume%20-%20%22me%20too%22s%20are%20useful%3B%0A%09no%202.6.19%20backport&In-Reply-To=%3C815330.77659.qm%40web36705.mail.mud.yahoo.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000284.html">
+   <LINK REL="Next"  HREF="000286.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] Suspend/Resume - &quot;me too&quot;s are useful;	no 2.6.19 backport</H1>
+    <B>Alex Dubov</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20Suspend/Resume%20-%20%22me%20too%22s%20are%20useful%3B%0A%09no%202.6.19%20backport&In-Reply-To=%3C815330.77659.qm%40web36705.mail.mud.yahoo.com%3E"
+       TITLE="[Tifm21-devel] Suspend/Resume - &quot;me too&quot;s are useful;	no 2.6.19 backport">oakad at yahoo.com
+       </A><BR>
+    <I>Sat Feb 17 15:51:37 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000284.html">[Tifm21-devel] Suspend/Resume
+</A></li>
+        <LI>Next message: <A HREF="000286.html">[Tifm21-devel] Suspend/Resume
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#285">[ date ]</a>
+              <a href="thread.html#285">[ thread ]</a>
+              <a href="subject.html#285">[ subject ]</a>
+              <a href="author.html#285">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> 
+</I>&gt;<i> Everyone hates a &quot;me too&quot;, but none the less: Suspend/ resume works fine here 
+</I>&gt;<i> with the latest SVN and no card inserted as well (no SD/ MMC cards to test 
+</I>&gt;<i> here I'm afraid though).
+</I>
+Actually, we encounter so many subtle bugs with this controller (even this late in the
+development) that &quot;me too&quot;s are extremely useful. They are the only way to ensure that everything
+works as expected.
+
+On the 2.6.19 backport: even disregarding accepted policy of &quot;no backports&quot; there are two
+showstoppers in the 2.6.19 and below:
+1. No freezeable workqueues (I wonder how people lived without them)
+2. Workqueue api is different
+
+
+
+ 
+____________________________________________________________________________________
+TV dinner still cooling? 
+Check out &quot;Tonight's Picks&quot; on Yahoo! TV.
+<A HREF="http://tv.yahoo.com/">http://tv.yahoo.com/</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000284.html">[Tifm21-devel] Suspend/Resume
+</A></li>
+	<LI>Next message: <A HREF="000286.html">[Tifm21-devel] Suspend/Resume
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#285">[ date ]</a>
+              <a href="thread.html#285">[ thread ]</a>
+              <a href="subject.html#285">[ subject ]</a>
+              <a href="author.html#285">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,50 @@
+From gustavo-listas at overstep.com.br  Tue Apr 18 14:16:09 2006
+From: gustavo-listas at overstep.com.br (Gustavo Henrique Cervi)
+Date: Tue, 18 Apr 2006 09:16:09 -0300
+Subject: [Tifm21-devel] news?
+In-Reply-To: <20060319055727.18010.qmail@web36708.mail.mud.yahoo.com>
+References: <20060319055727.18010.qmail@web36708.mail.mud.yahoo.com>
+Message-ID: <4444D889.7000203@overstep.com.br>
+
+Hi there..
+
+any news about this project?
+
+
+
+
+
+From oakad at yahoo.com  Wed Apr 19 03:13:12 2006
+From: oakad at yahoo.com (Alex Dubov)
+Date: Tue, 18 Apr 2006 18:13:12 -0700 (PDT)
+Subject: [Tifm21-devel] news?
+In-Reply-To: <4444D889.7000203@overstep.com.br>
+Message-ID: <20060419011312.63046.qmail@web36702.mail.mud.yahoo.com>
+
+Well, mmc cards respond to commands as of the last svn
+revision. The bad news are that responses do not make
+sense yet.
+
+--- Gustavo Henrique Cervi
+<gustavo-listas at overstep.com.br> wrote:
+
+> Hi there..
+> 
+> any news about this project?
+> 
+> 
+> 
+> _______________________________________________
+> Tifm21-devel mailing list
+> Tifm21-devel at lists.berlios.de
+>
+http://lists.berlios.de/mailman/listinfo/tifm21-devel
+> 
+
+
+__________________________________________________
+Do You Yahoo!?
+Tired of spam?  Yahoo! Mail has the best spam protection around 
+http://mail.yahoo.com 
+
+

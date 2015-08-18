@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] make install target
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2006-September/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20make%20install%20target&In-Reply-To=%3C44F9347A.3040002%40wasp.net.au%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000219.html">
+   <LINK REL="Next"  HREF="000220.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] make install target</H1>
+    <B>Brad Campbell</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20make%20install%20target&In-Reply-To=%3C44F9347A.3040002%40wasp.net.au%3E"
+       TITLE="[Tifm21-devel] make install target">brad at wasp.net.au
+       </A><BR>
+    <I>Sat Sep  2 09:36:26 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000219.html">[Tifm21-devel] Driver update: write speed improvement
+</A></li>
+        <LI>Next message: <A HREF="000220.html">[Tifm21-devel] PCI1620?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#217">[ date ]</a>
+              <a href="thread.html#217">[ thread ]</a>
+              <a href="subject.html#217">[ subject ]</a>
+              <a href="author.html#217">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Don't know if this is interesting or not, but I'm carrying it in my tree so I thought I'd post it in 
+case.
+
+I've attached it because my mailer keeps whitespace damaging the patch.
+
+Regards,
+Brad
+-- 
+&quot;Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so.&quot; -- Douglas Adams
+-------------- next part --------------
+Index: Makefile
+===================================================================
+--- Makefile	(revision 59)
++++ Makefile	(working copy)
+@@ -2,6 +2,7 @@
+ 
+ KERNELDIR ?= /lib/modules/$(shell uname -r)/build
+ PWD       := $(shell pwd)
++MODULE_INSTALLDIR = /lib/modules/$(shell uname -r)/misc/
+ 
+ all:
+ 	$(MAKE) -C $(KERNELDIR) M=$(PWD)
+@@ -9,3 +10,13 @@
+ clean:
+ 	rm -rf *.o *.o.d *.ko.d .depend .*.cmd *.ko *.mod.c .tmp_versions
+ 
++install:
++	mkdir -p $(MODULE_INSTALLDIR)
++	rm -f $(MODULE_INSTALLDIR)tifm_core.ko
++	rm -f $(MODULE_INSTALLDIR)tifm_sd.ko
++	rm -f $(MODULE_INSTALLDIR)tifm_7xx1.ko
++	install -c -m 644 tifm_core.ko tifm_7xx1.ko tifm_sd.ko \
++	$(MODULE_INSTALLDIR)
++	/sbin/depmod -ae
++
++
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000219.html">[Tifm21-devel] Driver update: write speed improvement
+</A></li>
+	<LI>Next message: <A HREF="000220.html">[Tifm21-devel] PCI1620?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#217">[ date ]</a>
+              <a href="thread.html#217">[ thread ]</a>
+              <a href="subject.html#217">[ subject ]</a>
+              <a href="author.html#217">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

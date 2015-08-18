@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] Suspend/Resume
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2007-February/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20Suspend/Resume&In-Reply-To=%3C45D85340.30704%40wasp.net.au%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000286.html">
+   <LINK REL="Next"  HREF="000288.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] Suspend/Resume</H1>
+    <B>Brad Campbell</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20Suspend/Resume&In-Reply-To=%3C45D85340.30704%40wasp.net.au%3E"
+       TITLE="[Tifm21-devel] Suspend/Resume">brad at wasp.net.au
+       </A><BR>
+    <I>Sun Feb 18 14:23:12 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000286.html">[Tifm21-devel] Suspend/Resume
+</A></li>
+        <LI>Next message: <A HREF="000288.html">[Tifm21-devel] Suspend/Resume
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#287">[ date ]</a>
+              <a href="thread.html#287">[ thread ]</a>
+              <a href="subject.html#287">[ subject ]</a>
+              <a href="author.html#287">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Alex Dubov wrote:
+&gt;&gt;<i> So it works unless you remove the card while it's out cold, in which case it explodes on resume.
+</I>&gt;<i> 
+</I>&gt;<i> It appears to be a bug in the mmc layer. I've put a work-around in rev86 - hope it works.
+</I>
+Yes, it works fine. HAL just pops up on resume and forcibly removes the card!
+
+Tested 128MB MMC and 512MB SD. All suspend resume is hunky dory with rev86.
+
+I now can't fault it..
+That card slot was the only driver on the whole machine that was my bugbear. It is no longer.
+
+On a related note, being a Sony laptop it has a memory stick pro slot also. I don't own any sony 
+memory sticks and have no devices that used them (bloody proprietary crap if you ask me), but when 
+it comes time to test I have a cost effective source for them over here, so I can test that too if 
+you like.
+
+I'm so tempted to go and pick up a high speed 4G SDHC card now to see if that needs work also, but 
+not just yet. Too busy basking in the glow of a working reader with the cards I have!
+
+I did not apply the patch you sent against rev85 to help mmc detection, but I've not seen the mmc 
+problem reoccur yet either.
+
+Brad
+-- 
+&quot;Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so.&quot; -- Douglas Adams
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000286.html">[Tifm21-devel] Suspend/Resume
+</A></li>
+	<LI>Next message: <A HREF="000288.html">[Tifm21-devel] Suspend/Resume
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#287">[ date ]</a>
+              <a href="thread.html#287">[ thread ]</a>
+              <a href="subject.html#287">[ subject ]</a>
+              <a href="author.html#287">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>

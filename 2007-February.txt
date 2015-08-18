@@ -1,0 +1,2996 @@
+From brad at wasp.net.au  Sat Feb  3 13:27:38 2007
+From: brad at wasp.net.au (Brad Campbell)
+Date: Sat, 03 Feb 2007 16:27:38 +0400
+Subject: [Tifm21-devel] Issues with kernel 2.6.19
+Message-ID: <45C47FBA.1000108@wasp.net.au>
+
+G'day Alex,
+
+I'm having issues writing large amounts of data to SD cards.
+
+I have had absolutely no issues reading from any of my cards any amount of data, and I can write 
+small chunks at a time, like creating directories and small test files, but when I try and copy a 
+directory of about 150MB in 20 files, I get the following log.
+
+I've tried this on a Sandisk 2.0GB, HP 2GB and Panasonic 512MB card, same result every time.
+
+I also downloaded the latest SVN driver and beat it to work "for certain definitions of work" on a 
+2.6.20-rc7 kernel and the 2.6.19 kernel, and it appears to give the same result, but then I may have 
+bent it a little far to make it fit.
+
+What kernel is the SVN driver currently compiling against and what information can I offer to assist 
+in debugging this ? (Got a bit of time and a couple of test cards available)
+
+Controller is
+0000:06:05.3 Mass storage controller: Texas Instruments PCIxx21 Integrated FlashMedia Controller
+In a Sony VAIO VGN-TX27GP.
+
+Kernel currently is
+Linux bklaptop2 2.6.19-rc6-git8-bkc1 #3 Thu Feb 1 16:17:23 GST 2007 i686 GNU/Linux
+But I've tried with 2.6.19.2 2.6.20-rc7 & -rc7-git1, both in-tree drivers and latest SVN
+
+brad at bklaptop2:~/src/tifm-svn/driver$ svn update
+At revision 79.
+
+Feb  3 16:08:49 localhost kernel: [ 3701.660000] tifm_7xx1: sd card detected in socket 3
+Feb  3 16:08:49 localhost NetworkManager: <debug info>^I[1170504529.104056] nm_hal_device_added (): 
+New device added (hal udi is '/org/freedesktop/Hal/devices/pci_104c_8033_mmc_host').
+Feb  3 16:08:49 localhost NetworkManager: <debug info>^I[1170504529.677372] nm_hal_device_added (): 
+New device added (hal udi is '/org/freedesktop/Hal/devices/pci_104c_8033_mmc_host_mmc_card_rca39381').
+Feb  3 16:08:49 localhost kernel: [ 3702.240000] mmcblk0: mmc0:99d5 SH512 503296KiB
+Feb  3 16:08:49 localhost kernel: [ 3702.240000]  mmcblk0: p1
+Feb  3 16:08:49 localhost NetworkManager: <debug info>^I[1170504529.812791] nm_hal_device_added (): 
+New device added (hal udi is 
+'/org/freedesktop/Hal/devices/pci_104c_8033_mmc_host_mmc_card_rca39381_storage').
+Feb  3 16:08:49 localhost NetworkManager: <debug info>^I[1170504529.967834] nm_hal_device_added (): 
+New device added (hal udi is '/org/freedesktop/Hal/devices/volume_label_NO_NAME').
+Feb  3 16:08:50 localhost kernel: [ 3702.680000] FAT: utf8 is not a recommended IO charset for FAT 
+filesystems, filesystem will be case sensitive!
+Feb  3 16:09:26 localhost kernel: [ 3738.660000] tifm_sd: card failed to respond for a long period 
+of time<6>tifm_7xx1: demand removing card from socket 3
+Feb  3 16:09:26 localhost kernel: [ 3738.660000] mmcblk0: error 1 requesting status
+Feb  3 16:09:26 localhost kernel: [ 3738.660000] end_request: I/O error, dev mmcblk0, sector 338056
+Feb  3 16:09:26 localhost kernel: [ 3738.660000] mmcblk0: error 1 sending read/write command
+Feb  3 16:09:26 localhost kernel: [ 3738.660000] end_request: I/O error, dev mmcblk0, sector 338064
+Feb  3 16:09:26 localhost kernel: [ 3738.660000] mmcblk0: error 1 sending read/write command
+Feb  3 16:09:26 localhost kernel: [ 3738.660000] end_request: I/O error, dev mmcblk0, sector 338072
+Feb  3 16:09:26 localhost kernel: [ 3738.660000] mmcblk0: error 1 sending read/write command
+Feb  3 16:09:26 localhost kernel: [ 3738.660000] end_request: I/O error, dev mmcblk0, sector 338080
+Feb  3 16:09:26 localhost kernel: [ 3738.660000] mmcblk0: error 1 sending read/write command
+Feb  3 16:09:26 localhost kernel: [ 3738.660000] end_request: I/O error, dev mmcblk0, sector 338088
+<heaps and heaps of these repeated>
+
+I recall having this working at some point with an earlier SVN driver prior to it being included in 
+the mainline kernel.
+
+Regards,
+Brad
+-- 
+"Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so." -- Douglas Adams
+
+
+From oakad at yahoo.com  Sun Feb  4 02:36:22 2007
+From: oakad at yahoo.com (Alex Dubov)
+Date: Sat, 3 Feb 2007 17:36:22 -0800 (PST)
+Subject: [Tifm21-devel] Issues with kernel 2.6.19
+In-Reply-To: <45C47FBA.1000108@wasp.net.au>
+Message-ID: <215829.65434.qm@web36707.mail.mud.yahoo.com>
+
+As a quick fix you can try passing a fixed_timeout=1 option to the tifm_sd driver. In general, I
+fixed all kinds of problems in the current -mm version of the driver, so if you can test some
+recent -mm kernel it will be very helpful.
+
+
+
+ 
+____________________________________________________________________________________
+Do you Yahoo!?
+Everyone is raving about the all-new Yahoo! Mail beta.
+http://new.mail.yahoo.com
+
+
+From brad at wasp.net.au  Sun Feb  4 07:28:02 2007
+From: brad at wasp.net.au (Brad Campbell)
+Date: Sun, 04 Feb 2007 10:28:02 +0400
+Subject: [Tifm21-devel] Issues with kernel 2.6.19
+In-Reply-To: <215829.65434.qm@web36707.mail.mud.yahoo.com>
+References: <215829.65434.qm@web36707.mail.mud.yahoo.com>
+Message-ID: <45C57CF2.1040400@wasp.net.au>
+
+Alex Dubov wrote:
+> As a quick fix you can try passing a fixed_timeout=1 option to the tifm_sd driver. In general, I
+> fixed all kinds of problems in the current -mm version of the driver, so if you can test some
+> recent -mm kernel it will be very helpful.
+
+Very ugly I'm afraid.
+This is all I get on the latest SVN driver or -mm kernel (2.6.20-rc6-mm3)
+
+<insert card>
+[56602.140000] tifm_7xx1: sd card detected in socket 3
+<wait wait wait>
+[56617.260000] tifm_7xx1: demand removing card from socket 3
+<remove card>
+
+Nothing else.
+
+I tried the SVN driver on 2.6.19 and 2.6.20-rc7. I also patched the -mm mmc stuff into 2.6.20-rc7, 
+and tried the 2.6.20-rc6-mm3 kernel all to the same result. It detects the card insertion and then 
+nothing happens.
+
+Brad
+--
+"Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so." -- Douglas Adams
+
+
+From oakad at yahoo.com  Mon Feb  5 01:03:12 2007
+From: oakad at yahoo.com (Alex Dubov)
+Date: Sun, 4 Feb 2007 16:03:12 -0800 (PST)
+Subject: [Tifm21-devel] Issues with kernel 2.6.19
+In-Reply-To: <45C57CF2.1040400@wasp.net.au>
+Message-ID: <212.61643.qm@web36707.mail.mud.yahoo.com>
+
+It looks very surprising, especially the fact that driver does nothing for 17 seconds (the
+software timeout is supposed to kick it out in a 1 sec in case of any problem).
+Can you compile the driver with DEBUG=1 to see if there's something interesting in the print-outs?
+
+
+
+ 
+____________________________________________________________________________________
+Don't get soaked.  Take a quick peak at the forecast
+with the Yahoo! Search weather shortcut.
+http://tools.search.yahoo.com/shortcuts/#loc_weather
+
+
+From brad at wasp.net.au  Mon Feb  5 06:46:03 2007
+From: brad at wasp.net.au (Brad Campbell)
+Date: Mon, 05 Feb 2007 09:46:03 +0400
+Subject: [Tifm21-devel] Issues with kernel 2.6.19
+In-Reply-To: <212.61643.qm@web36707.mail.mud.yahoo.com>
+References: <212.61643.qm@web36707.mail.mud.yahoo.com>
+Message-ID: <45C6C49B.8050606@wasp.net.au>
+
+Alex Dubov wrote:
+> It looks very surprising, especially the fact that driver does nothing for 17 seconds (the
+> software timeout is supposed to kick it out in a 1 sec in case of any problem).
+> Can you compile the driver with DEBUG=1 to see if there's something interesting in the print-outs?
+
+Sure can.
+This is 2.6.20-rc7-git1 with the mmc patches applied from 2.6.20-rc6-mm3 (as it's easier for me to 
+test). Could not get the current SVN to build against the -mm kernel. They all do pretty much the 
+same thing though.
+
+Oh, the 17 seconds is me waiting for something to happen and checking dmesg before I removed the 
+card. Same as in the trace below. I insert, the led flashed once or twice, I check dmesg. Nothing 
+happening so I pop the card out.
+
+[78591.390000] tifm_7xx1 0000:06:05.3: checking media set 8
+[78591.430000] tifm_7xx1: sd card detected in socket 3
+[78591.470000] tifm_sd tifm_sd0:3: Setting bus width 0, power 0
+[78591.470000] tifm_sd tifm_sd0:3: Setting bus width 0, power 1
+[78591.470000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[78591.470000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[78591.470000] tifm_sd tifm_sd0:3: executing opcode 0x0, arg: 0x0, mask: 0x40
+[78591.470000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[78591.470000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[78591.470000] tifm_sd tifm_sd0:3: executing opcode 0x8, arg: 0x1aa, mask: 0x1140
+[78591.470000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[78591.470000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[78591.470000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[78591.470000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x0, mask: 0x1340
+[78591.470000] tifm_sd tifm_sd0:3: host_status 1001, fifo_status 0
+[78591.470000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[78591.470000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[78591.470000] tifm_sd tifm_sd0:3: executing opcode 0x0, arg: 0x0, mask: 0x40
+[78591.470000] tifm_sd tifm_sd0:3: host_status 1001, fifo_status 0
+[78591.470000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[78591.480000] tifm_sd tifm_sd0:3: executing opcode 0x8, arg: 0x1aa, mask: 0x1140
+[78591.480000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[78591.480000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[78591.480000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[78591.480000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x40300000, mask: 0x1340
+[78591.480000] tifm_sd tifm_sd0:3: host_status 1001, fifo_status 0
+[78591.500000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[78591.500000] tifm_sd tifm_sd0:3: host_status 1001, fifo_status 0
+[78591.500000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x40300000, mask: 0x1340
+[78591.500000] tifm_sd tifm_sd0:3: host_status 1001, fifo_status 0
+[78591.520000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[78591.520000] tifm_sd tifm_sd0:3: host_status 1001, fifo_status 0
+[78591.520000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x40300000, mask: 0x1340
+[78591.520000] tifm_sd tifm_sd0:3: host_status 1001, fifo_status 0
+[78591.540000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[78591.540000] tifm_sd tifm_sd0:3: host_status 1001, fifo_status 0
+[78591.540000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x40300000, mask: 0x1340
+[78591.540000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[78591.540000] tifm_sd tifm_sd0:3: executing opcode 0x2, arg: 0x0, mask: 0x1240
+[78591.540000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[78591.540000] tifm_sd tifm_sd0:3: executing opcode 0x3, arg: 0x0, mask: 0x1140
+[78591.540000] tifm_sd tifm_sd0:3: host_status 4000, fifo_status 0
+[78591.540000] tifm_sd tifm_sd0:3: executing opcode 0x3, arg: 0x0, mask: 0x1140
+[78591.540000] tifm_sd tifm_sd0:3: host_status 4000, fifo_status 0
+[78591.540000] tifm_sd tifm_sd0:3: executing opcode 0x3, arg: 0x0, mask: 0x1140
+[78591.540000] tifm_sd tifm_sd0:3: host_status 4000, fifo_status 0
+[78591.540000] tifm_sd tifm_sd0:3: executing opcode 0x3, arg: 0x0, mask: 0x1140
+[78591.540000] tifm_sd tifm_sd0:3: host_status 4000, fifo_status 0
+[78591.540000] tifm_sd tifm_sd0:3: executing opcode 0x2, arg: 0x0, mask: 0x1240
+[78591.540000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+[78591.540000] tifm_sd tifm_sd0:3: executing opcode 0x2, arg: 0x0, mask: 0x1240
+[78591.540000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+[78591.540000] tifm_sd tifm_sd0:3: executing opcode 0x2, arg: 0x0, mask: 0x1240
+[78591.540000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+[78591.540000] tifm_sd tifm_sd0:3: executing opcode 0x2, arg: 0x0, mask: 0x1240
+[78591.540000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+[78591.540000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[78591.540000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[78591.540000] tifm_sd tifm_sd0:3: Setting bus width 0, power 0
+[78591.540000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+[78604.090000] tifm_7xx1 0000:06:05.3: checking media set 8
+[78604.090000] tifm_7xx1: demand removing card from socket 3
+
+Brad
+-- 
+"Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so." -- Douglas Adams
+
+
+From soruk at eridani.co.uk  Thu Feb  8 23:59:43 2007
+From: soruk at eridani.co.uk (Michael McConnell)
+Date: Thu, 08 Feb 2007 22:59:43 +0000
+Subject: [Tifm21-devel] Issues with kernel 2.6.19 - a possible fix?
+Message-ID: <45CBAB5F.7070702@eridani.co.uk>
+
+Firstly, sorry for the new thread, I joined the list after the last post 
+to the existing one.
+
+Like Brad found he could write smaller files easily but the driver 
+choked on large files, I was running into exactly the same problem.
+
+Admittedly I was following a hunch based on the errors in the log rather 
+than doing a "properly" engineered fix, but this patch (attached, 
+against SVN -r76) does the trick for me on my Sony Vaio BX-297XP.
+
+The write speed seems pretty slow, I don't know if it's the driver, my 
+patch or the chipset, but I get faster writes using an off-the-shelf 
+USB2 reader/writer.
+
+-- 
+-- Michael "Soruk" McConnell
+    Eridani Star System
+
+    MailStripper - http://www.MailStripper.eu/ - SMTP spam filter
+    Mail Me Anywhere - http://www.MailMeAnywhere.com/ - Mobile email
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: tifm_sd.c.diff
+Type: text/x-patch
+Size: 389 bytes
+Desc: not available
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20070208/b8e6a180/attachment.bin>
+
+From oakad at yahoo.com  Fri Feb  9 00:42:28 2007
+From: oakad at yahoo.com (Alex Dubov)
+Date: Thu, 8 Feb 2007 15:42:28 -0800 (PST)
+Subject: [Tifm21-devel] Issues with kernel 2.6.19 - a possible fix?
+In-Reply-To: <45CBAB5F.7070702@eridani.co.uk>
+Message-ID: <472878.48234.qm@web36714.mail.mud.yahoo.com>
+
+If the problem is only with timeouts you can simpy copy the timeout function from the svn version
+of the driver (apparently, order of register writes does matter). However, there may be some other
+subtle problems.
+Write speeds are somewhat limited because of the mmc subsystem splits multi-block writes into
+single blocks. This is addressed somewhere down the line (in the -mm version).
+
+I expect to look at the problems this weekend. Hoepfully, I'll bring the svn version into shape
+for 2.6.20.
+
+
+
+ 
+____________________________________________________________________________________
+Do you Yahoo!?
+Everyone is raving about the all-new Yahoo! Mail beta.
+http://new.mail.yahoo.com
+
+
+From oakad at yahoo.com  Fri Feb  9 15:27:48 2007
+From: oakad at yahoo.com (Alex Dubov)
+Date: Fri, 9 Feb 2007 06:27:48 -0800 (PST)
+Subject: [Tifm21-devel] Issues with kernel 2.6.19
+In-Reply-To: <45C6C49B.8050606@wasp.net.au>
+Message-ID: <474510.43992.qm@web36715.mail.mud.yahoo.com>
+
+I don't recall in what kernel version the particular problem was introduced, but the attached
+patch should fix a problem similar to your's on 2.6.20 one.
+
+
+ 
+____________________________________________________________________________________
+Have a burning question?  
+Go to www.Answers.yahoo.com and get answers from real people who know.
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: tifm_sd.c.diff
+Type: text/x-diff
+Size: 438 bytes
+Desc: 2075594996-tifm_sd.c.diff
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20070209/3e6e1992/attachment.diff>
+
+From coomac at gmail.com  Sat Feb 10 00:50:34 2007
+From: coomac at gmail.com (coomac)
+Date: Fri, 9 Feb 2007 18:50:34 -0500
+Subject: [Tifm21-devel] Issues with kernel 2.6.19
+In-Reply-To: <474510.43992.qm@web36715.mail.mud.yahoo.com>
+References: <45C6C49B.8050606@wasp.net.au>
+	<474510.43992.qm@web36715.mail.mud.yahoo.com>
+Message-ID: <e67787dd0702091550i7fdd6bacx9535b3a9df8d37a3@mail.gmail.com>
+
+I was having the same problem using the  vanilla 2.6.20 kernel, ie the card
+insertion is detected, but nothing happens. After patching my kernel with
+tifm_sd.c.diff, the card now mounts after insertion. Thanks for the patch.
+
+The problem now is that formatting a card from the card reader using either
+fdisk or cfdisk produces this error when I try to write the changes to the
+disk:
+
+>tifm_sd: card failed to respond for a long period of time<6>tifm_7xx1:
+demand removing card from socket 3
+>mmcblk0: error 1 requesting status
+>end_request: I/O error, dev mmcblk0, sector 0
+>printk: 6 messages suppressed.
+>Buffer I/O error on device mmcblk0, logical block 0
+>lost page write due to I/O error on mmcblk0
+
+After removing and reinserting the card, 'fdisk -l' recognizes that the card
+was formatted and prints:
+
+>Disk /dev/mmcblk0: 4217 MB, 4217372672 bytes
+>4 heads, 16 sectors/track, 128704 cylinders
+>Units = cylinders of 64 * 512 = 32768 bytes
+>
+>        Device Boot      Start         End      Blocks   Id  System
+>/dev/mmcblk0p1   *           1      128704     4118520    b  W95 FAT32
+
+Cool. I go ahead and use mkfs.vfat to create my partition. No error messages
+show up, however mkfs only lasts for a fraction of a second - it normally
+takes at least 4 seconds to get through a 4 gig card (using 2.6.18 with
+driver from tifm-0.6b that is). I remove and reinsert the card again and kde
+automounts it. Not surprisingly, the card is completely filled with files
+with names like ?rjfc?f?.xz.
+
+Any suggestions? Or is this issue fixed in git4? Thanks.
+
+lspci -v
+06:09.3 Mass storage controller: Texas Instruments PCIxx21 Integrated
+FlashMedia Controller
+       Subsystem: Acer Incorporated [ALI] Unknown device 007e
+       Flags: bus master, medium devsel, latency 64, IRQ 23
+       Memory at c0306000 (32-bit, non-prefetchable) [size=8K]
+       Capabilities: [44] Power Management version 2
+Laptop is an Acer Ferrari running opensuse 10.2.
+
+
+
+On 2/9/07, Alex Dubov <oakad at yahoo.com> wrote:
+>
+> I don't recall in what kernel version the particular problem was
+> introduced, but the attached
+> patch should fix a problem similar to your's on 2.6.20 one.
+>
+>
+>
+>
+> ____________________________________________________________________________________
+> Have a burning question?
+> Go to www.Answers.yahoo.com and get answers from real people who know.
+> _______________________________________________
+> Tifm21-devel mailing list
+> Tifm21-devel at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/tifm21-devel
+>
+>
+>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20070209/60dcb9a8/attachment.html>
+
+From oakad at yahoo.com  Sat Feb 10 09:22:12 2007
+From: oakad at yahoo.com (Alex Dubov)
+Date: Sat, 10 Feb 2007 00:22:12 -0800 (PST)
+Subject: [Tifm21-devel] Issues with kernel 2.6.19
+In-Reply-To: <e67787dd0702091550i7fdd6bacx9535b3a9df8d37a3@mail.gmail.com>
+Message-ID: <875739.86787.qm@web36711.mail.mud.yahoo.com>
+
+> The problem now is that formatting a card from the card reader using either
+> fdisk or cfdisk produces this error when I try to write the changes to the
+> disk:
+> 
+> >tifm_sd: card failed to respond for a long period of time<6>tifm_7xx1:
+> demand removing card from socket 3
+> >mmcblk0: error 1 requesting status
+> >end_request: I/O error, dev mmcblk0, sector 0
+> >printk: 6 messages suppressed.
+> >Buffer I/O error on device mmcblk0, logical block 0
+> >lost page write due to I/O error on mmcblk0
+Please, compile the driver with DEBUG=1 define to enable debug printouts. This may lead us to the
+cause of the problem.
+
+
+ 
+____________________________________________________________________________________
+Do you Yahoo!?
+Everyone is raving about the all-new Yahoo! Mail beta.
+http://new.mail.yahoo.com
+
+
+From brad at wasp.net.au  Sat Feb 10 15:42:41 2007
+From: brad at wasp.net.au (Brad Campbell)
+Date: Sat, 10 Feb 2007 18:42:41 +0400
+Subject: [Tifm21-devel] Issues with kernel 2.6.19
+In-Reply-To: <875739.86787.qm@web36711.mail.mud.yahoo.com>
+References: <875739.86787.qm@web36711.mail.mud.yahoo.com>
+Message-ID: <45CDD9E1.4060201@wasp.net.au>
+
+Alex Dubov wrote:
+>> The problem now is that formatting a card from the card reader using either
+>> fdisk or cfdisk produces this error when I try to write the changes to the
+>> disk:
+>>
+>>> tifm_sd: card failed to respond for a long period of time<6>tifm_7xx1:
+>> demand removing card from socket 3
+>>> mmcblk0: error 1 requesting status
+>>> end_request: I/O error, dev mmcblk0, sector 0
+>>> printk: 6 messages suppressed.
+>>> Buffer I/O error on device mmcblk0, logical block 0
+>>> lost page write due to I/O error on mmcblk0
+> Please, compile the driver with DEBUG=1 define to enable debug printouts. This may lead us to the
+> cause of the problem.
+
+Log attached. I tried to inline it but thunderbird just choked severely on anything over about 1000 
+lines.. and this is just over 3k lines.
+
+
+Brad
+-- 
+"Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so." -- Douglas Adams
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: mmclog.gz
+Type: application/x-gzip
+Size: 8039 bytes
+Desc: not available
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20070210/12386901/attachment.bin>
+
+From coomac at gmail.com  Sat Feb 10 16:00:59 2007
+From: coomac at gmail.com (coomac)
+Date: Sat, 10 Feb 2007 10:00:59 -0500
+Subject: [Tifm21-devel] Issues with kernel 2.6.19
+In-Reply-To: <45CDD9E1.4060201@wasp.net.au>
+References: <875739.86787.qm@web36711.mail.mud.yahoo.com>
+	<45CDD9E1.4060201@wasp.net.au>
+Message-ID: <e67787dd0702100700q6e228054o800e69c758530871@mail.gmail.com>
+
+On 2/10/07, Brad Campbell <brad at wasp.net.au> wrote:
+>
+> Alex Dubov wrote:
+>
+> > Please, compile the driver with DEBUG=1 define to enable debug
+> printouts. This may lead us to the
+> > cause of the problem.
+>
+> Log attached. I tried to inline it but thunderbird just choked severely on
+> anything over about 1000
+> lines.. and this is just over 3k lines.
+>
+>
+> Brad
+
+
+
+Thanks Brad, I was in the process of recompiling when you sent that. I just
+wanted to add that 2.6.20-git4 does not have this problem.
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20070210/b0b3f0f1/attachment.html>
+
+From oakad at yahoo.com  Sat Feb 10 16:16:07 2007
+From: oakad at yahoo.com (Alex Dubov)
+Date: Sat, 10 Feb 2007 07:16:07 -0800 (PST)
+Subject: [Tifm21-devel] Issues with kernel 2.6.19
+In-Reply-To: <45CDD9E1.4060201@wasp.net.au>
+Message-ID: <651621.30038.qm@web36706.mail.mud.yahoo.com>
+
+
+--- Brad Campbell <brad at wasp.net.au> wrote:
+
+> Alex Dubov wrote:
+> >> The problem now is that formatting a card from the card reader using either
+> >> fdisk or cfdisk produces this error when I try to write the changes to the
+> >> disk:
+> >>
+> >>> tifm_sd: card failed to respond for a long period of time<6>tifm_7xx1:
+> >> demand removing card from socket 3
+> >>> mmcblk0: error 1 requesting status
+> >>> end_request: I/O error, dev mmcblk0, sector 0
+> >>> printk: 6 messages suppressed.
+> >>> Buffer I/O error on device mmcblk0, logical block 0
+> >>> lost page write due to I/O error on mmcblk0
+> > Please, compile the driver with DEBUG=1 define to enable debug printouts. This may lead us to
+> the
+> > cause of the problem.
+> 
+> Log attached. I tried to inline it but thunderbird just choked severely on anything over about
+> 1000 
+> lines.. and this is just over 3k lines.
+> 
+Your's is one of those new SDHC cards (I don't have any of this breed). The log shows no problems
+with my driver (all commands complete successfully). Therefore, you may want to post this question
+to linux-kernel list.
+Of course, I'll continue to look into this problem too.
+ 
+
+
+ 
+____________________________________________________________________________________
+Don't pick lemons.
+See all the new 2007 cars at Yahoo! Autos.
+http://autos.yahoo.com/new_cars.html 
+
+
+From brad at wasp.net.au  Sun Feb 11 05:50:02 2007
+From: brad at wasp.net.au (Brad Campbell)
+Date: Sun, 11 Feb 2007 08:50:02 +0400
+Subject: [Tifm21-devel] Issues with kernel 2.6.19
+In-Reply-To: <e67787dd0702100700q6e228054o800e69c758530871@mail.gmail.com>
+References: <875739.86787.qm@web36711.mail.mud.yahoo.com>	<45CDD9E1.4060201@wasp.net.au>
+	<e67787dd0702100700q6e228054o800e69c758530871@mail.gmail.com>
+Message-ID: <45CEA07A.2040402@wasp.net.au>
+
+coomac wrote:
+> On 2/10/07, *Brad Campbell* <brad at wasp.net.au <mailto:brad at wasp.net.au>> 
+> wrote:
+> 
+>     Alex Dubov wrote:
+> 
+>      > Please, compile the driver with DEBUG=1 define to enable debug
+>     printouts. This may lead us to the
+>      > cause of the problem.
+> 
+>     Log attached. I tried to inline it but thunderbird just choked
+>     severely on anything over about 1000
+>     lines.. and this is just over 3k lines.
+> 
+> 
+>     Brad
+> 
+> 
+> 
+> Thanks Brad, I was in the process of recompiling when you sent that. I 
+> just wanted to add that 2.6.20-git4 does not have this problem.
+
+Still does for me although it requires a much heavier writeout to make it explode here.
+It now also refuses to recognise my 128MB MMC card entirely.
+
+Debug logs to follow in the next day or so.
+
+I'm using 2.6.20-git4 with the patch Alex sent to make SD recognition work.
+
+Brad
+-- 
+"Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so." -- Douglas Adams
+
+
+From coomac at gmail.com  Sat Feb 10 16:54:00 2007
+From: coomac at gmail.com (coomac)
+Date: Sat, 10 Feb 2007 10:54:00 -0500
+Subject: [Tifm21-devel] Issues with kernel 2.6.19
+In-Reply-To: <651621.30038.qm@web36706.mail.mud.yahoo.com>
+References: <45CDD9E1.4060201@wasp.net.au>
+	<651621.30038.qm@web36706.mail.mud.yahoo.com>
+Message-ID: <e67787dd0702100754t70fbc235k5fa30f9933e39d90@mail.gmail.com>
+
+On 2/10/07, Alex Dubov <oakad at yahoo.com> wrote:
+>
+>
+> --- Brad Campbell <brad at wasp.net.au> wrote:
+>
+> > Alex Dubov wrote:
+> > >> The problem now is that formatting a card from the card reader using
+> either
+> > >> fdisk or cfdisk produces this error when I try to write the changes
+> to the
+> > >> disk:
+> > >>
+> > >>> tifm_sd: card failed to respond for a long period of
+> time<6>tifm_7xx1:
+> > >> demand removing card from socket 3
+> > >>> mmcblk0: error 1 requesting status
+> > >>> end_request: I/O error, dev mmcblk0, sector 0
+> > >>> printk: 6 messages suppressed.
+> > >>> Buffer I/O error on device mmcblk0, logical block 0
+> > >>> lost page write due to I/O error on mmcblk0
+> > > Please, compile the driver with DEBUG=1 define to enable debug
+> printouts. This may lead us to
+> > the
+> > > cause of the problem.
+> >
+> > Log attached. I tried to inline it but thunderbird just choked severely
+> on anything over about
+> > 1000
+> > lines.. and this is just over 3k lines.
+> >
+> Your's is one of those new SDHC cards (I don't have any of this breed).
+> The log shows no problems
+> with my driver (all commands complete successfully). Therefore, you may
+> want to post this question
+> to linux-kernel list.
+> Of course, I'll continue to look into this problem too.
+>
+>
+I just realized I have a slightly different log - the difference is in the
+last few lines. Log is attached and the card is a regular 4gig SD, not SDHC.
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20070210/83b6a7e5/attachment.html>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: sdcard
+Type: application/octet-stream
+Size: 375849 bytes
+Desc: not available
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20070210/83b6a7e5/attachment.obj>
+
+From brad at wasp.net.au  Sun Feb 11 07:27:02 2007
+From: brad at wasp.net.au (Brad Campbell)
+Date: Sun, 11 Feb 2007 10:27:02 +0400
+Subject: [Tifm21-devel] Still having card recognition problems with
+	2.6.20-git4 + tifm_sd.c.diff
+Message-ID: <45CEB736.7080505@wasp.net.au>
+
+I did have this kernel and module combination working for reads, but after 2 or 3 write attempts 
+blowing up it just flatly refuses to acknowledge the card aside from the below logs. This was after 
+a fresh compile with -DDEBUG enabled and several cold-boot attempts.
+
+For reference I've attached the tifm_sd.c from the kernel as compiled/installed.
+
+Here is the debug log from insertion of a 2G SD card (this is not the card you suspect is SDHC
+
+[  121.950000] tifm_7xx1: sd card detected in socket 3
+[  121.990000] mmc0: clock 0Hz busmode 1 powermode 0 cs 0 Vdd 0 width 0
+[  121.990000] tifm_sd tifm_sd0:3: Setting bus width 0, power 0
+[  121.990000] mmc0: clock 0Hz busmode 1 powermode 1 cs 0 Vdd 21 width 0
+[  121.990000] tifm_sd tifm_sd0:3: Setting bus width 0, power 1
+[  121.990000] mmc0: clock 333333Hz busmode 1 powermode 2 cs 0 Vdd 21 width 0
+[  121.990000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[  121.990000] mmc0: clock 333333Hz busmode 1 powermode 2 cs 1 Vdd 21 width 0
+[  121.990000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[  121.990000] mmc0: starting CMD0 arg 00000000 flags 00000040
+[  121.990000] tifm_sd tifm_sd0:3: executing opcode 0x0, arg: 0x0, mask: 0x40
+[  121.990000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[  121.990000] mmc0: req done (CMD0): 0/0/0: 00000000 00000000 00000000 00000000
+[  121.990000] mmc0: clock 333333Hz busmode 1 powermode 2 cs 0 Vdd 21 width 0
+[  121.990000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[  121.990000] mmc0: starting CMD8 arg 000001aa flags 00000075
+[  121.990000] tifm_sd tifm_sd0:3: executing opcode 0x8, arg: 0x1aa, mask: 0x114 0
+[  121.990000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+[  121.990000] mmc0: req done (CMD8): 1/0/0: 00000000 00000000 00000000 00000000
+[  121.990000] mmc0: starting CMD55 arg 00000000 flags 00000015
+[  121.990000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[  121.990000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+[  121.990000] mmc0: req done (CMD55): 1/0/0: 00000000 00000000 00000000 0000000 0
+[  121.990000] mmc0: starting CMD55 arg 00000000 flags 00000015
+[  121.990000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[  121.990000] tifm_sd tifm_sd0:3: host_status 4000, fifo_status 0
+[  121.990000] mmc0: req done (CMD55): 4/0/0: 00000000 00000000 00000000 0000000 0
+[  121.990000] mmc0: starting CMD55 arg 00000000 flags 00000015
+[  121.990000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[  121.990000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[  121.990000] mmc0: req done (CMD55): 0/0/0: 00000120 00000000 00000000 0000000 0
+[  121.990000] mmc0: starting CMD41 arg 00000000 flags 00000061
+[  121.990000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x0, mask: 0x1340
+[  121.990000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[  121.990000] mmc0: req done (CMD41): 0/0/0: 00000120 00000000 00000000 0000000 0
+[  121.990000] mmc0: clock 0Hz busmode 1 powermode 0 cs 0 Vdd 0 width 0
+[  121.990000] tifm_sd tifm_sd0:3: Setting bus width 0, power 0
+
+Here is the log from an 128MB MMC card
+
+[  275.760000] tifm_7xx1: sd card detected in socket 3
+[  275.800000] mmc0: clock 0Hz busmode 1 powermode 0 cs 0 Vdd 0 width 0
+[  275.800000] tifm_sd tifm_sd0:3: Setting bus width 0, power 0
+[  275.800000] mmc0: clock 0Hz busmode 1 powermode 1 cs 0 Vdd 21 width 0
+[  275.800000] tifm_sd tifm_sd0:3: Setting bus width 0, power 1
+[  275.800000] mmc0: clock 333333Hz busmode 1 powermode 2 cs 0 Vdd 21 width 0
+[  275.800000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[  275.800000] mmc0: clock 333333Hz busmode 1 powermode 2 cs 1 Vdd 21 width 0
+[  275.800000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[  275.800000] mmc0: starting CMD0 arg 00000000 flags 00000040
+[  275.800000] tifm_sd tifm_sd0:3: executing opcode 0x0, arg: 0x0, mask: 0x40
+[  275.800000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[  275.800000] mmc0: req done (CMD0): 0/0/0: 00000000 00000000 00000000 00000000
+[  275.800000] mmc0: clock 333333Hz busmode 1 powermode 2 cs 0 Vdd 21 width 0
+[  275.800000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[  275.800000] mmc0: starting CMD8 arg 000001aa flags 00000075
+[  275.800000] tifm_sd tifm_sd0:3: executing opcode 0x8, arg: 0x1aa, mask: 0x114 0
+[  275.800000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+[  275.800000] mmc0: req done (CMD8): 1/0/0: 00000000 00000000 00000000 00000000
+[  275.810000] mmc0: starting CMD55 arg 00000000 flags 00000015
+[  275.810000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[  275.810000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+[  275.810000] mmc0: req done (CMD55): 1/0/0: 00000000 00000000 00000000 0000000 0
+[  275.810000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+[  275.810000] mmc0: starting CMD55 arg 00000000 flags 00000015
+[  275.810000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[  275.810000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+[  275.810000] mmc0: req done (CMD55): 1/0/0: 00000000 00000000 00000000 0000000 0
+[  275.810000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+[  275.810000] mmc0: starting CMD55 arg 00000000 flags 00000015
+[  275.810000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[  275.810000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+[  275.810000] mmc0: req done (CMD55): 1/0/0: 00000000 00000000 00000000 0000000 0
+[  275.810000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+[  275.810000] mmc0: starting CMD55 arg 00000000 flags 00000015
+[  275.810000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[  275.810000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+[  275.810000] mmc0: req done (CMD55): 1/0/0: 00000000 00000000 00000000 0000000 0
+[  275.810000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+[  275.810000] mmc0: starting CMD1 arg 00000000 flags 00000061
+[  275.810000] tifm_sd tifm_sd0:3: executing opcode 0x1, arg: 0x0, mask: 0x1340
+[  275.810000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+[  275.810000] mmc0: req done (CMD1): 1/0/0: 00000000 00000000 00000000 00000000
+[  275.810000] tifm_sd tifm_sd0:3: host_status 1001, fifo_status 0
+[  275.810000] mmc0: clock 0Hz busmode 1 powermode 0 cs 0 Vdd 0 width 0
+[  275.810000] tifm_sd tifm_sd0:3: Setting bus width 0, power 0
+
+This IS the 2G card you suspect is SDHC
+
+[  420.100000] tifm_7xx1: sd card detected in socket 3
+[  420.140000] mmc0: clock 0Hz busmode 1 powermode 0 cs 0 Vdd 0 width 0
+[  420.140000] tifm_sd tifm_sd0:3: Setting bus width 0, power 0
+[  420.140000] mmc0: clock 0Hz busmode 1 powermode 1 cs 0 Vdd 21 width 0
+[  420.140000] tifm_sd tifm_sd0:3: Setting bus width 0, power 1
+[  420.140000] mmc0: clock 333333Hz busmode 1 powermode 2 cs 0 Vdd 21 width 0
+[  420.140000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[  420.140000] mmc0: clock 333333Hz busmode 1 powermode 2 cs 1 Vdd 21 width 0
+[  420.140000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[  420.140000] mmc0: starting CMD0 arg 00000000 flags 00000040
+[  420.140000] tifm_sd tifm_sd0:3: executing opcode 0x0, arg: 0x0, mask: 0x40
+[  420.140000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[  420.140000] mmc0: req done (CMD0): 0/0/0: 00000000 00000000 00000000 00000000
+[  420.140000] mmc0: clock 333333Hz busmode 1 powermode 2 cs 0 Vdd 21 width 0
+[  420.140000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[  420.140000] mmc0: starting CMD8 arg 000001aa flags 00000075
+[  420.140000] tifm_sd tifm_sd0:3: executing opcode 0x8, arg: 0x1aa, mask: 0x1140
+[  420.140000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[  420.140000] mmc0: req done (CMD8): 0/0/0: 000001aa 00000000 00000000 00000000
+[  420.140000] mmc0: starting CMD55 arg 00000000 flags 00000015
+[  420.140000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[  420.140000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[  420.140000] mmc0: req done (CMD55): 0/0/0: 00000120 00000000 00000000 00000000
+[  420.140000] mmc0: starting CMD41 arg 00000000 flags 00000061
+[  420.140000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x0, mask: 0x1340
+[  420.140000] tifm_sd tifm_sd0:3: host_status 1001, fifo_status 0
+[  420.140000] mmc0: req done (CMD41): 0/0/0: 00ff8000 00000000 00000000 00000000
+[  420.140000] mmc0: clock 333333Hz busmode 1 powermode 2 cs 0 Vdd 20 width 0
+[  420.140000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[  420.140000] mmc0: clock 333333Hz busmode 1 powermode 2 cs 1 Vdd 20 width 0
+[  420.140000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[  420.140000] mmc0: starting CMD0 arg 00000000 flags 00000040
+[  420.140000] tifm_sd tifm_sd0:3: executing opcode 0x0, arg: 0x0, mask: 0x40
+[  420.140000] tifm_sd tifm_sd0:3: host_status 1001, fifo_status 0
+[  420.140000] mmc0: req done (CMD0): 0/0/0: 00ff8000 00000000 00000000 00000000
+[  420.150000] mmc0: clock 333333Hz busmode 1 powermode 2 cs 0 Vdd 20 width 0
+[  420.150000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[  420.150000] mmc0: starting CMD8 arg 000001aa flags 00000075
+[  420.150000] tifm_sd tifm_sd0:3: executing opcode 0x8, arg: 0x1aa, mask: 0x1140
+[  420.150000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[  420.150000] mmc0: req done (CMD8): 0/0/0: 000001aa 00000000 00000000 00000000
+[  420.150000] mmc0: starting CMD55 arg 00000000 flags 00000015
+[  420.150000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[  420.150000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[  420.150000] mmc0: req done (CMD55): 0/0/0: 00000120 00000000 00000000 00000000
+[  420.150000] mmc0: starting CMD41 arg 40300000 flags 00000061
+[  420.150000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x40300000, mask: 0x1340
+[  420.150000] tifm_sd tifm_sd0:3: host_status 1001, fifo_status 0
+[  420.150000] mmc0: req done (CMD41): 0/0/0: 00ff8000 00000000 00000000 00000000
+[  420.170000] mmc0: starting CMD55 arg 00000000 flags 00000015
+[  420.170000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[  420.170000] tifm_sd tifm_sd0:3: host_status 1001, fifo_status 0
+[  420.170000] mmc0: req done (CMD55): 0/0/0: 00000120 00000000 00000000 00000000
+[  420.170000] mmc0: starting CMD41 arg 40300000 flags 00000061
+[  420.170000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x40300000, mask: 0x1340
+[  420.170000] tifm_sd tifm_sd0:3: host_status 1001, fifo_status 0
+[  420.170000] mmc0: req done (CMD41): 0/0/0: 00ff8000 00000000 00000000 00000000
+[  420.190000] mmc0: starting CMD55 arg 00000000 flags 00000015
+[  420.190000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[  420.190000] tifm_sd tifm_sd0:3: host_status 1001, fifo_status 0
+[  420.190000] mmc0: req done (CMD55): 0/0/0: 00000120 00000000 00000000 00000000
+[  420.190000] mmc0: starting CMD41 arg 40300000 flags 00000061
+[  420.190000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x40300000, mask: 0x1340
+[  420.190000] tifm_sd tifm_sd0:3: host_status 1001, fifo_status 0
+[  420.190000] mmc0: req done (CMD41): 0/0/0: 00ff8000 00000000 00000000 00000000
+[  420.210000] mmc0: starting CMD55 arg 00000000 flags 00000015
+[  420.210000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[  420.210000] tifm_sd tifm_sd0:3: host_status 1001, fifo_status 0
+[  420.210000] mmc0: req done (CMD55): 0/0/0: 00000120 00000000 00000000 00000000
+[  420.210000] mmc0: starting CMD41 arg 40300000 flags 00000061
+[  420.210000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x40300000, mask: 0x1340
+[  420.210000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[  420.210000] mmc0: req done (CMD41): 0/0/0: 80ff8000 00000000 00000000 00000000
+[  420.210000] mmc0: starting CMD2 arg 00000000 flags 00000067
+[  420.210000] tifm_sd tifm_sd0:3: executing opcode 0x2, arg: 0x0, mask: 0x1240
+[  420.210000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[  420.210000] mmc0: req done (CMD2): 0/0/0: 03534453 44303247 8050ae3e c7006a6f
+[  420.210000] mmc0: starting CMD3 arg 00000000 flags 00000075
+[  420.210000] tifm_sd tifm_sd0:3: executing opcode 0x3, arg: 0x0, mask: 0x1640
+[  420.210000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[  420.210000] mmc0: req done (CMD3): 0/0/0: e6240520 00000000 00000000 00000000
+[  420.210000] mmc0: starting CMD2 arg 00000000 flags 00000067
+[  420.210000] tifm_sd tifm_sd0:3: executing opcode 0x2, arg: 0x0, mask: 0x1240
+[  420.210000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+[  420.210000] mmc0: req done (CMD2): 1/0/0: 00000000 00000000 00000000 00000000
+[  420.210000] tifm_sd tifm_sd0:3: executing opcode 0x2, arg: 0x0, mask: 0x1240
+[  420.210000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+[  420.210000] mmc0: req done (CMD2): 1/0/0: 00000000 00000000 00000000 00000000
+[  420.210000] tifm_sd tifm_sd0:3: executing opcode 0x2, arg: 0x0, mask: 0x1240
+[  420.210000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+[  420.210000] mmc0: req done (CMD2): 1/0/0: 00000000 00000000 00000000 00000000
+[  420.210000] tifm_sd tifm_sd0:3: executing opcode 0x2, arg: 0x0, mask: 0x1240
+[  420.210000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+[  420.210000] mmc0: req done (CMD2): 1/0/0: 00000000 00000000 00000000 00000000
+[  420.210000] mmc0: clock 333333Hz busmode 2 powermode 2 cs 0 Vdd 20 width 0
+[  420.210000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[  420.210000] mmc0: starting CMD9 arg e6240000 flags 00000007
+[  420.210000] tifm_sd tifm_sd0:3: executing opcode 0x9, arg: 0xe6240000, mask: 0x2200
+[  420.210000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+[  420.210000] mmc0: req done (CMD9): 1/0/0: 00000000 00000000 00000000 00000000
+[  420.210000] tifm_sd tifm_sd0:3: executing opcode 0x9, arg: 0xe6240000, mask: 0x2200
+[  420.210000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+[  420.210000] mmc0: req done (CMD9): 1/0/0: 00000000 00000000 00000000 00000000
+[  420.210000] tifm_sd tifm_sd0:3: executing opcode 0x9, arg: 0xe6240000, mask: 0x2200
+[  420.210000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[  420.210000] mmc0: req done (CMD9): 0/0/0: 00260032 5f5a83c9 3efbcfff 928040cb
+[  420.210000] mmc0: starting CMD7 arg e6240000 flags 00000015
+[  420.210000] tifm_sd tifm_sd0:3: executing opcode 0x7, arg: 0xe6240000, mask: 0x2100
+[  420.210000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[  420.210000] mmc0: req done (CMD7): 0/0/0: 00260032 5f5a83c9 3efbcfff 928040cb
+[  420.210000] mmc0: clock 333333Hz busmode 2 powermode 2 cs 0 Vdd 20 width 0
+[  420.210000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[  420.210000] mmc0: starting CMD55 arg e6240000 flags 00000015
+[  420.210000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0xe6240000, mask: 0x2100
+[  420.210000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[  420.210000] mmc0: req done (CMD55): 0/0/0: 00000700 00000000 00000000 00000000
+[  420.210000] mmc0: starting CMD7 arg 00000000 flags 00000000
+[  420.210000] tifm_sd tifm_sd0:3: executing opcode 0x7, arg: 0x0, mask: 0x2000
+[  420.210000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[  420.210000] mmc0: req done (CMD7): 0/0/0: 00000920 00000000 00000000 00000000
+[  420.210000] mmc0: selected 24.000MHz transfer rate
+[  420.210000] mmc0: clock 24000000Hz busmode 2 powermode 2 cs 0 Vdd 20 width 0
+[  420.210000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[  420.210000] mmc0: clock 0Hz busmode 1 powermode 0 cs 0 Vdd 0 width 0
+[  420.210000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[  420.210000] tifm_sd tifm_sd0:3: Setting bus width 0, power 0
+
+Hope this helps
+Brad
+-- 
+"Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so." -- Douglas Adams
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: tifm_sd.c
+Type: text/x-csrc
+Size: 26813 bytes
+Desc: not available
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20070211/113bd4fc/attachment.c>
+
+From brad at wasp.net.au  Mon Feb 12 12:11:28 2007
+From: brad at wasp.net.au (Brad Campbell)
+Date: Mon, 12 Feb 2007 15:11:28 +0400
+Subject: [Tifm21-devel] Issues with kernel 2.6.19
+In-Reply-To: <e67787dd0702100754t70fbc235k5fa30f9933e39d90@mail.gmail.com>
+References: <45CDD9E1.4060201@wasp.net.au>	<651621.30038.qm@web36706.mail.mud.yahoo.com>
+	<e67787dd0702100754t70fbc235k5fa30f9933e39d90@mail.gmail.com>
+Message-ID: <45D04B60.5040404@wasp.net.au>
+
+coomac wrote:
+>     Your's is one of those new SDHC cards (I don't have any of this
+>     breed). The log shows no problems
+>     with my driver (all commands complete successfully). Therefore, you
+>     may want to post this question
+>     to linux-kernel list.
+>     Of course, I'll continue to look into this problem too.
+> 
+> 
+> I just realized I have a slightly different log - the difference is in 
+> the last few lines. Log is attached and the card is a regular 4gig SD, 
+> not SDHC.
+
+Now that is interesting as it is my understanding that cards up to and including 2G are usually 
+plain SD, but SD does not support > 2G so anything bigger is SDHC. I've not been able to find any 
+links stating otherwise.
+
+Brad
+-- 
+"Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so." -- Douglas Adams
+
+
+From oakad at yahoo.com  Mon Feb 12 12:42:05 2007
+From: oakad at yahoo.com (Alex Dubov)
+Date: Mon, 12 Feb 2007 03:42:05 -0800 (PST)
+Subject: [Tifm21-devel] Still having card recognition problems with
+	2.6.20-git4 + tifm_sd.c.diff
+In-Reply-To: <45CEB736.7080505@wasp.net.au>
+Message-ID: <349901.16831.qm@web36705.mail.mud.yahoo.com>
+
+
+--- Brad Campbell <brad at wasp.net.au> wrote:
+
+> I did have this kernel and module combination working for reads, but after 2 or 3 write attempts
+> 
+> blowing up it just flatly refuses to acknowledge the card aside from the below logs. This was
+> after 
+> a fresh compile with -DDEBUG enabled and several cold-boot attempts.
+> 
+> For reference I've attached the tifm_sd.c from the kernel as compiled/installed.
+> 
+> Here is the debug log from insertion of a 2G SD card (this is not the card you suspect is SDHC
+
+To my understanding, anything that responds to CMD8 is SDHC (even if it's smaller than 4GB). This
+makes even more sense considering that many lower capacity chips are really laser trimmed higher 
+capacity ones (you can see for yourself - host_status 1 means command succeeded, and 80 means
+timed-out). Of course, one doesn't have to use SDHC-specific commands to access data below 4GB.
+
+Now, non SDHC card should benefit from the latest patch to tifm_sd
+(http://www.kernel.org/git/?p=linux/kernel/git/drzeus/mmc.git;a=commitdiff;h=12c834527b85571792f1c4f1d12632185bea44c2)
+ - I see it gets one (host_status == 4000).
+I'm not sure yet what's happening with the other two.
+
+
+
+ 
+____________________________________________________________________________________
+Expecting? Get great news right away with email Auto-Check. 
+Try the Yahoo! Mail Beta.
+http://advision.webevents.yahoo.com/mailbeta/newmail_tools.html 
+
+
+From coomac at gmail.com  Mon Feb 12 16:02:29 2007
+From: coomac at gmail.com (coomac)
+Date: Mon, 12 Feb 2007 10:02:29 -0500
+Subject: [Tifm21-devel] Issues with kernel 2.6.19
+In-Reply-To: <45D04B60.5040404@wasp.net.au>
+References: <45CDD9E1.4060201@wasp.net.au>
+	<651621.30038.qm@web36706.mail.mud.yahoo.com>
+	<e67787dd0702100754t70fbc235k5fa30f9933e39d90@mail.gmail.com>
+	<45D04B60.5040404@wasp.net.au>
+Message-ID: <e67787dd0702120702oa65feecif0ac68638a86d0d4@mail.gmail.com>
+
+On 2/12/07, Brad Campbell <brad at wasp.net.au> wrote:
+
+> Now that is interesting as it is my understanding that cards up to and
+> including 2G are usually
+> plain SD, but SD does not support > 2G so anything bigger is SDHC. I've
+> not been able to find any
+> links stating otherwise.
+
+
+4 GB cards that do not comply with the SDHC standards have been available
+since around August of last year. I believe they conform to SD card spec
+v1.1, but not v2.0 like SDHC. You can tell the difference because they say
+SD instead of SDHC and they work in many devices that lack the ability to
+read SDHC. They are also extremely cheap. A bunch of them can be found on
+ebay... a search for 4gb sd cards will show a lot of SD, mostly generic
+brands, and very few SDHC. Here's one from newegg:
+http://www.newegg.com/Product/Product.asp?Item=N82E16820183033
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20070212/ebc4cc5b/attachment.html>
+
+From brad at wasp.net.au  Mon Feb 12 17:25:11 2007
+From: brad at wasp.net.au (Brad Campbell)
+Date: Mon, 12 Feb 2007 20:25:11 +0400
+Subject: [Tifm21-devel] Still having card recognition problems with
+	2.6.20-git4 + tifm_sd.c.diff
+In-Reply-To: <349901.16831.qm@web36705.mail.mud.yahoo.com>
+References: <349901.16831.qm@web36705.mail.mud.yahoo.com>
+Message-ID: <45D094E7.4070509@wasp.net.au>
+
+Alex Dubov wrote:
+> --- Brad Campbell <brad at wasp.net.au> wrote:
+> 
+>> I did have this kernel and module combination working for reads, but after 2 or 3 write attempts
+>>
+>> blowing up it just flatly refuses to acknowledge the card aside from the below logs. This was
+>> after 
+>> a fresh compile with -DDEBUG enabled and several cold-boot attempts.
+>>
+>> For reference I've attached the tifm_sd.c from the kernel as compiled/installed.
+>>
+>> Here is the debug log from insertion of a 2G SD card (this is not the card you suspect is SDHC
+> 
+> To my understanding, anything that responds to CMD8 is SDHC (even if it's smaller than 4GB). This
+> makes even more sense considering that many lower capacity chips are really laser trimmed higher 
+> capacity ones (you can see for yourself - host_status 1 means command succeeded, and 80 means
+> timed-out). Of course, one doesn't have to use SDHC-specific commands to access data below 4GB.
+> 
+> Now, non SDHC card should benefit from the latest patch to tifm_sd
+> (http://www.kernel.org/git/?p=linux/kernel/git/drzeus/mmc.git;a=commitdiff;h=12c834527b85571792f1c4f1d12632185bea44c2)
+>  - I see it gets one (host_status == 4000).
+> I'm not sure yet what's happening with the other two.
+
+'fraid not.. I've tried both 2GB cards and the 128MB MMC and can't get any of them to create a 
+/dev/entry.. pretty much same logs as before. As a point, one of the 2GB cards *used* to work fine 
+with the 2.6.19 driver which was pre any SDHC stuff in the kernel.
+
+
+Feb 12 19:52:39 localhost kernel: [  237.850000] tifm_7xx1: sd card detected in socket 3
+Feb 12 19:52:39 localhost kernel: [  237.890000] mmc0: clock 0Hz busmode 1 powermode 0 cs 0 Vdd 0 
+width 0
+Feb 12 19:52:39 localhost kernel: [  237.890000] tifm_sd tifm_sd0:3: Setting bus width 0, power 0
+Feb 12 19:52:39 localhost kernel: [  237.890000] mmc0: clock 0Hz busmode 1 powermode 1 cs 0 Vdd 21 
+width 0
+Feb 12 19:52:39 localhost kernel: [  237.890000] tifm_sd tifm_sd0:3: Setting bus width 0, power 1
+Feb 12 19:52:39 localhost kernel: [  237.890000] mmc0: clock 333333Hz busmode 1 powermode 2 cs 0 Vdd 
+21 width 0
+Feb 12 19:52:39 localhost kernel: [  237.890000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+Feb 12 19:52:39 localhost kernel: [  237.890000] mmc0: clock 333333Hz busmode 1 powermode 2 cs 1 Vdd 
+21 width 0
+Feb 12 19:52:39 localhost kernel: [  237.890000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+Feb 12 19:52:39 localhost kernel: [  237.890000] mmc0: starting CMD0 arg 00000000 flags 00000040
+Feb 12 19:52:39 localhost kernel: [  237.890000] tifm_sd tifm_sd0:3: executing opcode 0x0, arg: 0x0, 
+mask: 0x40
+Feb 12 19:52:39 localhost kernel: [  237.890000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+Feb 12 19:52:39 localhost kernel: [  237.890000] mmc0: req done (CMD0): 0/0/0: 00000000 00000000 
+00000000 00000000
+Feb 12 19:52:39 localhost kernel: [  237.890000] mmc0: clock 333333Hz busmode 1 powermode 2 cs 0 Vdd 
+21 width 0
+Feb 12 19:52:39 localhost kernel: [  237.890000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+Feb 12 19:52:39 localhost kernel: [  237.890000] mmc0: starting CMD8 arg 000001aa flags 00000075
+Feb 12 19:52:39 localhost kernel: [  237.890000] tifm_sd tifm_sd0:3: executing opcode 0x8, arg: 
+0x1aa, mask: 0x1140
+Feb 12 19:52:39 localhost kernel: [  237.890000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+Feb 12 19:52:39 localhost kernel: [  237.890000] mmc0: req done (CMD8): 1/0/0: 00000000 00000000 
+00000000 00000000
+Feb 12 19:52:39 localhost kernel: [  237.890000] mmc0: starting CMD55 arg 00000000 flags 00000015
+Feb 12 19:52:39 localhost kernel: [  237.890000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 
+0x0, mask: 0x2140
+Feb 12 19:52:39 localhost kernel: [  237.890000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+Feb 12 19:52:39 localhost kernel: [  237.890000] mmc0: req done (CMD55): 1/0/0: 00000000 00000000 
+00000000 00000000
+Feb 12 19:52:39 localhost kernel: [  237.890000] mmc0: starting CMD55 arg 00000000 flags 00000015
+Feb 12 19:52:39 localhost kernel: [  237.890000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 
+0x0, mask: 0x2140
+Feb 12 19:52:39 localhost kernel: [  237.890000] tifm_sd tifm_sd0:3: host_status 4000, fifo_status 0
+Feb 12 19:52:39 localhost kernel: [  237.890000] mmc0: req done (CMD55): 0/0/0: 00400120 00000000 
+00000000 00000000
+Feb 12 19:52:39 localhost kernel: [  237.890000] mmc0: starting CMD41 arg 00000000 flags 00000061
+Feb 12 19:52:39 localhost kernel: [  237.890000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 
+0x0, mask: 0x1340
+Feb 12 19:52:39 localhost kernel: [  237.890000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+Feb 12 19:52:39 localhost kernel: [  237.890000] mmc0: req done (CMD41): 0/0/0: 00000120 00000000 
+00000000 00000000
+Feb 12 19:52:39 localhost kernel: [  237.890000] mmc0: clock 0Hz busmode 1 powermode 0 cs 0 Vdd 0 
+width 0
+Feb 12 19:52:39 localhost kernel: [  237.890000] tifm_sd tifm_sd0:3: Setting bus width 0, power 0
+
+
+
+Feb 12 19:54:40 localhost kernel: [  358.020000] tifm_7xx1: sd card detected in socket 3
+Feb 12 19:54:40 localhost kernel: [  358.060000] mmc0: clock 0Hz busmode 1 powermode 0 cs 0 Vdd 0 
+width 0
+Feb 12 19:54:40 localhost kernel: [  358.060000] tifm_sd tifm_sd0:3: Setting bus width 0, power 0
+Feb 12 19:54:40 localhost kernel: [  358.060000] mmc0: clock 0Hz busmode 1 powermode 1 cs 0 Vdd 21 
+width 0
+Feb 12 19:54:40 localhost kernel: [  358.060000] tifm_sd tifm_sd0:3: Setting bus width 0, power 1
+Feb 12 19:54:40 localhost kernel: [  358.060000] mmc0: clock 333333Hz busmode 1 powermode 2 cs 0 Vdd 
+21 width 0
+Feb 12 19:54:40 localhost kernel: [  358.060000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+Feb 12 19:54:40 localhost kernel: [  358.060000] mmc0: clock 333333Hz busmode 1 powermode 2 cs 1 Vdd 
+21 width 0
+Feb 12 19:54:40 localhost kernel: [  358.060000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+Feb 12 19:54:40 localhost kernel: [  358.060000] mmc0: starting CMD0 arg 00000000 flags 00000040
+Feb 12 19:54:40 localhost kernel: [  358.060000] tifm_sd tifm_sd0:3: executing opcode 0x0, arg: 0x0, 
+mask: 0x40
+Feb 12 19:54:40 localhost kernel: [  358.060000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+Feb 12 19:54:40 localhost kernel: [  358.060000] mmc0: req done (CMD0): 0/0/0: 00000000 00000000 
+00000000 00000000
+Feb 12 19:54:40 localhost kernel: [  358.060000] mmc0: clock 333333Hz busmode 1 powermode 2 cs 0 Vdd 
+21 width 0
+Feb 12 19:54:40 localhost kernel: [  358.060000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+Feb 12 19:54:40 localhost kernel: [  358.060000] mmc0: starting CMD8 arg 000001aa flags 00000075
+Feb 12 19:54:40 localhost kernel: [  358.060000] tifm_sd tifm_sd0:3: executing opcode 0x8, arg: 
+0x1aa, mask: 0x1140
+Feb 12 19:54:40 localhost kernel: [  358.060000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+Feb 12 19:54:40 localhost kernel: [  358.060000] mmc0: req done (CMD8): 1/0/0: 00000000 00000000 
+00000000 00000000
+Feb 12 19:54:40 localhost kernel: [  358.060000] mmc0: starting CMD55 arg 00000000 flags 00000015
+Feb 12 19:54:40 localhost kernel: [  358.060000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 
+0x0, mask: 0x2140
+Feb 12 19:54:40 localhost kernel: [  358.060000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+Feb 12 19:54:40 localhost kernel: [  358.060000] mmc0: req done (CMD55): 1/0/0: 00000000 00000000 
+00000000 00000000
+Feb 12 19:54:40 localhost kernel: [  358.060000] mmc0: starting CMD55 arg 00000000 flags 00000015
+Feb 12 19:54:40 localhost kernel: [  358.060000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 
+0x0, mask: 0x2140
+Feb 12 19:54:40 localhost kernel: [  358.060000] tifm_sd tifm_sd0:3: host_status 4000, fifo_status 0
+Feb 12 19:54:40 localhost kernel: [  358.060000] mmc0: req done (CMD55): 0/0/0: 00400120 00000000 
+00000000 00000000
+Feb 12 19:54:40 localhost kernel: [  358.060000] mmc0: starting CMD41 arg 00000000 flags 00000061
+Feb 12 19:54:40 localhost kernel: [  358.060000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 
+0x0, mask: 0x1340
+Feb 12 19:54:40 localhost kernel: [  358.060000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+Feb 12 19:54:40 localhost kernel: [  358.060000] mmc0: req done (CMD41): 0/0/0: 00000120 00000000 
+00000000 00000000
+Feb 12 19:54:40 localhost kernel: [  358.060000] mmc0: clock 0Hz busmode 1 powermode 0 cs 0 Vdd 0 
+width 0
+Feb 12 19:54:40 localhost kernel: [  358.060000] tifm_sd tifm_sd0:3: Setting bus width 0, power 0
+
+
+This is a kernel I compiled with the legacy sysfs stuff turned off, but I can't even get it to 
+recognise a card and create the sysfs entries to get a dump..
+
+I really hope I'm not doing something stupid but I'm starting to get a bit disheartened.
+
+-- 
+"Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so." -- Douglas Adams
+
+
+From brad at wasp.net.au  Mon Feb 12 22:00:19 2007
+From: brad at wasp.net.au (Brad Campbell)
+Date: Tue, 13 Feb 2007 01:00:19 +0400
+Subject: [Tifm21-devel] finally got a log
+Message-ID: <45D0D563.10304@wasp.net.au>
+
+G'day Alex,
+
+This is perhaps an interesting log..
+
+Clean(ish) boot. No suspend/resume.
+
+Insert card and is detected (my shiny new hal detects it, mounts it and pops up a window for it)
+
+I rsync some data to the card and it dies.
+
+Pull the card, manually unmount
+
+try re-inserting the card. No go.
+
+unload/reload modules and try several more insertions, no go..
+
+So this is a continuous log. 1st one is a success, I can read the card. When I write to it, it dies 
+horribly. This may be related to the SDHC thing, but after this happens once I can no longer get a 
+card to detect properly. Even suspend/resume or cold boot I have trouble getting a card detected, 
+it's almost like the hardware is being left in an odd state. If I leave it powered off for 20 mins 
+or so it usually works.
+
+log is 27k b2zipped and 2M uncompressed. I've snipped most of the irrelevant stuff.
+Hope this helps. It's 2.6.20-git4 + the patch you sent me + the patch from the mmc git tree you 
+pointed me at.
+
+Brad
+-- 
+"Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so." -- Douglas Adams
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: mmclog.bz2
+Type: application/x-bzip
+Size: 26843 bytes
+Desc: not available
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20070213/97d55481/attachment.bin>
+
+From oakad at yahoo.com  Tue Feb 13 02:04:38 2007
+From: oakad at yahoo.com (Alex Dubov)
+Date: Mon, 12 Feb 2007 17:04:38 -0800 (PST)
+Subject: [Tifm21-devel] finally got a log
+In-Reply-To: <45D0D563.10304@wasp.net.au>
+Message-ID: <722679.52080.qm@web36706.mail.mud.yahoo.com>
+
+Lets put the thing in order:
+1. We don't have any problems with hal anymore, correct?
+2. I've found a data corruption under certain write scenarious. This may explain some symptoms.
+3. Bad hardware state - it is not very probable at this point. If controller talks to cards at all
+(it appears so in your earlier log) then hardware is ok.
+
+By the way, you may want to re-format your cards on a known good configuration (the fat is
+probably corrupted in some bizarre way).
+
+And, of course, the whole thing is quite frustrating for me too. There's no documentation
+whatsoever for these controllers - the only reference I have is a disassembly of the windows
+driver.
+
+
+
+ 
+____________________________________________________________________________________
+Bored stiff? Loosen up... 
+Download and play hundreds of games for free on Yahoo! Games.
+http://games.yahoo.com/games/front
+
+
+From brad at wasp.net.au  Tue Feb 13 09:45:09 2007
+From: brad at wasp.net.au (Brad Campbell)
+Date: Tue, 13 Feb 2007 12:45:09 +0400
+Subject: [Tifm21-devel] finally got a log
+In-Reply-To: <722679.52080.qm@web36706.mail.mud.yahoo.com>
+References: <722679.52080.qm@web36706.mail.mud.yahoo.com>
+Message-ID: <45D17A95.6000606@wasp.net.au>
+
+Alex Dubov wrote:
+> Lets put the thing in order:
+> 1. We don't have any problems with hal anymore, correct?
+
+I'm not sure.. I can't get the cards to detect reliably (read as it worked briefly once after my 
+last hal upgrade but I had the /dev/mmc(x) in /etc/fstab so I don't know if it's that which caused 
+gnome to pop up the window). In any case, I'll leave the hal debugging until I can at least plug a 
+card in and have it reliably detect.
+
+> 2. I've found a data corruption under certain write scenarious. This may explain some symptoms.
+
+Excellent.
+
+> 3. Bad hardware state - it is not very probable at this point. If controller talks to cards at all
+> (it appears so in your earlier log) then hardware is ok.
+
+It's completely bizzare. Very occasionally when I insert a card, it will properly detect and create 
+the device nodes, but mostly it just does what all the logs indicate. This is my greatest 
+frustration right now as I can't even read/write test the cards.
+
+
+> By the way, you may want to re-format your cards on a known good configuration (the fat is
+> probably corrupted in some bizarre way).
+
+Ok.. I need to find some way to get the data off these cards, reformat them and get the data back on 
+again then. Might have to go and buy a usb card reader. :(
+
+> 
+> And, of course, the whole thing is quite frustrating for me too. There's no documentation
+> whatsoever for these controllers - the only reference I have is a disassembly of the windows
+> driver.
+
+Yep, I can understand that. Worse still, I guess you never see what I see so making it impossible to 
+really test locally, combined with our obviously disparate timezones. Do you use irc at all?
+
+Brad
+-- 
+"Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so." -- Douglas Adams
+
+
+From brad at wasp.net.au  Tue Feb 13 10:17:07 2007
+From: brad at wasp.net.au (Brad Campbell)
+Date: Tue, 13 Feb 2007 13:17:07 +0400
+Subject: [Tifm21-devel] New logs with freshly formatted cards
+Message-ID: <45D18213.2080806@wasp.net.au>
+
+128MB MMC
+
+[43488.390000] tifm_7xx1: sd card detected in socket 3
+[43488.430000] mmc0: clock 0Hz busmode 1 powermode 0 cs 0 Vdd 0 width 0
+[43488.430000] tifm_sd tifm_sd0:3: Setting bus width 0, power 0
+[43488.430000] mmc0: clock 0Hz busmode 1 powermode 1 cs 0 Vdd 21 width 0
+[43488.430000] tifm_sd tifm_sd0:3: Setting bus width 0, power 1
+[43488.430000] mmc0: clock 333333Hz busmode 1 powermode 2 cs 0 Vdd 21 width 0
+[43488.430000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[43488.430000] mmc0: clock 333333Hz busmode 1 powermode 2 cs 1 Vdd 21 width 0
+[43488.430000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[43488.430000] mmc0: starting CMD0 arg 00000000 flags 00000040
+[43488.430000] tifm_sd tifm_sd0:3: executing opcode 0x0, arg: 0x0, mask: 0x40
+[43488.430000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[43488.430000] mmc0: req done (CMD0): 0/0/0: 00000000 00000000 00000000 00000000
+[43488.430000] mmc0: clock 333333Hz busmode 1 powermode 2 cs 0 Vdd 21 width 0
+[43488.430000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[43488.430000] mmc0: starting CMD8 arg 000001aa flags 00000075
+[43488.430000] tifm_sd tifm_sd0:3: executing opcode 0x8, arg: 0x1aa, mask: 0x114 0
+[43488.430000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+[43488.430000] mmc0: req done (CMD8): 1/0/0: 00000000 00000000 00000000 00000000
+[43488.430000] mmc0: starting CMD55 arg 00000000 flags 00000015
+[43488.430000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[43488.430000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+[43488.430000] mmc0: req done (CMD55): 1/0/0: 00000000 00000000 00000000 0000000 0
+[43488.430000] mmc0: starting CMD55 arg 00000000 flags 00000015
+[43488.430000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[43488.430000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+[43488.430000] mmc0: req done (CMD55): 1/0/0: 00000000 00000000 00000000 0000000 0
+[43488.430000] mmc0: starting CMD55 arg 00000000 flags 00000015
+[43488.430000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[43488.430000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+[43488.430000] mmc0: req done (CMD55): 1/0/0: 00000000 00000000 00000000 0000000 0
+[43488.430000] mmc0: starting CMD55 arg 00000000 flags 00000015
+[43488.430000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[43488.430000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+[43488.430000] mmc0: req done (CMD55): 1/0/0: 00000000 00000000 00000000 0000000 0
+[43488.430000] mmc0: starting CMD1 arg 00000000 flags 00000061
+[43488.430000] tifm_sd tifm_sd0:3: executing opcode 0x1, arg: 0x0, mask: 0x1340
+[43488.430000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+[43488.430000] mmc0: req done (CMD1): 1/0/0: 00000000 00000000 00000000 00000000
+[43488.430000] mmc0: clock 0Hz busmode 1 powermode 0 cs 0 Vdd 0 width 0
+[43488.430000] tifm_sd tifm_sd0:3: Setting bus width 0, power 0
+
+
+2GB SD (the old one that used to work)
+[43558.100000] tifm_7xx1: sd card detected in socket 3
+[43558.140000] mmc0: clock 0Hz busmode 1 powermode 0 cs 0 Vdd 0 width 0
+[43558.140000] tifm_sd tifm_sd0:3: Setting bus width 0, power 0
+[43558.140000] mmc0: clock 0Hz busmode 1 powermode 1 cs 0 Vdd 21 width 0
+[43558.140000] tifm_sd tifm_sd0:3: Setting bus width 0, power 1
+[43558.140000] mmc0: clock 333333Hz busmode 1 powermode 2 cs 0 Vdd 21 width 0
+[43558.140000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[43558.140000] mmc0: clock 333333Hz busmode 1 powermode 2 cs 1 Vdd 21 width 0
+[43558.140000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[43558.140000] mmc0: starting CMD0 arg 00000000 flags 00000040
+[43558.140000] tifm_sd tifm_sd0:3: executing opcode 0x0, arg: 0x0, mask: 0x40
+[43558.140000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[43558.140000] mmc0: req done (CMD0): 0/0/0: 00000000 00000000 00000000 00000000
+[43558.140000] mmc0: clock 333333Hz busmode 1 powermode 2 cs 0 Vdd 21 width 0
+[43558.140000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[43558.140000] mmc0: starting CMD8 arg 000001aa flags 00000075
+[43558.140000] tifm_sd tifm_sd0:3: executing opcode 0x8, arg: 0x1aa, mask: 0x1140
+[43558.140000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+[43558.140000] mmc0: req done (CMD8): 1/0/0: 00000000 00000000 00000000 00000000
+[43558.140000] mmc0: starting CMD55 arg 00000000 flags 00000015
+[43558.140000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[43558.140000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+[43558.140000] mmc0: req done (CMD55): 1/0/0: 00000000 00000000 00000000 00000000
+[43558.140000] mmc0: starting CMD55 arg 00000000 flags 00000015
+[43558.140000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[43558.140000] tifm_sd tifm_sd0:3: host_status 4000, fifo_status 0
+[43558.140000] mmc0: req done (CMD55): 0/0/0: 00400120 00000000 00000000 00000000
+[43558.140000] mmc0: starting CMD41 arg 00000000 flags 00000061
+[43558.140000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x0, mask: 0x1340
+[43558.140000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[43558.140000] mmc0: req done (CMD41): 0/0/0: 00000120 00000000 00000000 00000000
+[43558.140000] mmc0: clock 0Hz busmode 1 powermode 0 cs 0 Vdd 0 width 0
+[43558.140000] tifm_sd tifm_sd0:3: Setting bus width 0, power 0
+
+NEW 2G SD
+
+[43605.070000] tifm_7xx1: sd card detected in socket 3
+[43605.110000] mmc0: clock 0Hz busmode 1 powermode 0 cs 0 Vdd 0 width 0
+[43605.110000] tifm_sd tifm_sd0:3: Setting bus width 0, power 0
+[43605.110000] mmc0: clock 0Hz busmode 1 powermode 1 cs 0 Vdd 21 width 0
+[43605.110000] tifm_sd tifm_sd0:3: Setting bus width 0, power 1
+[43605.110000] mmc0: clock 333333Hz busmode 1 powermode 2 cs 0 Vdd 21 width 0
+[43605.110000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[43605.110000] mmc0: clock 333333Hz busmode 1 powermode 2 cs 1 Vdd 21 width 0
+[43605.110000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[43605.110000] mmc0: starting CMD0 arg 00000000 flags 00000040
+[43605.110000] tifm_sd tifm_sd0:3: executing opcode 0x0, arg: 0x0, mask: 0x40
+[43605.110000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[43605.110000] mmc0: req done (CMD0): 0/0/0: 00000000 00000000 00000000 00000000
+[43605.110000] mmc0: clock 333333Hz busmode 1 powermode 2 cs 0 Vdd 21 width 0
+[43605.110000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[43605.110000] mmc0: starting CMD8 arg 000001aa flags 00000075
+[43605.110000] tifm_sd tifm_sd0:3: executing opcode 0x8, arg: 0x1aa, mask: 0x1140
+[43605.110000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[43605.110000] mmc0: req done (CMD8): 0/0/0: 000001aa 00000000 00000000 00000000
+[43605.110000] mmc0: starting CMD55 arg 00000000 flags 00000015
+[43605.110000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[43605.110000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[43605.110000] mmc0: req done (CMD55): 0/0/0: 00000120 00000000 00000000 00000000
+[43605.110000] mmc0: starting CMD41 arg 00000000 flags 00000061
+[43605.110000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x0, mask: 0x1340
+[43605.110000] tifm_sd tifm_sd0:3: host_status 1001, fifo_status 0
+[43605.110000] mmc0: req done (CMD41): 0/0/0: 00ff8000 00000000 00000000 00000000
+[43605.110000] mmc0: clock 333333Hz busmode 1 powermode 2 cs 0 Vdd 20 width 0
+[43605.110000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[43605.110000] mmc0: clock 333333Hz busmode 1 powermode 2 cs 1 Vdd 20 width 0
+[43605.110000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[43605.110000] mmc0: starting CMD0 arg 00000000 flags 00000040
+[43605.110000] tifm_sd tifm_sd0:3: executing opcode 0x0, arg: 0x0, mask: 0x40
+[43605.110000] tifm_sd tifm_sd0:3: host_status 1001, fifo_status 0
+[43605.110000] mmc0: req done (CMD0): 0/0/0: 00ff8000 00000000 00000000 00000000
+[43605.110000] mmc0: clock 333333Hz busmode 1 powermode 2 cs 0 Vdd 20 width 0
+[43605.110000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[43605.120000] mmc0: starting CMD8 arg 000001aa flags 00000075
+[43605.120000] tifm_sd tifm_sd0:3: executing opcode 0x8, arg: 0x1aa, mask: 0x1140
+[43605.120000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[43605.120000] mmc0: req done (CMD8): 0/0/0: 000001aa 00000000 00000000 00000000
+[43605.120000] mmc0: starting CMD55 arg 00000000 flags 00000015
+[43605.120000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[43605.120000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[43605.120000] mmc0: req done (CMD55): 0/0/0: 00000120 00000000 00000000 00000000
+[43605.120000] mmc0: starting CMD41 arg 40300000 flags 00000061
+[43605.120000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x40300000, mask: 0x1340
+[43605.120000] tifm_sd tifm_sd0:3: host_status 1001, fifo_status 0
+[43605.120000] mmc0: req done (CMD41): 0/0/0: 00ff8000 00000000 00000000 00000000
+[43605.140000] mmc0: starting CMD55 arg 00000000 flags 00000015
+[43605.140000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[43605.140000] tifm_sd tifm_sd0:3: host_status 1001, fifo_status 0
+[43605.140000] mmc0: req done (CMD55): 0/0/0: 00000120 00000000 00000000 00000000
+[43605.140000] mmc0: starting CMD41 arg 40300000 flags 00000061
+[43605.140000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x40300000, mask: 0x1340
+[43605.140000] tifm_sd tifm_sd0:3: host_status 1001, fifo_status 0
+[43605.140000] mmc0: req done (CMD41): 0/0/0: 00ff8000 00000000 00000000 00000000
+[43605.160000] mmc0: starting CMD55 arg 00000000 flags 00000015
+[43605.160000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[43605.160000] tifm_sd tifm_sd0:3: host_status 1001, fifo_status 0
+[43605.160000] mmc0: req done (CMD55): 0/0/0: 00000120 00000000 00000000 00000000
+[43605.160000] mmc0: starting CMD41 arg 40300000 flags 00000061
+[43605.160000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x40300000, mask: 0x1340
+[43605.160000] tifm_sd tifm_sd0:3: host_status 1001, fifo_status 0
+[43605.160000] mmc0: req done (CMD41): 0/0/0: 00ff8000 00000000 00000000 00000000
+[43605.180000] mmc0: starting CMD55 arg 00000000 flags 00000015
+[43605.180000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[43605.180000] tifm_sd tifm_sd0:3: host_status 1001, fifo_status 0
+[43605.180000] mmc0: req done (CMD55): 0/0/0: 00000120 00000000 00000000 00000000
+[43605.180000] mmc0: starting CMD41 arg 40300000 flags 00000061
+[43605.180000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x40300000, mask: 0x1340
+[43605.180000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[43605.180000] mmc0: req done (CMD41): 0/0/0: 80ff8000 00000000 00000000 00000000
+[43605.180000] mmc0: starting CMD2 arg 00000000 flags 00000067
+[43605.180000] tifm_sd tifm_sd0:3: executing opcode 0x2, arg: 0x0, mask: 0x1240
+[43605.180000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[43605.180000] mmc0: req done (CMD2): 0/0/0: 03534453 44303247 8050ae3e c7006a6f
+[43605.180000] mmc0: starting CMD3 arg 00000000 flags 00000075
+[43605.180000] tifm_sd tifm_sd0:3: executing opcode 0x3, arg: 0x0, mask: 0x1640
+[43605.180000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[43605.180000] mmc0: req done (CMD3): 0/0/0: e6240520 00000000 00000000 00000000
+[43605.180000] mmc0: starting CMD2 arg 00000000 flags 00000067
+[43605.180000] tifm_sd tifm_sd0:3: executing opcode 0x2, arg: 0x0, mask: 0x1240
+[43605.180000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+[43605.180000] mmc0: req done (CMD2): 1/0/0: 00000000 00000000 00000000 00000000
+[43605.180000] tifm_sd tifm_sd0:3: executing opcode 0x2, arg: 0x0, mask: 0x1240
+[43605.180000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+[43605.180000] mmc0: req done (CMD2): 1/0/0: 00000000 00000000 00000000 00000000
+[43605.180000] tifm_sd tifm_sd0:3: executing opcode 0x2, arg: 0x0, mask: 0x1240
+[43605.180000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+[43605.180000] mmc0: req done (CMD2): 1/0/0: 00000000 00000000 00000000 00000000
+[43605.180000] tifm_sd tifm_sd0:3: executing opcode 0x2, arg: 0x0, mask: 0x1240
+[43605.180000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+[43605.180000] mmc0: req done (CMD2): 1/0/0: 00000000 00000000 00000000 00000000
+[43605.180000] mmc0: clock 333333Hz busmode 2 powermode 2 cs 0 Vdd 20 width 0
+[43605.180000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[43605.180000] mmc0: starting CMD9 arg e6240000 flags 00000007
+[43605.180000] tifm_sd tifm_sd0:3: executing opcode 0x9, arg: 0xe6240000, mask: 0x2200
+[43605.180000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+[43605.180000] mmc0: req done (CMD9): 1/0/0: 00000000 00000000 00000000 00000000
+[43605.180000] tifm_sd tifm_sd0:3: executing opcode 0x9, arg: 0xe6240000, mask: 0x2200
+[43605.180000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+[43605.180000] mmc0: req done (CMD9): 1/0/0: 00000000 00000000 00000000 00000000
+[43605.180000] tifm_sd tifm_sd0:3: executing opcode 0x9, arg: 0xe6240000, mask: 0x2200
+[43605.180000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[43605.180000] mmc0: req done (CMD9): 0/0/0: 00260032 5f5a83c9 3efbcfff 928040cb
+[43605.180000] mmc0: starting CMD7 arg e6240000 flags 00000015
+[43605.180000] tifm_sd tifm_sd0:3: executing opcode 0x7, arg: 0xe6240000, mask: 0x2100
+[43605.180000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[43605.180000] mmc0: req done (CMD7): 0/0/0: 00260032 5f5a83c9 3efbcfff 928040cb
+[43605.180000] mmc0: clock 333333Hz busmode 2 powermode 2 cs 0 Vdd 20 width 0
+[43605.180000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[43605.180000] mmc0: starting CMD55 arg e6240000 flags 00000015
+[43605.180000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0xe6240000, mask: 0x2100
+[43605.180000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[43605.180000] mmc0: req done (CMD55): 0/0/0: 00000700 00000000 00000000 00000000
+[43605.180000] mmc0: starting CMD7 arg 00000000 flags 00000000
+[43605.180000] tifm_sd tifm_sd0:3: executing opcode 0x7, arg: 0x0, mask: 0x2000
+[43605.180000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[43605.180000] mmc0: req done (CMD7): 0/0/0: 00000920 00000000 00000000 00000000
+[43605.180000] mmc0: selected 24.000MHz transfer rate
+[43605.180000] mmc0: clock 24000000Hz busmode 2 powermode 2 cs 0 Vdd 20 width 0
+[43605.180000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[43605.180000] mmc0: clock 0Hz busmode 1 powermode 0 cs 0 Vdd 0 width 0
+[43605.180000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[43605.180000] tifm_sd tifm_sd0:3: Setting bus width 0, power 0
+
+Old 2GB SD immediately after a full modules unload/reload
+
+[43701.460000] ACPI: PCI interrupt for device 0000:06:05.3 disabled
+[43704.930000] ACPI: PCI Interrupt 0000:06:05.3[B] -> GSI 23 (level, low) -> IRQ 20
+[43706.300000] tifm_7xx1: sd card detected in socket 3
+[43706.340000] mmc0: clock 0Hz busmode 1 powermode 0 cs 0 Vdd 0 width 0
+[43706.340000] tifm_sd tifm_sd0:3: Setting bus width 0, power 0
+[43706.340000] mmc0: clock 0Hz busmode 1 powermode 1 cs 0 Vdd 21 width 0
+[43706.340000] tifm_sd tifm_sd0:3: Setting bus width 0, power 1
+[43706.340000] mmc0: clock 333333Hz busmode 1 powermode 2 cs 0 Vdd 21 width 0
+[43706.340000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[43706.340000] mmc0: clock 333333Hz busmode 1 powermode 2 cs 1 Vdd 21 width 0
+[43706.340000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[43706.340000] mmc0: starting CMD0 arg 00000000 flags 00000040
+[43706.340000] tifm_sd tifm_sd0:3: executing opcode 0x0, arg: 0x0, mask: 0x40
+[43706.340000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[43706.340000] mmc0: req done (CMD0): 0/0/0: 00000000 00000000 00000000 00000000
+[43706.340000] mmc0: clock 333333Hz busmode 1 powermode 2 cs 0 Vdd 21 width 0
+[43706.340000] tifm_sd tifm_sd0:3: Setting bus width 0, power 2
+[43706.340000] mmc0: starting CMD8 arg 000001aa flags 00000075
+[43706.340000] tifm_sd tifm_sd0:3: executing opcode 0x8, arg: 0x1aa, mask: 0x1140
+[43706.340000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+[43706.340000] mmc0: req done (CMD8): 1/0/0: 00000000 00000000 00000000 00000000
+[43706.340000] mmc0: starting CMD55 arg 00000000 flags 00000015
+[43706.340000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[43706.340000] tifm_sd tifm_sd0:3: host_status 80, fifo_status 0
+[43706.340000] mmc0: req done (CMD55): 1/0/0: 00000000 00000000 00000000 00000000
+[43706.340000] mmc0: starting CMD55 arg 00000000 flags 00000015
+[43706.340000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[43706.340000] tifm_sd tifm_sd0:3: host_status 4000, fifo_status 0
+[43706.340000] mmc0: req done (CMD55): 0/0/0: 00400120 00000000 00000000 00000000
+[43706.340000] mmc0: starting CMD41 arg 00000000 flags 00000061
+[43706.340000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x0, mask: 0x1340
+[43706.340000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[43706.340000] mmc0: req done (CMD41): 0/0/0: 00000120 00000000 00000000 00000000
+[43706.340000] mmc0: clock 0Hz busmode 1 powermode 0 cs 0 Vdd 0 width 0
+[43706.340000] tifm_sd tifm_sd0:3: Setting bus width 0, power 0
+
+-- 
+"Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so." -- Douglas Adams
+
+
+From oakad at yahoo.com  Tue Feb 13 15:06:50 2007
+From: oakad at yahoo.com (Alex Dubov)
+Date: Tue, 13 Feb 2007 06:06:50 -0800 (PST)
+Subject: [Tifm21-devel] finally got a log
+In-Reply-To: <45D17A95.6000606@wasp.net.au>
+Message-ID: <593699.22545.qm@web36703.mail.mud.yahoo.com>
+
+I don't like IRC, for whatever reasons (call it childhood trauma if you want).
+
+Anyway, I think I've found the problem.
+1. The bizarre behavior with device creation is caused by mmc_block instance. Certain errors cause
+its thread to get stuck in memory, yet after some prolonged time it manages to die. We shall give
+it a good fix sometime soon. To check if this is happening, you can unload tifm modules and then
+try "rmmod mmc_block" - even though used by no one, it won't go.
+2. Write corruption - new version of tifm_sd attached (rev 81 in SVN).
+
+
+
+ 
+____________________________________________________________________________________
+Looking for earth-friendly autos? 
+Browse Top Cars by "Green Rating" at Yahoo! Autos' Green Center.
+http://autos.yahoo.com/green_center/
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: tifm_sd.c
+Type: text/x-csrc
+Size: 26984 bytes
+Desc: 2197238332-tifm_sd.c
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20070213/e0f47bcd/attachment.c>
+
+From brad at wasp.net.au  Tue Feb 13 15:16:13 2007
+From: brad at wasp.net.au (Brad Campbell)
+Date: Tue, 13 Feb 2007 18:16:13 +0400
+Subject: [Tifm21-devel] finally got a log
+In-Reply-To: <593699.22545.qm@web36703.mail.mud.yahoo.com>
+References: <593699.22545.qm@web36703.mail.mud.yahoo.com>
+Message-ID: <45D1C82D.9070608@wasp.net.au>
+
+Alex Dubov wrote:
+> I don't like IRC, for whatever reasons (call it childhood trauma if you want).
+
+Fair enough too.. I find it good using freenode to interact with developers when I'm abusing their 
+software :)
+
+> Anyway, I think I've found the problem.
+> 1. The bizarre behavior with device creation is caused by mmc_block instance. Certain errors cause
+> its thread to get stuck in memory, yet after some prolonged time it manages to die. We shall give
+> it a good fix sometime soon. To check if this is happening, you can unload tifm modules and then
+> try "rmmod mmc_block" - even though used by no one, it won't go.
+
+I'm not so sure about that from what I've seen. I have a script I use to unload the tifm modules and 
+it also unloads mmc_block and mmc_core, then checks to make *sure* they are unloaded and complains 
+*loudly* if they fail to unload. I've not seen mmc_block getting stuck.
+
+The last mail I sent titled "New logs with freshly formatted cards" are 4 insertion logs using 3 
+different cards and done after a clean boot and module load, so mmc_block never even gets 
+referenced. Still just having basic issues recognising the card.
+
+> 2. Write corruption - new version of tifm_sd attached (rev 81 in SVN).
+
+Will give this a whirl right now and see how we go.
+
+
+-- 
+"Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so." -- Douglas Adams
+
+
+From brad at wasp.net.au  Tue Feb 13 15:21:39 2007
+From: brad at wasp.net.au (Brad Campbell)
+Date: Tue, 13 Feb 2007 18:21:39 +0400
+Subject: [Tifm21-devel] finally got a log
+In-Reply-To: <593699.22545.qm@web36703.mail.mud.yahoo.com>
+References: <593699.22545.qm@web36703.mail.mud.yahoo.com>
+Message-ID: <45D1C973.1010502@wasp.net.au>
+
+Alex Dubov wrote:
+> I don't like IRC, for whatever reasons (call it childhood trauma if you want).
+> 
+> Anyway, I think I've found the problem.
+> 1. The bizarre behavior with device creation is caused by mmc_block instance. Certain errors cause
+> its thread to get stuck in memory, yet after some prolonged time it manages to die. We shall give
+> it a good fix sometime soon. To check if this is happening, you can unload tifm modules and then
+> try "rmmod mmc_block" - even though used by no one, it won't go.
+> 2. Write corruption - new version of tifm_sd attached (rev 81 in SVN).
+
+Ok, which kernel are you compiling against ?
+I'm still using 2.4.20-git4 here, but I can use whatever is required.
+
+   CC [M]  drivers/mmc/tifm_sd.o
+drivers/mmc/tifm_sd.c: In function ?tifm_sd_do_write_cmd?:
+drivers/mmc/tifm_sd.c:373: warning: format ?%ld? expects type ?long int?, but argument 4 has type 
+?size_t?
+drivers/mmc/tifm_sd.c: In function ?tifm_sd_set_dma?:
+drivers/mmc/tifm_sd.c:416: error: ?TIFM_DMA_SZMASK? undeclared (first use in this function)
+drivers/mmc/tifm_sd.c:416: error: (Each undeclared identifier is reported only once
+drivers/mmc/tifm_sd.c:416: error: for each function it appears in.)
+drivers/mmc/tifm_sd.c: In function ?tifm_sd_end_cmd?:
+drivers/mmc/tifm_sd.c:682: warning: format ?%ld? expects type ?long int?, but argument 4 has type 
+?size_t?
+drivers/mmc/tifm_sd.c: In function ?tifm_sd_probe?:
+drivers/mmc/tifm_sd.c:894: error: ?struct mmc_host? has no member named ?max_sectors?
+drivers/mmc/tifm_sd.c: In function ?tifm_sd_resume?:
+drivers/mmc/tifm_sd.c:965: error: ?struct tifm_dev? has no member named ?type?
+drivers/mmc/tifm_sd.c:966: error: ?TIFM_TYPE_SD? undeclared (first use in this function)
+drivers/mmc/tifm_sd.c: At top level:
+drivers/mmc/tifm_sd.c:982: error: ?TIFM_TYPE_SD? undeclared here (not in a function)
+drivers/mmc/tifm_sd.c:990: warning: initialisation from incompatible pointer type
+make[2]: *** [drivers/mmc/tifm_sd.o] Error 1
+make[1]: *** [drivers/mmc] Error 2
+make: *** [drivers] Error 2
+
+
+-- 
+"Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so." -- Douglas Adams
+
+
+From oakad at yahoo.com  Tue Feb 13 15:52:04 2007
+From: oakad at yahoo.com (Alex Dubov)
+Date: Tue, 13 Feb 2007 06:52:04 -0800 (PST)
+Subject: [Tifm21-devel] finally got a log
+In-Reply-To: <45D1C973.1010502@wasp.net.au>
+Message-ID: <559556.21691.qm@web36704.mail.mud.yahoo.com>
+
+> Ok, which kernel are you compiling against ?
+> I'm still using 2.4.20-git4 here, but I can use whatever is required.
+Oops, kernels change so fast that nothing can be taken for granted.
+Attached tarball should compile against stock 2.6.20.
+
+
+ 
+____________________________________________________________________________________
+Have a burning question?  
+Go to www.Answers.yahoo.com and get answers from real people who know.
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: tifm-r81.tar.bz2
+Type: application/x-tbz
+Size: 26676 bytes
+Desc: 128571167-tifm-r81.tar.bz2
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20070213/523c0e4b/attachment.bin>
+
+From brad at wasp.net.au  Tue Feb 13 17:03:08 2007
+From: brad at wasp.net.au (Brad Campbell)
+Date: Tue, 13 Feb 2007 20:03:08 +0400
+Subject: [Tifm21-devel] finally got a log
+In-Reply-To: <559556.21691.qm@web36704.mail.mud.yahoo.com>
+References: <559556.21691.qm@web36704.mail.mud.yahoo.com>
+Message-ID: <45D1E13C.2020607@wasp.net.au>
+
+Alex Dubov wrote:
+>> Ok, which kernel are you compiling against ?
+>> I'm still using 2.4.20-git4 here, but I can use whatever is required.
+> Oops, kernels change so fast that nothing can be taken for granted.
+> Attached tarball should compile against stock 2.6.20.
+
+Logs from a 128MB MMC (no recognise again) and a 2G SD which at least is now recognised each time I 
+insert it. Still can't write to it without it exploding though.
+
+Making progress.
+The 1st time I insert the SD card, HAL picks it up, mounts it and everything goes nicely. After it 
+explodes the 1st time it gets ugly from there.
+
+
+Brad
+-- 
+"Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so." -- Douglas Adams
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: mmclog2.bz2
+Type: application/x-bzip
+Size: 3487 bytes
+Desc: not available
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20070213/bb3918eb/attachment.bin>
+
+From oakad at yahoo.com  Wed Feb 14 03:13:45 2007
+From: oakad at yahoo.com (Alex Dubov)
+Date: Tue, 13 Feb 2007 18:13:45 -0800 (PST)
+Subject: [Tifm21-devel] finally got a log
+In-Reply-To: <45D1E13C.2020607@wasp.net.au>
+Message-ID: <803714.71121.qm@web36705.mail.mud.yahoo.com>
+
+> 
+> Logs from a 128MB MMC (no recognise again) and a 2G SD which at least is now recognised each
+> time I 
+> insert it. Still can't write to it without it exploding though.
+> 
+> Making progress.
+> The 1st time I insert the SD card, HAL picks it up, mounts it and everything goes nicely. After
+> it 
+> explodes the 1st time it gets ugly from there.
+> 
+
+We are looking at two different problems here:
+1. MMC card just does not works. This can be problem with clock, voltage (I have no idea how to
+set it to anything other than default) or it may be a real timeout. The last point can be tested
+by changing this line in tifm_sd:
+----
+// command timeout fixed to 64 clocks for now
+writel(64, sock->addr + SOCK_MMCSD_COMMAND_TO);
+----
+(put a larger value instead of 64, say 128).
+I must also ask - had this MMC card ever worked before on linux? And if yes, on what
+configuration?
+
+2. The SD card does nothing wrong as far as I can see. It simply gets ejected without provocation:
+----
+[  375.310000] tifm_7xx1 0000:06:05.3: checking media set 8
+[  375.310000] tifm_7xx1: demand removing card from socket 0:3
+----
+This is more or less clear cut hardware problem. Most probably something with power.
+We can try the following:
+Add this printout to tifm_sd_ios:
+--------------------------------
+--- tifm_sd.c.orig      2007-02-14 12:48:20.000000000 +1100
++++ tifm_sd.c   2007-02-14 12:50:17.000000000 +1100
+@@ -712,6 +712,8 @@
+
+        dev_dbg(&sock->dev, "Setting bus width %d, power %d\n", ios->bus_width,
+                ios->power_mode);
++       dev_dbg(&sock->dev, "Setting vdd  %hu\n", ios->vdd);
++
+        if (ios->bus_width == MMC_BUS_WIDTH_4) {
+                writel(TIFM_MMCSD_4BBUS | readl(sock->addr + SOCK_MMCSD_CONFIG),
+                       sock->addr + SOCK_MMCSD_CONFIG);
+--------------------------------
+
+Then, I may need a log where card fails, you get it out and then put back in - may be we'll be
+able to nail the particular problem.
+
+I still believe that the ugly parts are not my fault, so to say. It seems like some problem in
+block layer (mmc_block or above) is triggered by sudden death of the block device. We can do an
+experiment: say card failed, you plugged it out/in and nothing gets detected. From my experience,
+main block device gets created by udev (/dev/mmcblk0 or any other number), but partition table is
+not read. You can test this by running "cfdisk" on the /dev/mmcblk0 to make sure that reading
+indeed works (cfdisk will display the correct partition table and no errors will be reported).
+
+
+
+
+ 
+____________________________________________________________________________________
+No need to miss a message. Get email on-the-go 
+with Yahoo! Mail for Mobile. Get started.
+http://mobile.yahoo.com/mail 
+
+
+From brad at wasp.net.au  Wed Feb 14 07:27:12 2007
+From: brad at wasp.net.au (Brad Campbell)
+Date: Wed, 14 Feb 2007 10:27:12 +0400
+Subject: [Tifm21-devel] finally got a log
+In-Reply-To: <803714.71121.qm@web36705.mail.mud.yahoo.com>
+References: <803714.71121.qm@web36705.mail.mud.yahoo.com>
+Message-ID: <45D2ABC0.1050504@wasp.net.au>
+
+Alex Dubov wrote:
+> We are looking at two different problems here:
+> 1. MMC card just does not works. This can be problem with clock, voltage (I have no idea how to
+> set it to anything other than default) or it may be a real timeout. The last point can be tested
+> by changing this line in tifm_sd:
+> ----
+> // command timeout fixed to 64 clocks for now
+> writel(64, sock->addr + SOCK_MMCSD_COMMAND_TO);
+> ----
+> (put a larger value instead of 64, say 128).
+> I must also ask - had this MMC card ever worked before on linux? And if yes, on what
+> configuration?
+
+Yes.. I used it yesterday with this inbuilt reader and a 2.6.19 kernel using the integrated tifm 
+driver. In fact, I wrote about 80MB to the card, the did a full verify on it. At 172kb/s mind you, 
+but none the less it worked.
+
+> 2. The SD card does nothing wrong as far as I can see. It simply gets ejected without provocation:
+> ----
+> [  375.310000] tifm_7xx1 0000:06:05.3: checking media set 8
+> [  375.310000] tifm_7xx1: demand removing card from socket 0:3
+
+That line is where *I* pulled the card out after it exploded..
+
+The snippet below is where it all goes pear shaped during the write.
+
+[  266.740000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[  266.750000] tifm_sd tifm_sd0:3: host_status 8, fifo_status 0
+[  266.750000] tifm_sd tifm_sd0:3: host_status 0, fifo_status 1
+[  267.740000] tifm_sd: card failed to respond for a long period of time
+[  267.740000] tifm_7xx1 0000:06:05.3: checking media set 8
+[  267.740000] tifm_7xx1: demand removing card from socket 0:3
+
+Notice the card removal here? The card was untouched and still in the socket.
+
+[  267.740000] tifm_sd tifm_sd0:3: w_bl 0, num_bl 0, b_s 512, bsh 1
+[  267.740000] mmcblk0: error 1 sending read/write command
+[  267.740000] end_request: I/O error, dev mmcblk0, sector 782
+[  267.740000] mmcblk0: error 1 sending read/write command
+[  267.740000] end_request: I/O error, dev mmcblk0, sector 783
+
+> This is more or less clear cut hardware problem. Most probably something with power.
+> We can try the following:
+> Add this printout to tifm_sd_ios:
+> --------------------------------
+> --- tifm_sd.c.orig      2007-02-14 12:48:20.000000000 +1100
+> +++ tifm_sd.c   2007-02-14 12:50:17.000000000 +1100
+> @@ -712,6 +712,8 @@
+> 
+>         dev_dbg(&sock->dev, "Setting bus width %d, power %d\n", ios->bus_width,
+>                 ios->power_mode);
+> +       dev_dbg(&sock->dev, "Setting vdd  %hu\n", ios->vdd);
+> +
+>         if (ios->bus_width == MMC_BUS_WIDTH_4) {
+>                 writel(TIFM_MMCSD_4BBUS | readl(sock->addr + SOCK_MMCSD_CONFIG),
+>                        sock->addr + SOCK_MMCSD_CONFIG);
+> --------------------------------
+> 
+> Then, I may need a log where card fails, you get it out and then put back in - may be we'll be
+> able to nail the particular problem.
+> 
+> I still believe that the ugly parts are not my fault, so to say. It seems like some problem in
+> block layer (mmc_block or above) is triggered by sudden death of the block device. We can do an
+> experiment: say card failed, you plugged it out/in and nothing gets detected. From my experience,
+> main block device gets created by udev (/dev/mmcblk0 or any other number), but partition table is
+> not read. You can test this by running "cfdisk" on the /dev/mmcblk0 to make sure that reading
+> indeed works (cfdisk will display the correct partition table and no errors will be reported).
+
+Will patch it up and run some tests this afternoon.
+
+I really appreciate the help, hope we can nail it.
+
+Brad
+-- 
+"Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so." -- Douglas Adams
+
+
+From oakad at yahoo.com  Wed Feb 14 14:24:32 2007
+From: oakad at yahoo.com (Alex Dubov)
+Date: Wed, 14 Feb 2007 05:24:32 -0800 (PST)
+Subject: [Tifm21-devel] finally got a log
+In-Reply-To: <45D2ABC0.1050504@wasp.net.au>
+Message-ID: <20070214132432.10530.qmail@web36710.mail.mud.yahoo.com>
+
+> > I must also ask - had this MMC card ever worked before on linux? And if yes, on what
+> > configuration?
+> 
+> Yes.. I used it yesterday with this inbuilt reader and a 2.6.19 kernel using the integrated tifm
+> 
+> driver. In fact, I wrote about 80MB to the card, the did a full verify on it. At 172kb/s mind
+> you, 
+> but none the less it worked.
+This is totally weird, don't you think? Can you please make the log of the working version (same
+DEBUG=1) - maybe we'll see the difference. There were a lot of changes in mmc layer between 2.6.19
+and 2.6.20.
+
+Everything else: attached rev82 of the driver - I fixed some more problems.
+
+
+ 
+____________________________________________________________________________________
+Do you Yahoo!?
+Everyone is raving about the all-new Yahoo! Mail beta.
+http://new.mail.yahoo.com
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: tifm-r82.tar.bz2
+Type: application/x-tbz
+Size: 26509 bytes
+Desc: 1851182698-tifm-r82.tar.bz2
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20070214/b236d8cb/attachment.bin>
+
+From brad at wasp.net.au  Thu Feb 15 05:03:07 2007
+From: brad at wasp.net.au (Brad Campbell)
+Date: Thu, 15 Feb 2007 08:03:07 +0400
+Subject: [Tifm21-devel] finally got a log
+In-Reply-To: <20070214132432.10530.qmail@web36710.mail.mud.yahoo.com>
+References: <20070214132432.10530.qmail@web36710.mail.mud.yahoo.com>
+Message-ID: <45D3DB7B.5080105@wasp.net.au>
+
+Alex Dubov wrote:
+>>> I must also ask - had this MMC card ever worked before on linux? And if yes, on what
+>>> configuration?
+>> Yes.. I used it yesterday with this inbuilt reader and a 2.6.19 kernel using the integrated tifm
+>>
+>> driver. In fact, I wrote about 80MB to the card, the did a full verify on it. At 172kb/s mind
+>> you, 
+>> but none the less it worked.
+> This is totally weird, don't you think? Can you please make the log of the working version (same
+> DEBUG=1) - maybe we'll see the difference. There were a lot of changes in mmc layer between 2.6.19
+> and 2.6.20.
+> 
+> Everything else: attached rev82 of the driver - I fixed some more problems.
+
+Using vanilla 2.6.20 kernel and rev82 MMC and SD detection is now reliable.
+It still blows up writing to the card though, trying to get some form of usable log for you.
+
+(cc'd Pierre Ossman for hal issues)
+
+Found the issue with HAL also. If a card is forcibly removed while mounted, HAL is not removing it 
+from the device tree, so next time a card is inserted HAL just sits on it's backside. (This used to 
+work). Pierre I've got CONFIG_SYSFS_DEPRECATED=y at the moment, but it does not seem to matter.
+
+If I properly unmount the card prior to the eject, then it is properly removed from the HAL device 
+tree and HAL works on the next insert. Something to do with the card still being mounted before the 
+sysfs entries are removed. Not sure how to debug further yet.
+
+Attached is a log of the 128MB MMC card. Insert, copy some data (6MB of mp3's), umount from desktop 
+- which forces a sync - *boom*. Alex, this card was freshly formatted FAT16 (formatted in my camera)
+
+I think this is where it goes pear shaped..
+
+[ 1205.730000] tifm_sd tifm_sd0:3: data event: fifo_status 1, flags 3
+[ 1205.730000] tifm_sd tifm_sd0:3: host event: host_status 4, flags 23
+[ 1205.730000] tifm_sd tifm_sd0:3: host event: host_status 10, flags 3
+[ 1205.730000] tifm_sd tifm_sd0:3: host event: host_status 4, flags 23
+[ 1205.730000] tifm_sd tifm_sd0:3: host event: host_status 10, flags 3
+[ 1205.730000] tifm_sd tifm_sd0:3: host event: host_status 4, flags 23
+[ 1205.730000] tifm_sd tifm_sd0:3: host event: host_status 10, flags 3
+[ 1206.580000] tifm_sd0:3 : card failed to respond for a long period of time
+[ 1206.580000] tifm_7xx1 0000:06:05.3: checking media set 8
+[ 1206.580000] tifm_7xx1: demand removing card from socket 0:3
+[ 1206.580000] tifm_sd tifm_sd0:3: w_bl 384, num_bl 640, b_s 512, bsh 1
+[ 1206.580000] mmcblk0: error 1 sending read/write command
+[ 1206.580000] end_request: I/O error, dev mmcblk0, sector 15936
+[ 1206.580000] end_request: I/O error, dev mmcblk0, sector 15944
+[ 1206.580000] end_request: I/O error, dev mmcblk0, sector 15952
+
+I'm trying to get my hands on a non-SDHC SD card for testing, at the moment the MMC is all I have as 
+the other 2G cards appear to be SDHC
+
+Brad
+-- 
+"Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so." -- Douglas Adams
+
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: mmclog3.bz2
+Type: application/x-bzip
+Size: 11068 bytes
+Desc: not available
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20070215/ce6ee4a0/attachment.bin>
+
+From brad at wasp.net.au  Thu Feb 15 10:19:39 2007
+From: brad at wasp.net.au (Brad Campbell)
+Date: Thu, 15 Feb 2007 13:19:39 +0400
+Subject: [Tifm21-devel] finally got a log
+In-Reply-To: <45D417E7.3050909@drzeus.cx>
+References: <20070214132432.10530.qmail@web36710.mail.mud.yahoo.com>
+	<45D3DB7B.5080105@wasp.net.au> <45D417E7.3050909@drzeus.cx>
+Message-ID: <45D425AB.4090302@wasp.net.au>
+
+Pierre Ossman wrote:
+> Brad Campbell wrote:
+>> Found the issue with HAL also. If a card is forcibly removed while
+>> mounted, HAL is not removing it from the device tree, so next time a
+>> card is inserted HAL just sits on it's backside. (This used to work).
+>> Pierre I've got CONFIG_SYSFS_DEPRECATED=y at the moment, but it does not
+>> seem to matter.
+>>
+> 
+> Is it still present in sysfs? 
+
+No
+
+>If not, then it sounds like a bug in hal.
+
+Yes.. tracking it down.
+
+Brad
+-- 
+"Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so." -- Douglas Adams
+
+
+From oakad at yahoo.com  Thu Feb 15 15:01:26 2007
+From: oakad at yahoo.com (Alex Dubov)
+Date: Thu, 15 Feb 2007 06:01:26 -0800 (PST)
+Subject: [Tifm21-devel] finally got a log
+In-Reply-To: <45D425AB.4090302@wasp.net.au>
+Message-ID: <739746.84865.qm@web36708.mail.mud.yahoo.com>
+
+The gods have definitely forsaken us!
+Anyway, this should be it - rev83.
+
+
+
+ 
+____________________________________________________________________________________
+Don't get soaked.  Take a quick peak at the forecast
+with the Yahoo! Search weather shortcut.
+http://tools.search.yahoo.com/shortcuts/#loc_weather
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: tifm-r83.tar.bz2
+Type: application/x-tbz
+Size: 26546 bytes
+Desc: 4037910328-tifm-r83.tar.bz2
+URL: <https://lists.berlios.de/pipermail/tifm21-devel/attachments/20070215/68c2f546/attachment.bin>
+
+From brad at wasp.net.au  Thu Feb 15 16:46:30 2007
+From: brad at wasp.net.au (Brad Campbell)
+Date: Thu, 15 Feb 2007 19:46:30 +0400
+Subject: [Tifm21-devel] finally got a log
+In-Reply-To: <739746.84865.qm@web36708.mail.mud.yahoo.com>
+References: <739746.84865.qm@web36708.mail.mud.yahoo.com>
+Message-ID: <45D48056.7060405@wasp.net.au>
+
+Alex Dubov wrote:
+> The gods have definitely forsaken us!
+> Anyway, this should be it - rev83.
+
+I'm afraid not.. log from rev83 - It won't detect the card.. reverted to rev82 and up it came.
+Something not quite right in lego land I'm afraid.. I'm diffing 82->83 now to have a look..
+
+[  167.180000] tifm_7xx1 0000:06:05.3: checking media set 8
+[  167.230000] tifm_core: MMC/SD card detected in socket 0:3
+[  167.310000] tifm_sd tifm_sd0:3: ios: clock = 0, vdd = 0, bus_mode = 1, chip_select = 0, 
+power_mode = 0, bus_width = 0
+[  167.310000] tifm_sd tifm_sd0:3: ios: clock = 0, vdd = 15, bus_mode = 1, chip_select = 0, 
+power_mode = 1, bus_width = 0
+[  167.310000] tifm_sd tifm_sd0:3: ios: clock = 333333, vdd = 15, bus_mode = 1, chip_select = 0, 
+power_mode = 2, bus_width = 0
+[  167.310000] tifm_sd tifm_sd0:3: ios: clock = 333333, vdd = 15, bus_mode = 1, chip_select = 1, 
+power_mode = 2, bus_width = 0
+[  167.310000] tifm_sd tifm_sd0:3: executing opcode 0x0, arg: 0x0, mask: 0x40
+[  167.310000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[  167.310000] tifm_sd tifm_sd0:3: ios: clock = 333333, vdd = 15, bus_mode = 1, chip_select = 0, 
+power_mode = 2, bus_width = 0
+[  167.310000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[  167.310000] tifm_sd tifm_sd0:3: host event: host_status 80, flags 0
+[  167.310000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[  167.310000] tifm_sd tifm_sd0:3: host event: host_status 80, flags 0
+[  167.310000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[  167.310000] tifm_sd tifm_sd0:3: host event: host_status 80, flags 0
+[  167.310000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[  167.310000] tifm_sd tifm_sd0:3: host event: host_status 80, flags 0
+[  167.310000] tifm_sd tifm_sd0:3: executing opcode 0x1, arg: 0x0, mask: 0x1340
+[  167.310000] tifm_sd tifm_sd0:3: host event: host_status 80, flags 0
+[  167.310000] tifm_sd tifm_sd0:3: ios: clock = 0, vdd = 0, bus_mode = 1, chip_select = 0, 
+power_mode = 0, bus_width = 0
+[  167.310000] tifm_sd tifm_sd0:3: host event: host_status 80, flags 0
+[  176.410000] tifm_7xx1 0000:06:05.3: checking media set 8
+[  176.410000] tifm0 : demand removing card from socket 0:3
+
+-- 
+"Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so." -- Douglas Adams
+
+
+From brad at wasp.net.au  Thu Feb 15 17:15:32 2007
+From: brad at wasp.net.au (Brad Campbell)
+Date: Thu, 15 Feb 2007 20:15:32 +0400
+Subject: [Tifm21-devel] finally got a log
+In-Reply-To: <739746.84865.qm@web36708.mail.mud.yahoo.com>
+References: <739746.84865.qm@web36708.mail.mud.yahoo.com>
+Message-ID: <45D48724.4020902@wasp.net.au>
+
+Alex Dubov wrote:
+> The gods have definitely forsaken us!
+> Anyway, this should be it - rev83.
+> 
+
+This is rev83 which although it did not recognise the MMC card, worked with a 1GB SD.. and this is 
+where it explodes on a large write/sync
+
+Do you need more of the log? this one is *huge*
+
+Feb 15 20:13:08 localhost kernel: [ 2037.870000] tifm_sd tifm_sd0:3: data event: fifo_status 1, flags 3
+Feb 15 20:13:08 localhost kernel: [ 2037.870000] tifm_sd tifm_sd0:3: host event: host_status 4, flags 23
+Feb 15 20:13:08 localhost kernel: [ 2037.870000] tifm_sd tifm_sd0:3: host event: host_status 10, flags 3
+Feb 15 20:13:08 localhost kernel: [ 2037.870000] tifm_sd tifm_sd0:3: host event: host_status 14, flags 3
+Feb 15 20:13:08 localhost kernel: [ 2037.880000] tifm_sd tifm_sd0:3: host event: host_status 1c, flags 7
+Feb 15 20:13:08 localhost kernel: [ 2038.560000] tifm_sd0:3 : card failed to respond for a long 
+period of time (19, 7)
+Feb 15 20:13:08 localhost kernel: [ 2038.560000] tifm_7xx1 0000:06:05.3: checking media set 8
+Feb 15 20:13:08 localhost kernel: [ 2038.560000] tifm0 : demand removing card from socket 0:3
+Feb 15 20:13:08 localhost kernel: [ 2038.560000] tifm_sd tifm_sd0:3: w_bl 1023, num_bl 0, b_s 512, bsh 1
+Feb 15 20:13:08 localhost kernel: [ 2038.560000] mmcblk0: error 1 sending read/write command
+Feb 15 20:13:08 localhost kernel: [ 2038.560000] end_request: I/O error, dev mmcblk0, sector 1696
+Feb 15 20:13:08 localhost kernel: [ 2038.560000] end_request: I/O error, dev mmcblk0, sector 1704
+Feb 15 20:13:08 localhost kernel: [ 2038.560000] end_request: I/O error, dev mmcblk0, sector 1712
+Feb 15 20:13:08 localhost kernel: [ 2038.560000] end_request: I/O error, dev mmcblk0, sector 1720
+Feb 15 20:13:08 localhost kernel: [ 2038.560000] end_request: I/O error, dev mmcblk0, sector 1728
+
+-- 
+"Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so." -- Douglas Adams
+
+
+From oakad at yahoo.com  Fri Feb 16 04:02:42 2007
+From: oakad at yahoo.com (Alex Dubov)
+Date: Thu, 15 Feb 2007 19:02:42 -0800 (PST)
+Subject: [Tifm21-devel] finally got a log
+In-Reply-To: <45D48724.4020902@wasp.net.au>
+Message-ID: <20070216030242.43800.qmail@web36714.mail.mud.yahoo.com>
+
+> 
+> This is rev83 which although it did not recognise the MMC card, worked with a 1GB SD.. and this
+> is 
+> where it explodes on a large write/sync
+
+The only thing that can possibly affect mmc detection:
+Notice that there's a commented out line in the end of tifm_sd_event:
+//      writel(host_status, sock->addr + SOCK_MMCSD_STATUS);
+
+Try to uncomment it and see what happens.
+
+As to SD card problem: the thing chokes on really large requests. The simplest solution will be to
+limit the request size. I want to investigate this a little, though.
+
+
+ 
+____________________________________________________________________________________
+Don't pick lemons.
+See all the new 2007 cars at Yahoo! Autos.
+http://autos.yahoo.com/new_cars.html 
+
+
+From brad at wasp.net.au  Fri Feb 16 05:39:21 2007
+From: brad at wasp.net.au (Brad Campbell)
+Date: Fri, 16 Feb 2007 08:39:21 +0400
+Subject: [Tifm21-devel] finally got a log
+In-Reply-To: <20070216030242.43800.qmail@web36714.mail.mud.yahoo.com>
+References: <20070216030242.43800.qmail@web36714.mail.mud.yahoo.com>
+Message-ID: <45D53579.9050602@wasp.net.au>
+
+Alex Dubov wrote:
+>> This is rev83 which although it did not recognise the MMC card, worked with a 1GB SD.. and this
+>> is 
+>> where it explodes on a large write/sync
+> 
+> The only thing that can possibly affect mmc detection:
+> Notice that there's a commented out line in the end of tifm_sd_event:
+> //      writel(host_status, sock->addr + SOCK_MMCSD_STATUS);
+> 
+> Try to uncomment it and see what happens.
+
+Yeah, that got it.. detecting the MMC card is now as solid as the SD
+
+> As to SD card problem: the thing chokes on really large requests. The simplest solution will be to
+> limit the request size. I want to investigate this a little, though.
+
+No problem. I've added your pci_ids.h to my SVN tree now (Now why didn't I think of that?) so you 
+can just ping me to update SVN if you need something tested.
+
+In addition, I've managed to source an old 512MB SD card that can not possibly have the SDHC command 
+set, so I'm all geared up for beating it to death as required.
+
+Managed to rsync over 80MB to the 128M MMC card at about 1.2M/sec with no explosions.
+
+Copying a 3MB file to the 512MB SD died in the usual way.
+
+[46412.170000] tifm_sd tifm_sd0:3: host event: host_status 4, flags 21
+[46412.170000] tifm_sd tifm_sd0:3: host event: host_status 10, flags 1
+[46412.170000] tifm_sd tifm_sd0:3: host event: host_status 14, flags 1
+[46412.170000] tifm_sd tifm_sd0:3: setting dma for 8 blocks
+[46412.170000] tifm_sd tifm_sd0:3: data event: fifo_status 1, flags 1
+[46412.170000] tifm_sd tifm_sd0:3: host event: host_status 14, flags 1
+[46412.170000] tifm_sd tifm_sd0:3: host event: host_status 14, flags 1
+[46412.170000] tifm_sd tifm_sd0:3: host event: host_status 14, flags 1
+[46412.170000] tifm_sd tifm_sd0:3: host event: host_status 14, flags 1
+[46412.170000] tifm_sd tifm_sd0:3: host event: host_status 14, flags 1
+[46412.170000] tifm_sd tifm_sd0:3: host event: host_status 14, flags 1
+[46412.170000] tifm_sd tifm_sd0:3: host event: host_status 4, flags 21
+[46412.170000] tifm_sd tifm_sd0:3: host event: host_status 10, flags 1
+[46412.170000] tifm_sd tifm_sd0:3: host event: host_status 14, flags 1
+[46412.170000] tifm_sd tifm_sd0:3: data event: fifo_status 1, flags 3
+[46412.170000] tifm_sd tifm_sd0:3: host event: host_status 14, flags 3
+[46412.170000] tifm_sd tifm_sd0:3: host event: host_status 14, flags 3
+[46412.170000] tifm_sd tifm_sd0:3: executing opcode 0xc, arg: 0x0, mask: 0x2900
+[46412.170000] tifm_sd tifm_sd0:3: host event: host_status 1c, flags f
+[46412.170000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1f
+[46412.170000] tifm_sd tifm_sd0:3: host event: host_status 10, flags 1f
+[46413.060000] tifm_sd0:3 : card failed to respond for a long period of time (19, 1f)
+[46413.060000] tifm_7xx1 0000:06:05.3: checking media set 8
+[46413.060000] tifm0 : demand removing card from socket 0:3
+[46413.060000] tifm_sd tifm_sd0:3: w_bl 128, num_bl 0, b_s 512, bsh 1
+[46413.060000] mmcblk0: error 1 sending read/write command
+[46413.060000] end_request: I/O error, dev mmcblk0, sector 47648
+[46413.060000] end_request: I/O error, dev mmcblk0, sector 47656
+
+For a laugh I tried passing the no_dma=1 option to tifm_sd and did not even get past card 
+detection.. see log
+
+[46516.910000] tifm_7xx1 0000:06:05.3: checking media set 8
+[46516.960000] tifm_core: MMC/SD card detected in socket 0:3
+[46517.040000] tifm_sd tifm_sd0:3: ios: clock = 0, vdd = 0, bus_mode = 1, chip_select = 0, 
+power_mode = 0, bus_width = 0
+[46517.040000] tifm_sd tifm_sd0:3: ios: clock = 0, vdd = 15, bus_mode = 1, chip_select = 0, 
+power_mode = 1, bus_width = 0
+[46517.040000] tifm_sd tifm_sd0:3: ios: clock = 333333, vdd = 15, bus_mode = 1, chip_select = 0, 
+power_mode = 2, bus_width = 0
+[46517.040000] tifm_sd tifm_sd0:3: ios: clock = 333333, vdd = 15, bus_mode = 1, chip_select = 1, 
+power_mode = 2, bus_width = 0
+[46517.040000] tifm_sd tifm_sd0:3: executing opcode 0x0, arg: 0x0, mask: 0x40
+[46517.040000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.040000] tifm_sd tifm_sd0:3: ios: clock = 333333, vdd = 15, bus_mode = 1, chip_select = 0, 
+power_mode = 2, bus_width = 0
+[46517.040000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[46517.040000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.040000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x0, mask: 0x1340
+[46517.040000] tifm_sd tifm_sd0:3: host event: host_status 1001, flags 1
+[46517.040000] tifm_sd tifm_sd0:3: ios: clock = 333333, vdd = 14, bus_mode = 1, chip_select = 0, 
+power_mode = 2, bus_width = 0
+[46517.040000] tifm_sd tifm_sd0:3: ios: clock = 333333, vdd = 14, bus_mode = 1, chip_select = 1, 
+power_mode = 2, bus_width = 0
+[46517.040000] tifm_sd tifm_sd0:3: executing opcode 0x0, arg: 0x0, mask: 0x40
+[46517.040000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.040000] tifm_sd tifm_sd0:3: ios: clock = 333333, vdd = 14, bus_mode = 1, chip_select = 0, 
+power_mode = 2, bus_width = 0
+[46517.050000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[46517.050000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.050000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x300000, mask: 0x1340
+[46517.050000] tifm_sd tifm_sd0:3: host event: host_status 1001, flags 1
+[46517.070000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[46517.070000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.070000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x300000, mask: 0x1340
+[46517.070000] tifm_sd tifm_sd0:3: host event: host_status 1001, flags 1
+[46517.090000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[46517.090000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.090000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x300000, mask: 0x1340
+[46517.090000] tifm_sd tifm_sd0:3: host event: host_status 1001, flags 1
+[46517.110000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[46517.110000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.110000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x300000, mask: 0x1340
+[46517.110000] tifm_sd tifm_sd0:3: host event: host_status 1001, flags 1
+[46517.130000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[46517.130000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.130000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x300000, mask: 0x1340
+[46517.130000] tifm_sd tifm_sd0:3: host event: host_status 1001, flags 1
+[46517.150000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[46517.150000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.150000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x300000, mask: 0x1340
+[46517.150000] tifm_sd tifm_sd0:3: host event: host_status 1001, flags 1
+[46517.170000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[46517.170000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.170000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x300000, mask: 0x1340
+[46517.170000] tifm_sd tifm_sd0:3: host event: host_status 1001, flags 1
+[46517.190000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[46517.190000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.190000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x300000, mask: 0x1340
+[46517.190000] tifm_sd tifm_sd0:3: host event: host_status 1001, flags 1
+[46517.210000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[46517.210000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.210000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x300000, mask: 0x1340
+[46517.210000] tifm_sd tifm_sd0:3: host event: host_status 1001, flags 1
+[46517.230000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[46517.230000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.230000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x300000, mask: 0x1340
+[46517.230000] tifm_sd tifm_sd0:3: host event: host_status 1001, flags 1
+[46517.250000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[46517.250000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.250000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x300000, mask: 0x1340
+[46517.250000] tifm_sd tifm_sd0:3: host event: host_status 1001, flags 1
+[46517.270000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[46517.270000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.270000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x300000, mask: 0x1340
+[46517.270000] tifm_sd tifm_sd0:3: host event: host_status 1001, flags 1
+[46517.290000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[46517.290000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.290000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x300000, mask: 0x1340
+[46517.290000] tifm_sd tifm_sd0:3: host event: host_status 1001, flags 1
+[46517.310000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[46517.310000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.310000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x300000, mask: 0x1340
+[46517.310000] tifm_sd tifm_sd0:3: host event: host_status 1001, flags 1
+[46517.330000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[46517.330000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.330000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x300000, mask: 0x1340
+[46517.330000] tifm_sd tifm_sd0:3: host event: host_status 1001, flags 1
+[46517.350000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[46517.350000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.350000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x300000, mask: 0x1340
+[46517.350000] tifm_sd tifm_sd0:3: host event: host_status 1001, flags 1
+[46517.370000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[46517.370000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.370000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x300000, mask: 0x1340
+[46517.370000] tifm_sd tifm_sd0:3: host event: host_status 1001, flags 1
+[46517.390000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[46517.390000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.390000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x300000, mask: 0x1340
+[46517.390000] tifm_sd tifm_sd0:3: host event: host_status 1001, flags 1
+[46517.410000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[46517.410000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.410000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x300000, mask: 0x1340
+[46517.410000] tifm_sd tifm_sd0:3: host event: host_status 1001, flags 1
+[46517.430000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[46517.430000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.430000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x300000, mask: 0x1340
+[46517.430000] tifm_sd tifm_sd0:3: host event: host_status 1001, flags 1
+[46517.450000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x0, mask: 0x2140
+[46517.450000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.450000] tifm_sd tifm_sd0:3: executing opcode 0x29, arg: 0x300000, mask: 0x1340
+[46517.450000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.450000] tifm_sd tifm_sd0:3: executing opcode 0x2, arg: 0x0, mask: 0x1240
+[46517.450000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.450000] tifm_sd tifm_sd0:3: executing opcode 0x3, arg: 0x0, mask: 0x1140
+[46517.450000] tifm_sd tifm_sd0:3: host event: host_status 4000, flags 1
+[46517.450000] tifm_sd tifm_sd0:3: executing opcode 0x2, arg: 0x0, mask: 0x1240
+[46517.450000] tifm_sd tifm_sd0:3: host event: host_status 80, flags 0
+[46517.450000] tifm_sd tifm_sd0:3: executing opcode 0x2, arg: 0x0, mask: 0x1240
+[46517.450000] tifm_sd tifm_sd0:3: host event: host_status 80, flags 0
+[46517.450000] tifm_sd tifm_sd0:3: executing opcode 0x2, arg: 0x0, mask: 0x1240
+[46517.450000] tifm_sd tifm_sd0:3: host event: host_status 80, flags 0
+[46517.450000] tifm_sd tifm_sd0:3: executing opcode 0x2, arg: 0x0, mask: 0x1240
+[46517.450000] tifm_sd tifm_sd0:3: host event: host_status 80, flags 0
+[46517.450000] tifm_sd tifm_sd0:3: ios: clock = 333333, vdd = 14, bus_mode = 2, chip_select = 0, 
+power_mode = 2, bus_width = 0
+[46517.450000] tifm_sd tifm_sd0:3: executing opcode 0x9, arg: 0x99d50000, mask: 0x2200
+[46517.450000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.450000] tifm_sd tifm_sd0:3: executing opcode 0x7, arg: 0x99d50000, mask: 0x2100
+[46517.450000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.450000] tifm_sd tifm_sd0:3: ios: clock = 333333, vdd = 14, bus_mode = 2, chip_select = 0, 
+power_mode = 2, bus_width = 0
+[46517.450000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x99d50000, mask: 0x2100
+[46517.450000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.450000] tifm_sd tifm_sd0:3: executing opcode 0x33, arg: 0x0, mask: 0xb100
+[46517.450000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.450000] tifm_sd tifm_sd0:3: host event: host_status 8, flags 5
+[46517.450000] tifm_sd tifm_sd0:3: w_bl 0, num_bl 0, b_s 8, bsh 0
+[46517.450000] tifm_sd tifm_sd0:3: executing opcode 0x7, arg: 0x0, mask: 0x2000
+[46517.450000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.450000] tifm_sd tifm_sd0:3: ios: clock = 24000000, vdd = 14, bus_mode = 2, chip_select = 0, 
+power_mode = 2, bus_width = 0
+[46517.460000] tifm_sd tifm_sd0:3: executing opcode 0x7, arg: 0x99d50000, mask: 0x2100
+[46517.460000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.470000] tifm_sd tifm_sd0:3: executing opcode 0x37, arg: 0x99d50000, mask: 0x2100
+[46517.470000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.470000] tifm_sd tifm_sd0:3: executing opcode 0x6, arg: 0x2, mask: 0x2100
+[46517.470000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.470000] tifm_sd tifm_sd0:3: ios: clock = 24000000, vdd = 14, bus_mode = 2, chip_select = 0, 
+power_mode = 2, bus_width = 2
+[46517.470000] tifm_sd tifm_sd0:3: executing opcode 0x10, arg: 0x200, mask: 0x2100
+[46517.470000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.470000] mmcblk0: mmc0:99d5 SH512 503296KiB
+[46517.470000]  mmcblk0:<7>tifm_sd tifm_sd0:3: executing opcode 0x12, arg: 0x0, mask: 0xb100
+[46517.470000] tifm_sd tifm_sd0:3: host event: host_status 1, flags 1
+[46517.470000] tifm_sd tifm_sd0:3: host event: host_status 400, flags 1
+[46518.470000] tifm_sd0:3 : card failed to respond for a long period of time (12, 1)
+[46518.470000] tifm_7xx1 0000:06:05.3: checking media set 8
+[46518.470000] tifm0 : demand removing card from socket 0:3
+
+mmc_block hangs up here in the way you describe.. and the reader led is stuck on.. I'll see how long 
+it takes to time out..
+
+brad at bklaptop2:~$ sudo bin/tifm_unload
+mmc_block ref count not 0 - not removing driver
+
+My gut feeling is it's getting closer anyway..
+
+-- 
+"Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so." -- Douglas Adams
+
+
+From oakad at yahoo.com  Fri Feb 16 13:02:15 2007
+From: oakad at yahoo.com (Alex Dubov)
+Date: Fri, 16 Feb 2007 04:02:15 -0800 (PST)
+Subject: [Tifm21-devel] finally got a log
+In-Reply-To: <45D53579.9050602@wasp.net.au>
+Message-ID: <12467.56173.qm@web36711.mail.mud.yahoo.com>
+
+Beloved comrad Stalin used to say: we are not accustomed to seek for easy ways.
+
+Revision 84 on berlios.
+
+
+
+ 
+____________________________________________________________________________________
+Looking for earth-friendly autos? 
+Browse Top Cars by "Green Rating" at Yahoo! Autos' Green Center.
+http://autos.yahoo.com/green_center/
+
+
+From brad at wasp.net.au  Fri Feb 16 15:22:13 2007
+From: brad at wasp.net.au (Brad Campbell)
+Date: Fri, 16 Feb 2007 18:22:13 +0400
+Subject: [Tifm21-devel] No logs to report! : was: Re:  finally got a log
+In-Reply-To: <12467.56173.qm@web36711.mail.mud.yahoo.com>
+References: <12467.56173.qm@web36711.mail.mud.yahoo.com>
+Message-ID: <45D5BE15.2050705@wasp.net.au>
+
+Alex Dubov wrote:
+> Beloved comrad Stalin used to say: we are not accustomed to seek for easy ways.
+> 
+> Revision 84 on berlios.
+
+Comrade I'm afraid I have no logs to report.
+
+It's passed slightly harder than cursory testing on
+128MB MMC
+512MB SD
+2GB SD
+2GB SD (the one you said was SDHC)
+
+The MMC read/write speed is somewhere around 1.5MB/S, the SD read/write speeds are somewhere between 
+4 & 6MB/s consistently. (Oh, that's with debugging turned off, with debug on it drops by 1-1.5MB/s)
+
+I've not tried *hard* to break it yet, but it's passed all the tests I've managed to blow it up with 
+previously.
+
+I might pick up a card I don't mind killing and run bonnie on it or something, but my usual "queue 
+up 100MB of files then sync it all at once" passes with flying colours, as do all the rsync checksum 
+tests on the written files and media fsck's ..
+
+It's looking a lot better than it has been ;)
+
+Nice work!
+
+Ok, I'll include one bit of log just for the hell of it.. this is a snip of dmesg | grep dma
+
+[25033.670000] tifm_sd tifm_sd0:3: setting dma for 72 blocks
+[25033.680000] tifm_sd tifm_sd0:3: setting dma for 72 blocks
+[25033.700000] tifm_sd tifm_sd0:3: setting dma for 32 blocks
+[25033.730000] tifm_sd tifm_sd0:3: setting dma for 40 blocks
+[25033.740000] tifm_sd tifm_sd0:3: setting dma for 72 blocks
+[25033.760000] tifm_sd tifm_sd0:3: setting dma for 72 blocks
+[25033.770000] tifm_sd tifm_sd0:3: setting dma for 72 blocks
+[25033.830000] tifm_sd tifm_sd0:3: setting dma for 72 blocks
+[25033.860000] tifm_sd tifm_sd0:3: setting dma for 24 blocks
+[25033.910000] tifm_sd tifm_sd0:3: setting dma for 48 blocks
+[25033.910000] tifm_sd tifm_sd0:3: setting dma for 72 blocks
+[25033.970000] tifm_sd tifm_sd0:3: setting dma for 8 blocks
+[25033.970000] tifm_sd tifm_sd0:3: setting dma for 8 blocks
+[25033.970000] tifm_sd tifm_sd0:3: setting dma for 8 blocks
+
+Brad (Can I get excited now??)
+-- 
+"Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so." -- Douglas Adams
+
+
+From oakad at yahoo.com  Fri Feb 16 16:25:42 2007
+From: oakad at yahoo.com (Alex Dubov)
+Date: Fri, 16 Feb 2007 07:25:42 -0800 (PST)
+Subject: [Tifm21-devel] No logs to report! : was: Re: finally got a log
+In-Reply-To: <45D5BE15.2050705@wasp.net.au>
+Message-ID: <255378.17132.qm@web36706.mail.mud.yahoo.com>
+
+These are good news, of course. We've probably hit a new record on abundance of schroedinbugs
+(http://catb.org/jargon/html/S/schroedinbug.html).
+
+To my understanding, the driver runs at maximum speed now - no more speed improvements expected.
+The theoretical maximum both for current mmc cards and the adapter is around 12 MB/s, but I'm
+getting the same ~4 MB/sec. The ratio 4:1 read:write speed is card dependent - there's a special
+field in card's CSD register for this value and I've never seen values other than 4. 
+
+There are two more items worth checking, however:
+1. no_dma=1 option - it works for me, does it for you? (it's supposed to be much slower than dma
+mode, but I've implemented it just in case)
+2. suspend/resume (currently broken) - planned for rev 85 in a couple of days
+
+I hope you don't mind if I'll put an attribution to your effort in the driver's code? After all,
+you're doing a great QA job on this thing.
+
+
+
+ 
+____________________________________________________________________________________
+It's here! Your new message!  
+Get new email alerts with the free Yahoo! Toolbar.
+http://tools.search.yahoo.com/toolbar/features/mail/
+
+
+From brad at wasp.net.au  Fri Feb 16 17:44:56 2007
+From: brad at wasp.net.au (Brad Campbell)
+Date: Fri, 16 Feb 2007 20:44:56 +0400
+Subject: [Tifm21-devel] No logs to report! : was: Re: finally got a log
+In-Reply-To: <255378.17132.qm@web36706.mail.mud.yahoo.com>
+References: <255378.17132.qm@web36706.mail.mud.yahoo.com>
+Message-ID: <45D5DF88.2060707@wasp.net.au>
+
+Alex Dubov wrote:
+> These are good news, of course. We've probably hit a new record on abundance of schroedinbugs
+> (http://catb.org/jargon/html/S/schroedinbug.html).
+
+But of course.. at least we've developed to a point where I think I know how to feed you debug data 
+in some form of useful format.. so bring 'em on..
+
+> To my understanding, the driver runs at maximum speed now - no more speed improvements expected.
+> The theoretical maximum both for current mmc cards and the adapter is around 12 MB/s, but I'm
+> getting the same ~4 MB/sec. The ratio 4:1 read:write speed is card dependent - there's a special
+> field in card's CSD register for this value and I've never seen values other than 4. 
+
+6MB/s is faster than I had expected..
+
+> There are two more items worth checking, however:
+> 1. no_dma=1 option - it works for me, does it for you? (it's supposed to be much slower than dma
+> mode, but I've implemented it just in case)
+
+Ok, I'll give this a bash.. rev83 died horribly when I tried it, but I'll try it with the current 
+driver with all cards.
+
+> 2. suspend/resume (currently broken) - planned for rev 85 in a couple of days
+
+Happy to test this.. I currently unload prior to suspend and reload post resume, so suspend testing 
+is certainly something I want to do.
+
+> I hope you don't mind if I'll put an attribution to your effort in the driver's code? After all,
+> you're doing a great QA job on this thing.
+
+No problem at all, happy to help where I can anyway.
+
+Brad
+-- 
+"Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so." -- Douglas Adams
+
+
+From remi2402 at free.fr  Fri Feb 16 19:01:57 2007
+From: remi2402 at free.fr (=?ISO-8859-1?Q?R=E9mi_Cardona?=)
+Date: Fri, 16 Feb 2007 19:01:57 +0100
+Subject: [Tifm21-devel] finally got a log
+In-Reply-To: <12467.56173.qm@web36711.mail.mud.yahoo.com>
+References: <12467.56173.qm@web36711.mail.mud.yahoo.com>
+Message-ID: <45D5F195.9080004@free.fr>
+
+Alex Dubov wrote:
+> Beloved comrad Stalin used to say: we are not accustomed to seek for easy ways.
+> 
+> Revision 84 on berlios.
+> 
+
+I'd like to try that revision but I can't compile as the code is missing
+a few #defines such as PCI_DEVICE_ID_TI_XX21_XX11_FM
+
+Am I missing something ?
+
+Thanks to the both of you for this progress, I'm really eager to try it
+out on my 16MB MMC card that's never worked so far. :)
+
+Cheers
+
+R?mi
+
+
+From oakad at yahoo.com  Sat Feb 17 03:33:29 2007
+From: oakad at yahoo.com (Alex Dubov)
+Date: Fri, 16 Feb 2007 18:33:29 -0800 (PST)
+Subject: [Tifm21-devel] finally got a log
+In-Reply-To: <45D5F195.9080004@free.fr>
+Message-ID: <398597.61331.qm@web36702.mail.mud.yahoo.com>
+
+
+--- R?mi Cardona <remi2402 at free.fr> wrote:
+
+> Alex Dubov wrote:
+> > Beloved comrad Stalin used to say: we are not accustomed to seek for easy ways.
+> > 
+> > Revision 84 on berlios.
+> > 
+> 
+> I'd like to try that revision but I can't compile as the code is missing
+> a few #defines such as PCI_DEVICE_ID_TI_XX21_XX11_FM
+> 
+> Am I missing something ?
+This is unfortunate, but some (not important) macros are only defined in the current -git series
+of the kernel (so they are absent on released 2.6.20). I'll add the proper header to SVN today.
+
+
+
+ 
+____________________________________________________________________________________
+Do you Yahoo!?
+Everyone is raving about the all-new Yahoo! Mail beta.
+http://new.mail.yahoo.com
+
+
+From brad at wasp.net.au  Sat Feb 17 07:18:23 2007
+From: brad at wasp.net.au (Brad Campbell)
+Date: Sat, 17 Feb 2007 10:18:23 +0400
+Subject: [Tifm21-devel] tifm & HAL issues *resolved*
+Message-ID: <45D69E2F.900@wasp.net.au>
+
+G'day all,
+
+Just an update.
+
+I'm using Ubuntu 6.06LTS. The HAL problems I've been seeing with the tifm driver are related to 
+issues with the 2.6.20 sysfs code and it's dodgy CONFIG_SYSFS_DEPRECATED setting.
+
+In short, it does not appear to properly emulate the sysfs behavior of pre 2.6.20 kernels and breaks 
+older versions of HAL.
+
+By selectively upgrading HAL, udev, gnome-volume-manager & gnome-power-manager to the versions in 
+the latest Ubuntu 7.04 alpha and disabling CONFIG_SYSFS_DEPRECATED, the problem is resolved. (Lots 
+of ugly recompiling and dependency upgrading required)
+
+So as a warning.. anyone planning on upgrading to a kernel >= 2.6.20 using an OS with older versions 
+of udev and HAL, you may well be in a whole world of heartache and pain.. Be aware!
+
+Brad
+-- 
+"Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so." -- Douglas Adams
+
+
+From brad at wasp.net.au  Sat Feb 17 07:30:22 2007
+From: brad at wasp.net.au (Brad Campbell)
+Date: Sat, 17 Feb 2007 10:30:22 +0400
+Subject: [Tifm21-devel] No logs to report! : was: Re: finally got a log
+In-Reply-To: <255378.17132.qm@web36706.mail.mud.yahoo.com>
+References: <255378.17132.qm@web36706.mail.mud.yahoo.com>
+Message-ID: <45D6A0FE.1000709@wasp.net.au>
+
+Alex Dubov wrote:
+
+> 1. no_dma=1 option - it works for me, does it for you? (it's supposed to be much slower than dma
+> mode, but I've implemented it just in case)
+
+Passed no_dma=1 with flying colours for all SD and MMC cards. Read/write speed down to ~700k-1M/s
+
+Noticed a small quirk. Sometimes I have to insert the MMC card twice to get it to recognise the 
+card. Easy to spot, on first insert the led just blinks once quickly and then nothing. 
+Remove/re-insert and it picks it up the next time round. Might be timing related, but it's hard to 
+reproduce and always works the second time. SD recognition is always rock solid.
+
+I've done some heavier testing and I can't fault it *yet* ;)
+
+Brad
+-- 
+"Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so." -- Douglas Adams
+
+
+From oakad at yahoo.com  Sat Feb 17 08:58:23 2007
+From: oakad at yahoo.com (Alex Dubov)
+Date: Fri, 16 Feb 2007 23:58:23 -0800 (PST)
+Subject: [Tifm21-devel] No logs to report! : was: Re: finally got a log
+In-Reply-To: <45D6A0FE.1000709@wasp.net.au>
+Message-ID: <20070217075823.70537.qmail@web36712.mail.mud.yahoo.com>
+
+Revision 85 - suspend / resume supposedly fixed (and I hope nothing is broken by other small
+changes).
+
+MMC problem: it seems that command error from failed CMD55 (which is not supported by MMC, but
+must be issued to distinguish it from SD) somehow sticks to the following CMD1. Interesting how
+this problem never showed on the older versions of the driver (did it?). Lets try harder to clear
+it (against r85):
+
+
+--- tifm_sd.c.orig      2007-02-17 18:39:40.000000000 +1100
++++ tifm_sd.c   2007-02-17 18:55:33.478547911 +1100
+@@ -424,8 +424,11 @@
+                cmd = host->req->cmd;
+
+                if (host_status & TIFM_MMCSD_ERRMASK) {
+-                       if (host_status & TIFM_MMCSD_CTO)
++                       if (host_status & TIFM_MMCSD_CTO) {
+                                cmd_error = MMC_ERR_TIMEOUT;
++                               writel(TIFM_MMCSD_CTO,
++                                      sock->addr + SOCK_MMCSD_STATUS);
++                       }
+                        else if (host_status & TIFM_MMCSD_CCRC)
+                                cmd_error = MMC_ERR_BADCRC;
+
+
+
+ 
+____________________________________________________________________________________
+Do you Yahoo!?
+Everyone is raving about the all-new Yahoo! Mail beta.
+http://new.mail.yahoo.com
+
+
+From brad at wasp.net.au  Sat Feb 17 09:41:54 2007
+From: brad at wasp.net.au (Brad Campbell)
+Date: Sat, 17 Feb 2007 12:41:54 +0400
+Subject: [Tifm21-devel] Suspend/Resume
+In-Reply-To: <20070217075823.70537.qmail@web36712.mail.mud.yahoo.com>
+References: <20070217075823.70537.qmail@web36712.mail.mud.yahoo.com>
+Message-ID: <45D6BFD2.7060209@wasp.net.au>
+
+Alex Dubov wrote:
+> Revision 85 - suspend / resume supposedly fixed (and I hope nothing is broken by other small
+> changes).
+
+Suspend/Resume (To disk and S3) with no card inserted : Great!
+
+Suspend/Resume (To disk and S3) with card inserted : Great!, stays mounted and all read/write is 
+good. Not sure I want to try suspending mid-write, but I'll get to that a bit later when I have time.
+
+Insert Card, Suspend, Remove Card, Resume : Dies and can't get a trace.
+
+I inserted a card, suspended to disk, removed the card, tried to resume and it hung up.
+Rebooted with Alt-sysrq-B and re-inserted the card before attempting to resume again and it resumed 
+nicely and I can still access the card.
+
+So it works unless you remove the card while it's out cold, in which case it explodes on resume.
+
+That's pretty impressive progress for one revision!
+
+Brad
+-- 
+"Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so." -- Douglas Adams
+
+
+From remi2402 at free.fr  Sat Feb 17 10:34:50 2007
+From: remi2402 at free.fr (=?ISO-8859-1?Q?R=E9mi_Cardona?=)
+Date: Sat, 17 Feb 2007 10:34:50 +0100
+Subject: [Tifm21-devel] finally got a log
+In-Reply-To: <398597.61331.qm@web36702.mail.mud.yahoo.com>
+References: <398597.61331.qm@web36702.mail.mud.yahoo.com>
+Message-ID: <45D6CC3A.8090205@free.fr>
+
+Alex Dubov wrote:
+
+> This is unfortunate, but some (not important) macros are only defined in the current -git series
+> of the kernel (so they are absent on released 2.6.20). I'll add the proper header to SVN today.
+
+
+Revision 85 works perfectly! A big thanks to both of you.
+
+I tried reading with a 16MB MMC card and with a 512MB SD card. With the
+SD card, I transferd 293MB of data in just under 40 sec (wall clock
+time), so that would be around 7.3 MB/s. Since that was done in
+nautilus, maybe it had already cached a few files, I don't know.
+
+All in all these perfs look really good. This was done on a 2.6.20
+kernel with the gentoo patchset, fyi. HAL integration and detection is
+perfect, the icon popped on my desktop in less than a sec.
+
+I don't know if it's too late yet, but you should definitely try to push
+this revision into the kernel.
+
+Cheers :)
+
+R?mi
+
+
+From soruk at eridani.co.uk  Sat Feb 17 13:58:22 2007
+From: soruk at eridani.co.uk (Michael McConnell)
+Date: Sat, 17 Feb 2007 12:58:22 +0000 (GMT)
+Subject: [Tifm21-devel] finally got a log
+In-Reply-To: <45D6CC3A.8090205@free.fr>
+Message-ID: <Pine.LNX.4.44.0702171257220.24712-100000@zeskia.int.eridani.co.uk>
+
+On Sat, 17 Feb 2007, R?mi Cardona wrote:
+
+> Alex Dubov wrote:
+> 
+> > This is unfortunate, but some (not important) macros are only defined in the current -git series
+> > of the kernel (so they are absent on released 2.6.20). I'll add the proper header to SVN today.
+> 
+> 
+> Revision 85 works perfectly! A big thanks to both of you.
+> 
+> I tried reading with a 16MB MMC card and with a 512MB SD card. With the
+> SD card, I transferd 293MB of data in just under 40 sec (wall clock
+> time), so that would be around 7.3 MB/s. Since that was done in
+> nautilus, maybe it had already cached a few files, I don't know.
+> 
+> All in all these perfs look really good. This was done on a 2.6.20
+> kernel with the gentoo patchset, fyi. HAL integration and detection is
+> perfect, the icon popped on my desktop in less than a sec.
+> 
+> I don't know if it's too late yet, but you should definitely try to push
+> this revision into the kernel.
+
+How hard would it be to backport this to 2.6.19? :) I'm running Fedora Core 
+6, and last time I tried to upgrade the kernel on this thing I broke Gnome 
+horribly....
+
+-- Michael "Soruk" McConnell
+   Eridani Star System
+
+   MailStripper - http://www.MailStripper.eu/ - SMTP spam filter
+   Mail Me Anywhere - http://www.MailMeAnywhere.com/ - Mobile email
+
+
+
+From cathectic at gmail.com  Sat Feb 17 15:42:59 2007
+From: cathectic at gmail.com (Carlos Corbacho)
+Date: Sat, 17 Feb 2007 14:42:59 +0000
+Subject: [Tifm21-devel] Suspend/Resume
+In-Reply-To: <45D6BFD2.7060209@wasp.net.au>
+References: <20070217075823.70537.qmail@web36712.mail.mud.yahoo.com>
+	<45D6BFD2.7060209@wasp.net.au>
+Message-ID: <200702171443.00135.cathectic@gmail.com>
+
+On Saturday 17 February 2007 08:41, Brad Campbell wrote:
+> Alex Dubov wrote:
+> > Revision 85 - suspend / resume supposedly fixed (and I hope nothing is
+> > broken by other small changes).
+>
+> Suspend/Resume (To disk and S3) with no card inserted : Great!
+
+Everyone hates a "me too", but none the less: Suspend/ resume works fine here 
+with the latest SVN and no card inserted as well (no SD/ MMC cards to test 
+here I'm afraid though).
+
+-Carlos
+-- 
+Uni: c.corbacho at cs.ucl.ac.uk
+Home: cathectic at gmail.com
+GPG Key ID: 0x23EE722D
+
+
+From oakad at yahoo.com  Sat Feb 17 15:51:37 2007
+From: oakad at yahoo.com (Alex Dubov)
+Date: Sat, 17 Feb 2007 06:51:37 -0800 (PST)
+Subject: [Tifm21-devel] Suspend/Resume - "me too"s are useful;
+	no 2.6.19 backport
+In-Reply-To: <200702171443.00135.cathectic@gmail.com>
+Message-ID: <815330.77659.qm@web36705.mail.mud.yahoo.com>
+
+> 
+> Everyone hates a "me too", but none the less: Suspend/ resume works fine here 
+> with the latest SVN and no card inserted as well (no SD/ MMC cards to test 
+> here I'm afraid though).
+
+Actually, we encounter so many subtle bugs with this controller (even this late in the
+development) that "me too"s are extremely useful. They are the only way to ensure that everything
+works as expected.
+
+On the 2.6.19 backport: even disregarding accepted policy of "no backports" there are two
+showstoppers in the 2.6.19 and below:
+1. No freezeable workqueues (I wonder how people lived without them)
+2. Workqueue api is different
+
+
+
+ 
+____________________________________________________________________________________
+TV dinner still cooling? 
+Check out "Tonight's Picks" on Yahoo! TV.
+http://tv.yahoo.com/
+
+
+From oakad at yahoo.com  Sat Feb 17 15:54:33 2007
+From: oakad at yahoo.com (Alex Dubov)
+Date: Sat, 17 Feb 2007 06:54:33 -0800 (PST)
+Subject: [Tifm21-devel] Suspend/Resume
+In-Reply-To: <45D6BFD2.7060209@wasp.net.au>
+Message-ID: <449105.63520.qm@web36713.mail.mud.yahoo.com>
+
+> 
+> So it works unless you remove the card while it's out cold, in which case it explodes on resume.
+
+It appears to be a bug in the mmc layer. I've put a work-around in rev86 - hope it works.
+
+I'll go nag Pierre on this now.
+
+
+
+ 
+____________________________________________________________________________________
+Expecting? Get great news right away with email Auto-Check. 
+Try the Yahoo! Mail Beta.
+http://advision.webevents.yahoo.com/mailbeta/newmail_tools.html 
+
+
+From brad at wasp.net.au  Sun Feb 18 14:23:12 2007
+From: brad at wasp.net.au (Brad Campbell)
+Date: Sun, 18 Feb 2007 17:23:12 +0400
+Subject: [Tifm21-devel] Suspend/Resume
+In-Reply-To: <449105.63520.qm@web36713.mail.mud.yahoo.com>
+References: <449105.63520.qm@web36713.mail.mud.yahoo.com>
+Message-ID: <45D85340.30704@wasp.net.au>
+
+Alex Dubov wrote:
+>> So it works unless you remove the card while it's out cold, in which case it explodes on resume.
+> 
+> It appears to be a bug in the mmc layer. I've put a work-around in rev86 - hope it works.
+
+Yes, it works fine. HAL just pops up on resume and forcibly removes the card!
+
+Tested 128MB MMC and 512MB SD. All suspend resume is hunky dory with rev86.
+
+I now can't fault it..
+That card slot was the only driver on the whole machine that was my bugbear. It is no longer.
+
+On a related note, being a Sony laptop it has a memory stick pro slot also. I don't own any sony 
+memory sticks and have no devices that used them (bloody proprietary crap if you ask me), but when 
+it comes time to test I have a cost effective source for them over here, so I can test that too if 
+you like.
+
+I'm so tempted to go and pick up a high speed 4G SDHC card now to see if that needs work also, but 
+not just yet. Too busy basking in the glow of a working reader with the cards I have!
+
+I did not apply the patch you sent against rev85 to help mmc detection, but I've not seen the mmc 
+problem reoccur yet either.
+
+Brad
+-- 
+"Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so." -- Douglas Adams
+
+
+From oakad at yahoo.com  Sun Feb 18 15:06:39 2007
+From: oakad at yahoo.com (Alex Dubov)
+Date: Sun, 18 Feb 2007 06:06:39 -0800 (PST)
+Subject: [Tifm21-devel] Suspend/Resume
+In-Reply-To: <45D85340.30704@wasp.net.au>
+Message-ID: <64617.15588.qm@web36715.mail.mud.yahoo.com>
+
+
+> On a related note, being a Sony laptop it has a memory stick pro slot also. I don't own any sony
+> 
+> memory sticks and have no devices that used them (bloody proprietary crap if you ask me), but
+> when 
+> it comes time to test I have a cost effective source for them over here, so I can test that too
+> if 
+> you like.
+
+I already started to work on memorystick. In fact, if you want to rant about "bloody proprietary
+crap" you'd better pick up on "xD picture card" - memorystick is reasonably nice compared to it.
+Of course, I'm planning to support it too.
+
+
+> 
+> I did not apply the patch you sent against rev85 to help mmc detection, but I've not seen the
+> mmc 
+> problem reoccur yet either.
+> 
+
+I actually committed that patch into rev86. May be it does help, after all.
+
+
+
+
+ 
+____________________________________________________________________________________
+Want to start your own business?
+Learn how on Yahoo! Small Business.
+http://smallbusiness.yahoo.com/r-index
+
+
+From brad at wasp.net.au  Sat Feb 24 12:25:24 2007
+From: brad at wasp.net.au (Brad Campbell)
+Date: Sat, 24 Feb 2007 15:25:24 +0400
+Subject: [Tifm21-devel] rev88 passes all my tests
+Message-ID: <45E020A4.6080704@wasp.net.au>
+
+Just an fyi.
+
+Brad
+-- 
+"Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so." -- Douglas Adams
+
+

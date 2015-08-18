@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Tifm21-devel] finally got a log
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tifm21-devel/2007-February/index.html" >
+   <LINK REL="made" HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20finally%20got%20a%20log&In-Reply-To=%3C45D2ABC0.1050504%40wasp.net.au%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000262.html">
+   <LINK REL="Next"  HREF="000264.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Tifm21-devel] finally got a log</H1>
+    <B>Brad Campbell</B> 
+    <A HREF="mailto:tifm21-devel%40lists.berlios.de?Subject=Re%3A%20%5BTifm21-devel%5D%20finally%20got%20a%20log&In-Reply-To=%3C45D2ABC0.1050504%40wasp.net.au%3E"
+       TITLE="[Tifm21-devel] finally got a log">brad at wasp.net.au
+       </A><BR>
+    <I>Wed Feb 14 07:27:12 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000262.html">[Tifm21-devel] finally got a log
+</A></li>
+        <LI>Next message: <A HREF="000264.html">[Tifm21-devel] finally got a log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#263">[ date ]</a>
+              <a href="thread.html#263">[ thread ]</a>
+              <a href="subject.html#263">[ subject ]</a>
+              <a href="author.html#263">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Alex Dubov wrote:
+&gt;<i> We are looking at two different problems here:
+</I>&gt;<i> 1. MMC card just does not works. This can be problem with clock, voltage (I have no idea how to
+</I>&gt;<i> set it to anything other than default) or it may be a real timeout. The last point can be tested
+</I>&gt;<i> by changing this line in tifm_sd:
+</I>&gt;<i> ----
+</I>&gt;<i> // command timeout fixed to 64 clocks for now
+</I>&gt;<i> writel(64, sock-&gt;addr + SOCK_MMCSD_COMMAND_TO);
+</I>&gt;<i> ----
+</I>&gt;<i> (put a larger value instead of 64, say 128).
+</I>&gt;<i> I must also ask - had this MMC card ever worked before on linux? And if yes, on what
+</I>&gt;<i> configuration?
+</I>
+Yes.. I used it yesterday with this inbuilt reader and a 2.6.19 kernel using the integrated tifm 
+driver. In fact, I wrote about 80MB to the card, the did a full verify on it. At 172kb/s mind you, 
+but none the less it worked.
+
+&gt;<i> 2. The SD card does nothing wrong as far as I can see. It simply gets ejected without provocation:
+</I>&gt;<i> ----
+</I>&gt;<i> [  375.310000] tifm_7xx1 0000:06:05.3: checking media set 8
+</I>&gt;<i> [  375.310000] tifm_7xx1: demand removing card from socket 0:3
+</I>
+That line is where *I* pulled the card out after it exploded..
+
+The snippet below is where it all goes pear shaped during the write.
+
+[  266.740000] tifm_sd tifm_sd0:3: host_status 1, fifo_status 0
+[  266.750000] tifm_sd tifm_sd0:3: host_status 8, fifo_status 0
+[  266.750000] tifm_sd tifm_sd0:3: host_status 0, fifo_status 1
+[  267.740000] tifm_sd: card failed to respond for a long period of time
+[  267.740000] tifm_7xx1 0000:06:05.3: checking media set 8
+[  267.740000] tifm_7xx1: demand removing card from socket 0:3
+
+Notice the card removal here? The card was untouched and still in the socket.
+
+[  267.740000] tifm_sd tifm_sd0:3: w_bl 0, num_bl 0, b_s 512, bsh 1
+[  267.740000] mmcblk0: error 1 sending read/write command
+[  267.740000] end_request: I/O error, dev mmcblk0, sector 782
+[  267.740000] mmcblk0: error 1 sending read/write command
+[  267.740000] end_request: I/O error, dev mmcblk0, sector 783
+
+&gt;<i> This is more or less clear cut hardware problem. Most probably something with power.
+</I>&gt;<i> We can try the following:
+</I>&gt;<i> Add this printout to tifm_sd_ios:
+</I>&gt;<i> --------------------------------
+</I>&gt;<i> --- tifm_sd.c.orig      2007-02-14 12:48:20.000000000 +1100
+</I>&gt;<i> +++ tifm_sd.c   2007-02-14 12:50:17.000000000 +1100
+</I>&gt;<i> @@ -712,6 +712,8 @@
+</I>&gt;<i> 
+</I>&gt;<i>         dev_dbg(&amp;sock-&gt;dev, &quot;Setting bus width %d, power %d\n&quot;, ios-&gt;bus_width,
+</I>&gt;<i>                 ios-&gt;power_mode);
+</I>&gt;<i> +       dev_dbg(&amp;sock-&gt;dev, &quot;Setting vdd  %hu\n&quot;, ios-&gt;vdd);
+</I>&gt;<i> +
+</I>&gt;<i>         if (ios-&gt;bus_width == MMC_BUS_WIDTH_4) {
+</I>&gt;<i>                 writel(TIFM_MMCSD_4BBUS | readl(sock-&gt;addr + SOCK_MMCSD_CONFIG),
+</I>&gt;<i>                        sock-&gt;addr + SOCK_MMCSD_CONFIG);
+</I>&gt;<i> --------------------------------
+</I>&gt;<i> 
+</I>&gt;<i> Then, I may need a log where card fails, you get it out and then put back in - may be we'll be
+</I>&gt;<i> able to nail the particular problem.
+</I>&gt;<i> 
+</I>&gt;<i> I still believe that the ugly parts are not my fault, so to say. It seems like some problem in
+</I>&gt;<i> block layer (mmc_block or above) is triggered by sudden death of the block device. We can do an
+</I>&gt;<i> experiment: say card failed, you plugged it out/in and nothing gets detected. From my experience,
+</I>&gt;<i> main block device gets created by udev (/dev/mmcblk0 or any other number), but partition table is
+</I>&gt;<i> not read. You can test this by running &quot;cfdisk&quot; on the /dev/mmcblk0 to make sure that reading
+</I>&gt;<i> indeed works (cfdisk will display the correct partition table and no errors will be reported).
+</I>
+Will patch it up and run some tests this afternoon.
+
+I really appreciate the help, hope we can nail it.
+
+Brad
+-- 
+&quot;Human beings, who are almost unique in having the ability
+to learn from the experience of others, are also remarkable
+for their apparent disinclination to do so.&quot; -- Douglas Adams
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000262.html">[Tifm21-devel] finally got a log
+</A></li>
+	<LI>Next message: <A HREF="000264.html">[Tifm21-devel] finally got a log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#263">[ date ]</a>
+              <a href="thread.html#263">[ thread ]</a>
+              <a href="subject.html#263">[ subject ]</a>
+              <a href="author.html#263">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tifm21-devel">More information about the Tifm21-devel
+mailing list</a><br>
+</body></html>
